@@ -1,8 +1,8 @@
 #-------------------------------
 # Site Settings
-title: Tromleorkestret
+title: ROBOTIC-AUDIO
 logo: # You can add own logo. For example '/images/logo.png'.
-description: Tromleorkestret – The Firespewing Music Machine
+description: ROBOTIC-AUDIO – Hjalte Bested Hjorth
 
 
 #-------------------------------
@@ -30,15 +30,15 @@ menu-settings:
 #-------------------------------
 # Author Settings
 author:
-  name: HJALTE BESTED HJORTH
+  name: Hjalte Bested Hjorth
   avatar: '/images/tromleorkestret/TrorkMV1.jpg'
 
 
 #-------------------------------
 # Hero Settings
 hero:
-  title: TROMLEORKESTRET
-  description: The Firebreathing Music Machine
+  title: ROBOTIC-AUDIO
+  description: by Hjalte Bested Hjorth
   #image: '/images/tromleorkestret/TrorkMV2.jpg'
   image: '/images/himmelstorm/Himmelstorm1.jpg'
 
