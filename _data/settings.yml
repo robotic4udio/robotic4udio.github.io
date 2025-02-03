@@ -37,10 +37,10 @@ author:
 #-------------------------------
 # Hero Settings
 hero:
-  title: ROBOTIC-AUDIO
-  description: by Hjalte Bested Hjorth
+  title: HJALTE B. HJORTH
+  description: Musician, Sound Designer, and Creative Technologist
   #image: '/images/tromleorkestret/TrorkMV2.jpg'
-  image: '/images/himmelstorm/Himmelstorm1.jpg'
+  image: 'images/tromleorkestret/mv/mv1.JPG'
 
 
 

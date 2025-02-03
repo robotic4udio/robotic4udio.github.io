@@ -1,0 +1,183 @@
+{
+  "basics": {
+    "name": "Hjalte Bested Hjorth",
+    "label": "Creative Technologist, Robotics Engineer, Composer and Musician",
+    "image": "",
+    "email": "hjalte.bested.hjorth@gmail.com",
+    "phone": "+45 23 28 29 26",
+    "url": "https://robotic4audio.github.io/",
+    "summary": "I am a visionary creative technologist, merging the worlds of robotics, art, and music into transformative experiences. From engineering intricate mechanical instruments to composing immersive soundscapes, I thrive on turning bold ideas into tangible realities. My work reflects an unyielding passion for innovation, collaboration, and the magic of creating something extraordinary.",
+    "location": {
+      "address": "Bjørnekloen 374 st.tv",
+      "postalCode": "1440",
+      "city": "Copenhagen K",
+      "countryCode": "DK",
+      "region": "Hovedstaden"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "hjaltebestedhjorth",
+        "url": "https://www.linkedin.com/in/hjaltebestedhjorth"
+      },
+      {
+        "network": "GitHub",
+        "username": "robotic4audio",
+        "url": "https://github.com/robotic4audio"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "MAN Energy Solutions",
+      "position": "Research & Development Engineer",
+      "url": "https://www.man-es.com/",
+      "startDate": "2018-01-01",
+      "summary": "Developed control systems for emissions-reducing subsystems on large-scale engines. Played a pivotal role as software architect, optimizing scalability and efficiency, and managing large-scale version control through Git.",
+      "highlights": [
+        "Designed control systems in C++ for distributed control systems.",
+        "Handled major Git merge processes and restructured codebase for scalability."
+      ]
+    },
+    {
+      "name": "Tromleorkestret",
+      "position": "Co-Founder, Performer, Engineer",
+      "url": "https://tromleorkestret.dk/",
+      "startDate": "2012-01-01",
+      "summary": "Co-founded an interactive music and art project using a custom-built, robotic music machine. Designed and built unique robotic instruments, composed music, and performed internationally.",
+      "highlights": [
+        "Created the Robotic Slide Bass and other mechanical instruments.",
+        "Performed at events like BIG BANG Festival and Badesøen Festival."
+      ]
+    },
+    {
+      "name": "RMC | Rytmisk Musikkonservatorium",
+      "position": "Part-Time Lecturer",
+      "url": "https://rmc.dk/",
+      "startDate": "2024-01-01",
+      "summary": "Teaching the course \"Composer as Designer,\" focusing on music system design, generative approaches, and real-time interaction using sensors and coding."
+    },
+    {
+      "name": "Teater Fantast",
+      "position": "Music Producer and Sound Designer",
+      "url": "https://www.teaterfantast.dk/",
+      "startDate": "2022-01-01",
+      "endDate": "2023-01-01",
+      "summary": "Composed and produced music and sound design for the play \"DATA-DATA.\""
+    },
+    {
+      "name": "Science & Cocktails",
+      "position": "Artist in Residence",
+      "url": "http://scienceandcocktails.org/",
+      "startDate": "2011-01-01",
+      "endDate": "2017-01-01",
+      "summary": "Designed interactive installations and performed generative music pieces at the intersection of science and art."
+    }
+  ],
+  "education": [
+    {
+      "institution": "Technical University of Denmark (DTU)",
+      "location": "Lyngby, Denmark",
+      "url": "https://www.dtu.dk/",
+      "area": "Electrical Engineering and Robotics",
+      "studyType": "MSc",
+      "startDate": "2016-08-01",
+      "endDate": "2018-07-01",
+      "score": "12",
+      "courses": ["Precision Navigation for Mobile Robots"]
+    },
+    {
+      "institution": "Technical University of Denmark (DTU)",
+      "location": "Lyngby, Denmark",
+      "url": "https://www.dtu.dk/",
+      "area": "Electrical Engineering",
+      "studyType": "BSc",
+      "startDate": "2012-08-01",
+      "endDate": "2016-07-01",
+      "score": "12",
+      "courses": ["Design of a Robotic Base"]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Juleløses Jul",
+      "position": "Coordinator",
+      "url": "https://www.juleloesesjul.com/",
+      "startDate": "2012-01-01",
+      "summary": "Managed annual Christmas Eve events at Den Grå Hal, Christiania, providing a free celebration for over 1,200 attendees. Oversaw technical setup, program coordination, and volunteer management.",
+      "highlights": [
+        "Directed a team of 100+ volunteers to execute seamless events.",
+        "Ensured inclusivity and community spirit through thoughtful programming."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Interactive Learning Games",
+      "summary": "Developed interactive educational tools showcasing energy distribution using hardware and visual models.",
+      "highlights": [
+        "Designed installations for Norfors Besøgscenter and Refa Energispil.",
+        "Integrated LEDs, control panels, and 10-inch screens for hands-on learning."
+      ]
+    },
+    {
+      "name": "FOO/SKOU Interactive Art",
+      "summary": "Collaborated with FOO/SKOU to build sensor-based installations merging art and technology.",
+      "highlights": [
+        "Developed embedded systems and real-time audio DSP."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Programming",
+      "level": "Expert",
+      "keywords": ["C++", "Python", "MATLAB", "JavaScript", "Embedded Systems", "Real-Time Systems"]
+    },
+    {
+      "name": "Audio Programming",
+      "level": "Expert",
+      "keywords": ["DSP", "JUCE", "Max", "SuperCollider", "Pd"]
+    },    
+    {
+      "name": "Robotics and Electronics",
+      "level": "Expert",
+      "keywords": ["Control Systems", "Sensor Integration", "Computer Vision"]
+    },
+    {
+      "name": "Music",
+      "level": "Advanced",
+      "keywords": ["Composition", "Generative Music", "Sound Design", "Piano Playing", "Music Theory"]
+    },
+    {
+      "name": "Project Management",
+      "level": "Intermediate",
+      "keywords": ["Agile", "Scrum", "Jira", "Confluence"]
+    },
+    {
+      "name": "Art and Design",
+      "level": "Intermediate",
+      "keywords": ["Interactive Installations", "Creative Coding", "Physical Computing", "Rapid Prototyping"]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Danish",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "English",
+      "fluency": "Fluent"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Music Technology",
+      "keywords": ["Generative Systems", "Interactive Installations", "Soundscapes"]
+    },
+    {
+      "name": "Robotics",
+      "keywords": ["Automation", "Control Engineering", "Mechatronics"]
+    }
+  ]
+}
