@@ -8,33 +8,17 @@ featured: false
 showdate: false
 ---
 
-# About
-[Lyden af Videnskab](https://www.lydenafvidenskab.dk/) is an immersive podcast series that takes listeners behind the walls of universities to explore the fascinating world of science and research. Funded by the Novo Nordisk Foundation, the podcast combines in-depth storytelling with meticulously crafted soundscapes to make complex scientific topics accessible, engaging, and emotionally resonant.
+[Lyden af Videnskab](https://www.lydenafvidenskab.dk/) is an immersive podcast series that takes listeners behind the walls of universities to explore the fascinating world of science and research. Funded by the Novo Nordisk Foundation, the podcast combines in-depth storytelling with meticulously crafted soundscapes to make complex scientific topics accessible, engaging, and emotionally resonant. I have been working as the composer and sound designer for the podcast since its inception, creating original music that enhances the narrative and brings the stories to life.
 
+The podcast is hosted by Sofie Hjorth, a science communicator and journalist with a passion for making complex topics accessible to a broad audience. Sofie’s engaging storytelling and insightful interviews bring the world of science to life, offering listeners a window into the minds of researchers and the frontiers of knowledge.
 
-[Spotify](https://open.spotify.com/show/5tIQRkXXRS17868JcpSBZe)
+<iframe width="100%" height="295" src="https://embeds.audioboom.com/channels/5034600/embed?player_theme=dark&amp;v=202301" style="background-color: transparent; display: block; padding: 0; width: 100%" frameborder="0" allowtransparency="allowtransparency" scrolling="no" title="Audioboom player" allow="autoplay" sandbox="allow-downloads allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"></iframe>
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/lyden-af-videnskab/SofieRec.jpg">
-  </div>
-</div>
+<br>
 
 
 Each episode delves into a specific area of research, blending interviews with leading scientists, real-world applications, and imaginative sound design. From groundbreaking discoveries to the human stories behind the science, Lyden af Videnskab offers a unique auditory experience that captures the wonder of inquiry and innovation.
 
-# Original Music and Sound Design
-The podcast features an original score by Hjalte Bested Hjorth, whose compositions add depth and atmosphere to the stories being told. The music is designed to enhance the emotional resonance of each episode, from reflective and contemplative tones to moments of excitement and awe. Hjalte’s sound design integrates seamlessly with the narration, creating a cohesive experience that brings the world of science to life.
-
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/lyden-af-videnskab/MandenBagMusikken.png">
-  </div>
-</div>
-
-
-
-# Why Listen?
 Whether you’re a curious mind, a science enthusiast, or just love great storytelling, Lyden af Videnskab invites you to journey into the heart of discovery. Through its combination of expert insights, compelling narratives, and rich soundscapes, the podcast makes science feel tangible, relatable, and inspiring.
 
 Available on major podcast platforms, Lyden af Videnskab is your gateway to the cutting edge of Danish science, presented in a way that’s as enlightening as it is entertaining.

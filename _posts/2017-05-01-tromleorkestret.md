@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  Tromleorkestret
-description: The Firebreathing Music Machine
-image:  '/images/tromleorkestret/TromleJul1.jpg'
+description: An original music project centered around a Firebreathing Music Machine
+image:  '/images/tromleorkestret/TrorkMV2.jpg'
 tags:   [Creative-Tech, Music, Composition, Sound-Design, Art, Work, Tromleorkestret]
 featured: false
 showdate: false
