@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Infernal Summer Tour 2015
+title:  Infernal Summer Tour
 description: Creating wearable electronics for the Infernal Summer Tour 2015
 image:  '/images/infernal/Poster1.jpg'
 tags:   [Creative-Tech, Wearable, Work]
