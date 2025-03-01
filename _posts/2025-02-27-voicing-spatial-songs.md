@@ -2,7 +2,7 @@
 layout: post
 title:  Voicing Spatial Songs 2.0
 description: Creating an interface for spatial audio music production in collaboration with the SØSTR project at Royal Danish Academy of Music
-image:  '/images/soestr/soestr.jpg'
+image: '/images/soestr/soestr.jpg'
 tags:   [Creative-Tech, Sound-Design, Work, RMC]
 featured: false
 showdate: false
@@ -20,3 +20,4 @@ Listen to SØSTR's music on Spotify:
 <p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/5kKJhVHyYkAyEncGzHnsCI?utm_source=generator&theme=0" frameBorder="0" allowfullscreen="no" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 </p>
 
+![]({{site.baseurl}}/images/soestr/thump2.jpg#wide)
