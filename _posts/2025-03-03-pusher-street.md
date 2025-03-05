@@ -2,7 +2,8 @@
 layout: post
 title:  Resonance of Change
 description: Reclaiming PusherStreet – A Sound Installation for Change
-image:  '/images/pusher-street/Pusherstreet ryddes og graves op.jpg'
+#image:  '/images/pusher-street/Pusherstreet ryddes og graves op.jpg'
+image:  '/images/pusher-street/IMG_6553.jpg'
 tags:   [Creative-Tech, Music, Sound-Design, Art]
 featured: false
 showdate: false
