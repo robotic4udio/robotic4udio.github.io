@@ -13,7 +13,6 @@ showdate: false
 
 With the removal of criminal gangs and drug dealers from PusherStreet, Christiania faces a critical turning point. If nothing meaningful fills the space left behind, history has shown that illegal activity will simply re-emerge, bringing back the same issues that have plagued the area for decades. 
 
-
 <div class="gallery-box">
     <div class="gallery">
         <img src="/images/pusher-street/ChristianiaEntre.jpg">
