@@ -10,9 +10,12 @@ showdate: false
 
 ### **ReSound Lab – Giving Electronic Waste a Second Life Through Sound**  
 
+
 In a world overflowing with discarded technology, ReSound Lab transforms electronic waste into unique musical instruments, exploring the intersection of sound art, sustainability, and technological innovation. By repurposing obsolete hardware—such as hard drives, circuit boards, printer components, CRT-TV's and industrial machinery—through hacking, reprogramming, and mechanical manipulation, this project gives new meaning to what is often considered trash.
 
-Each year, millions of tons of electronic waste (e-waste) are discarded globally, much of it ending up in landfills or shipped to developing countries, where it poses severe environmental and health risks. ReSound Lab challenges this cycle by transforming abandoned materials into instruments and compositions, turning forgotten technology into creative expression. 
+> “One man’s trash is another man’s instrument.
+
+Each year, millions of tons of electronic waste (e-waste) are discarded globally, much of it ending up in landfills or shipped to developing countries, where it poses severe environmental and health risks.  ReSound Lab challenges this cycle by transforming abandoned materials into instruments and compositions, turning obsolete technology into creative expression. Read more about the [global e-waste crisis](https://edition.cnn.com/2024/03/20/climate/electronic-waste-recycling-climate-un/index.html).
 
 By blending DIY instrument building, sound art, and sustainability, ReSound Lab uncovers the hidden sonic potential of electronic waste. Using contact microphones, electromagnetic pickups, circuit augmentation, sensors, and digital processing, we reveal the rhythms and textures buried within discarded hardware.
 
@@ -30,10 +33,18 @@ By giving new purpose to discarded materials, **ReSound Lab**:
 🎵 **Expands Musical Boundaries** – Introduces new sonic possibilities through unconventional sound sources.  
 🔧 **Encourages DIY & Maker Culture** – Inspires others to experiment with upcycling and creative reuse.  
 
+> There is no such thing as ‘away.’ When we throw anything away, it must go somewhere.
+>
+> <cite>Annie Leonard</cite>
+
 ### **Experience ReSound Lab**  
 Through live performances, interactive installations, and audiovisual compositions, ReSound Lab invites audiences into a world where technology’s afterlife becomes a source of creativity. In a time of growing e-waste concerns, this project sparks a dialogue on sustainability, innovation, and the musical possibilities hidden within the discarded.  
 
-🔊 **Recycling sound, one circuit at a time.**  
+> 🔊 Recycling sound, one circuit at a time.
+
+
+
+
 
 📡 **Follow ReSound Lab for updates on performances, projects, and behind-the-scenes experiments. And if you want to be part of the collective, reach out!**  
 
