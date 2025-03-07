@@ -1,17 +1,16 @@
 ---
 layout: post
 title:  ReSound Lab
-description: Turning Electronic Waste into Musical Instruments
+description: Turning Waste into Musical Expression
 image:  '/images/resound-lab/ResoundLab8.jpg'
-tags:   [Creative-Tech, Music, Composition, Sound-Design, Art]
+tags:   [Creative-Tech, Music, Composition, Sound-Design, Art, Teaching, Sustainability]
 featured: false
 showdate: false
 ---
 
-### **ReSound Lab – Giving Electronic Waste a Second Life Through Sound**  
+### **ReSound Lab – Giving Waste a Second Life Through Sound**  
 
-
-In a world overflowing with discarded technology, ReSound Lab transforms electronic waste into unique musical instruments, exploring the intersection of sound art, sustainability, and technological innovation. By repurposing obsolete hardware—such as hard drives, circuit boards, printer components, CRT-TV's and industrial machinery—through hacking, reprogramming, and mechanical manipulation, this project gives new meaning to what is often considered trash.
+In a world overflowing with discarded technology, ReSound Lab transforms waste into unique musical instruments, exploring the intersection of sound art, sustainability, and technological innovation. By repurposing obsolete hardware—such as hard drives, circuit boards, printer components, CRT-TV's and industrial machinery—through hacking, reprogramming, and mechanical manipulation, this project gives new meaning to what is often considered trash.
 
 > “One man’s trash is another man’s instrument.
 
@@ -48,9 +47,21 @@ I am currently in the process of preparing course matriel and workshop material 
 
 > 🔊 Recycling sound, one circuit at a time.
 
+
 📡 **Follow ReSound Lab for updates on performances, projects, and behind-the-scenes experiments. And if you want to be part of the collective, reach out!**  
 
 ![]({{site.baseurl}}/images/resound-lab/ResoundLab1.webp#wide)
+
+### Notable Projects in the Field
+- [Electronicos Fantasticos](https://www.electronicosfantasticos.com/) is a project by the Japanese artist Ei Wada, who creates musical instruments from old CRT TVs and other discarded electronics. 
+- [Recycling Techno](https://www.moritzsimongeist.com/works/recycling-techno) is a performance by Moritz Simon Geist that transforms discarded mechanical and electronic parts into electronic music and repetitive sonic structures.
+- [The Device Orchestra](https://www.youtube.com/@DeviceOrchestra) is a YouTube channel featuring robotic instruments made from old scanners, printers, and hard drives, performing popular songs.
+- [Look Mum No Computer](https://www.lookmumnocomputer.com/) is a YouTube channel and project by Sam Battle, who builds and performs with DIY electronic instruments. Sometimes using old technology and e-waste.
+- [Nicolas Bras](https://youtube.com/@nicolasbras?si=1Q69nEPViZN8BiF_2Q7J9A) is a YouTube channel by Nicolas Bras, who creates DIY instruments with various materials including waste.
+
+These works are a great source of inspiration for ReSound Lab, showcasing the creative potential of upcycling.
+
+
 
 
 #ReSoundLab #EwasteMusic #UpcycledSound #SustainableArt #ElectronicWaste #SoundRecycling #DIYMusic #CircuitBending  
