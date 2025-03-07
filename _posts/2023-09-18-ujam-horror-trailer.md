@@ -18,5 +18,3 @@ music was composed using VP SCORE for all the creepy piano, and I aimed to creat
 <p><iframe width="560" height="315" src="https://www.youtube.com/embed/sd5lQKphL80?si=UlQps_kDw0Bm0PLO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 <p><em>Credits: Video by Daniel Ruczko (UJAM), Audio by Hjalte Bested Hjorth</em></p>
 
-
-<hr>
