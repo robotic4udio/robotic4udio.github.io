@@ -8,7 +8,7 @@ featured: false
 showdate: false
 ---
 
-I collaborated with the Danish artist duo **FOO/SKOU** on innovative sound art installations that integrate **thermal cameras** and the **Bela platform** to create interactive and immersive auditory experiences.
+I collaborated with the Danish artist duo **FOO/SKOU** on innovative sound art installations that integrate **thermal cameras** and the **Bela platform** to create interactive and immersive auditory experiences. This project is part of the CONNECT ME exhibition at Trapholt Museum in Kolding, Denmark.
 
 ![]({{site.baseurl}}/images/fooskou/Foo-Skou.jpg)
 *FOO/SKOU (Louise Foo og Martha Skou). Foto: Rikke Flensberg*

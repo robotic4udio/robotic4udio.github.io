@@ -10,9 +10,11 @@ showdate: false
 
 ### **ReSound Lab – Giving Electronic Waste a Second Life Through Sound**  
 
-Welcome to ReSound Lab, where discarded electronics find new life as musical instruments. This experimental music project transforms obsolete technology -- such as hard drives, circuit boards, printer parts, and more -- into unique sound sources through hacking, reprogramming, and mechanical manipulation.  
+In a world overflowing with discarded technology, ReSound Lab transforms electronic waste into unique musical instruments, exploring the intersection of sound art, sustainability, and technological innovation. By repurposing obsolete hardware—such as hard drives, circuit boards, printer components, CRT-TV's and industrial machinery—through hacking, reprogramming, and mechanical manipulation, this project gives new meaning to what is often considered trash.
 
-By blending DIY instrument building, sound art, and sustainability, ReSound Lab explores the hidden sonic potential of electronic waste. Using contact microphones, electromagnetic pickups, circuit augmentation, sensors, and digital processing, we uncover the rhythms and textures buried in forgotten hardware.  
+Each year, millions of tons of electronic waste (e-waste) are discarded globally, much of it ending up in landfills or shipped to developing countries, where it poses severe environmental and health risks. ReSound Lab challenges this cycle by transforming abandoned materials into instruments and compositions, turning forgotten technology into creative expression. 
+
+By blending DIY instrument building, sound art, and sustainability, ReSound Lab uncovers the hidden sonic potential of electronic waste. Using contact microphones, electromagnetic pickups, circuit augmentation, sensors, and digital processing, we reveal the rhythms and textures buried within discarded hardware.
 
 ### **ReSound Lab – A Collective in the Making**  
 At this stage, **ReSound Lab is still in its idea phase**, and I am looking to build a **collective of artists, musicians, makers, and hackers** who share a passion for experimental sound and sustainability. The goal is not only to create and perform with upcycled electronic instruments but also to form a **band that explores the musical potential of discarded technology**.  
