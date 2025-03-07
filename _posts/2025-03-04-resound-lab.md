@@ -40,14 +40,17 @@ By giving new purpose to discarded materials, **ReSound Lab**:
 ### **Experience ReSound Lab**  
 Through live performances, interactive installations, and audiovisual compositions, ReSound Lab invites audiences into a world where technology’s afterlife becomes a source of creativity. In a time of growing e-waste concerns, this project sparks a dialogue on sustainability, innovation, and the musical possibilities hidden within the discarded.  
 
+### Preliminary Performance Agreement
+The project already have a preliminary agreement with the [Science & Cocktails](https://www.scienceandcocktails.org/) organization to perform at their events in Copenhagen once the project is mature. The Science & Cocktails events attracts a large audience and the collaboration will give the project a great outreach.
+
+### Courses, Workshops and Tutorials
+I am currently in the process of preparing course matriel and workshop material for ReSound Lab. In the future, I will be offering courses and workshops on how to build your own musical instruments from electronic waste. The workshops will be a mix of theory and hands-on practice, where participants will learn about the principles of sound design, electronics, and instrument building. The goal is to empower individuals to create their own upcycled instruments and explore the sonic possibilities of e-waste. 
+
 > 🔊 Recycling sound, one circuit at a time.
-
-
-
-
 
 📡 **Follow ReSound Lab for updates on performances, projects, and behind-the-scenes experiments. And if you want to be part of the collective, reach out!**  
 
 ![]({{site.baseurl}}/images/resound-lab/ResoundLab1.webp#wide)
+
 
 #ReSoundLab #EwasteMusic #UpcycledSound #SustainableArt #ElectronicWaste #SoundRecycling #DIYMusic #CircuitBending  
