@@ -3,7 +3,7 @@ layout: post
 title:  Eccentric Songs for Helio
 description: Creating an interactive sound installation with FOO/SKOU for the CONNECT ME exhibition at Trapholt Museum
 image:  '/images/fooskou/Eccentric-Songs-for-Helio.png'
-tags:   [Creative-Tech, Music, Sound-Design, Art, Work, FOO/SKOU]
+tags:   [Creative-Tech, Music, Sound-Design, Art]
 featured: false
 showdate: false
 ---

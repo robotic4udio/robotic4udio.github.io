@@ -3,7 +3,7 @@ layout: post
 title:  Composer as Designer
 description: Teaching a course on the intersection of music composition and interface-design at the Royal Danish Academy of Music
 image:  '/images/composer-as-designer.webp'
-tags:   [Creative-Tech, Composition, Sound-Design, Work, RMC, Teaching]
+tags:   [Creative-Tech, Composition, Sound-Design, RMC, Teaching]
 featured: false
 showdate: false
 ---

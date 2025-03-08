@@ -3,7 +3,7 @@ layout: post
 title:  Lyden af Videnskab
 description: Composing the Music for a Science Podcast by Sofie Hjorth
 image:  '/images/lyden-af-videnskab/lyden-af-videnskab.jpg'
-tags:   [Music, Composition, Sound-Design, Work]
+tags:   [Music, Composition, Sound-Design]
 featured: false
 showdate: false
 ---

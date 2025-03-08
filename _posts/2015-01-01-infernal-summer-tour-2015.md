@@ -3,7 +3,7 @@ layout: post
 title:  Wearable electronics for Infernal
 description: Creating wearable electronics for the Infernal Summer Tour 2015
 image:  '/images/infernal/Poster1.jpg'
-tags:   [Creative-Tech, Wearable, Work]
+tags:   [Creative-Tech, Wearable]
 featured: false
 showdate: false
 ---
