@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Voicing Spatial Songs 2.0
-description: Creating an interface for spatial audio music production in collaboration with the SØSTR project at Royal Danish Academy of Music
+description: Creating an interface for spatial audio music production in collaboration with the SØSTR project at the Rhythmic Music Conservatory
 image: '/images/soestr/soestr.jpg'
 tags:   [Creative-Tech, Sound-Design, RMC]
 featured: false
@@ -12,7 +12,7 @@ showdate: false
 
 Sharin Foo and Louise Foo are the duo behind the avant-pop project SØSTR. They are currently working on a project called [Voicing Spatial Songs 2.0](https://rmc.dk/en/project/voicing-spatial-songs-20), which aims to explore the artistic potential of spatial audio technologies in popular music. 
 
-I am collaborating with SØSTR on this project to develop an interface for spatial audio music production that will enable artists to experiment with immersive soundscapes and multi-dimensional audio compositions. The interface will provide a user-friendly platform for artists to spatialize their music, allowing them to manipulate sound in 360 degrees around the listener. By developing this interface, SØSTR hopes to democratize spatial audio production and make it more accessible to a wider audience of musicians and composers. The project is being developed at the [Royal Danish Academy of Music (RMC)](https://rmc.dk/). I am excited to be part of this innovative project and look forward to seeing how it will shape the future of music production and performance. Read more about the project here: [Voicing Spatial Songs 2.0](https://rmc.dk/en/project/voicing-spatial-songs-20).
+I am collaborating with SØSTR on this project to develop an interface for spatial audio music production that will enable artists to experiment with immersive soundscapes and multi-dimensional audio compositions. The interface will provide a user-friendly platform for artists to spatialize their music, allowing them to manipulate sound in 360 degrees around the listener. By developing this interface, SØSTR hopes to democratize spatial audio production and make it more accessible to a wider audience of musicians and composers. The project is being developed at the [Rhythmic Music Conservatory (RMC)](https://rmc.dk/). I am excited to be part of this innovative project and look forward to seeing how it will shape the future of music production and performance. Read more about the project here: [Voicing Spatial Songs 2.0](https://rmc.dk/en/project/voicing-spatial-songs-20).
 
 
 Listen to SØSTR's music on Spotify:

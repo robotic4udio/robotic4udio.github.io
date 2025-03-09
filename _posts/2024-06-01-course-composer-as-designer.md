@@ -1,14 +1,14 @@
 ---
 layout: post
 title:  Composer as Designer
-description: Teaching a course on the intersection of music composition and interface-design at the Royal Danish Academy of Music
+description: Teaching a course on the intersection of music composition and interface-design at the Rhythmic Music Conservatory
 image:  '/images/composer-as-designer.webp'
 tags:   [Creative-Tech, Composition, Sound-Design, RMC, Teaching]
 featured: false
 showdate: false
 ---
 
-In the spring semester of 2024, I had the pleasure of teaching a course at the [Royal Danish Academy of Music (RMC)](https://rmc.dk/) called **Composer as Designer**. The course explored the intersection of music composition and interface design, focusing on how composers can create innovative musical experiences by designing their own tools and technologies.
+In the spring semester of 2024, I had the pleasure of teaching a course at the [Rhythmic Music Conservatory (RMC)](https://rmc.dk/) called **Composer as Designer**. The course explored the intersection of music composition and interface design, focusing on how composers can create innovative musical experiences by designing their own tools and technologies.
 
 The course was inspired by my own work as a creative technologist, composer and sound designer, where I often find myself creating custom software, instruments, and interfaces to realize my artistic vision. By teaching students how to design their own tools, I aimed to empower them to think creatively about the relationship between music, technology, and performance.
 
