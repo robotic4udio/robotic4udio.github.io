@@ -27,9 +27,9 @@ With the removal of criminal gangs and drug dealers from PusherStreet, Christian
 
 This project is part of a larger effort to ensure that something new and constructive takes root—a cultural, creative presence that transforms the space rather than leaving it empty for old problems to return.
 
-As a response to this challenge, Hjalte Bested Hjorth ([Robotic-Audio](https://roboticaudio.com/)) and Jens Erik Larsen ([JEL Instruments](https://www.jelinstruments.com/)), presents **Resonance of Change**—a sound installation designed to bring engagement, interaction, and artistic expression into this renewed public space.
+As a response to this challenge, Jens Erik Larsen ([JEL Instruments](https://www.jelinstruments.com/)) and Hjalte Bested Hjorth ([Robotic-Audio](https://roboticaudio.com/)), presents **Resonance of Change**—a sound installation designed to bring engagement, interaction, and artistic expression into this renewed public space.
 
-Encased in a glass vitrine, the installation features three identical electro-acoustic instruments, each built around a unique interplay of strings and electromagnetic excitation. At the core of each instrument, a spinning DC motor drives a circular plate of magnets, functioning as an electromagnetic bow. The audience can manipulate the motor speed, subtly influencing which strings resonate and determining the harmonic structure of the resulting sound.
+Encased in a glass vitrine, the installation features three identical electro-acoustic instruments, each built around a unique interplay of strings and electromagnetic excitation. At the core of each instrument, a spinning brushless DC motor drives a circular plate of magnets, functioning as an electromagnetic bow. Around this plate, a series of strings are suspended, each tuned to a specific pitch. The audience can manipulate the motor speed, subtly influencing which strings resonate and determining the harmonic structure of the resulting sound. We found that by tuning the strings in specific ways, we could create a rich, evolving soundscape that responds to the audience’s input, creating very soothing and beautiful harmonies.
 
 <div class="gallery-box">
   <div class="gallery">
@@ -67,5 +67,5 @@ By placing this installation in PusherStreet, it merges high-tech experimentatio
 </div>
 
 
+![]({{site.baseurl}}/images/pusher-street/IMG_6531.jpg#wide)
 
-![]({{site.baseurl}}/images/pusher-street/dalle1.webp#wide)
