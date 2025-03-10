@@ -14,11 +14,12 @@ The course was inspired by my own work as a creative technologist, composer and 
 
 Throughout the course, students learned how to use programming languages such as Max/MSP, SuperCollider and Arduino to create interactive audiovisual systems. They also explored the principles of user-centered design, rapid prototyping, and user testing to develop intuitive and engaging interfaces for their musical compositions.
 
-One of the highlights of the course was a collaborative project where students worked in teams to design and build their own musical instruments. 
-
 By the end of the semester, the students had developed an understanding of the creative possibilities of music composition and interface design. They had also gained valuable skills in prototyping, iteration, and user feedback that will serve them well in their future careers as composers, performers, and technologists.
 
 I am proud of the work that the students produced during the course and inspired by their creativity, dedication, and passion for music and technology. I look forward to seeing how they continue to explore the intersection of music composition and interface design in their future projects and collaborations.
+
+<p><iframe height=9 width=16 src="https://drive.google.com/file/d/1Gh_NA2VQARmfYqx6P_qosnYekE53P0uE/preview" allow="autoplay; encrypted-media" frameborder="0" allowfullscreen></iframe></p>
+<p style="text-align: center;"><em>Students playing with a collaborative sound installation.</em></p>
 
 If you are interested in learning more about the **Composer as Designer** course or exploring the intersection of music composition and interface design, please feel free to reach out. I would be happy to share more about my teaching philosophy, course materials, and creative projects in this exciting field. 
 
