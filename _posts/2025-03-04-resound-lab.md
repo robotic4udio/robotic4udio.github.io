@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  ReSound Lab
+title: ReSound Lab ♻️ 🟰 🎵
 description: Turning Waste into Musical Expression
 image:  '/images/resound-lab/ResoundLab8.jpg'
 tags:   [Creative-Tech, Music, Composition, Sound-Design, Art, Teaching, Sustainability]
@@ -18,11 +18,19 @@ Each year, millions of tons of electronic waste (e-waste) are discarded globally
 
 By blending DIY instrument building, sound art, and sustainability, ReSound Lab uncovers the hidden sonic potential of electronic waste. Using contact microphones, electromagnetic pickups, circuit augmentation, sensors, and digital processing, we reveal the rhythms and textures buried within discarded hardware.
 
+
 ### **ReSound Lab – A Collective in the Making**  
 At this stage, **ReSound Lab is still in its idea phase**, and I am looking to build a **collective of artists, musicians, makers, and hackers** who share a passion for experimental sound and sustainability. The goal is not only to create and perform with upcycled electronic instruments but also to form a **band that explores the musical potential of discarded technology**.  
 
 💡 **Interested in being part of ReSound Lab?**  
 If this project resonates with you, don’t hesitate to reach out! Whether you want to contribute ideas, build instruments, or join the collective as a performer, your input and creativity are more than welcome.  
+
+#### Members of ReSound Lab
+Currently ReSound Lab consists of: 
+- [Hjalte Bested Hjorth (Robotic-Audio)](https://roboticaudio.com/about): Founder and initiator of the project. I am a composer, sound artist, robotics engineer, and creative technologist with a background in music composition, sound design, and interactive installations. My work merges art and technology, creating immersive experiences that push creative and technical boundaries.
+- [Jens Erik Larson (JEL Instruments)](https://www.jelinstruments.com/#about_me): Is a skilled instrument builder and musician with a background in lutherie, electronics, and experimental sound. He has a passion for creating unique instruments and exploring the boundaries of sound design.
+- [Anders Bo Erikson (Opica)](https://www.discogs.com/artist/9953923-Opica): Is a versatile musician and innovative producer, known for seamlessly blending acoustic and electronic soundscapes. Proficient in a range of instruments—including the cimbalom/dulcimer, percussion, and tuba—he combines his instrumental expertise with the limitless sonic possibilities of digital production.
+
 
 ### **Why It Matters**  
 By giving new purpose to discarded materials, **ReSound Lab**:  
@@ -36,6 +44,7 @@ By giving new purpose to discarded materials, **ReSound Lab**:
 >
 > <cite>Annie Leonard</cite>
 
+
 ### **Experience ReSound Lab**  
 Through live performances, interactive installations, and audiovisual compositions, ReSound Lab invites audiences into a world where technology’s afterlife becomes a source of creativity. In a time of growing e-waste concerns, this project sparks a dialogue on sustainability, innovation, and the musical possibilities hidden within the discarded.  
 
@@ -47,10 +56,17 @@ I am currently in the process of preparing course matriel and workshop material 
 
 > 🔊 Recycling sound, one circuit at a time.
 
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="/images/resound-lab/dalle-dcmotor.webp">
+    <img src="/images/resound-lab/dalle-harddrive.webp">
+    <img src="/images/resound-lab/dalle-pneumatic.webp">
+    <img src="/images/resound-lab/dalle-printer.webp">
+    <img src="/images/resound-lab/dalle-psufan.webp">
+    <img src="/images/resound-lab/dalle-tv-electronics.webp">
+  </div>
+</div>
 
-📡 **Follow ReSound Lab for updates on performances, projects, and behind-the-scenes experiments. And if you want to be part of the collective, reach out!**  
-
-![]({{site.baseurl}}/images/resound-lab/ResoundLab1.webp#wide)
 
 ### Notable Projects in the Field
 - [Electronicos Fantasticos](https://www.electronicosfantasticos.com/) is a project by the Japanese artist Ei Wada, who creates musical instruments from old CRT TVs and other discarded electronics. 
@@ -61,6 +77,10 @@ I am currently in the process of preparing course matriel and workshop material 
 
 These works are a great source of inspiration for ReSound Lab, showcasing the creative potential of upcycling.
 
+
+📡 **Follow ReSound Lab for updates on performances, projects, and behind-the-scenes experiments. And if you want to be part of the collective, reach out!**  
+
+![]({{site.baseurl}}/images/resound-lab/ResoundLab1.webp#wide)
 
 
 

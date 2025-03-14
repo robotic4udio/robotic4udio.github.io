@@ -3,7 +3,7 @@ layout: post
 title:  Cuckoos Nest Cabaret
 description: A Russian-Themed Theatrical Extravaganza at Byens Lys! ✨ Phote by Mathias Vejerslev
 image:  '/images/cuckoosnest/HjalteNina1.jpg'
-tags:   [Creative-Tech, Wearable]
+tags:   [Creative-Tech, Theater, Performance]
 featured: false
 showdate: false
 ---

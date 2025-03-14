@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Composer as Designer
+title:  Composer as Designer 🎼
 description: Teaching a course on the intersection of music composition and interface-design at the Rhythmic Music Conservatory
 image:  '/images/composer-as-designer.webp'
 tags:   [Creative-Tech, Composition, Sound-Design, RMC, Teaching]

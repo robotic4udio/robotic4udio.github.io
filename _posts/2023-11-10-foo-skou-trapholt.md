@@ -19,10 +19,7 @@ I collaborated with the Danish artist duo **FOO/SKOU** on innovative sound art i
 Our joint projects focused on capturing real-time thermal data from the environment and translating it into dynamic soundscapes. By utilizing thermal cameras, we were able to detect temperature variations caused by human presence and motion. This thermal information was then processed through custom audio software running on the Bela platform, known for its low-latency audio processing capabilities, to generate responsive audio outputs. The thermal data influenced various sound parameters, such as pitch, time, volume, and timbre, creating an interactive sonic environment that evolved based on the movements and interactions of participants. The basis of the sound scape consisted of a singer that 
 has recorded a series of vocal harmonies that represented each of the planets in the solar system. The installation was set up in Trapholt Museum in Kolding as part of the Connect Me exhibision, where the audience could explore the auditory landscape by moving through the space and observing the effects of their presence on the sound environment.
 
-
-
-
-<p><iframe width="560" height="315" src="https://www.youtube.com/embed/vLeqtGysD2w?si=_i2JHSrQvjpqZndK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/svKq1YLgaeA?si=PlSfH_vwSUkOT-Qj&amp;start=455" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
 # Technical Implementation
 
@@ -33,6 +30,12 @@ has recorded a series of vocal harmonies that represented each of the planets in
 ![]({{site.baseurl}}/images/fooskou/tech_overview.png)
 *Technical Overview of a single planet in the Installation, there was 9 planets*
 
+# Artist Interview
+Listen to the artist duo FOO/SKOU talk about the project in this interview:
+
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/vLeqtGysD2w?si=_i2JHSrQvjpqZndK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+
+
 # Artistic Expression
 
 The integration of thermal cameras and Bela enabled the creation of soundscapes that were directly influenced by the presence and movement of individuals within the space. As participants moved through the installation, their body heat altered the thermal readings, which in turn modulated the generated sounds. This setup fostered a unique interaction between the audience and the artwork, as the sound environment evolved based on human activity and environmental factors.
@@ -41,8 +44,7 @@ The integration of thermal cameras and Bela enabled the creation of soundscapes 
 <script async src="//www.instagram.com/embed.js"></script>
 
 # Challenges and Innovations
-
-One of the primary challenges was ensuring seamless communication between the thermal cameras and the Bela platform. We developed custom software interfaces to facilitate this data exchange, allowing for efficient processing and sound generation. Additionally, we designed the system to be sensitive enough to detect subtle temperature changes, ensuring that even minor movements or environmental shifts could influence the soundscape.
+One of the primary challenges was calibrating the infrared cameras to detect only human presence while rejecting other temperature variations. We developed custom algorithms to differentiate between human heat signatures and other thermal noise, ensuring that the system responded accurately to participants' movements. This calibration was crucial for creating a responsive and immersive soundscape that truly reflected the presence and actions of the audience.
 
 # Impact and Reception
 

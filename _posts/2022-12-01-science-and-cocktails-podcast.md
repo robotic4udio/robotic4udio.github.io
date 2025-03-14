@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  The Science & Cocktails Podcast 
+title:  The Science & Cocktails Podcast 🧪 🍸 🎵
 description: Composing the Music for The Science and Cocktails Podcast
 image:  '/images/science-and-cocktails/ScienceAndCocktails.jpg'
 tags:   [Music, Composition, Sound-Design, Podcast]
