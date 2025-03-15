@@ -3,7 +3,7 @@ layout: post
 title:  🔥 Tromleorkestret 🔥
 description: An original music project centered around a Firebreathing Music Machine ✨
 image:  '/images/tromleorkestret/TrorkMV2.jpg'
-tags:   [Creative-Tech, Music, Composition, Sound-Design, Art, Tromleorkestret]
+tags:   [Creative-Tech, Music, Composition, Sound-Design, Art, Tromleorkestret, Bela]
 featured: false
 showdate: false
 ---

@@ -3,7 +3,7 @@ layout: post
 title: AV Kiosk for VELUX Fondens SynsExpo 
 description: Game design and development for visitor centers
 image:  '/images/bue/AV-Kiosk.jpg'
-tags:   [Creative-Tech, Teaching, Sustainability]
+tags:   [Creative-Tech, Teaching]
 featured: false
 showdate: false
 ---

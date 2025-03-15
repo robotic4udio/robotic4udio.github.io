@@ -3,7 +3,7 @@ layout: post
 title:  Sound experiment workshop at Stjerner Over Farø Festival
 description: Facilitating a workshop on building custom musical instruments and sound experiments at Stjerner Over Farø Festival
 image:  '/images/sof/0047ys1.webp'
-tags:   [Creative-Tech, Music, Sound-Design, Teaching]
+tags:   [Creative-Tech, Music, Sound-Design, Teaching, Bela]
 featured: false
 showdate: false
 ---
