@@ -1,0 +1,31 @@
+---
+title: Plugins
+description: Audio plugins by Robotic Audio for AU, VST3 and standalone.
+permalink: /plugins/
+---
+<section class="page-head">
+  <div class="container">
+    <p class="kicker">Plugins</p>
+    <h1 class="display">Machines that make noise</h1>
+    <p class="lead">Instruments and effects for AU, VST3 and standalone. Each one comes with a manual and audio demos, so you can hear it before you buy it.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container plugin-list">
+    {%- for plugin in site.products %}
+    <a class="plugin-card" href="{{ plugin.url | relative_url }}">
+      <div class="plugin-card__shot"><img src="{{ plugin.image | relative_url }}" alt="{{ plugin.image_alt }}" loading="lazy"></div>
+      <div class="plugin-card__text">
+        <p class="kicker">{{ plugin.kind }} · {{ plugin.status_label }}</p>
+        <h2>{{ plugin.title }}</h2>
+        <p>{{ plugin.tagline }}</p>
+        <span class="door__go">Details, manual and demos</span>
+      </div>
+    </a>
+    {%- endfor %}
+  </div>
+  <div class="container"><p class="note">More plugins are in the workshop.</p></div>
+</section>
+
+{% include signup.html title="Be the first to know" text="Get a note when a plugin is released." subject="Notify me about Robotic Audio plugins" %}

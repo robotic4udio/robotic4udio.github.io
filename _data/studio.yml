@@ -1,0 +1,79 @@
+- id: installations
+  title: Sound installations
+  summary: Interactive installations and instruments for museums, festivals and public space.
+  text: Installations that listen and answer back. From concept and sound to sensors, electronics and the software that ties them together, built to run unattended in a museum or survive a festival.
+  work:
+    - title: The Rings of Saturn
+      text: Interactive sound installation with FOO/SKOU at the Planetarium in Copenhagen
+      url: /hjalte/foo-skou
+      image: /hjalte/images/fooskou/IMG_1286.jpg
+    - title: Eccentric Songs for Helio
+      text: With FOO/SKOU for the CONNECT ME exhibition at Trapholt Museum
+      url: /hjalte/foo-skou-trapholt
+      image: /hjalte/images/fooskou/Eccentric-Songs-for-Helio.png
+    - title: Resonance of Change
+      text: Reclaiming Pusher Street, a sound installation for change
+      url: /hjalte/pusher-street
+      image: /hjalte/images/pusher-street/IMG_6553.jpg
+    - title: Energy Games
+      text: Game design and development for power plant visitor centers
+      url: /hjalte/energy-games
+      image: /hjalte/images/bue/RefaEnegiSpil.png
+
+- id: software
+  title: Custom audio software
+  summary: Plugins, embedded instruments and tools written for one job.
+  text: Audio software made to measure, from plugins and DSP to embedded instruments on Bela and control surfaces for spatial sound. The same tools and craft that go into the Robotic Audio plugins.
+  work:
+    - title: Voicing Spatial Songs 2.0
+      text: An interface for spatial audio music production, with the SØSTR project at the Rhythmic Music Conservatory
+      url: /hjalte/voicing-spatial-songs
+      image: /hjalte/images/soestr/soestr.jpg
+    - title: Giraf
+      text: A Bela-based, self-contained polyphonic sampler
+      url: /hjalte/giraf
+      image: /hjalte/images/giraf/Giraf.png
+    - title: Contour
+      text: A wobble-bass synth where you draw the movement
+      url: /plugins/contour/
+      image: /plugins/contour/manual/images/contour.jpg
+
+- id: sound
+  title: Sound design & music
+  summary: Composition and sound design for theatre, podcasts, film and audiowalks.
+  text: Music and sound for stories told on stage, on screen and in headphones.
+  work:
+    - title: DATA-DATA
+      text: Music for a theatrical exploration of computers and AI by Teater Fantast
+      url: /hjalte/data-data
+      image: /hjalte/images/datadata/lyd-og-musik-post.jpg
+    - title: Christiania Audiowalk
+      text: Music for the audiowalk "Fra Strandeng til Fristad" by Sofie Hjorth and Mette Post
+      url: /hjalte/christiania_audiowalk
+      image: /hjalte/images/pct1201378882.jpg
+    - title: The Science & Cocktails Podcast
+      text: Composing the music for the podcast
+      url: /hjalte/science-and-cocktails-podcast
+      image: /hjalte/images/science-and-cocktails/ScienceAndCocktails.jpg
+    - title: Lyden af Videnskab
+      text: Music for a science podcast by Sofie Hjorth
+      url: /hjalte/lyden-af-videnskab
+      image: /hjalte/images/lyden-af-videnskab/lyden-af-videnskab.jpg
+
+- id: teaching
+  title: Teaching & workshops
+  summary: Courses, talks and hands-on workshops on sound, instruments and code.
+  text: Teaching where music meets technology, from conservatory courses to festival workshops where people build their own instruments.
+  work:
+    - title: Composer as Designer
+      text: A course on music composition and interface design at the Rhythmic Music Conservatory
+      url: /hjalte/course-composer-as-designer
+      image: /hjalte/images/composer-as-designer.webp
+    - title: Sound experiment workshop
+      text: Building custom instruments and sound experiments at Stjerner Over Farø Festival
+      url: /hjalte/sof-instrument-workshop
+      image: /hjalte/images/sof/0047ys1.webp
+    - title: ReSound Lab
+      text: Turning waste into musical expression
+      url: /hjalte/resound-lab
+      image: /hjalte/images/resound-lab/ResoundLab8.jpg

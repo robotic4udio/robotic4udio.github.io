@@ -1,0 +1,20 @@
+{%- comment -%}
+  A sign-up block. Parameters: title, text, subject (for the email fallback).
+{%- endcomment -%}
+<section class="signup">
+  <div class="container signup__inner">
+    <div>
+      <h2>{{ include.title | default: "Hear it first" }}</h2>
+      <p>{{ include.text | default: "Release news from Robotic Audio: new plugins, updates and the occasional sound. No spam." }}</p>
+    </div>
+    {%- if site.newsletter_action != "" %}
+    <form class="signup__form" action="{{ site.newsletter_action }}" method="post">
+      <label class="visually-hidden" for="signup-email">Email address</label>
+      <input id="signup-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+      <button class="btn btn--fire" type="submit">Notify me</button>
+    </form>
+    {%- else %}
+    <a class="btn btn--fire" href="mailto:{{ site.email }}?subject={{ include.subject | default: 'Robotic Audio news' | uri_escape }}&amp;body={{ 'Please let me know when there is news.' | uri_escape }}">Notify me by email</a>
+    {%- endif %}
+  </div>
+</section>
