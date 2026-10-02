@@ -10,7 +10,7 @@
     <a class="door" href="{{ '/plugins/' | relative_url }}">
       <span class="kicker">01</span>
       <h2>Plugins</h2>
-      <p>Instruments and effects for AU, VST3 and standalone. First out: Contour, a wobble-bass synth where you draw the movement.</p>
+      <p>Instruments and effects for AU, VST3 and standalone: {% for plugin in site.products %}{% if forloop.last %} and {% elsif forloop.first == false %}, {% endif %}{{ plugin.title }}{% endfor %}.</p>
       <span class="door__go">See the plugins</span>
     </a>
     <a class="door" href="{{ '/studio/' | relative_url }}">
@@ -40,6 +40,20 @@
       <img src="{{ featured.image | relative_url }}" alt="{{ featured.image_alt }}" loading="lazy">
     </a>
   </div>
+  {%- if site.products.size > 1 %}
+  <div class="container">
+    <div class="grid grid--3 more-plugins">
+      {%- for plugin in site.products offset: 1 %}
+      <a class="work" href="{{ plugin.url | relative_url }}">
+        <div class="work__image work__image--shot"><img src="{{ plugin.image | relative_url }}" alt="{{ plugin.image_alt }}" loading="lazy"></div>
+        <p class="kicker">{{ plugin.kind }} · {{ plugin.status_label }}</p>
+        <h3>{{ plugin.title }}</h3>
+        <p>{{ plugin.tagline }}</p>
+      </a>
+      {%- endfor %}
+    </div>
+  </div>
+  {%- endif %}
 </section>
 
 <section class="section section--line">

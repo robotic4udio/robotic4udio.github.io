@@ -13,6 +13,6 @@ bundle exec jekyll serve      # http://localhost:4000
 - `_products/<name>.md`: one file per plugin (the front matter is the product page: tagline, features, demos, screenshots, specs). Add a file to add a plugin.
 - `plugins/<name>/manual/`: the plugin's manual, copied from the plugin repo with `scripts/sync-manual.sh Contour`. Don't edit it here.
 - `assets/audio/<name>/`: audio demos; list them under `demos:` in the plugin's file.
-- `assets/images/<name>/`: your own screenshots; point `image:` and `screenshots:` at them.
+- `assets/images/<name>/`: screenshots; `image:` and `screenshots:` point at them. The current ones are drawn by the plugin repo's `tools/EditorShots` (e.g. `EchoEngineShots shot.png 1`), then converted to JPEG.
 - `_config.yml`: `newsletter_action` turns the "notify me" email links into a sign-up form once a newsletter service is chosen.
 - A plugin goes on sale by setting `buy_url` (and `price`) in its file.

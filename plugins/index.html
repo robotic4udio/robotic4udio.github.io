@@ -7,7 +7,7 @@ permalink: /plugins/
   <div class="container">
     <p class="kicker">Plugins</p>
     <h1 class="display">Machines that make noise</h1>
-    <p class="lead">Instruments and effects for AU, VST3 and standalone. Each one comes with a manual and audio demos, so you can hear it before you buy it.</p>
+    <p class="lead">Instruments and effects for AU, VST3 and standalone. They are all in development: have a look, and leave your address to hear when one is released.</p>
   </div>
 </section>
 
@@ -20,7 +20,7 @@ permalink: /plugins/
         <p class="kicker">{{ plugin.kind }} · {{ plugin.status_label }}</p>
         <h2>{{ plugin.title }}</h2>
         <p>{{ plugin.tagline }}</p>
-        <span class="door__go">Details, manual and demos</span>
+        <span class="door__go">{% if plugin.manual %}Details, manual and demos{% else %}Details and demos{% endif %}</span>
       </div>
     </a>
     {%- endfor %}
