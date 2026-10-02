@@ -6,6 +6,7 @@ status_label: Coming soon
 tagline: A hardware-style compressor with three stages of dirt behind it.
 description: Overpressure is a compressor with saturation, overdrive, distortion and fuzz stages, a low-pass filter and a gain-reduction meter. AU, VST3 and standalone.
 image: /assets/images/overpressure/overpressure.jpg
+manual: /plugins/overpressure/manual/
 image_alt: "Overpressure's window: input and output meters, a gain-reduction VU meter, the compressor controls and the FX Aggression section"
 
 # Set these when Overpressure is on sale: the button changes from "Notify me" to "Buy".
@@ -13,7 +14,7 @@ buy_url:
 price:
 
 stats:
-  - Compressor
+  - Soft-knee compressor
   - Saturation
   - Overdrive, Distortion, Fuzz
   - Low-pass filter
@@ -22,7 +23,7 @@ stats:
 
 features:
   - title: A compressor first
-    text: Threshold, a ratio from 1:1 to 20:1, attack from 0.1 to 100 ms and decay from 10 ms to a second. Input and output gain, with auto makeup when you want the level kept.
+    text: A soft-knee compressor with threshold, a ratio from 1:1 to 20:1, attack from 0.1 to 100 ms and decay from 10 ms to a second. Input and output gain, with auto makeup when you want the level kept.
   - title: Saturation
     text: A saturation control after the compressor, from a little warmth to a thick, pressed sound.
   - title: Three stages of dirt

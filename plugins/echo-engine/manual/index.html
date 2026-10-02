@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Echo Engine Manual</title>
+<style>
+@font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Big Shoulders"; font-weight: 800; src: url("fonts/BigShouldersDisplay-ExtraBold.ttf") format("truetype"); }
+
+:root {
+  --bg: #0d0b0a;
+  --surface: #17120f;
+  --surface-2: #211a15;
+  --line: rgba(255, 236, 220, 0.10);
+  --line-strong: rgba(255, 236, 220, 0.22);
+  --text: #f4ece4;
+  --muted: #a99e94;
+  --ember: #7a6840;
+  --fire: #c9a54e;
+  --hot: #eedcaa;
+  --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
+  --radius: 14px;
+  --sidebar: 260px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 500 16px/1.65 "Inter", -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--hot); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Sidebar */
+nav.toc {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar);
+  overflow-y: auto; padding: 32px 24px 40px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+}
+nav.toc .brand { font: 600 11px/1 "Inter"; letter-spacing: .32em; color: var(--fire); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+nav.toc .brand::before { content: ""; width: 18px; height: 2px; background: var(--fire-gradient); }
+nav.toc .product { font: 800 34px/1 "Big Shoulders"; letter-spacing: .02em; margin: 10px 0 26px; text-transform: uppercase; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+nav.toc li { counter-increment: s; }
+nav.toc li a {
+  display: flex; gap: 12px; padding: 7px 10px; margin: 0 -10px; border-radius: 8px;
+  color: var(--muted); font-size: 14px;
+}
+nav.toc li a::before { content: counter(s, decimal-leading-zero); color: var(--line-strong); font-variant-numeric: tabular-nums; }
+nav.toc li a:hover, nav.toc li a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
+nav.toc li a.active::before { color: var(--fire); }
+
+main { margin-left: var(--sidebar); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+/* Hero */
+header.hero { position: relative; padding: 72px 0 40px; overflow: hidden; }
+header.hero::before {
+  content: ""; position: absolute; inset: -40% -10% auto; height: 520px;
+  background: radial-gradient(closest-side, rgba(201, 165, 78, .20), transparent);
+  pointer-events: none;
+}
+.kicker { font: 600 12px/1 "Inter"; letter-spacing: .34em; text-transform: uppercase; color: var(--fire); display: flex; align-items: center; gap: 12px; }
+.kicker::before { content: ""; width: 28px; height: 2px; background: var(--fire-gradient); }
+h1 {
+  font: 800 clamp(64px, 11vw, 132px)/.86 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em;
+  margin: 18px 0 18px;
+  background: linear-gradient(180deg, var(--text) 30%, #d9c9bb); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lede { font-size: 20px; line-height: 1.55; color: var(--text); max-width: 640px; margin: 0; }
+.lede em { font-style: normal; background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; padding: 0; list-style: none; }
+.facts li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+
+figure { margin: 32px 0; }
+figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); }
+figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+/* Sections */
+section { padding: 56px 0 8px; border-top: 1px solid var(--line); }
+h2 {
+  font: 800 52px/1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em; margin: 0 0 6px;
+}
+h2 + .sub { color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+h3 { font: 600 13px/1.2 "Inter"; letter-spacing: .24em; text-transform: uppercase; color: var(--hot); margin: 36px 0 12px; display: flex; align-items: center; gap: 10px; }
+h3::before { content: ""; width: 14px; height: 2px; background: var(--fire-gradient); }
+h4 { font: 800 24px/1.1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 4px; }
+p { margin: 0 0 14px; }
+strong { font-weight: 600; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* Parameter lists */
+dl.params { display: grid; grid-template-columns: 170px 1fr; gap: 0; margin: 0 0 18px; border-top: 1px solid var(--line); }
+dl.params dt, dl.params dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+dl.params dt { font: 600 12px/1.5 "Inter"; letter-spacing: .16em; text-transform: uppercase; color: var(--text); padding-right: 16px; padding-top: 13px; }
+dl.params dd { color: #e3d8ce; }
+dl.params dd .range { display: inline-block; margin-left: 8px; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+
+/* Cards and grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0 24px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.card p { margin: 6px 0 0; color: #e3d8ce; font-size: 15px; }
+.card .tag { font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--fire); }
+
+.callout { position: relative; background: linear-gradient(135deg, rgba(201, 165, 78,.10), rgba(238, 220, 170,.04)); border: 1px solid rgba(201, 165, 78,.35); border-radius: var(--radius); padding: 16px 20px 16px 52px; margin: 22px 0; }
+.callout::before { content: "✦"; position: absolute; left: 20px; top: 15px; color: var(--hot); font-size: 18px; }
+.callout strong { color: var(--hot); }
+
+kbd {
+  font: 600 12px/1 "Inter"; padding: 4px 7px; border-radius: 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  background: var(--surface-2); color: var(--text); white-space: nowrap;
+}
+table { width: 100%; border-collapse: collapse; margin: 8px 0 22px; font-size: 15px; }
+th { text-align: left; font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line-strong); }
+td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #e3d8ce; }
+td:first-child { color: var(--text); white-space: nowrap; }
+
+/* Signal flow */
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 20px; margin: 24px 0; overflow-x: auto; }
+.flow svg { display: block; min-width: 760px; width: 100%; height: auto; }
+
+/* Effects */
+.fx { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 22px 0 40px; }
+.fx img { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 10px 0 14px; }
+.fx .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.fx .head .what { color: var(--muted); }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 2px; transform: translateY(-1px); }
+
+footer { padding: 60px 0 80px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 40px; }
+footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+
+@media (max-width: 980px) {
+  nav.toc { position: static; width: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav.toc ol { columns: 2; }
+  main { margin-left: 0; }
+  .wrap { padding: 0 20px; }
+  dl.params { grid-template-columns: 1fr; }
+  dl.params dt { border-bottom: 0; padding-bottom: 0; }
+}
+@media print {
+  :root { --bg: #fff; --surface: #f6f2ee; --surface-2: #eee7e0; --text: #1a1410; --muted: #6e6259; --line: #e4dbd2; --line-strong: #cfc3b8; }
+  nav.toc { display: none; }
+  main { margin: 0; }
+  section { break-inside: avoid-page; }
+  h1 { color: #1a1410; background: none; }
+  dl.params dd, td, .card p { color: #2a2018; }
+}
+
+/* Block diagrams */
+.flow svg text { fill: var(--text); font-weight: 600; font-size: 13.5px; text-anchor: middle; }
+.flow svg text.sub { fill: var(--muted); font-weight: 500; font-size: 11px; }
+.flow svg .box { fill: var(--surface-2); stroke: var(--line-strong); }
+.flow svg .box.hot { stroke: url(#g); }
+.flow svg .pill { fill: var(--bg); stroke: var(--line-strong); }
+.flow svg .frame { fill: none; stroke: var(--line-strong); stroke-dasharray: 6 6; }
+.flow svg .wire { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.flow svg .dash { stroke-dasharray: 5 5; }
+.flow svg .arrow { fill: var(--muted); }
+.flow svg .tick { stroke: var(--line-strong); stroke-width: 1; }
+.flow svg .head { stroke: var(--hot); stroke-width: 2.5; fill: none; }
+svg.defs { position: absolute; width: 0; height: 0; }
+
+/* Curves */
+.plots { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: center; margin: 18px 0 24px; }
+.plots.three { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: start; gap: 14px; }
+.plot { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.plot h4 { margin: 2px 0 10px; }
+.plot svg { display: block; width: 100%; height: auto; }
+.plot svg text { fill: var(--muted); font-size: 10px; font-weight: 500; }
+.plot .axis { fill: none; stroke: var(--line-strong); }
+.plot .grid { fill: none; stroke: var(--line); }
+.plot .knee { fill: none; stroke: var(--line-strong); stroke-dasharray: 2 4; }
+.plot .ref { fill: none; stroke: var(--line-strong); stroke-dasharray: 4 4; }
+.plot .c1, .plot .c2, .plot .c3 { fill: none; stroke-width: 2; stroke-linejoin: round; }
+.plot .c1 { stroke: var(--muted); }
+.plot .c2 { stroke: var(--fire); }
+.plot .c3 { stroke: var(--hot); }
+.legend { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 12px; margin-top: 10px; }
+.legend span { display: inline-block; width: 14px; height: 2px; margin-left: 8px; }
+.legend span:first-child { margin-left: 0; }
+.legend .k1 { background: var(--muted); } .legend .k2 { background: var(--fire); } .legend .k3 { background: var(--hot); }
+.plot-text p:last-child { margin-bottom: 0; }
+.formula { font: 600 17px/1.4 "Inter"; color: var(--hot); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 18px; display: inline-block; }
+@media (max-width: 720px) { .plots { grid-template-columns: 1fr; } }
+
+/* Small wiring diagrams in cards */
+.plot svg.mini .box { fill: var(--surface-2); stroke: var(--line-strong); }
+.plot svg.mini .wire { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.plot svg.mini .dot { fill: var(--muted); }
+.plot svg.mini text { font-size: 11px; }
+.plot svg.mini text.t { fill: var(--text); font-weight: 600; font-size: 14px; text-anchor: middle; }
+.plot > p { margin: 10px 0 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<svg class="defs" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#7a6840"/><stop offset=".45" stop-color="#c9a54e"/><stop offset="1" stop-color="#eedcaa"/></linearGradient><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z" fill="#a99e94"/></marker></defs></svg>
+
+<nav class="toc" aria-label="Contents">
+  <div class="brand">Robotic Audio</div>
+  <div class="product">Echo Engine</div>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#overview">The window</a></li>
+    <li><a href="#flow">Signal flow</a></li>
+    <li><a href="#mode">Mode</a></li>
+    <li><a href="#style">Style</a></li>
+    <li><a href="#time">Delay time</a></li>
+    <li><a href="#repeats">Repeats</a></li>
+    <li><a href="#lfo">LFO</a></li>
+    <li><a href="#pitch">Pitch</a></li>
+    <li><a href="#diffuse">Diffuse</a></li>
+    <li><a href="#eq">EQ</a></li>
+    <li><a href="#output">Output</a></li>
+    <li><a href="#presets">Presets</a></li>
+    <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#specs">Specifications</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Robotic Audio · User manual</div>
+  <h1>Echo Engine</h1>
+  <p class="lede">A stereo delay with a personality. Three machines in one (clean, tape and lo-fi), four ways to wire left and right, and a feedback loop you can <em>pitch, filter, smear and overload</em> until echoes turn into shimmer, clouds or chaos.</p>
+  <ul class="facts">
+    <li>Stereo delay</li>
+    <li>3 modes: Clean · Tape · Lo-Fi</li>
+    <li>4 styles</li>
+    <li>1 ms to 30 s, or tempo-synced</li>
+    <li>Pitch-shifted repeats</li>
+    <li>Diffusion</li>
+    <li>Feedback to 200 %</li>
+    <li>15 factory presets</li>
+    <li>AU · VST3 · Standalone</li>
+  </ul>
+  <figure>
+    <img src="images/echoengine.jpg" alt="Echo Engine's window">
+    <figcaption>Echo Engine: Setup and the two big Delay knobs on the left; Repeats, LFO and Pitch above Diffuse, EQ and Output.</figcaption>
+  </figure>
+</header>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">From a plain echo to something of your own.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">01</span><h4>Load a preset</h4><p>Use the arrows or the list in the header. <strong>Space Tape</strong>, <strong>Ping-Pong Eighths</strong> and <strong>Shimmer</strong> show three very different sides.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Set the time</h4><p>Turn the big <strong>TIME</strong> knob. To lock it to your song, change the menu above it from <strong>ms</strong> to <strong>Note</strong>, <strong>Dotted</strong> or <strong>Triplet</strong>.</p></div>
+    <div class="card"><span class="tag">03</span><h4>Set the repeats</h4><p><strong>FEEDBACK</strong> decides how many echoes you get. Past 100 % they grow instead of fading.</p></div>
+    <div class="card"><span class="tag">04</span><h4>Pick a machine</h4><p><strong>MODE</strong>: Clean for transparent copies, Tape for warm, wobbling ones, Lo-Fi for crunchy early-digital ones. <strong>AGE</strong> wears it out.</p></div>
+    <div class="card"><span class="tag">05</span><h4>Go wide</h4><p><strong>STYLE</strong>: Dual and Ping-Pong give left and right their own times. In Single, <strong>SPREAD</strong> offsets them by a few milliseconds.</p></div>
+    <div class="card"><span class="tag">06</span><h4>Blend</h4><p><strong>MIX</strong> balances the echoes against the dry sound. On a send, set it to 100 %.</p></div>
+  </div>
+  <div class="callout"><strong>Touch a knob to read it.</strong> Knobs show their name until you hover over or drag them; then the name becomes the value. Double-click resets a knob; hold <kbd>Cmd</kbd>, <kbd>Ctrl</kbd> or <kbd>Alt</kbd> while dragging for fine steps. A greyed-out knob does nothing in the current setup.</div>
+</section>
+
+<section id="overview">
+  <h2>The window</h2>
+  <p class="sub">Setup and time on the left, then six cards in the order you would shape the echoes.</p>
+  <dl class="params">
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits.</dd>
+    <dt>Setup</dt><dd><strong>Mode</strong>, the character of the machine, over <strong>Style</strong>, how left and right relate.</dd>
+    <dt>Delay</dt><dd>Two large knobs, each under a menu. The left is always the delay time. The right changes with the Style: Spread, the right-hand time, or Ratio.</dd>
+    <dt>Repeats</dt><dd>Feedback, Drive and Age.</dd>
+    <dt>LFO</dt><dd>Rate and Depth of a slow wobble on the delay time.</dd>
+    <dt>Pitch</dt><dd>Shift, in semitones, and Detune, in cents.</dd>
+    <dt>Diffuse</dt><dd>Amount and Size of the smear that turns echoes into a wash.</dd>
+    <dt>EQ</dt><dd>Low Cut and High Cut for the echoes.</dd>
+    <dt>Output</dt><dd>Width of the echoes and the dry/wet Mix.</dd>
+  </dl>
+</section>
+
+<section id="flow">
+  <h2>Signal flow</h2>
+  <p class="sub">A delay line inside a loop, and everything else placed inside that loop.</p>
+  <div class="flow">
+    <svg viewBox="0 0 1000 440" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <text x="28" y="163">IN</text>
+      <!-- row 1 -->
+      <rect class="box" x="90" y="130" width="120" height="56" rx="10"/><text x="150" y="155">DRIVE</text><text class="sub" x="150" y="171">pushes the input</text>
+      <circle class="box" cx="250" cy="158" r="16"/><text x="250" y="164" style="font-size: 20px">+</text>
+      <rect class="box" x="300" y="130" width="150" height="56" rx="10"/><text x="375" y="155">RECORD</text><text class="sub" x="375" y="171">the mode's saturation</text>
+      <rect class="box hot" x="500" y="130" width="150" height="56" rx="10"/><text x="575" y="155">DELAY LINE</text><text class="sub" x="575" y="171">time · LFO · wow &amp; flutter</text>
+      <rect class="box" x="700" y="130" width="140" height="56" rx="10"/><text x="770" y="155">PITCH</text><text class="sub" x="770" y="171">shift · detune</text>
+      <!-- row 2, right to left -->
+      <rect class="box" x="730" y="260" width="130" height="56" rx="10"/><text x="795" y="285">CHARACTER</text><text class="sub" x="795" y="301">what Age wears away</text>
+      <rect class="box" x="570" y="260" width="130" height="56" rx="10"/><text x="635" y="285">EQ</text><text class="sub" x="635" y="301">high cut · low cut</text>
+      <rect class="box" x="410" y="260" width="130" height="56" rx="10"/><text x="475" y="285">DIFFUSE</text><text class="sub" x="475" y="301">six all-pass smears</text>
+      <rect class="box hot" x="180" y="260" width="140" height="56" rx="10"/><text x="250" y="285">FEEDBACK</text><text class="sub" x="250" y="301">0–200 % · by Style</text>
+      <!-- output -->
+      <rect class="box" x="560" y="340" width="130" height="56" rx="10"/><text x="625" y="365">WIDTH</text><text class="sub" x="625" y="381">echoes only</text>
+      <rect class="box hot" x="790" y="340" width="130" height="56" rx="10"/><text x="855" y="365">MIX</text><text class="sub" x="855" y="381">dry against echoes</text>
+      <text x="972" y="373">OUT</text>
+      <!-- wires -->
+      <g class="wire" marker-end="url(#a)">
+        <path d="M46 158 H88"/><path d="M210 158 H232"/><path d="M266 158 H298"/><path d="M450 158 H498"/><path d="M650 158 H698"/>
+        <path d="M840 158 H900 V288 H862"/>
+        <path d="M730 288 H702"/><path d="M570 288 H542"/><path d="M410 288 H322"/>
+        <path d="M250 260 V176"/>
+        <path d="M365 288 V368 H558"/>
+        <path d="M690 368 H788"/><path d="M920 368 H950"/>
+        <path d="M62 158 V420 H855 V398"/>
+      </g>
+      <circle class="arrow" cx="62" cy="158" r="3"/><circle class="arrow" cx="365" cy="288" r="3"/>
+      <text class="sub" x="560" y="228">the loop: every repeat goes round once more, through all of it</text>
+      <text class="sub" x="330" y="412">the dry sound, untouched</text>
+      <text class="sub" x="455" y="360">the echoes</text>
+    </svg>
+  </div>
+  <p>Follow the loop clockwise from the <strong>+</strong>. The input (pushed by Drive) and the returning feedback are added together and <strong>recorded</strong> into the delay line, through the saturation of the chosen Mode. After the delay time the sound is read back, optionally <strong>pitch-shifted</strong>, worn by the Mode's <strong>character</strong>, <strong>filtered</strong> and <strong>diffused</strong>. That is one echo.</p>
+  <p>From there it goes two ways: out to your ears, through Width and Mix, and back round the loop, scaled by <strong>Feedback</strong>, to become the next echo.</p>
+  <div class="callout"><strong>Everything in the loop adds up.</strong> Because pitch, the filters and the diffusion sit inside the loop, each repeat gets them once more than the one before: the second echo is darker than the first, the third darker still; a shift of +12 climbs an octave per repeat. This is what makes echoes recede, and what makes shimmer and clouds possible.</div>
+  <p>There are two of everything in the picture, one for the left and one for the right. How the two feed each other is the <a href="#style">Style</a>. The dry sound never passes through any of it.</p>
+</section>
+
+<section id="mode">
+  <h2>Mode</h2>
+  <p class="sub">Which machine the echoes are recorded on.</p>
+  <p>The Mode decides how the delay line treats what is written into it and what comes back out. It sets the curve of the saturation, and what <strong>AGE</strong> means.</p>
+  <div class="plots">
+    <div class="plot">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <rect class="axis" x="10" y="10" width="180" height="180"/><path class="grid" d="M100 10 V190 M10 100 H190"/><path class="ref" d="M10.0 190.0 L11.0 190.0 L12.0 190.0 L13.0 190.0 L14.0 190.0 L15.0 190.0 L16.0 190.0 L17.0 190.0 L18.0 190.0 L19.0 190.0 L20.0 190.0 L21.0 190.0 L22.0 190.0 L23.0 190.0 L24.0 190.0 L25.0 190.0 L26.0 190.0 L27.0 190.0 L28.0 190.0 L29.0 190.0 L30.0 190.0 L31.0 190.0 L32.0 190.0 L33.0 190.0 L34.0 190.0 L35.0 190.0 L36.0 190.0 L37.0 190.0 L38.0 190.0 L39.0 190.0 L40.0 190.0 L41.0 190.0 L42.0 190.0 L43.0 190.0 L44.0 190.0 L45.0 190.0 L46.0 190.0 L47.0 190.0 L48.0 190.0 L49.0 190.0 L50.0 190.0 L51.0 190.0 L52.0 190.0 L53.0 190.0 L54.0 190.0 L55.0 190.0 L56.0 190.0 L57.0 190.0 L58.0 190.0 L59.0 190.0 L60.0 190.0 L61.0 190.0 L62.0 187.7 L63.0 185.4 L64.0 183.1 L65.0 180.8 L66.0 178.5 L67.0 176.2 L68.0 173.8 L69.0 171.5 L70.0 169.2 L71.0 166.9 L72.0 164.6 L73.0 162.3 L74.0 160.0 L75.0 157.7 L76.0 155.4 L77.0 153.1 L78.0 150.8 L79.0 148.5 L80.0 146.2 L81.0 143.8 L82.0 141.5 L83.0 139.2 L84.0 136.9 L85.0 134.6 L86.0 132.3 L87.0 130.0 L88.0 127.7 L89.0 125.4 L90.0 123.1 L91.0 120.8 L92.0 118.5 L93.0 116.2 L94.0 113.8 L95.0 111.5 L96.0 109.2 L97.0 106.9 L98.0 104.6 L99.0 102.3 L100.0 100.0 L101.0 97.7 L102.0 95.4 L103.0 93.1 L104.0 90.8 L105.0 88.5 L106.0 86.2 L107.0 83.8 L108.0 81.5 L109.0 79.2 L110.0 76.9 L111.0 74.6 L112.0 72.3 L113.0 70.0 L114.0 67.7 L115.0 65.4 L116.0 63.1 L117.0 60.8 L118.0 58.5 L119.0 56.2 L120.0 53.8 L121.0 51.5 L122.0 49.2 L123.0 46.9 L124.0 44.6 L125.0 42.3 L126.0 40.0 L127.0 37.7 L128.0 35.4 L129.0 33.1 L130.0 30.8 L131.0 28.5 L132.0 26.2 L133.0 23.8 L134.0 21.5 L135.0 19.2 L136.0 16.9 L137.0 14.6 L138.0 12.3 L139.0 10.0 L140.0 10.0 L141.0 10.0 L142.0 10.0 L143.0 10.0 L144.0 10.0 L145.0 10.0 L146.0 10.0 L147.0 10.0 L148.0 10.0 L149.0 10.0 L150.0 10.0 L151.0 10.0 L152.0 10.0 L153.0 10.0 L154.0 10.0 L155.0 10.0 L156.0 10.0 L157.0 10.0 L158.0 10.0 L159.0 10.0 L160.0 10.0 L161.0 10.0 L162.0 10.0 L163.0 10.0 L164.0 10.0 L165.0 10.0 L166.0 10.0 L167.0 10.0 L168.0 10.0 L169.0 10.0 L170.0 10.0 L171.0 10.0 L172.0 10.0 L173.0 10.0 L174.0 10.0 L175.0 10.0 L176.0 10.0 L177.0 10.0 L178.0 10.0 L179.0 10.0 L180.0 10.0 L181.0 10.0 L182.0 10.0 L183.0 10.0 L184.0 10.0 L185.0 10.0 L186.0 10.0 L187.0 10.0 L188.0 10.0 L189.0 10.0 L190.0 10.0"/>
+        <path class="c1" d="M10.0 168.9 L11.0 168.9 L12.0 168.8 L13.0 168.8 L14.0 168.8 L15.0 168.8 L16.0 168.7 L17.0 168.7 L18.0 168.6 L19.0 168.6 L20.0 168.6 L21.0 168.5 L22.0 168.5 L23.0 168.4 L24.0 168.4 L25.0 168.3 L26.0 168.2 L27.0 168.2 L28.0 168.1 L29.0 168.0 L30.0 167.9 L31.0 167.9 L32.0 167.8 L33.0 167.7 L34.0 167.6 L35.0 167.4 L36.0 167.3 L37.0 167.2 L38.0 167.0 L39.0 166.9 L40.0 166.7 L41.0 166.6 L42.0 166.4 L43.0 166.2 L44.0 166.0 L45.0 165.8 L46.0 165.5 L47.0 165.3 L48.0 165.0 L49.0 164.8 L50.0 164.5 L51.0 164.1 L52.0 163.8 L53.0 163.4 L54.0 163.1 L55.0 162.7 L56.0 162.2 L57.0 161.8 L58.0 161.3 L59.0 160.8 L60.0 160.2 L61.0 159.7 L62.0 159.0 L63.0 158.4 L64.0 157.7 L65.0 157.0 L66.0 156.2 L67.0 155.4 L68.0 154.6 L69.0 153.7 L70.0 152.7 L71.0 151.7 L72.0 150.7 L73.0 149.6 L74.0 148.4 L75.0 147.2 L76.0 146.0 L77.0 144.7 L78.0 143.3 L79.0 141.8 L80.0 140.3 L81.0 138.8 L82.0 137.2 L83.0 135.5 L84.0 133.8 L85.0 132.0 L86.0 130.2 L87.0 128.3 L88.0 126.3 L89.0 124.3 L90.0 122.3 L91.0 120.2 L92.0 118.0 L93.0 115.9 L94.0 113.7 L95.0 111.4 L96.0 109.2 L97.0 106.9 L98.0 104.6 L99.0 102.3 L100.0 100.0 L101.0 97.7 L102.0 95.4 L103.0 93.1 L104.0 90.8 L105.0 88.6 L106.0 86.3 L107.0 84.1 L108.0 82.0 L109.0 79.8 L110.0 77.7 L111.0 75.7 L112.0 73.7 L113.0 71.7 L114.0 69.8 L115.0 68.0 L116.0 66.2 L117.0 64.5 L118.0 62.8 L119.0 61.2 L120.0 59.7 L121.0 58.2 L122.0 56.7 L123.0 55.3 L124.0 54.0 L125.0 52.8 L126.0 51.6 L127.0 50.4 L128.0 49.3 L129.0 48.3 L130.0 47.3 L131.0 46.3 L132.0 45.4 L133.0 44.6 L134.0 43.8 L135.0 43.0 L136.0 42.3 L137.0 41.6 L138.0 41.0 L139.0 40.3 L140.0 39.8 L141.0 39.2 L142.0 38.7 L143.0 38.2 L144.0 37.8 L145.0 37.3 L146.0 36.9 L147.0 36.6 L148.0 36.2 L149.0 35.9 L150.0 35.5 L151.0 35.2 L152.0 35.0 L153.0 34.7 L154.0 34.5 L155.0 34.2 L156.0 34.0 L157.0 33.8 L158.0 33.6 L159.0 33.4 L160.0 33.3 L161.0 33.1 L162.0 33.0 L163.0 32.8 L164.0 32.7 L165.0 32.6 L166.0 32.4 L167.0 32.3 L168.0 32.2 L169.0 32.1 L170.0 32.1 L171.0 32.0 L172.0 31.9 L173.0 31.8 L174.0 31.8 L175.0 31.7 L176.0 31.6 L177.0 31.6 L178.0 31.5 L179.0 31.5 L180.0 31.4 L181.0 31.4 L182.0 31.4 L183.0 31.3 L184.0 31.3 L185.0 31.2 L186.0 31.2 L187.0 31.2 L188.0 31.2 L189.0 31.1 L190.0 31.1"/><path class="c2" d="M10.0 182.4 L11.0 182.4 L12.0 182.3 L13.0 182.3 L14.0 182.2 L15.0 182.2 L16.0 182.1 L17.0 182.1 L18.0 182.0 L19.0 182.0 L20.0 181.9 L21.0 181.8 L22.0 181.8 L23.0 181.7 L24.0 181.6 L25.0 181.5 L26.0 181.4 L27.0 181.3 L28.0 181.2 L29.0 181.1 L30.0 181.0 L31.0 180.8 L32.0 180.7 L33.0 180.6 L34.0 180.4 L35.0 180.2 L36.0 180.1 L37.0 179.9 L38.0 179.7 L39.0 179.4 L40.0 179.2 L41.0 179.0 L42.0 178.7 L43.0 178.4 L44.0 178.1 L45.0 177.8 L46.0 177.5 L47.0 177.1 L48.0 176.7 L49.0 176.3 L50.0 175.9 L51.0 175.4 L52.0 175.0 L53.0 174.4 L54.0 173.9 L55.0 173.3 L56.0 172.7 L57.0 172.1 L58.0 171.4 L59.0 170.7 L60.0 169.9 L61.0 169.1 L62.0 168.2 L63.0 167.3 L64.0 166.4 L65.0 165.4 L66.0 164.4 L67.0 163.3 L68.0 162.1 L69.0 160.9 L70.0 159.6 L71.0 158.3 L72.0 156.9 L73.0 155.5 L74.0 154.0 L75.0 152.5 L76.0 150.8 L77.0 149.2 L78.0 147.4 L79.0 145.7 L80.0 143.8 L81.0 141.9 L82.0 140.0 L83.0 138.0 L84.0 135.9 L85.0 133.8 L86.0 131.7 L87.0 129.5 L88.0 127.3 L89.0 125.1 L90.0 122.8 L91.0 120.6 L92.0 118.3 L93.0 116.0 L94.0 113.7 L95.0 111.4 L96.0 109.1 L97.0 106.8 L98.0 104.5 L99.0 102.2 L100.0 100.0 L101.0 97.8 L102.0 95.6 L103.0 93.5 L104.0 91.4 L105.0 89.4 L106.0 87.4 L107.0 85.4 L108.0 83.5 L109.0 81.7 L110.0 79.9 L111.0 78.2 L112.0 76.5 L113.0 74.9 L114.0 73.3 L115.0 71.8 L116.0 70.4 L117.0 69.0 L118.0 67.7 L119.0 66.4 L120.0 65.2 L121.0 64.1 L122.0 63.0 L123.0 61.9 L124.0 60.9 L125.0 60.0 L126.0 59.1 L127.0 58.2 L128.0 57.4 L129.0 56.7 L130.0 55.9 L131.0 55.3 L132.0 54.6 L133.0 54.0 L134.0 53.4 L135.0 52.9 L136.0 52.4 L137.0 51.9 L138.0 51.4 L139.0 51.0 L140.0 50.6 L141.0 50.2 L142.0 49.9 L143.0 49.5 L144.0 49.2 L145.0 48.9 L146.0 48.6 L147.0 48.4 L148.0 48.1 L149.0 47.9 L150.0 47.7 L151.0 47.5 L152.0 47.3 L153.0 47.1 L154.0 46.9 L155.0 46.8 L156.0 46.6 L157.0 46.5 L158.0 46.3 L159.0 46.2 L160.0 46.1 L161.0 46.0 L162.0 45.9 L163.0 45.8 L164.0 45.7 L165.0 45.6 L166.0 45.6 L167.0 45.5 L168.0 45.4 L169.0 45.4 L170.0 45.3 L171.0 45.2 L172.0 45.2 L173.0 45.1 L174.0 45.1 L175.0 45.1 L176.0 45.0 L177.0 45.0 L178.0 44.9 L179.0 44.9 L180.0 44.9 L181.0 44.9 L182.0 44.8 L183.0 44.8 L184.0 44.8 L185.0 44.8 L186.0 44.7 L187.0 44.7 L188.0 44.7 L189.0 44.7 L190.0 44.7"/><path class="c3" d="M10.0 169.2 L11.0 169.2 L12.0 169.2 L13.0 169.2 L14.0 169.2 L15.0 169.2 L16.0 169.2 L17.0 169.2 L18.0 169.2 L19.0 169.2 L20.0 169.2 L21.0 169.2 L22.0 169.2 L23.0 169.2 L24.0 169.2 L25.0 169.2 L26.0 169.2 L27.0 169.2 L28.0 169.2 L29.0 169.2 L30.0 169.2 L31.0 169.2 L32.0 169.2 L33.0 169.2 L34.0 169.2 L35.0 169.2 L36.0 169.2 L37.0 169.2 L38.0 169.2 L39.0 169.2 L40.0 169.2 L41.0 169.2 L42.0 169.2 L43.0 169.2 L44.0 169.2 L45.0 169.2 L46.0 169.2 L47.0 169.2 L48.0 169.2 L49.0 169.2 L50.0 169.2 L51.0 169.2 L52.0 169.2 L53.0 169.2 L54.0 169.2 L55.0 169.2 L56.0 169.2 L57.0 169.2 L58.0 169.2 L59.0 169.2 L60.0 169.2 L61.0 169.2 L62.0 169.2 L63.0 169.2 L64.0 169.2 L65.0 169.2 L66.0 169.2 L67.0 169.2 L68.0 169.2 L69.0 169.2 L70.0 169.2 L71.0 166.9 L72.0 164.6 L73.0 162.3 L74.0 160.0 L75.0 157.7 L76.0 155.4 L77.0 153.1 L78.0 150.8 L79.0 148.5 L80.0 146.2 L81.0 143.8 L82.0 141.5 L83.0 139.2 L84.0 136.9 L85.0 134.6 L86.0 132.3 L87.0 130.0 L88.0 127.7 L89.0 125.4 L90.0 123.1 L91.0 120.8 L92.0 118.5 L93.0 116.2 L94.0 113.8 L95.0 111.5 L96.0 109.2 L97.0 106.9 L98.0 104.6 L99.0 102.3 L100.0 100.0 L101.0 97.7 L102.0 95.4 L103.0 93.1 L104.0 90.8 L105.0 88.5 L106.0 86.2 L107.0 83.8 L108.0 81.5 L109.0 79.2 L110.0 76.9 L111.0 74.6 L112.0 72.3 L113.0 70.0 L114.0 67.7 L115.0 65.4 L116.0 63.1 L117.0 60.8 L118.0 58.5 L119.0 56.2 L120.0 53.8 L121.0 51.5 L122.0 49.2 L123.0 46.9 L124.0 44.6 L125.0 42.3 L126.0 40.0 L127.0 37.7 L128.0 35.4 L129.0 33.1 L130.0 30.8 L131.0 30.8 L132.0 30.8 L133.0 30.8 L134.0 30.8 L135.0 30.8 L136.0 30.8 L137.0 30.8 L138.0 30.8 L139.0 30.8 L140.0 30.8 L141.0 30.8 L142.0 30.8 L143.0 30.8 L144.0 30.8 L145.0 30.8 L146.0 30.8 L147.0 30.8 L148.0 30.8 L149.0 30.8 L150.0 30.8 L151.0 30.8 L152.0 30.8 L153.0 30.8 L154.0 30.8 L155.0 30.8 L156.0 30.8 L157.0 30.8 L158.0 30.8 L159.0 30.8 L160.0 30.8 L161.0 30.8 L162.0 30.8 L163.0 30.8 L164.0 30.8 L165.0 30.8 L166.0 30.8 L167.0 30.8 L168.0 30.8 L169.0 30.8 L170.0 30.8 L171.0 30.8 L172.0 30.8 L173.0 30.8 L174.0 30.8 L175.0 30.8 L176.0 30.8 L177.0 30.8 L178.0 30.8 L179.0 30.8 L180.0 30.8 L181.0 30.8 L182.0 30.8 L183.0 30.8 L184.0 30.8 L185.0 30.8 L186.0 30.8 L187.0 30.8 L188.0 30.8 L189.0 30.8 L190.0 30.8"/>
+      </svg>
+      <div class="legend"><span class="k1"></span>Clean <span class="k2"></span>Tape <span class="k3"></span>Lo-Fi</div>
+    </div>
+    <div class="plot-text">
+      <p>What each machine does to the level it records: output against input, with input up to three times full scale. The dashed line is an untouched signal.</p>
+      <p><strong>Clean</strong> rounds off smoothly and evenly. <strong>Tape</strong> rounds off too, but lopsidedly: the upper half of the wave has less room than the lower, which adds the even harmonics that make tape sound warm. <strong>Lo-Fi</strong> is a straight line until it hits the ceiling and then stops dead, like a converter running out of numbers.</p>
+      <p>Nothing can be recorded louder than the ceiling. That is what keeps the loop under control when Feedback goes past 100 %.</p>
+    </div>
+  </div>
+  <dl class="params">
+    <dt>Clean</dt><dd>Transparent, hi-fi repeats: each echo is a faithful copy, only quieter. The soft limiter is gentle at normal levels and steps in firmly only when Drive or Feedback push hard. <strong>Age does nothing</strong> and is greyed out.</dd>
+    <dt>Tape</dt><dd>A tape echo. What is recorded is <strong>compressed</strong> (3:1 above −12 dB, quick to grab and slow to let go), given the <strong>head bump</strong> of a playback head (a gentle +2 dB around 100 Hz) and saturated lopsidedly. Every pass also loses a little treble. Loud echoes come back rounder and thicker; the low end blooms as the repeats pile up.</dd>
+    <dt>Lo-Fi</dt><dd>An early digital delay. The loop clips hard, and Age lowers the quality of the "converter": fewer samples per second and fewer bits per sample, giving the gritty, ringing aliasing and the grainy tails of 1980s rack units.</dd>
+  </dl>
+  <h3>What Age does</h3>
+  <table>
+    <tr><th>Mode</th><th>At 0 %</th><th>Turning it up</th></tr>
+    <tr><td>Clean</td><td colspan="2">Nothing: the knob is greyed out.</td></tr>
+    <tr><td>Tape</td><td>A fresh, steady machine: highs to 16 kHz, no wobble, no hiss.</td><td><strong>Wow</strong>: the speed drifts slowly and randomly, bending the pitch of the echoes. <strong>Flutter</strong>: a fast, fine shake on top. <strong>Hiss</strong> creeps in. The highs dull, down to 4.5 kHz when fully worn.</td></tr>
+    <tr><td>Lo-Fi</td><td>Clean: full sample rate and bit depth.</td><td>The sample rate falls towards 4 kHz and the bit depth towards 6 bits. Echoes get crunchy, then telephone-like, then broken.</td></tr>
+  </table>
+  <p>Like everything in the loop, Age compounds: each repeat is recorded on the worn machine again, so the damage grows from echo to echo.</p>
+</section>
+
+<section id="style">
+  <h2>Style</h2>
+  <p class="sub">How the left and right delay lines are wired together.</p>
+  <div class="plots three">
+    <div class="plot">
+      <h4>Single · Dual</h4>
+      <svg class="mini" viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+        <rect class="box" x="90" y="20" width="60" height="36" rx="8"/><text class="t" x="120" y="43">L</text>
+        <rect class="box" x="90" y="94" width="60" height="36" rx="8"/><text class="t" x="120" y="117">R</text>
+        <g class="wire" marker-end="url(#a)">
+          <path d="M20 38 H88"/><path d="M20 112 H88"/><path d="M150 38 H222"/><path d="M150 112 H222"/>
+          <path d="M175 38 C175 2 65 2 65 34"/><path d="M175 112 C175 148 65 148 65 116"/>
+        </g>
+      </svg>
+      <p>Each side feeds back into itself. Left stays left, right stays right.</p>
+    </div>
+    <div class="plot">
+      <h4>Ratio</h4>
+      <svg class="mini" viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+        <rect class="box" x="90" y="20" width="60" height="36" rx="8"/><text class="t" x="120" y="43">L</text>
+        <rect class="box" x="90" y="94" width="60" height="36" rx="8"/><text class="t" x="120" y="117">R</text>
+        <g class="wire" marker-end="url(#a)">
+          <path d="M20 38 H88"/><path d="M20 112 H88"/><path d="M150 38 H222"/><path d="M150 112 H222"/>
+          <path d="M175 38 V75 H65 V42"/><path d="M175 112 V75 H65 V108"/>
+        </g>
+        <circle class="dot" cx="175" cy="75" r="3"/><circle class="dot" cx="65" cy="75" r="3"/>
+      </svg>
+      <p>Both sides share one feedback: the average of the two, sent back to both.</p>
+    </div>
+    <div class="plot">
+      <h4>Ping-Pong</h4>
+      <svg class="mini" viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+        <rect class="box" x="90" y="20" width="60" height="36" rx="8"/><text class="t" x="120" y="43">L</text>
+        <rect class="box" x="90" y="94" width="60" height="36" rx="8"/><text class="t" x="120" y="117">R</text>
+        <text x="18" y="28" text-anchor="start">L + R</text>
+        <g class="wire" marker-end="url(#a)">
+          <path d="M20 38 H88"/><path d="M150 38 H222"/><path d="M150 112 H222"/>
+          <path d="M175 38 V75 H70 V112 H88"/><path d="M175 112 V144 H48 V42"/>
+        </g>
+      </svg>
+      <p>The input goes in on the left only. Left feeds right, right feeds left.</p>
+    </div>
+  </div>
+  <dl class="params">
+    <dt>Single</dt><dd>One time for both sides: a classic mono-compatible echo. The second big knob is <strong>Spread</strong>, which makes the right side later than the left (or earlier) by up to 20 ms, split evenly around the set time. A few milliseconds are enough to pull the echoes out of the centre and make them wide.</dd>
+    <dt>Dual</dt><dd>Two independent delays. The second big knob is the <strong>right-hand time</strong>, with its own ms / Note / Dotted / Triplet menu. Set a quarter note on one side and a dotted eighth on the other for interlocking rhythms.</dd>
+    <dt>Ratio</dt><dd>The right-hand time is a percentage of the left (the <strong>Ratio</strong> knob, 1 to 100 %), so both follow the Time knob together. The feedback is shared, so each side's echoes reappear in the other at the other's time: the pattern fills in and becomes denser with every round. Ratios that are not simple fractions, like 61.8 %, never line up and give an even, rolling scatter.</dd>
+    <dt>Ping-Pong</dt><dd>The input is summed to mono and enters the left line only; the feedback is crossed. The first echo is on the left after the left time, the next on the right after the right time, and so on, bouncing. With equal times it is an even bounce; with different times it limps. Width at 0 % cancels the bounce.</dd>
+  </dl>
+</section>
+
+<section id="time">
+  <h2>Delay time</h2>
+  <p class="sub">Free in milliseconds, or locked to the song.</p>
+  <dl class="params">
+    <dt>Time mode</dt><dd>The menu above each time knob. <strong>ms</strong>: a free time. <strong>Note</strong>, <strong>Dotted</strong>, <strong>Triplet</strong>: a note value at the host's tempo; dotted is one and a half times as long, triplet two thirds. <span class="range">ms · Note · Dotted · Triplet</span></dd>
+    <dt>Time (ms)</dt><dd>The delay time. The knob gives the short times the most travel. <span class="range">1 ms … 5 s</span></dd>
+    <dt>Time (synced)</dt><dd>The note value, shown the way its mode writes it: 1/8, 1/8. (dotted) or 1/8T (triplet). <span class="range">1/64 … 8/1</span></dd>
+    <dt>Spread</dt><dd>Single style: right minus left. <span class="range">−20 … +20 ms</span></dd>
+    <dt>Time R</dt><dd>Dual and Ping-Pong: the right-hand time, with its own mode menu. <span class="range">as Time</span></dd>
+    <dt>Ratio</dt><dd>Ratio style: the right-hand time as a share of the left. <span class="range">1 … 100 %</span></dd>
+  </dl>
+  <p>Synced times follow the host's tempo, tempo changes included. Without a host tempo (the standalone app) they use 120 BPM. However long the note value and however slow the song, a delay is never longer than <strong>30 seconds</strong>.</p>
+  <h3>Changing the time while it plays</h3>
+  <p>The delay time does not jump: it glides to a new value over about 80 ms, the way a tape machine's motor takes a moment to change speed. While it glides, everything already in the delay line is played faster or slower, so the echoes <strong>bend in pitch</strong> and then settle. Sweep the Time knob during a held note for the classic tape-echo dive and rise.</p>
+  <p>Very short times, from 1 to about 30 ms, are no longer heard as echoes. With some feedback they become a comb filter: a metallic, pitched resonance. Add the LFO for flanging and chorus.</p>
+</section>
+
+<section id="repeats">
+  <h2>Repeats</h2>
+  <p class="sub">How many echoes, how hard they are hit, and how worn the machine is.</p>
+  <dl class="params">
+    <dt>Feedback</dt><dd>How much of each echo is sent round the loop to make the next. At 0 % there is a single echo. Below 100 % each echo is quieter than the last. At 100 % they would go on for ever; above it they grow. <span class="range">0 … 200 %</span></dd>
+    <dt>Drive</dt><dd>Pushes the input into the Mode's saturation before it is recorded, like turning up the record level: up to ten times (+20 dB) louder going in, with the level partly brought back down afterwards. At 0 % it is out of the way. Drive colours only the echoes; the dry sound stays clean. <span class="range">0 … 100 %</span></dd>
+    <dt>Age</dt><dd>How worn the machine is; what that means depends on the <a href="#mode">Mode</a>. Greyed out in Clean. <span class="range">0 … 100 %</span></dd>
+  </dl>
+  <h3>How long the echoes last</h3>
+  <table>
+    <tr><th>Feedback</th><th>Each echo is</th><th>Echoes until inaudible (−60 dB)</th></tr>
+    <tr><td>25 %</td><td>12 dB quieter</td><td>5</td></tr>
+    <tr><td>40 %</td><td>8 dB quieter</td><td>8</td></tr>
+    <tr><td>55 %</td><td>5 dB quieter</td><td>12</td></tr>
+    <tr><td>70 %</td><td>3 dB quieter</td><td>19</td></tr>
+    <tr><td>90 %</td><td>1 dB quieter</td><td>66</td></tr>
+    <tr><td>100 % and up</td><td>the same, or louder</td><td>they do not stop</td></tr>
+  </table>
+  <p>The filters, the tape's treble loss and the diffusion take a little away on every round as well, so in practice the echoes die somewhat sooner than the table says.</p>
+  <h3>Past 100 %: self-oscillation</h3>
+  <p>Above 100 % every round is louder than the one before. In a plain digital delay that would run away to full-scale noise. In Echo Engine the recording stage cannot go above its ceiling, so the loop grows until the Mode's saturation holds it there and then sustains: a dense, howling, endlessly regenerating texture that keeps going after the input stops. Tape compresses and smooths it into a roar; Lo-Fi turns it into a buzzing wall; Clean holds it most politely. Bring Feedback back under 100 % to let it die away.</p>
+  <div class="callout"><strong>Play the feedback.</strong> Automate Feedback up past 100 % at the end of a phrase and back down a bar later, or sweep Time while the loop is oscillating. Keep a hand near Mix: the loop is limited, but it is loud.</div>
+</section>
+
+<section id="lfo">
+  <h2>LFO</h2>
+  <p class="sub">A slow wobble on the delay time.</p>
+  <dl class="params">
+    <dt>Rate</dt><dd>The speed of the wobble. Greyed out while Depth is 0. <span class="range">0.05 … 10 Hz</span></dd>
+    <dt>Depth</dt><dd>How far the delay time swings either side of its setting. <span class="range">0 … 10 ms</span></dd>
+  </dl>
+  <p>A smooth (sine) oscillator moves the point where the delay line is read. A moving read point changes the pitch of what is read, slightly up while the delay shortens and slightly down while it lengthens, so the echoes gain a gentle vibrato that thickens them and sets them apart from the dry sound.</p>
+  <p>The right side's wobble runs a quarter of a cycle apart from the left's. Left and right are therefore never detuned the same way at the same moment, which turns the vibrato into stereo movement.</p>
+  <table>
+    <tr><th>Setting</th><th>Effect</th></tr>
+    <tr><td>Depth 0.2 ms, Rate 0.5 Hz</td><td>The default: barely audible life in the repeats.</td></tr>
+    <tr><td>Depth 1–3 ms, Rate 0.3–1 Hz</td><td>Chorused, drifting echoes.</td></tr>
+    <tr><td>Time 5–15 ms, Depth 2–5 ms, Feedback 50–80 %</td><td>Flanger.</td></tr>
+    <tr><td>Time 15–30 ms, Depth 2–4 ms, Feedback 0 %</td><td>Chorus.</td></tr>
+    <tr><td>Depth 5–10 ms, Rate 4–8 Hz</td><td>Seasick vibrato.</td></tr>
+  </table>
+  <p>In Tape mode, Age adds its own, random movement on top of the LFO: wow and flutter.</p>
+</section>
+
+<section id="pitch">
+  <h2>Pitch</h2>
+  <p class="sub">Echoes that climb, fall or shimmer.</p>
+  <dl class="params">
+    <dt>Shift</dt><dd>Transposes the echoes, in whole semitones. Because the shifter is inside the loop, every repeat is shifted once more than the one before. <span class="range">−24 … +24 st</span></dd>
+    <dt>Detune</dt><dd>Fine tuning that pushes the left side up and the right side down by this many cents. It widens the echoes and, round the loop, makes them drift apart. <span class="range">0 … 50 ct</span></dd>
+  </dl>
+  <p>With Shift at +12, the first echo is an octave above the note, the second two octaves, the third three: a <strong>staircase</strong>. At +7 it climbs in fifths; at −12 it sinks an octave at a time. Combine a shift with Diffusion and a high Feedback, and the separate steps blur into a halo of rising harmonics above the sound: <strong>shimmer</strong>.</p>
+  <h3>How it shifts</h3>
+  <p>The shifter is <strong>granular</strong>. It chops the echo into short, overlapping grains (about 80 ms each) and plays each one faster or slower, fading every grain in and out. The grains start at slightly random moments, so the overlaps never line up the same way twice: the copies blur into a soft, chorus-like shimmer instead of the metallic ringing a simpler shifter produces, and the attacks of notes stay intact.</p>
+  <p>The shifter needs a moment to do its work. Echo Engine reads the delay line that much earlier to make up for it, so <strong>shifted echoes still land exactly on time</strong>. With Shift at 0 and Detune at 0 the shifter is switched out entirely and costs nothing; it fades in and out when you turn it on and off.</p>
+</section>
+
+<section id="diffuse">
+  <h2>Diffuse</h2>
+  <p class="sub">Smears each echo, from a softened edge to a reverb-like cloud.</p>
+  <dl class="params">
+    <dt>Amount</dt><dd>How much of the smear is blended in, and how strong it is. <span class="range">0 … 100 %</span></dd>
+    <dt>Size</dt><dd>How far each echo is spread out in time: small is tight and slightly metallic, large is spacious. Greyed out while Amount is 0. <span class="range">0 … 100 %</span></dd>
+  </dl>
+  <p>The diffuser is a chain of <strong>six all-pass filters</strong>. An all-pass leaves the balance of low and high frequencies alone but delays different parts of the sound by different amounts, so a sharp click comes out as a short burst of many smaller ones. The six stages have lengths that are not multiples of one another (from about a millisecond at the smallest Size to tens of milliseconds at the largest), and the right side's are 7 % longer than the left's, so the smear is different in each ear.</p>
+  <p>Because it sits in the loop, each repeat is smeared again. A little softens the attack of the echoes so they sit behind the dry sound. A lot, with a high Feedback, dissolves the separate repeats into a continuous wash: with a short delay time it behaves like a small reverb, with a long one like a cloud that swells after each note.</p>
+</section>
+
+<section id="eq">
+  <h2>EQ</h2>
+  <p class="sub">Two gentle filters that shape how the echoes age.</p>
+  <dl class="params">
+    <dt>Low Cut</dt><dd>Removes lows from the echoes, at 6 dB per octave. Keeps the repeats from muddying the bass. <span class="range">20 Hz … 2 kHz</span></dd>
+    <dt>High Cut</dt><dd>Removes highs from the echoes, at 6 dB per octave. Makes them darker and further away. <span class="range">1 … 20 kHz</span></dd>
+  </dl>
+  <p>The slopes are gentle on purpose. Both filters are in the loop, so a repeat that has been round three times has been filtered three times: the first echo is only slightly darker, and each one after it is darker and thinner still. This is how echoes behave in the real world and in tape machines, and it is why a filtered delay sits behind a vocal instead of fighting it.</p>
+  <p>A High Cut around 3–6 kHz with a Low Cut around 200–400 Hz gives the band-limited, "telephone" repeats of vintage units. Opening both fully gives modern, full-range copies.</p>
+</section>
+
+<section id="output">
+  <h2>Output</h2>
+  <p class="sub">Where the echoes sit, and how loud.</p>
+  <dl class="params">
+    <dt>Width</dt><dd>The stereo width of the echoes: 100 % leaves left and right as they are, 0 % folds them to the centre. It works on the echoes only and never narrows the dry sound. <span class="range">0 … 100 %</span></dd>
+    <dt>Mix</dt><dd>The balance between the dry sound and the echoes: 0 % is dry only, 100 % echoes only. As the echoes come up, the dry sound goes down. <span class="range">0 … 100 %</span></dd>
+  </dl>
+  <p>As an insert, a Mix of 20–40 % is typical. On a send or return track, set Mix to <strong>100 %</strong>, so the track carries only echoes, and set the amount with the send level.</p>
+  <p>Echo Engine adds no latency. It tells the host how long its echoes take to die away, so a bounce or a freeze does not cut the tail off.</p>
+</section>
+
+<section id="presets">
+  <h2>Presets</h2>
+  <p class="sub">Fifteen starting points.</p>
+  <table>
+    <tr><th>Preset</th><th>What it is</th><th>Key settings</th></tr>
+    <tr><td>Default</td><td>A plain tape echo.</td><td>Tape, Single, 400 ms, feedback 40 %</td></tr>
+    <tr><td>Space Tape</td><td>The long, dark, saturated echo of a vintage tape unit.</td><td>Tape, 340 ms, feedback 55 %, age 45 %, high cut 7 kHz</td></tr>
+    <tr><td>Slapback Tape</td><td>One quick repeat: rockabilly vocals and guitars.</td><td>Tape, 95 ms, feedback 8 %</td></tr>
+    <tr><td>Clean Quarter</td><td>Transparent quarter-note echoes.</td><td>Clean, 1/4, feedback 35 %</td></tr>
+    <tr><td>Dotted Eighth</td><td>The galloping guitar delay.</td><td>Clean, 1/8 dotted, spread +10 ms</td></tr>
+    <tr><td>Ping-Pong Eighths</td><td>Even bounces, left and right.</td><td>Clean, Ping-Pong, 1/8 both sides</td></tr>
+    <tr><td>Dual Rhythm</td><td>Two interlocking times.</td><td>Tape, Dual, 1/4 left, 1/8 dotted right</td></tr>
+    <tr><td>Golden Ratio</td><td>A scatter that never lines up.</td><td>Tape, Ratio 61.8 %, 420 ms</td></tr>
+    <tr><td>Lo-Fi Crunch</td><td>Gritty early-digital repeats.</td><td>Lo-Fi, 250 ms, drive 45 %, age 70 %</td></tr>
+    <tr><td>Diffuse Cloud</td><td>Echoes that melt into each other.</td><td>Tape, 450 ms, feedback 70 %, diffusion 85 %</td></tr>
+    <tr><td>Ambient Wash</td><td>A slow, endless pad from anything.</td><td>Clean, 1/2, feedback 80 %, diffusion and size 100 %</td></tr>
+    <tr><td>Shimmer</td><td>A rising halo of octaves.</td><td>Clean, shift +12, detune 6 ct, diffusion 90 %</td></tr>
+    <tr><td>Fifth Staircase</td><td>Each echo a fifth above the last.</td><td>Clean, 1/8, shift +7</td></tr>
+    <tr><td>Detuned Tape</td><td>Wide, chorused tape echo.</td><td>Tape, 280 ms, detune 15 ct</td></tr>
+    <tr><td>Reverb-ish</td><td>A small room made from a delay.</td><td>Clean, 60 ms, feedback 75 %, diffusion 100 %</td></tr>
+  </table>
+  <p>Press <strong>SAVE</strong> in the header to keep your own. Your presets join the list; the preset menu has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>, which shows where they are kept as files you can back up or share. An asterisk after the preset's name means you have changed something since loading it. Every knob and menu is a host parameter and can be automated.</p>
+</section>
+
+<section id="recipes">
+  <h2>Recipes</h2>
+  <p class="sub">Settings to start from.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Vocal echo that stays out of the way</span><p>Tape, Single, 1/4 or 1/8 dotted, Feedback 30 %, Low Cut 300 Hz, High Cut 4 kHz, Mix 15–20 %.</p></div>
+    <div class="card"><span class="tag">Dub throw</span><p>Tape, 1/4 dotted, Age 50 %, High Cut 3 kHz. Ride Feedback to 110 % on one word, then pull it back to 50 %.</p></div>
+    <div class="card"><span class="tag">Stereo widener</span><p>Clean, Single, Time 15 ms, Spread +12 ms, Feedback 0 %, Mix 30 %. No audible echo, just width.</p></div>
+    <div class="card"><span class="tag">Flanger</span><p>Clean, Time 6 ms, Feedback 70 %, LFO Rate 0.2 Hz, Depth 4 ms, Mix 50 %.</p></div>
+    <div class="card"><span class="tag">Shimmer pad</span><p>Clean, 400 ms, Feedback 70 %, Shift +12, Detune 8 ct, Diffusion 90 %, Size 90 %, Low Cut 250 Hz, Mix 45 %.</p></div>
+    <div class="card"><span class="tag">Broken machine</span><p>Lo-Fi, 180 ms, Drive 60 %, Age 85 %, Feedback 105 %. Sweep Time.</p></div>
+  </div>
+</section>
+
+<section id="specs">
+  <h2>Specifications</h2>
+  <p class="sub">The numbers.</p>
+  <table>
+    <tr><th>Property</th><th>Value</th></tr>
+    <tr><td>Delay time</td><td>1 ms … 5 s free; 1/64 … 8/1 straight, dotted or triplet, synced; 30 s at most</td></tr>
+    <tr><td>Styles</td><td>Single (± 20 ms spread), Dual, Ratio (1 … 100 %), Ping-Pong</td></tr>
+    <tr><td>Modes</td><td>Clean, Tape, Lo-Fi</td></tr>
+    <tr><td>Feedback</td><td>0 … 200 %, limited by the mode's saturation</td></tr>
+    <tr><td>Drive</td><td>Up to +20 dB into the mode's saturation</td></tr>
+    <tr><td>Tape</td><td>3:1 compression above −12 dB, +2 dB head bump at 100 Hz, wow, 7.3 Hz flutter, hiss, highs 16 → 4.5 kHz</td></tr>
+    <tr><td>Lo-Fi</td><td>Sample rate down to 4 kHz, bit depth down to 6 bits</td></tr>
+    <tr><td>Pitch</td><td>−24 … +24 semitones, detune 0 … 50 cents, granular, in the loop</td></tr>
+    <tr><td>LFO</td><td>Sine, 0.05 … 10 Hz, 0 … 10 ms, left and right a quarter cycle apart</td></tr>
+    <tr><td>Diffusion</td><td>Six all-pass stages per side</td></tr>
+    <tr><td>EQ</td><td>Low cut 20 Hz … 2 kHz, high cut 1 … 20 kHz, 6 dB/octave, in the loop</td></tr>
+    <tr><td>Latency</td><td>None</td></tr>
+    <tr><td>Channels</td><td>Stereo (mono tracks work too)</td></tr>
+    <tr><td>Formats</td><td>AU, VST3, Standalone</td></tr>
+  </table>
+</section>
+
+<footer>
+  <div class="sig">Robotic Audio</div>
+  Echo Engine was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
+  Fonts: Big Shoulders Display and Inter, under the SIL Open Font License.
+</footer>
+
+</div>
+</main>
+<script>
+// Highlight the section being read in the contents
+const links = [...document.querySelectorAll("nav.toc a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+sections.forEach(s => s && observer.observe(s));
+</script>
+</body>
+</html>
