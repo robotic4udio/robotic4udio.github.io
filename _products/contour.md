@@ -5,7 +5,7 @@ kind: Synth
 status_label: Coming soon
 tagline: A gnarly wobble-bass synth where you draw the movement.
 description: Contour is a monophonic wobble-bass synth with drawn envelopes, a drive section, fourteen filters and a full effects rack. AU, VST3 and standalone.
-image: /plugins/contour/manual/images/contour.jpg
+image: /assets/images/contour/contour.jpg
 image_alt: "Contour's window: oscillators and pitch drop on top, the drawn envelopes in the middle, then drive, filter, voice and the effects rack with its macros"
 manual: /plugins/contour/manual/
 
@@ -49,10 +49,10 @@ features:
 #     file: /assets/audio/contour/wobble.mp3
 demos: []
 
-# Screenshots: these come from the manual. For your own, put them in
-# assets/images/contour/ and point the entries there.
+# Screenshots: the first is drawn by the plugin repo's tools/EditorShots (ContourShots),
+# the rest come from the manual. For your own, put them in assets/images/contour/.
 screenshots:
-  - file: /plugins/contour/manual/images/contour.jpg
+  - file: /assets/images/contour/contour.jpg
     caption: The whole instrument in one window
   - file: /plugins/contour/manual/images/effect-editor.jpg
     caption: An effect's full editor, with its live display
