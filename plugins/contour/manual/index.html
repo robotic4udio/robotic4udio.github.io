@@ -82,6 +82,7 @@ h1 {
 figure { margin: 32px 0; }
 figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); }
 figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
+.card img, img.inline { width: 100%; display: block; border-radius: 8px; border: 1px solid var(--line); margin: 10px 0 12px; }
 
 /* Sections */
 section { padding: 56px 0 8px; border-top: 1px solid var(--line); }
@@ -189,7 +190,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <p class="lede">A gnarly wobble-bass synth where you <em>draw the movement</em>. Paint how each note's volume, pitch and tone change over time, loop the part you like, and push it through a drive section, fourteen filters and a full effects rack.</p>
   <ul class="facts">
     <li>Monophonic bass synth</li>
-    <li>2 oscillators + sub</li>
+    <li>2 oscillators (9 types) + sub, noise, sample</li>
     <li>5 drawn envelopes</li>
     <li>8-slot mod matrix</li>
     <li>14 filter types</li>
@@ -200,7 +201,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   </ul>
   <figure>
     <img src="images/contour.jpg" alt="Contour's window">
-    <figcaption>Contour: oscillators and pitch drop on top, the drawn envelopes in the middle, then drive, filter, voice and the effects rack with its macros.</figcaption>
+    <figcaption>Contour: the sound sources (two oscillators, sub, noise and a sample) and the pitch drop on top, the drawn envelopes in the middle, then drive, filter, voice and the effects rack with its macros.</figcaption>
   </figure>
 </header>
 
@@ -254,7 +255,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
       <g font-size="13" fill="#f4ece4" text-anchor="middle" font-weight="600">
         <rect x="10" y="30" width="120" height="50" rx="10" fill="#211a15" stroke="url(#g)"/><text x="70" y="60">OSC 1</text>
         <rect x="10" y="100" width="120" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="70" y="124">OSC 2</text><text x="70" y="140" font-size="10" fill="#a99e94" font-weight="500">Layer · FM · Ring · Sync</text>
-        <rect x="10" y="180" width="120" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="70" y="210">SUB</text>
+        <rect x="10" y="180" width="120" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="70" y="204">SUB · NOISE</text><text x="70" y="220" font-size="10" fill="#a99e94" font-weight="500">· SAMPLE</text>
         <rect x="190" y="65" width="150" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="265" y="89">PITCH</text><text x="265" y="104" font-size="10" fill="#a99e94" font-weight="500">drop · portamento · bend · matrix</text>
         <rect x="390" y="65" width="150" height="50" rx="10" fill="#211a15" stroke="url(#g)"/><text x="465" y="89">AGGRESSOR</text><text x="465" y="104" font-size="10" fill="#a99e94" font-weight="500">overdrive · distortion · fuzz</text>
         <rect x="590" y="65" width="110" height="50" rx="10" fill="#211a15" stroke="url(#g)"/><text x="645" y="89">FILTER</text><text x="645" y="104" font-size="10" fill="#a99e94" font-weight="500">drag to swap</text>
@@ -266,7 +267,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
         <path d="M340 90 H388"/><path d="M540 90 H588"/><path d="M700 90 H738"/><path d="M850 90 H878"/>
         <path d="M130 205 H760 C790 205 795 160 795 118" stroke-dasharray="5 5"/>
       </g>
-      <text x="470" y="198" font-size="11" fill="#a99e94" text-anchor="middle">Sub · Direct: skips the drive and the filter, so the low end stays clean</text>
+      <text x="470" y="198" font-size="11" fill="#a99e94" text-anchor="middle">Direct (sub, noise, sample): skips the drive and the filter, so it stays clean</text>
       <text x="500" y="22" font-size="11" fill="#a99e94" text-anchor="middle">Mod 1–4, MIDI and the macros reach almost every stage (pitch too) through the matrix</text>
     </svg>
   </div>
@@ -275,14 +276,20 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
 
 <section id="oscillator">
   <h2>Oscillators</h2>
-  <p class="sub">Osc 1 is the main voice. Osc 2 layers with it or modulates it. The sub holds the floor.</p>
+  <p class="sub">Osc 1 is the main voice. Osc 2 layers with it or modulates it. The sub holds the floor; noise and a sample add air and attack. The card's tabs switch between the five.</p>
 
   <h3>Osc 1</h3>
-  <p>Choose the type in the first menu: <strong>Wavetable</strong>, <strong>Waveform</strong>, <strong>Phase Dist</strong> or <strong>Shaper</strong>. The Position knob is what each type moves: the table position, phase distortion's <strong>Amount</strong> or the shaper's <strong>Drive</strong>, so a matrix route to Osc 1 Position sweeps whichever is playing.</p>
+  <p>Choose the type in the first menu: <strong>Wavetable</strong>, <strong>Waveform</strong>, <strong>Phase Dist</strong>, <strong>Shaper</strong>, <strong>Harmonic</strong>, <strong>String</strong>, <strong>Formant</strong>, <strong>Supersaw</strong> or <strong>Granular</strong>. The Position knob is what each type moves (it takes the type's name for it: Amount, Drive, Morph, Decay, Vowel, Mix), so a matrix route to Osc 1 Position sweeps whichever is playing. Some types have a second control, the <strong>Shape</strong> knob (Tone, Size); it is greyed out for the others.</p>
   <div class="grid">
     <div class="card"><span class="tag">Phase Dist</span><p>A cosine whose phase runs unevenly through the cycle (as in Casio's CZ synths). <strong>Amount</strong> bends it into the chosen shape: <strong>Saw</strong>, <strong>Square</strong>, <strong>Pulse</strong>, or <strong>Res Saw / Triangle / Trapezoid</strong>, a sine up to 16× the pitch under a window: a resonant-filter sweep without a filter. Clean, vocal, perfect for "yoi" wobbles. The display shows the wave as it plays.</p></div>
     <div class="card"><span class="tag">Shaper</span><p>A sine run through a curve you <strong>draw</strong>, with the same tools as the envelopes: left to right is the sine from −1 to +1, up and down what comes out. <strong>Drive</strong> sets how much of the curve the sine sweeps: low, just the middle (soft); high, all of it. Folds, steps and kinks all become harmonics; sweep Drive with Mod 1 and the curve is the wobble. It starts as a gentle wavefolder.</p></div>
+    <div class="card"><span class="tag">Harmonic</span><img src="images/osc-harmonic.jpg" alt="The Harmonic oscillator: a drawn spectrum"><p>Additive: <strong>draw the levels of the first 64 partials</strong>, the fundamental at the left (the higher you draw, the louder; quiet partials have plenty of room). There are two spectra, <strong>A</strong> and <strong>B</strong> (the buttons in the drawing's corner); <strong>Morph</strong> blends from one to the other. It starts as a saw (A) and a hollow, odd-partials tone (B). Both oscillators play the same two spectra, each with its own Morph.</p></div>
+    <div class="card"><span class="tag">String</span><img src="images/osc-string.jpg" alt="The String oscillator"><p>A plucked string: every note strikes it with a burst of noise that rings round a tuned delay. <strong>Decay</strong> is how long it rings, from a short thud to many seconds; at the top it never dies away, so the volume envelope alone shapes it. <strong>Tone</strong> is how bright it is. Through the drive it becomes a snarling, clanging bass.</p></div>
+    <div class="card"><span class="tag">Formant</span><img src="images/osc-formant.jpg" alt="The Formant oscillator"><p>A voice: a pulse that restarts three vowel formants on every cycle. <strong>Vowel</strong> morphs through A, E, I, O and U; <strong>Size</strong> makes the voice bigger and darker or smaller and brighter. Route an envelope to Osc 1 Position and it talks, with no filter needed.</p></div>
+    <div class="card"><span class="tag">Supersaw</span><img src="images/osc-supersaw.jpg" alt="The Supersaw oscillator"><p>Seven saws with the classic uneven detuning. <strong>Mix</strong> goes from one saw to the six round it at full strength; <strong>Detune</strong> opens them from a gentle chorus to the wall. Always seven copies (Unison is greyed out); Spread sets their width.</p></div>
+    <div class="card"><span class="tag">Granular</span><img src="images/osc-granular.jpg" alt="The Granular oscillator"><p>Short overlapping grains of the oscillator's <strong>wavetable</strong>, or of the <strong>sample</strong> on the Sample tab (the second menu). <strong>Position</strong> is where they are taken from, <strong>Spray</strong> (the Detune knob) how far from it each may land, <strong>Grains</strong> (Unison) how many play at once and <strong>Size</strong> how long each is, from 10 ms (buzzy) to a third of a second (smooth). A sample plays at its own pitch on C1 and follows the note from there.</p></div>
   </div>
+  <p>The newer types show a <strong>preview</strong>: a moment of the oscillator as it is set now, redrawn as you turn its knobs.</p>
   <dl class="params">
     <dt>Wavetable</dt><dd>Which table to play: built-ins (Classic, Pulse Width, Harmonic Build, Vowels, Hard Sync, Wavefold, Growl, Crush), the tables shipped with Contour, your saved ones (<em>Yours</em>) and <strong>Random</strong>. The 3D view shows its frames, the playing one lit.</dd>
     <dt>Wave</dt><dd>In Waveform mode: Sine, Triangle, Saw, Square or <strong>Random</strong>, a random single-cycle wave.</dd>
@@ -293,10 +300,11 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <dt>Detune</dt><dd>How far apart the copies are tuned, up to half a semitone either way. <span class="range">0–100 %</span></dd>
     <dt>Spread</dt><dd>How wide the copies sit in the stereo field (also Osc 2's). <span class="range">0–100 %</span></dd>
     <dt>Level</dt><dd>Osc 1's level in the mix. <span class="range">0–100 %</span></dd>
+    <dt>Shape</dt><dd>The second control of String (Tone), Formant (Size) and Granular (grain Size); a matrix destination too. <span class="range">0–100 %</span></dd>
   </dl>
 
   <h3>Osc 2</h3>
-  <p>Switch it on with its power button. It has the same four types as Osc 1 (Wavetable, Waveform, Phase Dist, Shaper) with its own table, wave, phase-distortion shape or shaper curve, its own position (Amount, Drive), unison and detune, plus a pitch and a <strong>mode</strong>:</p>
+  <p>Switch it on with its power button. It has the same types as Osc 1 with its own table, wave, phase-distortion shape or shaper curve, its own Position and Shape, unison and detune (Harmonic plays the same two drawn spectra as Osc 1, with its own Morph), plus a pitch and a <strong>mode</strong>:</p>
   <div class="grid four">
     <div class="card"><span class="tag">Layer</span><p>Simply mixed with Osc 1. Detune it a few cents or put it a fifth up for thickness.</p></div>
     <div class="card"><span class="tag">FM</span><p>Osc 2 moves Osc 1's phase: growls, metallic barks, talking tones. Amount is the depth.</p></div>
@@ -315,6 +323,28 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <dt>Octave</dt><dd>One or two octaves under the note.</dd>
     <dt>Direct</dt><dd>On (default): the sub skips the drive stages and the filter, so it stays clean however gnarly the rest gets.</dd>
     <dt>Level</dt><dd>The sub's level. <span class="range">0–100 %</span></dd>
+  </dl>
+
+  <h3>Noise</h3>
+  <img class="inline" src="images/src-noise.jpg" alt="The Noise tab">
+  <p>Switch it on with its power button. It follows the volume envelope like the oscillators and, unless <strong>Direct</strong> is lit, runs through the drive and the filter with them: noise into the drive for grit, through the filter for sweeps.</p>
+  <dl class="params">
+    <dt>Type</dt><dd><strong>White</strong> (bright hiss), <strong>Pink</strong> (even, softer), <strong>Brown</strong> (a low rumble) or <strong>Digital</strong>: a random value held 16 times per cycle of the note, so the noise has a lo-fi pitch that follows what you play.</dd>
+    <dt>Colour</dt><dd>Below 0 a low-pass darkens it, above 0 a high-pass thins it; 0 leaves it as it is. <span class="range">±100 %</span></dd>
+    <dt>Level</dt><dd>The noise's level. Route an envelope to <em>Noise Level</em> in the matrix for a burst on each note. <span class="range">0–100 %</span></dd>
+    <dt>Direct</dt><dd>The noise skips the drive stages and the filter.</dd>
+  </dl>
+
+  <h3>Sample</h3>
+  <img class="inline" src="images/src-sample.jpg" alt="The Sample tab">
+  <p>An audio file played on every note: a click or a kick for the attack, or a tone pitched across the keyboard. <strong>Load</strong> a file (WAV, AIFF, FLAC, OGG or MP3, up to half a minute) or drop one on the display; it is copied into your <em>Samples</em> folder next to Contour's presets, so sessions and presets find it again, and the menu lists everything in that folder. The display shows the whole sample and a line where it plays. If a preset's sample is missing on another computer, the menu says so and the rest of the preset still plays.</p>
+  <dl class="params">
+    <dt>Mode</dt><dd><strong>One-shot</strong> plays it once per note; <strong>Loop</strong> goes round for as long as the note sounds.</dd>
+    <dt>Track</dt><dd>Off (default): the sample plays at its own pitch whatever the note: for clicks, kicks and noises. On: it follows the note (glide and bends included), at its own pitch on C1.</dd>
+    <dt>Direct</dt><dd>On (default): the sample skips the drive stages and the filter, so a transient stays clean.</dd>
+    <dt>Level</dt><dd>The sample's level, a matrix destination. <span class="range">0–100 %</span></dd>
+    <dt>Tune</dt><dd>Moves its pitch (and speed). <span class="range">±24 st</span></dd>
+    <dt>Start</dt><dd>Where in the sample each note starts. <span class="range">0–100 %</span></dd>
   </dl>
 </section>
 
@@ -396,7 +426,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <dl class="params">
     <dt>Source</dt><dd><strong>Envelopes</strong>: Volume, Mod 1–4. <strong>MIDI</strong>: Velocity, Note (key tracking, centred on C4), Mod Wheel, Aftertouch, Pitch Bend, CC A, CC B and Random (a new value on every note). <strong>XY Pad</strong>: X and Y. <strong>Macros</strong> 1–8.</dd>
     <dt>Via</dt><dd>A second source that scales the slot, e.g. the mod wheel bringing in an envelope. None: always on.</dd>
-    <dt>Destination</dt><dd>Osc 1 Position, Detune, Spread, Level; Osc 2 Position, Level, Pitch, Mod Amount; Sub Level; Pitch, Level, Pitch Drop, Portamento; Overdrive, Distortion, Fuzz; Filter Cutoff, Resonance, Morph, Drive; Macros 1–8.</dd>
+    <dt>Destination</dt><dd>Osc 1 Position, Detune, Spread, Level, Shape; Osc 2 Position, Level, Pitch, Mod Amount, Shape; Sub Level; Noise Level, Colour; Sample Level; Pitch, Level, Pitch Drop, Portamento; Overdrive, Distortion, Fuzz; Filter Cutoff, Resonance, Morph, Drive; Macros 1–8.</dd>
     <dt>Amount</dt><dd>How far, either way: 100 % moves the destination across its whole range. Pitch destinations show it in semitones (100 % = 24 st). <span class="range">±100 %</span></dd>
     <dt>Offset</dt><dd>A fixed shift added to the slot, in the same units as the amount (a pitch: semitones). It works with no source too, e.g. Osc 2 Pitch +7 st for a fifth. <span class="range">±100 %</span></dd>
     <dt>Smooth</dt><dd>Glides the slot's output over this time, softening steps and jumps: a stepped shape turns into slides, a MIDI CC stops zippering. − is none (and costs nothing). <span class="range">0–2000 ms</span></dd>
@@ -549,6 +579,9 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <div class="card"><span class="tag">Laser stab</span><p>Pitch Drop +36 st, Time 60 ms, Curve 70 %. Volume: short decay, loop Off. Distortion: Fold. Reverb 2 send 25 %.</p></div>
     <div class="card"><span class="tag">Reese</span><p>Osc 1 saw, Unison 5, Detune 35 %. Osc 2 Layer saw, Fine +12 ct. Sub on, sine, −1 oct, Direct. Chorus and Width 140 % after.</p></div>
     <div class="card"><span class="tag">Stutter gate</span><p>Volume: Random (Menu → Random → Rhythm) synced to 1/1. Effects: Gate 1/16 at 70 % depth, OTT at 60 %.</p></div>
+    <div class="card"><span class="tag">Talking formant</span><p>Osc 1: Formant, Size 40 %. Mod 2: a slow wandering shape, Matrix: Mod 2 → Osc 1 Position +100 %. Overdrive on, Sub on.</p></div>
+    <div class="card"><span class="tag">Clang bass</span><p>Osc 1: String, Decay 100 %, Tone 70 %. Fuzz on at 30 %. Filter: Comb +, Key 100 %. The volume envelope does the rest.</p></div>
+    <div class="card"><span class="tag">Kick and bass in one</span><p>Sample: a kick, One-shot, Direct. Osc 1 a saw through the Aggressor. Volume: Attack 20 ms, so the kick speaks first.</p></div>
     <div class="card"><span class="tag">Screaming sync</span><p>Osc 2 Sync, Level 0 %. Matrix: Mod 2 → Osc 2 Mod Amount +80 % with a rising ramp. Filter: MS-20, resonance 60 %.</p></div>
   </div>
 </section>

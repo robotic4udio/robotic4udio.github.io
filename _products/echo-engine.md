@@ -6,6 +6,7 @@ status_label: Coming soon
 tagline: A stereo delay with three characters and repeats that climb in pitch.
 description: Echo Engine is a stereo delay with clean, tape and lo-fi characters, four delay styles, pitch-shifted repeats and diffusion. AU, VST3 and standalone.
 image: /assets/images/echo-engine/echo-engine.jpg
+manual: /plugins/echo-engine/manual/
 image_alt: "Echo Engine's window: setup, delay times, repeats, LFO, pitch, diffusion, EQ and output sections side by side"
 
 # Set these when Echo Engine is on sale: the button changes from "Notify me" to "Buy".
@@ -25,7 +26,7 @@ features:
   - title: Four styles
     text: Single, Dual, Ratio and Ping-Pong. One time for both sides, a time for each, the right side as a share of the left, or repeats bouncing between them.
   - title: Free or in time
-    text: Set each side from 1 ms to 5 seconds, or lock it to the song's tempo in straight, dotted or triplet notes.
+    text: Set each side from 1 ms to 5 seconds, or lock it to the song's tempo in straight, dotted or triplet notes, up to 30 seconds long.
   - title: Three characters
     text: Clean keeps the repeats transparent. Tape saturates, compresses and adds a head bump. Lo-Fi clips hard like an early digital unit.
   - title: Age

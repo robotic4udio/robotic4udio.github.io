@@ -6,6 +6,7 @@ status_label: Coming soon
 tagline: Hold a button and hear the last moments backwards.
 description: Reverser keeps the last 30 seconds of audio and plays them backwards while you hold a button, at normal or double speed. AU, VST3 and standalone.
 image: /assets/images/reverser/reverser.jpg
+manual: /plugins/reverser/manual/
 image_alt: "Reverser's window: a display of the recent audio with a playhead, above the Reverse and Reverse 2x buttons"
 
 # Set these when Reverser is on sale: the button changes from "Notify me" to "Buy".
@@ -17,6 +18,8 @@ stats:
   - 30 seconds of history
   - Normal and double speed
   - Two push buttons
+  - Click-free fades
+  - No latency
 
 features:
   - title: Always listening

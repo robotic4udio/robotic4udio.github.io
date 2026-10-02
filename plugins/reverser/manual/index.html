@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reverser Manual</title>
+<style>
+@font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Big Shoulders"; font-weight: 800; src: url("fonts/BigShouldersDisplay-ExtraBold.ttf") format("truetype"); }
+
+:root {
+  --bg: #0d0b0a;
+  --surface: #17120f;
+  --surface-2: #211a15;
+  --line: rgba(255, 236, 220, 0.10);
+  --line-strong: rgba(255, 236, 220, 0.22);
+  --text: #f4ece4;
+  --muted: #a99e94;
+  --ember: #c25e00;
+  --fire: #ffb000;
+  --hot: #ffd27a;
+  --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
+  --radius: 14px;
+  --sidebar: 260px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 500 16px/1.65 "Inter", -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--hot); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Sidebar */
+nav.toc {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar);
+  overflow-y: auto; padding: 32px 24px 40px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+}
+nav.toc .brand { font: 600 11px/1 "Inter"; letter-spacing: .32em; color: var(--fire); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+nav.toc .brand::before { content: ""; width: 18px; height: 2px; background: var(--fire-gradient); }
+nav.toc .product { font: 800 34px/1 "Big Shoulders"; letter-spacing: .02em; margin: 10px 0 26px; text-transform: uppercase; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+nav.toc li { counter-increment: s; }
+nav.toc li a {
+  display: flex; gap: 12px; padding: 7px 10px; margin: 0 -10px; border-radius: 8px;
+  color: var(--muted); font-size: 14px;
+}
+nav.toc li a::before { content: counter(s, decimal-leading-zero); color: var(--line-strong); font-variant-numeric: tabular-nums; }
+nav.toc li a:hover, nav.toc li a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
+nav.toc li a.active::before { color: var(--fire); }
+
+main { margin-left: var(--sidebar); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+/* Hero */
+header.hero { position: relative; padding: 72px 0 40px; overflow: hidden; }
+header.hero::before {
+  content: ""; position: absolute; inset: -40% -10% auto; height: 520px;
+  background: radial-gradient(closest-side, rgba(255, 176, 0, .20), transparent);
+  pointer-events: none;
+}
+.kicker { font: 600 12px/1 "Inter"; letter-spacing: .34em; text-transform: uppercase; color: var(--fire); display: flex; align-items: center; gap: 12px; }
+.kicker::before { content: ""; width: 28px; height: 2px; background: var(--fire-gradient); }
+h1 {
+  font: 800 clamp(64px, 11vw, 132px)/.86 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em;
+  margin: 18px 0 18px;
+  background: linear-gradient(180deg, var(--text) 30%, #d9c9bb); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lede { font-size: 20px; line-height: 1.55; color: var(--text); max-width: 640px; margin: 0; }
+.lede em { font-style: normal; background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; padding: 0; list-style: none; }
+.facts li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+
+figure { margin: 32px 0; }
+figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); }
+figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+/* Sections */
+section { padding: 56px 0 8px; border-top: 1px solid var(--line); }
+h2 {
+  font: 800 52px/1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em; margin: 0 0 6px;
+}
+h2 + .sub { color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+h3 { font: 600 13px/1.2 "Inter"; letter-spacing: .24em; text-transform: uppercase; color: var(--hot); margin: 36px 0 12px; display: flex; align-items: center; gap: 10px; }
+h3::before { content: ""; width: 14px; height: 2px; background: var(--fire-gradient); }
+h4 { font: 800 24px/1.1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 4px; }
+p { margin: 0 0 14px; }
+strong { font-weight: 600; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* Parameter lists */
+dl.params { display: grid; grid-template-columns: 170px 1fr; gap: 0; margin: 0 0 18px; border-top: 1px solid var(--line); }
+dl.params dt, dl.params dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+dl.params dt { font: 600 12px/1.5 "Inter"; letter-spacing: .16em; text-transform: uppercase; color: var(--text); padding-right: 16px; padding-top: 13px; }
+dl.params dd { color: #e3d8ce; }
+dl.params dd .range { display: inline-block; margin-left: 8px; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+
+/* Cards and grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0 24px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.card p { margin: 6px 0 0; color: #e3d8ce; font-size: 15px; }
+.card .tag { font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--fire); }
+
+.callout { position: relative; background: linear-gradient(135deg, rgba(255, 176, 0,.10), rgba(255, 210, 122,.04)); border: 1px solid rgba(255, 176, 0,.35); border-radius: var(--radius); padding: 16px 20px 16px 52px; margin: 22px 0; }
+.callout::before { content: "✦"; position: absolute; left: 20px; top: 15px; color: var(--hot); font-size: 18px; }
+.callout strong { color: var(--hot); }
+
+kbd {
+  font: 600 12px/1 "Inter"; padding: 4px 7px; border-radius: 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  background: var(--surface-2); color: var(--text); white-space: nowrap;
+}
+table { width: 100%; border-collapse: collapse; margin: 8px 0 22px; font-size: 15px; }
+th { text-align: left; font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line-strong); }
+td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #e3d8ce; }
+td:first-child { color: var(--text); white-space: nowrap; }
+
+/* Signal flow */
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 20px; margin: 24px 0; overflow-x: auto; }
+.flow svg { display: block; min-width: 760px; width: 100%; height: auto; }
+
+/* Effects */
+.fx { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 22px 0 40px; }
+.fx img { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 10px 0 14px; }
+.fx .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.fx .head .what { color: var(--muted); }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 2px; transform: translateY(-1px); }
+
+footer { padding: 60px 0 80px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 40px; }
+footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+
+@media (max-width: 980px) {
+  nav.toc { position: static; width: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav.toc ol { columns: 2; }
+  main { margin-left: 0; }
+  .wrap { padding: 0 20px; }
+  dl.params { grid-template-columns: 1fr; }
+  dl.params dt { border-bottom: 0; padding-bottom: 0; }
+}
+@media print {
+  :root { --bg: #fff; --surface: #f6f2ee; --surface-2: #eee7e0; --text: #1a1410; --muted: #6e6259; --line: #e4dbd2; --line-strong: #cfc3b8; }
+  nav.toc { display: none; }
+  main { margin: 0; }
+  section { break-inside: avoid-page; }
+  h1 { color: #1a1410; background: none; }
+  dl.params dd, td, .card p { color: #2a2018; }
+}
+
+/* Block diagrams */
+.flow svg text { fill: var(--text); font-weight: 600; font-size: 13.5px; text-anchor: middle; }
+.flow svg text.sub { fill: var(--muted); font-weight: 500; font-size: 11px; }
+.flow svg .box { fill: var(--surface-2); stroke: var(--line-strong); }
+.flow svg .box.hot { stroke: url(#g); }
+.flow svg .pill { fill: var(--bg); stroke: var(--line-strong); }
+.flow svg .frame { fill: none; stroke: var(--line-strong); stroke-dasharray: 6 6; }
+.flow svg .wire { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.flow svg .dash { stroke-dasharray: 5 5; }
+.flow svg .arrow { fill: var(--muted); }
+.flow svg .tick { stroke: var(--line-strong); stroke-width: 1; }
+.flow svg .head { stroke: var(--hot); stroke-width: 2.5; fill: none; }
+svg.defs { position: absolute; width: 0; height: 0; }
+
+/* Curves */
+.plots { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: center; margin: 18px 0 24px; }
+.plots.three { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: start; gap: 14px; }
+.plot { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.plot h4 { margin: 2px 0 10px; }
+.plot svg { display: block; width: 100%; height: auto; }
+.plot svg text { fill: var(--muted); font-size: 10px; font-weight: 500; }
+.plot .axis { fill: none; stroke: var(--line-strong); }
+.plot .grid { fill: none; stroke: var(--line); }
+.plot .knee { fill: none; stroke: var(--line-strong); stroke-dasharray: 2 4; }
+.plot .ref { fill: none; stroke: var(--line-strong); stroke-dasharray: 4 4; }
+.plot .c1, .plot .c2, .plot .c3 { fill: none; stroke-width: 2; stroke-linejoin: round; }
+.plot .c1 { stroke: var(--muted); }
+.plot .c2 { stroke: var(--fire); }
+.plot .c3 { stroke: var(--hot); }
+.legend { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 12px; margin-top: 10px; }
+.legend span { display: inline-block; width: 14px; height: 2px; margin-left: 8px; }
+.legend span:first-child { margin-left: 0; }
+.legend .k1 { background: var(--muted); } .legend .k2 { background: var(--fire); } .legend .k3 { background: var(--hot); }
+.plot-text p:last-child { margin-bottom: 0; }
+.formula { font: 600 17px/1.4 "Inter"; color: var(--hot); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 18px; display: inline-block; }
+@media (max-width: 720px) { .plots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<svg class="defs" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#c25e00"/><stop offset=".45" stop-color="#ffb000"/><stop offset="1" stop-color="#ffd27a"/></linearGradient><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z" fill="#a99e94"/></marker></defs></svg>
+
+<nav class="toc" aria-label="Contents">
+  <div class="brand">Robotic Audio</div>
+  <div class="product">Reverser</div>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#overview">The window</a></li>
+    <li><a href="#flow">Signal flow</a></li>
+    <li><a href="#history">The history</a></li>
+    <li><a href="#reverse">Reverse</a></li>
+    <li><a href="#double">Reverse 2x</a></li>
+    <li><a href="#fades">Fades &amp; handover</a></li>
+    <li><a href="#reach">How far back</a></li>
+    <li><a href="#automation">Automation</a></li>
+    <li><a href="#presets">Presets &amp; bypass</a></li>
+    <li><a href="#ideas">Ideas</a></li>
+    <li><a href="#specs">Specifications</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Robotic Audio · User manual</div>
+  <h1>Reverser</h1>
+  <p class="lede">Hold a button and the sound you just heard <em>plays backwards</em>, starting from this very moment. Let go and you are back in the present. Reverser is always listening, so there is nothing to arm, record or sync.</p>
+  <ul class="facts">
+    <li>Live reverse effect</li>
+    <li>30 seconds of history</li>
+    <li>Normal and double speed</li>
+    <li>Click-free fades</li>
+    <li>No latency</li>
+    <li>Stereo</li>
+    <li>AU · VST3 · Standalone</li>
+  </ul>
+  <figure>
+    <img src="images/reverser.jpg" alt="Reverser's window">
+    <figcaption>Reverser: the history of the last 30 seconds on top, and the two hold buttons below.</figcaption>
+  </figure>
+</header>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">One minute from install to rewind.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">01</span><h4>Put it on a track</h4><p>Insert Reverser on anything with sound going through it: drums, a vocal, a whole mix bus. It passes the sound through untouched.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Let it listen</h4><p>Play for a few seconds. The display fills with the waveform of what went through, newest on the right.</p></div>
+    <div class="card"><span class="tag">03</span><h4>Hold Reverse</h4><p>Press and hold <strong>REVERSE</strong>. The live sound fades out and the past plays backwards from the instant you pressed.</p></div>
+    <div class="card"><span class="tag">04</span><h4>Let go</h4><p>Release the button. The reversed sound fades out and the live sound returns, exactly where the song is now.</p></div>
+    <div class="card"><span class="tag">05</span><h4>Try double speed</h4><p>Hold <strong>REVERSE 2X</strong> instead: backwards at twice the speed, an octave higher.</p></div>
+    <div class="card"><span class="tag">06</span><h4>Automate it</h4><p>Both buttons are host parameters. Draw them in your DAW's automation lane to place reverses exactly on the beat.</p></div>
+  </div>
+  <div class="callout"><strong>Nothing to set up.</strong> Reverser has no mix, length or tempo control. The only decision is when to press and how long to hold.</div>
+</section>
+
+<section id="overview">
+  <h2>The window</h2>
+  <p class="sub">A display and two buttons.</p>
+  <dl class="params">
+    <dt>Header</dt><dd>The preset bar, the power button (bypass) and the menu (three lines) with this manual, About and the website. Click the logo for the version and credits.</dd>
+    <dt>History display</dt><dd>The waveform of the last 30 seconds that passed through the plugin. <strong>NOW</strong> is the right-hand edge; the grid marks every 5 seconds back to −30 s. It scrolls to the left as time passes.</dd>
+    <dt>Reverse</dt><dd>A push button that lights while you hold it. Plays the history backwards at normal speed.</dd>
+    <dt>Reverse 2x</dt><dd>The same, at double speed and an octave up.</dd>
+  </dl>
+  <h3>Reading the display</h3>
+  <p>While a button is held, a vertical marker shows where in the history Reverser is reading: amber and labelled <strong>1x</strong> for Reverse, green and labelled <strong>2x</strong> for Reverse 2x. The stretch it has played since you pressed is drawn in the marker's colour. Because the display keeps scrolling while you hold, the marker travels left faster than the waveform does: the present moves on while the playhead goes the other way.</p>
+</section>
+
+<section id="flow">
+  <h2>Signal flow</h2>
+  <p class="sub">One recorder, two backwards players and a crossfade.</p>
+  <div class="flow">
+    <svg viewBox="0 0 1000 330" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <text x="34" y="65">IN</text>
+      <!-- recorder -->
+      <rect class="box hot" x="130" y="135" width="160" height="165" rx="10"/>
+      <text x="210" y="205">HISTORY</text>
+      <text class="sub" x="210" y="223">the last 30 seconds</text>
+      <text class="sub" x="210" y="238">always recording</text>
+      <!-- dry lane -->
+      <rect class="box" x="560" y="32" width="160" height="56" rx="10"/>
+      <text x="640" y="57">DRY FADE</text>
+      <text class="sub" x="640" y="73">gain 1 − (g1 + g2)</text>
+      <!-- 1x lane -->
+      <rect class="box" x="340" y="137" width="160" height="56" rx="10"/>
+      <text x="420" y="162">READ BACKWARDS</text>
+      <text class="sub" x="420" y="178">playhead −1 per sample</text>
+      <rect class="box hot" x="560" y="137" width="160" height="56" rx="10"/>
+      <text x="640" y="162">FADE g1</text>
+      <text class="sub" x="640" y="178">while REVERSE is held</text>
+      <!-- 2x lane -->
+      <rect class="box" x="340" y="242" width="160" height="56" rx="10"/>
+      <text x="420" y="263">READ BACKWARDS 2×</text>
+      <text class="sub" x="420" y="278">playhead −2 per sample</text>
+      <text class="sub" x="420" y="291">through a 31-tap low-pass</text>
+      <rect class="box hot" x="560" y="242" width="160" height="56" rx="10"/>
+      <text x="640" y="267">FADE g2</text>
+      <text class="sub" x="640" y="283">while REVERSE 2X is held</text>
+      <!-- sum -->
+      <circle class="box" cx="820" cy="165" r="18"/>
+      <text x="820" y="171" style="font-size: 20px">+</text>
+      <text x="966" y="170">OUT</text>
+      <!-- wires -->
+      <g class="wire" marker-end="url(#a)">
+        <path d="M52 60 H558"/>
+        <path d="M90 60 V217 H128"/>
+        <path d="M290 165 H338"/>
+        <path d="M290 270 H338"/>
+        <path d="M500 165 H558"/>
+        <path d="M500 270 H558"/>
+        <path d="M720 60 C790 60 820 100 820 145"/>
+        <path d="M720 165 H800"/>
+        <path d="M720 270 C790 270 820 230 820 185"/>
+        <path d="M838 165 H940"/>
+      </g>
+      <circle class="arrow" cx="90" cy="60" r="3"/>
+      <text class="sub" x="300" y="48">the live sound</text>
+      <text class="sub" x="210" y="322">records the input, never the reversed output</text>
+    </svg>
+  </div>
+  <p>Every block of audio that arrives is first written into the <strong>history</strong>, then sent on. With no button held, the live sound passes straight to the output without any processing at all, bit for bit.</p>
+  <p>Each button owns a <strong>player</strong> that reads the history backwards and a <strong>fade</strong> (g1 and g2 in the diagram, each between 0 and 1). The live sound is turned down by exactly as much as the players are turned up, so the three always add up to one: a crossfade, never a pile-up.</p>
+  <p>The recorder sits before everything else. It keeps recording the live input while you hold a button, and it never hears the reversed sound. Holding Reverse twice in a row therefore never reverses a reverse: you always get the real past.</p>
+</section>
+
+<section id="history">
+  <h2>The history</h2>
+  <p class="sub">A tape loop that never stops.</p>
+  <p>Reverser keeps the most recent <strong>30 seconds</strong> of its input, in stereo, in a ring of memory: each new sample overwrites the one that is now 30 seconds old. Recording starts the moment the plugin starts running and needs no button.</p>
+  <dl class="params">
+    <dt>Length</dt><dd>30 seconds at any sample rate.</dd>
+    <dt>Channels</dt><dd>Stereo (mono tracks work too).</dd>
+    <dt>What it hears</dt><dd>The plugin's input, exactly as it arrives. Effects placed before Reverser are recorded; effects after it are not.</dd>
+    <dt>Fresh start</dt><dd>The history is empty when the plugin is loaded or the audio engine restarts, and fills up from there. Until 30 seconds have passed, Reverser can only go back as far as it has heard.</dd>
+  </dl>
+  <div class="callout"><strong>Where to put it.</strong> Place Reverser after the sound you want to rewind and before reverbs and delays. Their tails then keep ringing naturally across the reversed part instead of being reversed themselves.</div>
+</section>
+
+<section id="reverse">
+  <h2>Reverse</h2>
+  <p class="sub">Backwards at normal speed, from the moment you press.</p>
+  <p>Pressing <strong>REVERSE</strong> places a playhead on the sample that is passing through right now and starts walking it back through the history, one sample per sample. What you hear is the last moments mirrored in time: the note that just ended comes first, then the one before it, each with its decay turned into a swell.</p>
+  <p>Speed and pitch are unchanged, so the reversed material stays in tune and in tempo. A bar of music takes exactly one bar to play backwards: hold the button for a beat, a bar or two bars and the reverse fits the grid.</p>
+  <div class="flow">
+    <svg viewBox="0 0 1000 215" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <rect class="box" x="40" y="70" width="920" height="56" rx="8"/>
+      <rect x="653" y="70" width="154" height="56" fill="url(#g)" opacity=".28"/>
+      <g class="tick">
+        <path d="M193.3 70 V126"/><path d="M346.7 70 V126"/><path d="M500 70 V126"/><path d="M653.3 70 V126"/><path d="M806.7 70 V126"/>
+      </g>
+      <g class="sub-labels">
+        <text class="sub" x="52" y="144" text-anchor="start">−30 s</text>
+        <text class="sub" x="193.3" y="144">−25 s</text><text class="sub" x="346.7" y="144">−20 s</text><text class="sub" x="500" y="144">−15 s</text>
+        <text class="sub" x="653.3" y="144">−10 s</text><text class="sub" x="806.7" y="144">−5 s</text>
+        <text class="sub" x="948" y="144" text-anchor="end">NOW</text>
+      </g>
+      <path class="head" d="M653.3 62 V134"/>
+      <path class="wire dash" d="M806.7 62 V134"/>
+      <text x="653.3" y="52">playhead</text>
+      <text class="sub" x="806.7" y="52">where you pressed</text>
+      <g class="wire" marker-end="url(#a)">
+        <path d="M640 98 H560"/>
+        <path d="M880 98 H946"/>
+        <path d="M790 98 H740"/>
+      </g>
+      <text class="sub" x="600" y="90">reading, backwards</text>
+      <text class="sub" x="900" y="90">recording</text>
+      <text class="sub" x="500" y="180">Five seconds into a hold: the present has moved on 5 s, the playhead has gone back 5 s,</text>
+      <text class="sub" x="500" y="196">so it now reads sound that is 10 s old. The lit stretch is what has been played.</text>
+    </svg>
+  </div>
+  <p>The picture above is what the display shows. The point where you pressed drifts left with the rest of the waveform, and the playhead runs away from it, further left. The distance between "now" and the playhead grows at twice real time.</p>
+</section>
+
+<section id="double">
+  <h2>Reverse 2x</h2>
+  <p class="sub">Twice as fast, an octave up.</p>
+  <p><strong>REVERSE 2X</strong> works the same way, but its playhead steps back two samples for every sample it plays. Everything happens twice as fast and sounds an octave higher, like a tape rewinding at double speed: two bars of music fit into one bar of holding.</p>
+  <h3>Why it stays clean</h3>
+  <p>Skipping every other sample halves the highest frequency that can be represented. Anything above that would fold back down as harsh, inharmonic aliasing. To prevent it, the 2x player does not pick single samples: each output sample is a weighted average of the 31 history samples around the playhead (a windowed-sinc low-pass filter with a Blackman window, set just below the new limit). The result is the same as filtering the history first and then playing it fast, worked out only for the samples that are actually needed.</p>
+  <p>The normal-speed player needs none of this: it reads the recorded samples exactly as they are.</p>
+</section>
+
+<section id="fades">
+  <h2>Fades &amp; handover</h2>
+  <p class="sub">Why pressing and releasing never clicks.</p>
+  <p>Jumping instantly between the live sound and a different point in time would put a step in the waveform, which you hear as a click. Reverser instead crossfades over <strong>8 milliseconds</strong>: short enough to feel immediate and stay tight on a beat, long enough to be silent.</p>
+  <table>
+    <tr><th>When you</th><th>This happens</th></tr>
+    <tr><td>Press a button</td><td>Its player starts at the current sample and fades in over 8 ms while the live sound fades out by the same amount.</td></tr>
+    <tr><td>Release it</td><td>The player fades out over 8 ms and the live sound fades back in. The player keeps running backwards until its fade has finished.</td></tr>
+    <tr><td>Press the other button while holding one</td><td>The new player starts from now and fades in; the old one fades out. The newest press always wins.</td></tr>
+    <tr><td>Release the newer button, still holding the older</td><td>The live sound returns. To reverse again, release and press: a player only starts on a press.</td></tr>
+    <tr><td>Run out of history</td><td>The player fades itself out when it reaches the oldest recorded sound, and the live sound returns even though the button is still held.</td></tr>
+  </table>
+  <p>Because the playhead starts on the very sample being output, the first thing you hear after pressing is the sound of an instant ago: the join between forwards and backwards is continuous, a mirror rather than a cut.</p>
+</section>
+
+<section id="reach">
+  <h2>How far back</h2>
+  <p class="sub">The recorder and the playhead move in opposite directions.</p>
+  <p>While you hold a button, the recorder keeps adding new sound at one end of the 30-second history and dropping the oldest at the other, and the playhead walks towards that oldest end. They meet sooner than 30 seconds:</p>
+  <table>
+    <tr><th>Button</th><th>Longest hold</th><th>Sound reached</th></tr>
+    <tr><td>Reverse</td><td>15 seconds</td><td>the 15 seconds before you pressed</td></tr>
+    <tr><td>Reverse 2x</td><td>10 seconds</td><td>the 20 seconds before you pressed</td></tr>
+  </table>
+  <p>These are the limits once the history is full. Right after loading the plugin, a hold ends when it reaches the first sound Reverser heard. In both cases the player fades out by itself and the live sound comes back.</p>
+</section>
+
+<section id="automation">
+  <h2>Automation</h2>
+  <p class="sub">The buttons are parameters: perform them or draw them.</p>
+  <dl class="params">
+    <dt>Reverse</dt><dd>On while held. <span class="range">off / on</span></dd>
+    <dt>Reverse 2x</dt><dd>On while held. <span class="range">off / on</span></dd>
+    <dt>Bypass</dt><dd>The power button in the header. <span class="range">off / on</span></dd>
+  </dl>
+  <p>Your host sees <strong>Reverse</strong> and <strong>Reverse 2x</strong> as on/off parameters. Record your button presses as automation, draw blocks in an automation lane, or map them to a MIDI controller or pad. A block that is one bar long plays the bar before it backwards; the reverse starts on the block's left edge.</p>
+  <p>Reverse starts at the beginning of the audio block in which the press arrives, so with drawn automation the timing is as tight as your host's buffer size.</p>
+  <div class="callout"><strong>Momentary by design.</strong> The buttons are never stored: not in presets and not in your session. A project always opens with both released, so a song never loads stuck in reverse.</div>
+</section>
+
+<section id="presets">
+  <h2>Presets &amp; bypass</h2>
+  <p class="sub">The header every Robotic Audio plugin shares.</p>
+  <dl class="params">
+    <dt>Preset bar</dt><dd>Previous, next, the preset list (with Save As, Delete and Open Folder) and SAVE. Reverser has nothing to store besides its buttons, which presets leave out, so it ships with a single <strong>Default</strong> preset.</dd>
+    <dt>Power</dt><dd>Bypasses the plugin with a short, click-free crossfade. While bypassed, Reverser does not record: the history picks up again when you switch it back on.</dd>
+    <dt>Menu</dt><dd>This manual, About Reverser and the website.</dd>
+  </dl>
+</section>
+
+<section id="ideas">
+  <h2>Ideas</h2>
+  <p class="sub">Things to try.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Fill</span><p>On a drum bus, hold Reverse for the last beat of a phrase. The hits of the beat before come back as swells that lead into the downbeat.</p></div>
+    <div class="card"><span class="tag">Rewind</span><p>On the master, hold Reverse 2x for a bar before a drop: two bars of the song spin back at double speed.</p></div>
+    <div class="card"><span class="tag">Vocal throw</span><p>Tap Reverse for an eighth note right after a word. The end of the word is thrown back at the listener.</p></div>
+    <div class="card"><span class="tag">Swell into a note</span><p>On a guitar or piano with a reverb after Reverser, hold Reverse through a sustained chord: its decay turns into a crescendo.</p></div>
+    <div class="card"><span class="tag">Stutter</span><p>Automate short Reverse blocks, a sixteenth each, with gaps between them. Every block restarts from its own "now", so the reverses chase the beat.</p></div>
+    <div class="card"><span class="tag">Octave answer</span><p>Alternate Reverse and Reverse 2x on a melody: a call at pitch, an answer an octave up.</p></div>
+  </div>
+</section>
+
+<section id="specs">
+  <h2>Specifications</h2>
+  <p class="sub">The numbers.</p>
+  <table>
+    <tr><th>Property</th><th>Value</th></tr>
+    <tr><td>History</td><td>30 seconds, stereo</td></tr>
+    <tr><td>Speeds</td><td>1x (same pitch) and 2x (one octave up)</td></tr>
+    <tr><td>Fades</td><td>8 ms, linear, on press, release and handover</td></tr>
+    <tr><td>Anti-aliasing (2x)</td><td>31-tap windowed-sinc low-pass at 0.45 of the halved sample rate</td></tr>
+    <tr><td>Latency</td><td>None</td></tr>
+    <tr><td>Dry signal</td><td>Untouched (bit-identical) while no button is held</td></tr>
+    <tr><td>Parameters</td><td>Reverse, Reverse 2x (momentary), Bypass</td></tr>
+    <tr><td>Formats</td><td>AU, VST3, Standalone</td></tr>
+  </table>
+</section>
+
+<footer>
+  <div class="sig">Robotic Audio</div>
+  Reverser was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
+  Fonts: Big Shoulders Display and Inter, under the SIL Open Font License.
+</footer>
+
+</div>
+</main>
+<script>
+// Highlight the section being read in the contents
+const links = [...document.querySelectorAll("nav.toc a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+sections.forEach(s => s && observer.observe(s));
+</script>
+</body>
+</html>
