@@ -1,0 +1,36 @@
+title: Robotic Audio
+tagline: Audio plugins and sound studio
+description: Robotic Audio makes audio plugins and builds sound for installations, stages and stories. The studio of Hjalte Bested Hjorth.
+author: Hjalte Bested Hjorth
+url: "https://roboticaudio.com"
+baseurl: ""
+email: hjalte.bested.hjorth@gmail.com
+
+# Newsletter: the address a sign-up form posts to (the field is called "email"),
+# e.g. https://buttondown.com/api/emails/embed-subscribe/<name>.
+# While empty, sign-ups are a "notify me" email link instead of a form.
+newsletter_action: ""
+
+markdown: kramdown
+permalink: pretty
+
+collections:
+  products:
+    output: true
+    permalink: /plugins/:name/
+    sort_by: order
+
+defaults:
+  - scope: { path: "", type: products }
+    values: { layout: plugin }
+  - scope: { path: "" }
+    values: { layout: default }
+
+plugins:
+  - jekyll-sitemap
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - scripts

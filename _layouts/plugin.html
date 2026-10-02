@@ -1,0 +1,122 @@
+---
+layout: default
+---
+<section class="page-head page-head--plugin">
+  <div class="container">
+    <p class="kicker">{{ page.kind }} · {{ page.status_label }}</p>
+    <h1 class="display display--xl">{{ page.title }}</h1>
+    <p class="lead">{{ page.tagline }}</p>
+    <div class="actions">
+      {%- if page.buy_url %}
+      <a class="btn btn--fire" href="{{ page.buy_url }}">Buy {{ page.title }}{% if page.price %} · {{ page.price }}{% endif %}</a>
+      {%- else %}
+      <a class="btn btn--fire" href="#notify">Notify me at release</a>
+      {%- endif %}
+      {%- if page.manual %}
+      <a class="btn btn--ghost" href="{{ page.manual | relative_url }}">Read the manual</a>
+      {%- endif %}
+    </div>
+  </div>
+  <div class="container container--wide">
+    <img class="shot shot--hero" src="{{ page.image | relative_url }}" alt="{{ page.image_alt }}">
+  </div>
+</section>
+
+{%- if page.stats %}
+<section class="section section--tight">
+  <div class="container">
+    <ul class="chips chips--center">
+      {%- for stat in page.stats %}
+      <li>{{ stat }}</li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+{%- endif %}
+
+<section class="section">
+  <div class="container">
+    <p class="kicker">What it does</p>
+    <div class="prose prose--intro">{{ content }}</div>
+    <div class="grid grid--3">
+      {%- for feature in page.features %}
+      <div class="card">
+        <h3>{{ feature.title }}</h3>
+        <p>{{ feature.text }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--line" id="demos">
+  <div class="container">
+    <p class="kicker">Listen</p>
+    <h2 class="display">Audio demos</h2>
+    {%- if page.demos and page.demos.size > 0 %}
+    <div class="demos">
+      {%- for demo in page.demos %}
+      <figure class="demo">
+        <figcaption>
+          <strong>{{ demo.title }}</strong>
+          {%- if demo.text %}<span>{{ demo.text }}</span>{% endif %}
+        </figcaption>
+        <audio controls preload="none" src="{{ demo.file | relative_url }}"></audio>
+      </figure>
+      {%- endfor %}
+    </div>
+    {%- else %}
+    <p class="note">Audio demos are on their way.</p>
+    {%- endif %}
+  </div>
+</section>
+
+{%- if page.screenshots %}
+<section class="section section--line" id="screenshots">
+  <div class="container">
+    <p class="kicker">Look</p>
+    <h2 class="display">Screenshots</h2>
+    <div class="shots">
+      {%- for shot in page.screenshots %}
+      <figure>
+        <a href="{{ shot.file | relative_url }}"><img class="shot" src="{{ shot.file | relative_url }}" alt="{{ shot.caption }}" loading="lazy"></a>
+        <figcaption>{{ shot.caption }}</figcaption>
+      </figure>
+      {%- endfor %}
+    </div>
+    {%- if page.thumbnails %}
+    <div class="thumbs">
+      {%- for thumb in page.thumbnails %}
+      <figure>
+        <a href="{{ thumb.file | relative_url }}"><img class="shot" src="{{ thumb.file | relative_url }}" alt="{{ thumb.caption }}" loading="lazy"></a>
+        <figcaption>{{ thumb.caption }}</figcaption>
+      </figure>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+  </div>
+</section>
+{%- endif %}
+
+<section class="section section--line" id="specs">
+  <div class="container specs">
+    <div>
+      <p class="kicker">Details</p>
+      <h2 class="display">Specs &amp; requirements</h2>
+      {%- if page.manual %}
+      <p><a href="{{ page.manual | relative_url }}">Read the {{ page.title }} manual</a></p>
+      {%- endif %}
+    </div>
+    <dl class="spec-list">
+      {%- for spec in page.specs %}
+      <div><dt>{{ spec.name }}</dt><dd>{{ spec.value }}</dd></div>
+      {%- endfor %}
+    </dl>
+  </div>
+</section>
+
+<div id="notify">
+{%- capture signup_title %}{{ page.title }} is {{ page.status_label | downcase }}{% endcapture %}
+{%- capture signup_subject %}Notify me about {{ page.title }}{% endcapture %}
+{% include signup.html title=signup_title text="Leave your address and get a note the day it is released." subject=signup_subject %}
+</div>

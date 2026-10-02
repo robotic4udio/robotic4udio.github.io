@@ -1,0 +1,49 @@
+---
+title: Studio
+description: Sound installations, custom audio software, sound design and music, teaching and workshops by Hjalte Bested Hjorth.
+permalink: /studio/
+---
+<section class="page-head">
+  <div class="container">
+    <p class="kicker">Studio</p>
+    <h1 class="display">Sound, built to order</h1>
+    <p class="lead">Besides the plugins, Robotic Audio is the studio of Hjalte Bested Hjorth: musician, sound designer and creative technologist. Four kinds of work, often in the same project.</p>
+    <div class="actions">
+      <a class="btn btn--fire" href="#contact">Get in touch</a>
+      <a class="btn btn--ghost" href="{{ '/hjalte/' | relative_url }}">See the full portfolio</a>
+    </div>
+  </div>
+</section>
+
+{%- for service in site.data.studio %}
+<section class="section section--line service" id="{{ service.id }}">
+  <div class="container">
+    <div class="service__head">
+      <div>
+        <p class="kicker">0{{ forloop.index }}</p>
+        <h2 class="display">{{ service.title }}</h2>
+      </div>
+      <p class="lead">{{ service.text }}</p>
+    </div>
+    <div class="grid grid--4">
+      {%- for item in service.work %}
+      <a class="work" href="{{ item.url | relative_url }}">
+        <div class="work__image"><img src="{{ item.image | relative_url }}" alt="" loading="lazy"></div>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+      </a>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endfor %}
+
+<section class="signup" id="contact">
+  <div class="container signup__inner">
+    <div>
+      <h2>Have a project in mind?</h2>
+      <p>Tell me what you are building, where it will live and when you need it.</p>
+    </div>
+    <a class="btn btn--fire" href="mailto:{{ site.email }}">{{ site.email }}</a>
+  </div>
+</section>

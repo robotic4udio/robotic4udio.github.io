@@ -1,20 +1,63 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Robotic Audio</title>
-  <meta name="description" content="Robotic Audio: audio plugins and sound studio by Hjalte Bested Hjorth.">
-  <link rel="icon" type="image/svg+xml" href="/images/robot.svg">
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-  <main>
-    <img class="robot" src="/images/robot.svg" alt="">
-    <h1>Robotic Audio</h1>
-    <p>Audio plugins and sound studio. A new site is on its way.</p>
-    <div class="rule"></div>
-    <a class="button" href="/hjalte/">Hjalte Bested Hjorth: portfolio</a>
-  </main>
-</body>
-</html>
+---
+---
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <p class="kicker">{{ site.tagline }}</p>
+      <h1 class="hero__title">Robotic<br>Audio</h1>
+      <p class="lead">Robotic Audio makes audio plugins and builds sound for installations, stages and stories. It is the studio of Hjalte Bested Hjorth: musician, sound designer and creative technologist.</p>
+    </div>
+    <img class="hero__robot" src="{{ '/assets/images/robot-dome.png' | relative_url }}" alt="A riveted steel robot head with glowing amber eyes" width="512" height="512">
+  </div>
+  <div class="container doors">
+    <a class="door" href="{{ '/plugins/' | relative_url }}">
+      <span class="kicker">01</span>
+      <h2>Plugins</h2>
+      <p>Instruments and effects for AU, VST3 and standalone. First out: Contour, a wobble-bass synth where you draw the movement.</p>
+      <span class="door__go">See the plugins</span>
+    </a>
+    <a class="door" href="{{ '/studio/' | relative_url }}">
+      <span class="kicker">02</span>
+      <h2>Studio</h2>
+      <p>Sound installations, custom audio software, sound design and music, teaching and workshops.</p>
+      <span class="door__go">See the studio</span>
+    </a>
+  </div>
+</section>
+
+{%- assign featured = site.products | first %}
+<section class="section">
+  <div class="container feature">
+    <div class="feature__text">
+      <p class="kicker">Plugin · {{ featured.status_label }}</p>
+      <h2 class="display">{{ featured.title }}</h2>
+      <p class="lead">{{ featured.tagline }}</p>
+      <ul class="chips">
+        {%- for stat in featured.stats limit: 5 %}
+        <li>{{ stat }}</li>
+        {%- endfor %}
+      </ul>
+      <a class="btn btn--fire" href="{{ featured.url | relative_url }}">Meet {{ featured.title }}</a>
+    </div>
+    <a class="feature__shot" href="{{ featured.url | relative_url }}">
+      <img src="{{ featured.image | relative_url }}" alt="{{ featured.image_alt }}" loading="lazy">
+    </a>
+  </div>
+</section>
+
+<section class="section section--line">
+  <div class="container">
+    <p class="kicker">Studio</p>
+    <h2 class="display">Sound, built to order</h2>
+    <div class="grid grid--4">
+      {%- for service in site.data.studio %}
+      <a class="card card--link" href="{{ '/studio/' | relative_url }}#{{ service.id }}">
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.summary }}</p>
+      </a>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{% include signup.html %}
