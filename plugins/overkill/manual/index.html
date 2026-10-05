@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overkill Manual</title>
+<style>
+@font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Big Shoulders"; font-weight: 800; src: url("fonts/BigShouldersDisplay-ExtraBold.ttf") format("truetype"); }
+
+:root {
+  --bg: #0d0b0a;
+  --surface: #17120f;
+  --surface-2: #211a15;
+  --line: rgba(255, 236, 220, 0.10);
+  --line-strong: rgba(255, 236, 220, 0.22);
+  --text: #f4ece4;
+  --muted: #a99e94;
+  --ember: #ff3b0a;
+  --fire: #ff6a1a;
+  --hot: #ffb23e;
+  --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
+  --radius: 14px;
+  --sidebar: 260px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 500 16px/1.65 "Inter", -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--hot); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Sidebar */
+nav.toc {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar);
+  overflow-y: auto; padding: 32px 24px 40px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+}
+nav.toc .brand { font: 600 11px/1 "Inter"; letter-spacing: .32em; color: var(--fire); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+nav.toc .brand::before { content: ""; width: 18px; height: 2px; background: var(--fire-gradient); }
+nav.toc .product { font: 800 34px/1 "Big Shoulders"; letter-spacing: .02em; margin: 10px 0 26px; text-transform: uppercase; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+nav.toc li { counter-increment: s; }
+nav.toc li a {
+  display: flex; gap: 12px; padding: 7px 10px; margin: 0 -10px; border-radius: 8px;
+  color: var(--muted); font-size: 14px;
+}
+nav.toc li a::before { content: counter(s, decimal-leading-zero); color: var(--line-strong); font-variant-numeric: tabular-nums; }
+nav.toc li a:hover, nav.toc li a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
+nav.toc li a.active::before { color: var(--fire); }
+
+main { margin-left: var(--sidebar); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+/* Hero */
+header.hero { position: relative; padding: 72px 0 40px; overflow: hidden; }
+header.hero::before {
+  content: ""; position: absolute; inset: -40% -10% auto; height: 520px;
+  background: radial-gradient(closest-side, rgba(201, 165, 78, .20), transparent);
+  pointer-events: none;
+}
+.kicker { font: 600 12px/1 "Inter"; letter-spacing: .34em; text-transform: uppercase; color: var(--fire); display: flex; align-items: center; gap: 12px; }
+.kicker::before { content: ""; width: 28px; height: 2px; background: var(--fire-gradient); }
+h1 {
+  font: 800 clamp(64px, 11vw, 132px)/.86 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em;
+  margin: 18px 0 18px;
+  background: linear-gradient(180deg, var(--text) 30%, #d9c9bb); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lede { font-size: 20px; line-height: 1.55; color: var(--text); max-width: 640px; margin: 0; }
+.lede em { font-style: normal; background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; padding: 0; list-style: none; }
+.facts li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+
+figure { margin: 32px 0; }
+figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); }
+figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+/* Sections */
+section { padding: 56px 0 8px; border-top: 1px solid var(--line); }
+h2 {
+  font: 800 52px/1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em; margin: 0 0 6px;
+}
+h2 + .sub { color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+h3 { font: 600 13px/1.2 "Inter"; letter-spacing: .24em; text-transform: uppercase; color: var(--hot); margin: 36px 0 12px; display: flex; align-items: center; gap: 10px; }
+h3::before { content: ""; width: 14px; height: 2px; background: var(--fire-gradient); }
+h4 { font: 800 24px/1.1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 4px; }
+p { margin: 0 0 14px; }
+strong { font-weight: 600; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* Parameter lists */
+dl.params { display: grid; grid-template-columns: 170px 1fr; gap: 0; margin: 0 0 18px; border-top: 1px solid var(--line); }
+dl.params dt, dl.params dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+dl.params dt { font: 600 12px/1.5 "Inter"; letter-spacing: .16em; text-transform: uppercase; color: var(--text); padding-right: 16px; padding-top: 13px; }
+dl.params dd { color: #e3d8ce; }
+dl.params dd .range { display: inline-block; margin-left: 8px; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+
+/* Cards and grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0 24px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.card p { margin: 6px 0 0; color: #e3d8ce; font-size: 15px; }
+.card .tag { font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--fire); }
+
+.callout { position: relative; background: linear-gradient(135deg, rgba(201, 165, 78,.10), rgba(238, 220, 170,.04)); border: 1px solid rgba(201, 165, 78,.35); border-radius: var(--radius); padding: 16px 20px 16px 52px; margin: 22px 0; }
+.callout::before { content: "✦"; position: absolute; left: 20px; top: 15px; color: var(--hot); font-size: 18px; }
+.callout strong { color: var(--hot); }
+
+kbd {
+  font: 600 12px/1 "Inter"; padding: 4px 7px; border-radius: 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  background: var(--surface-2); color: var(--text); white-space: nowrap;
+}
+table { width: 100%; border-collapse: collapse; margin: 8px 0 22px; font-size: 15px; }
+th { text-align: left; font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line-strong); }
+td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #e3d8ce; }
+td:first-child { color: var(--text); white-space: nowrap; }
+
+/* Signal flow */
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 20px; margin: 24px 0; overflow-x: auto; }
+.flow svg { display: block; min-width: 760px; width: 100%; height: auto; }
+
+/* Effects */
+.fx { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 22px 0 40px; }
+.fx img { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 10px 0 14px; }
+.fx .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.fx .head .what { color: var(--muted); }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 2px; transform: translateY(-1px); }
+
+footer { padding: 60px 0 80px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 40px; }
+footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+
+@media (max-width: 980px) {
+  nav.toc { position: static; width: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav.toc ol { columns: 2; }
+  main { margin-left: 0; }
+  .wrap { padding: 0 20px; }
+  dl.params { grid-template-columns: 1fr; }
+  dl.params dt { border-bottom: 0; padding-bottom: 0; }
+}
+@media print {
+  :root { --bg: #fff; --surface: #f6f2ee; --surface-2: #eee7e0; --text: #1a1410; --muted: #6e6259; --line: #e4dbd2; --line-strong: #cfc3b8; }
+  nav.toc { display: none; }
+  main { margin: 0; }
+  section { break-inside: avoid-page; }
+  h1 { color: #1a1410; background: none; }
+  dl.params dd, td, .card p { color: #2a2018; }
+}
+
+/* Block diagrams */
+.flow svg text { fill: var(--text); font-weight: 600; font-size: 13.5px; text-anchor: middle; }
+.flow svg text.sub { fill: var(--muted); font-weight: 500; font-size: 11px; }
+.flow svg .box { fill: var(--surface-2); stroke: var(--line-strong); }
+.flow svg .box.hot { stroke: url(#g); }
+.flow svg .pill { fill: var(--bg); stroke: var(--line-strong); }
+.flow svg .frame { fill: none; stroke: var(--line-strong); stroke-dasharray: 6 6; }
+.flow svg .wire { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.flow svg .dash { stroke-dasharray: 5 5; }
+.flow svg .arrow { fill: var(--muted); }
+.flow svg .tick { stroke: var(--line-strong); stroke-width: 1; }
+.flow svg .head { stroke: var(--hot); stroke-width: 2.5; fill: none; }
+svg.defs { position: absolute; width: 0; height: 0; }
+
+/* Curves */
+.plots { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: center; margin: 18px 0 24px; }
+.plots.three { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: start; gap: 14px; }
+.plot { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.plot h4 { margin: 2px 0 10px; }
+.plot svg { display: block; width: 100%; height: auto; }
+.plot svg text { fill: var(--muted); font-size: 10px; font-weight: 500; }
+.plot .axis { fill: none; stroke: var(--line-strong); }
+.plot .grid { fill: none; stroke: var(--line); }
+.plot .knee { fill: none; stroke: var(--line-strong); stroke-dasharray: 2 4; }
+.plot .ref { fill: none; stroke: var(--line-strong); stroke-dasharray: 4 4; }
+.plot .c1, .plot .c2, .plot .c3 { fill: none; stroke-width: 2; stroke-linejoin: round; }
+.plot .c1 { stroke: var(--muted); }
+.plot .c2 { stroke: var(--fire); }
+.plot .c3 { stroke: var(--hot); }
+.legend { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 12px; margin-top: 10px; }
+.legend span { display: inline-block; width: 14px; height: 2px; margin-left: 8px; }
+.legend span:first-child { margin-left: 0; }
+.legend .k1 { background: var(--muted); } .legend .k2 { background: var(--fire); } .legend .k3 { background: var(--hot); }
+.plot-text p:last-child { margin-bottom: 0; }
+.formula { font: 600 17px/1.4 "Inter"; color: var(--hot); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 18px; display: inline-block; }
+@media (max-width: 720px) { .plots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav class="toc" aria-label="Contents">
+  <div class="brand">Robotic Audio</div>
+  <div class="product">Overkill</div>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#overview">The window</a></li>
+    <li><a href="#flow">Signal flow</a></li>
+    <li><a href="#display">The band display</a></li>
+    <li><a href="#bands">Band controls</a></li>
+    <li><a href="#master">Master controls</a></li>
+    <li><a href="#presets">Presets</a></li>
+    <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#specs">Specifications</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Robotic Audio · User manual</div>
+  <h1>Overkill</h1>
+  <p class="lede">Multiband compression taken <em>over the top</em>. Three bands, each pushed down when it's loud and pulled up when it's quiet, so everything comes forward at once: thick, bright, loud and in your face. The spectrum runs right under the controls, so you can see what every move does.</p>
+  <ul class="facts">
+    <li>3 bands</li>
+    <li>Upward + downward</li>
+    <li>Live spectrum, in and out</li>
+    <li>Drag thresholds and splits</li>
+    <li>4× oversampled drive</li>
+    <li>11 factory presets</li>
+    <li>AU · VST3 · Standalone</li>
+  </ul>
+  <figure>
+    <img src="images/overkill.jpg" alt="Overkill's window">
+    <figcaption>Overkill: the three bands side by side over the spectrum, each band's knobs along its bottom, the master controls below and level meters down the sides.</figcaption>
+  </figure>
+</header>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">From a polite lift to full overkill.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">01</span><h4>Start at Default</h4><p>The classic sound: every band squashed from above and lifted from below, at full <strong>DEPTH</strong>. Expect it to be loud.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Set the depth</h4><p>Turn the big <strong>DEPTH</strong> knob down until it sits in the mix. 20–40 % is often plenty on a whole mix; drums and synths take more.</p></div>
+    <div class="card"><span class="tag">03</span><h4>Watch the bands</h4><p>Each band's lit spectrum shows what comes out, the faint one what went in. The readout at the top of each band says how far it's being pushed down or pulled up right now.</p></div>
+    <div class="card"><span class="tag">04</span><h4>Move the lines</h4><p>Drag a band's solid line (<strong>DOWN</strong>) or dashed line (<strong>UP</strong>) up or down. Between the two lines nothing happens to the band.</p></div>
+    <div class="card"><span class="tag">05</span><h4>Move the splits</h4><p>Drag a split line (or its tag) along the spectrum to choose where one band ends and the next begins.</p></div>
+    <div class="card"><span class="tag">06</span><h4>Match the level</h4><p>Bring <strong>OUTPUT</strong> down until the OUT meter reads about what IN does, then compare with the power button.</p></div>
+  </div>
+  <div class="callout"><strong>Shift for fine steps.</strong> Shift-drag a line or a split for small moves; double-click one to reset it. On knobs, double-click resets and <kbd>Cmd</kbd>, <kbd>Ctrl</kbd> or <kbd>Alt</kbd> while dragging gives fine steps. Hover over anything and the strip along the bottom says what it does.</div>
+</section>
+
+<section id="overview">
+  <h2>The window</h2>
+  <p class="sub">The bands on top, the controls for all of them below.</p>
+  <dl class="params">
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits.</dd>
+    <dt>IN and OUT meters</dt><dd>The level going in (after Input) and coming out (after everything), with clip lamps on top.</dd>
+    <dt>Low, Mid, High</dt><dd>Each band over its own part of the spectrum, with its two lines, its meter and its five knobs. See <a href="#display">The band display</a>.</dd>
+    <dt>Master</dt><dd>Input, the two splits, Time, Downward, the big Depth knob, Upward, Drive and Output.</dd>
+    <dt>Tooltip strip</dt><dd>Along the bottom: what the control under the mouse does.</dd>
+  </dl>
+</section>
+
+<section id="flow">
+  <h2>Signal flow</h2>
+  <p class="sub">Split, squeeze and lift each band, add them up, then drive.</p>
+  <p><strong>Input</strong> → split into <strong>Low</strong>, <strong>Mid</strong> and <strong>High</strong> → each band pushed down above its DOWN line and pulled up below its UP line, then its <strong>Gain</strong> → the bands added back together → <strong>Drive</strong> → <strong>Output</strong>.</p>
+  <p>The splits are steep (24 dB per octave, Linkwitz-Riley) and phase-matched, so with Depth at 0 the three bands add back up to the sound that went in. Each band follows its own level, stereo-linked, so the stereo image stays put. The low band reacts more slowly than the middle and the high band more quickly: the bass stays smooth and the top stays snappy.</p>
+  <p>Drive bends the waveform, which makes new, higher frequencies; it runs at four times the sample rate so those don't fold back as aliasing. At 0 it's skipped.</p>
+</section>
+
+<section id="display">
+  <h2>The band display</h2>
+  <p class="sub">The spectrum under the controls.</p>
+  <p>The spectrum runs from 20 Hz to 20 kHz across the whole width, on a logarithmic scale, and the three bands are coloured regions of it, divided where the splits really are. Drag a split and the band grows or shrinks over the spectrum: you see exactly which notes, kicks or cymbals land in which band. Each band's name, readout and knobs keep a steady third of the width, in the band's colour, wherever the splits are.</p>
+  <dl class="params">
+    <dt>Faint spectrum</dt><dd>What goes in (after Input).</dd>
+    <dt>Lit spectrum</dt><dd>What comes out, in the band's colour. Lower than the faint one: the band is being pushed down. Higher: it's being pulled up.</dd>
+    <dt>DOWN line (solid)</dt><dd>Above it the band is pushed down; the shaded zone above it is where that happens. Drag it up or down.</dd>
+    <dt>UP line (dashed)</dt><dd>Below it the band is pulled up, bringing quiet detail, tails and room sound forward. Drag it up or down.</dd>
+    <dt>Band meter</dt><dd>The bar at the left edge of the band's region, on the same dB scale as the lines. Grey is the band's level going in; the lit bar runs from there to where the band has been moved, with a tick at its new level.</dd>
+    <dt>Readout</dt><dd>At the top of the band: how far it's moved right now, and whether it's <strong>PUSHED DOWN</strong> or <strong>PULLED UP</strong>.</dd>
+    <dt>Splits</dt><dd>The lines between the band regions, with the frequency in a tag on top. Drag one sideways: it follows the mouse along the frequency scale.</dd>
+  </dl>
+  <p>The spectrum shows the energy within a third of an octave round each point, so it reads on the same scale as the lines: a band whose spectrum peaks above its DOWN line is being squeezed. Pink noise, and most music, looks roughly level across the range.</p>
+</section>
+
+<section id="bands">
+  <h2>Band controls</h2>
+  <p class="sub">Five knobs per band, under its spectrum: the down pair on the left, the up pair on the right.</p>
+  <dl class="params">
+    <dt>Down At</dt><dd>The DOWN line: above this level the band is pushed down. <span class="range">−60 … 0 dB</span></dd>
+    <dt>Ratio (left)</dt><dd>How hard it's pushed down above the line: 2:1 is gentle, 20:1 firm, 100:1 a wall. <span class="range">1:1 … 100:1</span></dd>
+    <dt>Gain</dt><dd>The band's level afterwards: tilt the sound by turning a band up or down. <span class="range">−24 … +24 dB</span></dd>
+    <dt>Ratio (right)</dt><dd>How hard it's pulled up below the UP line: at 4:1 a sound 10 dB under the line comes up 7.5 dB. <span class="range">1:1 … 20:1</span></dd>
+    <dt>Up At</dt><dd>The UP line: below this level the band is pulled up. <span class="range">−84 … −6 dB</span></dd>
+  </dl>
+  <p>A band is pulled up by at most 30 dB, and nothing below −90 dB is lifted, so silence and hiss stay down. Both lines bend in gently over 6 dB (a soft knee).</p>
+</section>
+
+<section id="master">
+  <h2>Master controls</h2>
+  <p class="sub">For all three bands at once.</p>
+  <dl class="params">
+    <dt>Input</dt><dd>The level going in. The lines stay where they are, so more input means more pushing down and less pulling up. <span class="range">−24 … +24 dB</span></dd>
+    <dt>Low Split</dt><dd>Where the low band ends and the middle begins. <span class="range">40 Hz … 1 kHz</span></dd>
+    <dt>Time</dt><dd>How fast every band reacts and lets go, from 1/8 to 8 times the middle setting. Short is grabby and crunchy and can distort low notes; long is smooth and breathing. <span class="range">0 … 100 %</span></dd>
+    <dt>Downward</dt><dd>How much of the pushing down happens. <span class="range">0 … 100 %</span></dd>
+    <dt>Depth</dt><dd>How far over the top: scales all of it, down and up. At 0 the sound is untouched. <span class="range">0 … 100 %</span></dd>
+    <dt>Upward</dt><dd>How much of the pulling up happens. <span class="range">0 … 100 %</span></dd>
+    <dt>Drive</dt><dd>Saturation after the bands are added up, to round off and thicken what they push out. <span class="range">0 … 100 %</span></dd>
+    <dt>High Split</dt><dd>Where the middle band ends and the high band begins (kept at least half an octave above Low Split). <span class="range">1 … 16 kHz</span></dd>
+    <dt>Output</dt><dd>The level after everything. <span class="range">−24 … +24 dB</span></dd>
+  </dl>
+  <div class="callout"><strong>It gets loud.</strong> Pulling quiet parts up raises the overall level a lot. Watch the OUT lamp and bring Output down: Overkill itself doesn't clip, but whatever comes next may.</div>
+</section>
+
+<section id="presets">
+  <h2>Presets</h2>
+  <p class="sub">Eleven starting points, and room for your own.</p>
+  <table>
+    <tr><th>Preset</th><th>What it does</th></tr>
+    <tr><td>Default</td><td>The classic: everything down and up, at full depth.</td></tr>
+    <tr><td>Half Way There</td><td>The same at half depth.</td></tr>
+    <tr><td>Gentle Lift</td><td>A light, slow lift for a whole mix.</td></tr>
+    <tr><td>Drum Bus Smash</td><td>Quick and grabby, with drive and a little more low end and top.</td></tr>
+    <tr><td>Vocal Presence</td><td>Lifts breaths and detail, with less low end.</td></tr>
+    <tr><td>Bass Glue</td><td>A steadier low band and a softer top.</td></tr>
+    <tr><td>Upward Only</td><td>Only pulls quiet things up; peaks untouched.</td></tr>
+    <tr><td>Downward Only</td><td>A plain three-band compressor.</td></tr>
+    <tr><td>Fairy Dust</td><td>Sparkle: the top pulled up hard, less low end.</td></tr>
+    <tr><td>Pad Breath</td><td>Slow and deep: pads and ambiences swell and breathe.</td></tr>
+    <tr><td>Total Overkill</td><td>Everything at the extreme, with drive.</td></tr>
+  </table>
+  <p>Press <strong>SAVE</strong> in the header to keep your own. The preset menu has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. An asterisk after the preset's name means you've changed something since loading it. Every knob is a host parameter and can be automated.</p>
+</section>
+
+<section id="recipes">
+  <h2>Recipes</h2>
+  <p class="sub">Settings to start from; then use your ears.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Mix sheen</span><p>Default, Depth 15–25 %, Time 60 %. Just enough to bring detail forward without hearing it work.</p></div>
+    <div class="card"><span class="tag">Synth wall</span><p>Default at full Depth, Time 30 %, Drive 20 %, Output −6 dB. Lower the high band's Gain if it fizzes.</p></div>
+    <div class="card"><span class="tag">Bigger drums</span><p>Drum Bus Smash, then raise the mid band's UP line until the room and the snare's tail come up as far as you like.</p></div>
+    <div class="card"><span class="tag">Tame harsh highs</span><p>Downward Only; lower the high band's DOWN line until it sits just under the cymbals' peaks in the display.</p></div>
+    <div class="card"><span class="tag">Find the split</span><p>Turn two bands' Gain right down to hear the third alone, then drag the splits until only what you want is left.</p></div>
+    <div class="card"><span class="tag">Parallel</span><p>Depth already works like a blend, without the phase trouble of a parallel send. Keep it at 30–50 % instead.</p></div>
+  </div>
+</section>
+
+<section id="specs">
+  <h2>Specifications</h2>
+  <p class="sub">The numbers.</p>
+  <table>
+    <tr><th>Property</th><th>Value</th></tr>
+    <tr><td>Bands</td><td>3, split by 4th-order Linkwitz-Riley crossovers, phase-matched (they add up flat)</td></tr>
+    <tr><td>Detection</td><td>Peak, stereo-linked, per band; 6 dB soft knee</td></tr>
+    <tr><td>Times (middle setting)</td><td>Attack 12 / 6 / 3 ms, release 220 / 120 / 70 ms (low / mid / high); Time scales them 1/8 … 8×</td></tr>
+    <tr><td>Upward limit</td><td>30 dB; nothing below −90 dB is lifted</td></tr>
+    <tr><td>Drive</td><td>Saturation at 4× oversampling</td></tr>
+    <tr><td>Spectrum</td><td>4096-point FFT, third-octave levels, before and after</td></tr>
+    <tr><td>Latency</td><td>A few samples (the oversampling), reported to the host</td></tr>
+    <tr><td>Channels</td><td>Stereo (mono tracks work too)</td></tr>
+    <tr><td>Formats</td><td>AU, VST3, Standalone</td></tr>
+  </table>
+</section>
+
+<footer>
+  <div class="sig">Robotic Audio</div>
+  Overkill was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
+  Fonts: Big Shoulders Display and Inter, under the SIL Open Font License.
+</footer>
+
+</div>
+</main>
+<script>
+// Highlight the section being read in the contents
+const links = [...document.querySelectorAll("nav.toc a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+sections.forEach(s => s && observer.observe(s));
+</script>
+</body>
+</html>
