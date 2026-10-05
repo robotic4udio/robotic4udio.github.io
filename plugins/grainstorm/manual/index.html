@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grainstorm Manual</title>
+<style>
+@font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Big Shoulders"; font-weight: 800; src: url("fonts/BigShouldersDisplay-ExtraBold.ttf") format("truetype"); }
+
+:root {
+  --bg: #0d0b0a;
+  --surface: #17120f;
+  --surface-2: #211a15;
+  --line: rgba(255, 236, 220, 0.10);
+  --line-strong: rgba(255, 236, 220, 0.22);
+  --text: #f4ece4;
+  --muted: #a99e94;
+  --ember: #27d17a;
+  --fire: #2ec7e6;
+  --hot: #a77bff;
+  --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
+  --radius: 14px;
+  --sidebar: 260px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 500 16px/1.65 "Inter", -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--hot); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Sidebar */
+nav.toc {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar);
+  overflow-y: auto; padding: 32px 24px 40px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+}
+nav.toc .brand { font: 600 11px/1 "Inter"; letter-spacing: .32em; color: var(--fire); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+nav.toc .brand::before { content: ""; width: 18px; height: 2px; background: var(--fire-gradient); }
+nav.toc .product { font: 800 34px/1 "Big Shoulders"; letter-spacing: .02em; margin: 10px 0 26px; text-transform: uppercase; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+nav.toc li { counter-increment: s; }
+nav.toc li a {
+  display: flex; gap: 12px; padding: 7px 10px; margin: 0 -10px; border-radius: 8px;
+  color: var(--muted); font-size: 14px;
+}
+nav.toc li a::before { content: counter(s, decimal-leading-zero); color: var(--line-strong); font-variant-numeric: tabular-nums; }
+nav.toc li a:hover, nav.toc li a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
+nav.toc li a.active::before { color: var(--fire); }
+
+main { margin-left: var(--sidebar); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+/* Hero */
+header.hero { position: relative; padding: 72px 0 40px; overflow: hidden; }
+header.hero::before {
+  content: ""; position: absolute; inset: -40% -10% auto; height: 520px;
+  background: radial-gradient(closest-side, rgba(39, 209, 122, .20), transparent);
+  pointer-events: none;
+}
+.kicker { font: 600 12px/1 "Inter"; letter-spacing: .34em; text-transform: uppercase; color: var(--fire); display: flex; align-items: center; gap: 12px; }
+.kicker::before { content: ""; width: 28px; height: 2px; background: var(--fire-gradient); }
+h1 {
+  font: 800 clamp(64px, 11vw, 132px)/.86 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em;
+  margin: 18px 0 18px;
+  background: linear-gradient(180deg, var(--text) 30%, #d9c9bb); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lede { font-size: 20px; line-height: 1.55; color: var(--text); max-width: 640px; margin: 0; }
+.lede em { font-style: normal; background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; padding: 0; list-style: none; }
+.facts li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+
+figure { margin: 32px 0; }
+figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); }
+figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+/* Sections */
+section { padding: 56px 0 8px; border-top: 1px solid var(--line); }
+h2 {
+  font: 800 52px/1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em; margin: 0 0 6px;
+}
+h2 + .sub { color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+h3 { font: 600 13px/1.2 "Inter"; letter-spacing: .24em; text-transform: uppercase; color: var(--hot); margin: 36px 0 12px; display: flex; align-items: center; gap: 10px; }
+h3::before { content: ""; width: 14px; height: 2px; background: var(--fire-gradient); }
+h4 { font: 800 24px/1.1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 4px; }
+p { margin: 0 0 14px; }
+strong { font-weight: 600; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* Parameter lists */
+dl.params { display: grid; grid-template-columns: 170px 1fr; gap: 0; margin: 0 0 18px; border-top: 1px solid var(--line); }
+dl.params dt, dl.params dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+dl.params dt { font: 600 12px/1.5 "Inter"; letter-spacing: .16em; text-transform: uppercase; color: var(--text); padding-right: 16px; padding-top: 13px; }
+dl.params dd { color: #e3d8ce; }
+dl.params dd .range { display: inline-block; margin-left: 8px; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+
+/* Cards and grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0 24px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.card p { margin: 6px 0 0; color: #e3d8ce; font-size: 15px; }
+.card .tag { font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--fire); }
+
+.callout { position: relative; background: linear-gradient(135deg, rgba(39, 209, 122,.10), rgba(167, 123, 255,.04)); border: 1px solid rgba(39, 209, 122,.35); border-radius: var(--radius); padding: 16px 20px 16px 52px; margin: 22px 0; }
+.callout::before { content: "✦"; position: absolute; left: 20px; top: 15px; color: var(--hot); font-size: 18px; }
+.callout strong { color: var(--hot); }
+
+kbd {
+  font: 600 12px/1 "Inter"; padding: 4px 7px; border-radius: 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  background: var(--surface-2); color: var(--text); white-space: nowrap;
+}
+table { width: 100%; border-collapse: collapse; margin: 8px 0 22px; font-size: 15px; }
+th { text-align: left; font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line-strong); }
+td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #e3d8ce; }
+td:first-child { color: var(--text); white-space: nowrap; }
+
+/* Signal flow */
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 20px; margin: 24px 0; overflow-x: auto; }
+.flow svg { display: block; min-width: 760px; width: 100%; height: auto; }
+
+/* Effects */
+.fx { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 22px 0 40px; }
+.fx img { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 10px 0 14px; }
+.fx .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.fx .head .what { color: var(--muted); }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 2px; transform: translateY(-1px); }
+
+footer { padding: 60px 0 80px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 40px; }
+footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+
+@media (max-width: 980px) {
+  nav.toc { position: static; width: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav.toc ol { columns: 2; }
+  main { margin-left: 0; }
+  .wrap { padding: 0 20px; }
+  dl.params { grid-template-columns: 1fr; }
+  dl.params dt { border-bottom: 0; padding-bottom: 0; }
+}
+@media print {
+  :root { --bg: #fff; --surface: #f6f2ee; --surface-2: #eee7e0; --text: #1a1410; --muted: #6e6259; --line: #e4dbd2; --line-strong: #cfc3b8; }
+  nav.toc { display: none; }
+  main { margin: 0; }
+  section { break-inside: avoid-page; }
+  h1 { color: #1a1410; background: none; }
+  dl.params dd, td, .card p { color: #2a2018; }
+}
+
+/* Block diagrams */
+.flow svg text { fill: var(--text); font-weight: 600; font-size: 13.5px; text-anchor: middle; }
+.flow svg text.sub { fill: var(--muted); font-weight: 500; font-size: 11px; }
+.flow svg .box { fill: var(--surface-2); stroke: var(--line-strong); }
+.flow svg .box.hot { stroke: url(#g); }
+.flow svg .pill { fill: var(--bg); stroke: var(--line-strong); }
+.flow svg .frame { fill: none; stroke: var(--line-strong); stroke-dasharray: 6 6; }
+.flow svg .wire { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.flow svg .dash { stroke-dasharray: 5 5; }
+.flow svg .arrow { fill: var(--muted); }
+.flow svg .tick { stroke: var(--line-strong); stroke-width: 1; }
+.flow svg .head { stroke: var(--hot); stroke-width: 2.5; fill: none; }
+svg.defs { position: absolute; width: 0; height: 0; }
+
+/* Curves */
+.plots { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: center; margin: 18px 0 24px; }
+.plots.three { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: start; gap: 14px; }
+.plot { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.plot h4 { margin: 2px 0 10px; }
+.plot svg { display: block; width: 100%; height: auto; }
+.plot svg text { fill: var(--muted); font-size: 10px; font-weight: 500; }
+.plot .axis { fill: none; stroke: var(--line-strong); }
+.plot .grid { fill: none; stroke: var(--line); }
+.plot .knee { fill: none; stroke: var(--line-strong); stroke-dasharray: 2 4; }
+.plot .ref { fill: none; stroke: var(--line-strong); stroke-dasharray: 4 4; }
+.plot .c1, .plot .c2, .plot .c3 { fill: none; stroke-width: 2; stroke-linejoin: round; }
+.plot .c1 { stroke: var(--muted); }
+.plot .c2 { stroke: var(--fire); }
+.plot .c3 { stroke: var(--hot); }
+.legend { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 12px; margin-top: 10px; }
+.legend span { display: inline-block; width: 14px; height: 2px; margin-left: 8px; }
+.legend span:first-child { margin-left: 0; }
+.legend .k1 { background: var(--muted); } .legend .k2 { background: var(--fire); } .legend .k3 { background: var(--hot); }
+.plot-text p:last-child { margin-bottom: 0; }
+.formula { font: 600 17px/1.4 "Inter"; color: var(--hot); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 18px; display: inline-block; }
+@media (max-width: 720px) { .plots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<svg class="defs" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#27d17a"/><stop offset=".45" stop-color="#2ec7e6"/><stop offset="1" stop-color="#a77bff"/></linearGradient><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z" fill="#a99e94"/></marker></defs></svg>
+
+<nav class="toc" aria-label="Contents">
+  <div class="brand">Robotic Audio</div>
+  <div class="product">Grainstorm</div>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#overview">The window</a></li>
+    <li><a href="#flow">Signal flow</a></li>
+    <li><a href="#source">Source</a></li>
+    <li><a href="#grains">Grains</a></li>
+    <li><a href="#window">Window</a></li>
+    <li><a href="#voice">Voice</a></li>
+    <li><a href="#envelopes">Envelopes</a></li>
+    <li><a href="#drawing">Drawing &amp; editing</a></li>
+    <li><a href="#matrix">Modulation matrix</a></li>
+    <li><a href="#filter">Filter</a></li>
+    <li><a href="#effects">Effects, macros, XY pad</a></li>
+    <li><a href="#presets">Presets</a></li>
+    <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#specs">Specifications</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Robotic Audio · User manual</div>
+  <h1>Grainstorm</h1>
+  <p class="lede">A polyphonic granular synth. Every note plays a <em>stream of tiny grains</em> read from a sample: frozen in place, scanned along, scattered into clouds, pitched into shimmering chords or turned backwards. Drawn envelopes and a modulation matrix move it all, per voice, and four effect slots finish it.</p>
+  <ul class="facts">
+    <li>Up to 16 voices</li>
+    <li>Up to 64 grains per voice</li>
+    <li>5 built-in sources, or your own samples</li>
+    <li>Drawn grain window</li>
+    <li>4 drawn envelopes · 8-slot matrix</li>
+    <li>14 filter types</li>
+    <li>4 effect slots · 8 macros · XY pad</li>
+    <li>AU · VST3 · Standalone</li>
+  </ul>
+  <figure>
+    <img src="images/grainstorm.jpg" alt="Grainstorm's window">
+    <figcaption>Grainstorm on its Glass Cloud preset: the sample with the grains flying over it and the voice on top, the grain controls and their drawn window, the modulation and the filter, and the effects with the macros along the bottom.</figcaption>
+  </figure>
+</header>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">From a sample to a cloud.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">01</span><h4>Load a preset</h4><p>Use the arrows or the menu in the header. <strong>Glass Cloud</strong>, <strong>Bell Shimmer</strong> and <strong>Drone Scanner</strong> show what it does. Play a chord.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Pick a sound</h4><p>Choose a built-in source in the Source card's menu, or drop an audio file onto the waveform. Vocals, field recordings and pads all work well.</p></div>
+    <div class="card"><span class="tag">03</span><h4>Find a spot</h4><p>Click the waveform to set <strong>Position</strong>, where the grains come from. Set <strong>Scan</strong> to 0 % to freeze it there.</p></div>
+    <div class="card"><span class="tag">04</span><h4>Scatter it</h4><p>Turn up <strong>Spray</strong> for a cloud, <strong>Pitch Spray</strong> with Octaves for shimmer, <strong>Reverse</strong> for backward grains.</p></div>
+    <div class="card"><span class="tag">05</span><h4>Move it</h4><p>Draw a shape in Mod 1 and route it to Position, Size or Cutoff in the Matrix.</p></div>
+    <div class="card"><span class="tag">06</span><h4>Save</h4><p>Press <strong>SAVE</strong>. The preset keeps every knob, every drawing and the sample.</p></div>
+  </div>
+  <div class="callout"><strong>Hover over anything.</strong> The strip along the bottom of the window says what the control under the mouse does.</div>
+</section>
+
+<section id="overview">
+  <h2>The window</h2>
+  <p class="sub">Roughly in the order the sound flows.</p>
+  <dl class="params">
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits.</dd>
+    <dt>Source</dt><dd>The sample the grains are read from, its menu and LOAD.</dd>
+    <dt>Voice</dt><dd>Level, Voices, Root, Bend and Key Track.</dd>
+    <dt>Grains</dt><dd>Ten knobs for where the grains come from and how they play, and the Pitch Spray steps menu.</dd>
+    <dt>Window</dt><dd>The drawn fade in and out of every grain.</dd>
+    <dt>Modulation</dt><dd>Tabs for the four drawn envelopes (Volume, Mod 1–3) and the Matrix.</dd>
+    <dt>Filter</dt><dd>Each voice's filter, with its power button.</dd>
+    <dt>Effects</dt><dd>Four effect slots and, beside them, the Macros or the XY Pad.</dd>
+  </dl>
+  <h3>Using the controls</h3>
+  <table>
+    <tr><th>Do this</th><th>To</th></tr>
+    <tr><td>Drag a knob up or down</td><td>change it (the value shows while you touch it)</td></tr>
+    <tr><td><kbd>Cmd</kbd> / <kbd>Ctrl</kbd> / <kbd>Alt</kbd> + drag</td><td>fine adjustment</td></tr>
+    <tr><td>Double-click a knob</td><td>reset it to its default</td></tr>
+    <tr><td>Right-click an effect control</td><td>map it to a macro</td></tr>
+    <tr><td>Drag an effect slot's grip (⠿)</td><td>reorder the slots</td></tr>
+  </table>
+  <p>A knob that the matrix moves shows a thin <strong>ring</strong>: the range the modulation can take it over, and a dot where it is now. The window can be made larger: drag its bottom-right corner.</p>
+</section>
+
+<section id="flow">
+  <h2>Signal flow</h2>
+  <p class="sub">What happens to a note.</p>
+  <div class="flow">
+    <svg viewBox="0 0 860 140" role="img" aria-label="Sample, grains, volume envelope, filter, voices summed, effects, output">
+      <rect class="box" x="10" y="40" width="110" height="60" rx="10"/><text x="65" y="68">Sample</text><text class="sub" x="65" y="86">Source</text>
+      <rect class="box hot" x="150" y="40" width="130" height="60" rx="10"/><text x="215" y="68">Grains</text><text class="sub" x="215" y="86">up to 64 · window</text>
+      <rect class="box" x="310" y="40" width="110" height="60" rx="10"/><text x="365" y="68">Volume</text><text class="sub" x="365" y="86">drawn envelope</text>
+      <rect class="box hot" x="450" y="40" width="100" height="60" rx="10"/><text x="500" y="68">Filter</text><text class="sub" x="500" y="86">per voice</text>
+      <rect class="box hot" x="580" y="40" width="130" height="60" rx="10"/><text x="645" y="68">Effects</text><text class="sub" x="645" y="86">4 slots, all voices</text>
+      <rect class="pill" x="740" y="50" width="100" height="40" rx="20"/><text x="790" y="75">Out</text>
+      <path class="wire" d="M120 70H148M280 70H308M420 70H448M550 70H578M710 70H738" marker-end="url(#a)"/>
+      <rect class="frame" x="140" y="28" width="420" height="84" rx="12"/>
+      <text class="sub" x="350" y="130">each voice (up to 16), with its own envelopes and matrix</text>
+    </svg>
+  </div>
+  <p>Every voice has its own grain stream, its own Volume and Mod 1–3 envelopes, its own matrix (velocity, note and Random are per note) and its own filter, so each note of a chord can move differently. The voices then meet in the effects. A voice that has finished costs nothing.</p>
+</section>
+
+<section id="source">
+  <h2>Source</h2>
+  <p class="sub">The sound the grains are made of.</p>
+  <p>The menu lists the <strong>Built-in</strong> sources, made by Grainstorm and tuned to C4: <strong>Glass Choir</strong>, <strong>Metal Bells</strong>, <strong>Breath</strong>, <strong>Pluck Arp</strong> and <strong>Drone Sweep</strong>. Under <strong>Your Samples</strong> are the files in your Samples folder (next to Grainstorm's presets), and at the end <strong>Show Samples Folder</strong>.</p>
+  <p><strong>LOAD</strong> (or dropping a file on the waveform) takes a WAV, AIFF, FLAC, OGG or MP3, up to two minutes, and copies it into your Samples folder, so sessions and presets find it again.</p>
+  <dl class="params">
+    <dt>Waveform</dt><dd>The whole sample, with its name, length and channels. The lit line is <strong>Position</strong>: click or drag to move it, double-click to reset. The shaded band round it is the <strong>Spray</strong>. Thin lines show where each voice is reading (Scan moves them on); the sparks are the grains, brighter while louder.</dd>
+  </dl>
+</section>
+
+<section id="grains">
+  <h2>Grains</h2>
+  <p class="sub">Where they come from, how long, how many, which pitch, which way.</p>
+  <dl class="params">
+    <dt>Position</dt><dd>Where in the sample the grains come from (or click the sample). Route an envelope to it in the matrix to sweep it. <span class="range">0 … 100 %</span></dd>
+    <dt>Scan</dt><dd>While a note plays, its position moves on through the sample at this share of the sample's own speed: 100 % plays it along in time, −100 % backwards, 0 % freezes it in place. <span class="range">−200 … +200 %</span></dd>
+    <dt>Spray</dt><dd>Scatters each grain's start round the position, up to this much either way in all: a little blurs, a lot turns the sample into a cloud. <span class="range">0 ms … 2 s</span></dd>
+    <dt>Size</dt><dd>How long each grain lasts. Short grains buzz and click (a few ms), long ones play recognisable bits of the sample. <span class="range">5 ms … 2 s</span></dd>
+    <dt>Density</dt><dd>How many grains start each second, per voice. With Size it sets how many overlap; the level adjusts so a dense cloud doesn't get louder. <span class="range">0.5 … 200 /s</span></dd>
+    <dt>Jitter</dt><dd>How irregular the grains' timing is. 0 %: a steady pulse (rhythmic at low density); 100 %: random. <span class="range">0 … 100 %</span></dd>
+    <dt>Pitch</dt><dd>Transposes the grains (on top of the note, with Key Track). <span class="range">±24 st</span></dd>
+    <dt>P. Spray</dt><dd>Pitch Spray: each grain plays up to this many semitones off, at random, in the steps the menu in the card's title sets. <span class="range">0 … 24 st</span></dd>
+    <dt>Steps menu</dt><dd>Pitch Spray Scale: <strong>Free</strong> (any pitch: a chorus-like smear), <strong>Semitones</strong>, <strong>Fifths</strong> (fifths and octaves: shimmer) or <strong>Octaves</strong> only.</dd>
+    <dt>Reverse</dt><dd>The chance a grain plays backwards. 100 %: every grain. <span class="range">0 … 100 %</span></dd>
+    <dt>Spread</dt><dd>Scatters the grains across the stereo field. 0 %: all in the middle. <span class="range">0 … 100 %</span></dd>
+  </dl>
+</section>
+
+<section id="window">
+  <h2>Window</h2>
+  <p class="sub">How every grain fades in and out.</p>
+  <p>Drawn left (the grain's start) to right (its end), with the same tools as the envelopes. A smooth hump (Hann) is soft and clean; a fast rise and long fall plucks; a slow rise and sudden end swells into each grain; a flat top with steep sides keeps more of the sample (and clicks). The menu's <strong>Windows</strong> submenu has the classic ones ready: Hann, Hamming, Blackman, Gauss, Tukey, Kaiser, Expodec, Rexpodec and more. The window is kept in presets.</p>
+</section>
+
+<section id="voice">
+  <h2>Voice</h2>
+  <p class="sub">How notes play the grains.</p>
+  <dl class="params">
+    <dt>Level</dt><dd>Each voice's output level. <span class="range">−48 … +6 dB</span></dd>
+    <dt>Voices</dt><dd>How many notes can sound at once. A note past that takes over the oldest voice (its grains ring on). <span class="range">1 … 16</span></dd>
+    <dt>Root</dt><dd>The note that plays the sample at its own pitch (with Key Track on). The built-in sources are tuned to C4. <span class="range">C1 … C7</span></dd>
+    <dt>Bend</dt><dd>Pitch Bend Range: how far the pitch wheel bends the grains, up and down. <span class="range">0 … 24 st</span></dd>
+    <dt>Key Track</dt><dd>The note sets the grains' pitch, from Root. Off, every note plays the grains at the same pitch: keys then only start and stop voices, handy for drums, textures and drones.</dd>
+  </dl>
+</section>
+
+<section id="envelopes">
+  <h2>Envelopes</h2>
+  <p class="sub">Four drawn shapes per voice.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Volume</span><p>How loud each note is over time. Always on. It starts as a pad: a slow fade in, a long release.</p></div>
+    <div class="card"><span class="tag">Mod 1 · 2 · 3</span><p>Free envelopes for the matrix. Mod 1 starts as a slow bipolar sweep wandering the Position.</p></div>
+  </div>
+  <p>Mod 1–3 have a power button (off: not calculated) and a <strong>Bipolar</strong> switch: bipolar, the drawing goes up and down from a centre line and sends −100 to +100 % into the matrix; off, it runs from the bottom, 0 to 100 %.</p>
+  <h3>How an envelope plays</h3>
+  <p>When a note starts, the envelope fades in over <strong>Attack</strong> and plays the drawing from the left. While you hold the key, the part between the two <strong>loop handles</strong> (the dots under the drawing) repeats. When you let go it fades out over <strong>Release</strong>, still following the shape.</p>
+  <dl class="params">
+    <dt>Loop</dt><dd>The button with the loop picture. Click to step through, right-click to choose: <strong>Off</strong> (play once, hold the end), <strong>Forward</strong>, <strong>Backward</strong>, <strong>Palindrome</strong> (back and forth).</dd>
+    <dt>Trigger</dt><dd><strong>Trig</strong>: restart on every note. <strong>Legato</strong>: only after silence. <strong>Tempo</strong>: never restarts; it follows the song like an LFO and notes only fade it in and out.</dd>
+    <dt>Sync</dt><dd><strong>Free</strong>: speed set by Rate. <strong>Note</strong>, <strong>Dotted</strong>, <strong>Triplet</strong>: Rate becomes a note value, the whole drawing lasting that long at the song's tempo (120 BPM without a host), with a beat grid.</dd>
+    <dt>Rate</dt><dd>How fast the shape plays (Free), or how long the drawing lasts as a note value (synced; clockwise is faster).</dd>
+    <dt>Attack</dt><dd>How long a note takes to fade into the envelope. Right-click it to disable it.</dd>
+    <dt>Release</dt><dd>How long it fades out after the key is let go. Right-click it to disable it: the envelope then holds the value it had when you let go.</dd>
+    <dt>Drift</dt><dd>A smooth random wobble on the output, never the timing. Right-click to disable.</dd>
+  </dl>
+</section>
+
+<section id="drawing">
+  <h2>Drawing &amp; editing</h2>
+  <p class="sub">The envelopes and the grain window share the same tools.</p>
+  <dl class="params">
+    <dt>Draw</dt><dd>Freehand: drag across the shape.</dd>
+    <dt>Line</dt><dd>Drag a straight line (its ends snap to the grid when synced; hold <kbd>Cmd</kbd> for free). Then drag its end dots, or the ring to curve it; <kbd>Cmd</kbd> on the ring for an S-curve.</dd>
+    <dt>Warp</dt><dd>Grab the shape and drag: sideways moves that moment earlier or later, up and down bends the shape around it.</dd>
+    <dt>Lift</dt><dd>Drag up or down to raise or lower the edit region (or the whole shape).</dd>
+    <dt>Move</dt><dd>Drag sideways to slide the edit region along; without a region it shifts the whole shape round.</dd>
+    <dt>Random</dt><dd>A new random shape. The menu has Rhythm, Melody, Organic and Wobble generators.</dd>
+    <dt>Smooth · Normalize</dt><dd>Soften corners and steps; stretch the shape to the full range.</dd>
+    <dt>Menu (≡)</dt><dd>Undo and redo, copy and paste, zoom, edits (Smooth, Normalize, Flip, Reverse), random generators, <strong>Waveforms</strong>, <strong>Windows</strong> and ready-made shapes by category, Percussion first. Right-click the drawing for the same menu.</dd>
+  </dl>
+  <p><kbd>Shift</kbd>-drag marks an edit region that drawing, edits, Random and shapes are limited to; its handles stretch, repeat, scale and tilt what's inside. <kbd>Cmd</kbd>+<kbd>C</kbd> / <kbd>Cmd</kbd>+<kbd>V</kbd> copy and paste between any of the drawings, <kbd>Cmd</kbd>+<kbd>Z</kbd> and <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd> undo and redo, <kbd>Cmd</kbd>+scroll or pinch zooms. Contour's manual describes the region handles in full: they work the same here.</p>
+</section>
+
+<section id="matrix">
+  <h2>Modulation matrix</h2>
+  <p class="sub">Eight slots, each voice its own.</p>
+  <p>Open the <strong>Matrix</strong> tab. Each slot is one row: <strong>Source × Amount (× Via) + Offset → Destination</strong>, optionally smoothed. Click a cell for its menu; drag Amount, Offset or Smooth up and down, double-click to reset.</p>
+  <dl class="params">
+    <dt>Source</dt><dd><strong>Envelopes</strong>: Volume, Mod 1–3. <strong>MIDI</strong>: Velocity, Note, Mod Wheel, Aftertouch, Pitch Bend, CC A, CC B and Random (a new value per note). <strong>XY Pad</strong>: X and Y. <strong>Macros</strong> 1–8.</dd>
+    <dt>Via</dt><dd>A second source that scales the slot. None: always on.</dd>
+    <dt>Destination</dt><dd><strong>Grains</strong>: Position, Scan, Spray, Size, Density, Jitter, Pitch, Pitch Spray, Reverse, Spread. <strong>Voice</strong>: Level. <strong>Filter</strong>: Cutoff, Resonance, Morph, Drive. <strong>Macros</strong> 1–8.</dd>
+    <dt>Amount</dt><dd>How far, either way: 100 % moves the destination across its whole range. Pitch shows it in semitones (100 % = 48 st). <span class="range">±100 %</span></dd>
+    <dt>Offset</dt><dd>A fixed shift added to the slot, also with no source. <span class="range">±100 %</span></dd>
+    <dt>Smooth</dt><dd>Glides the slot's output over this time. <span class="range">0 … 2000 ms</span></dd>
+  </dl>
+  <p><strong>CC A</strong> and <strong>CC B</strong> learn from your controller: click <strong>Learn</strong> under the matrix, then move a knob.</p>
+  <div class="callout"><strong>A different cloud on every note:</strong> route <em>Random → Position</em> at 40 %. Each note of a chord now reads from its own part of the sample.</div>
+</section>
+
+<section id="filter">
+  <h2>Filter</h2>
+  <p class="sub">One per voice, fourteen types.</p>
+  <p>Switch it on with its power button (Filter On; off, it isn't calculated). Because every voice has its own filter, an envelope on Cutoff sweeps each note.</p>
+  <dl class="params">
+    <dt>Type</dt><dd>Ladder LP / HP / BP at 24 or 12 dB (Moog-style), SVF Morph and Notch, Diode (303-style), MS-20, Formant, Comb + and −, Phaser.</dd>
+    <dt>Cutoff</dt><dd>The filter's frequency (a comb's pitch). <span class="range">20 Hz … 20 kHz</span></dd>
+    <dt>Resonance</dt><dd>How much the filter rings at the cutoff. <span class="range">0 … 100 %</span></dd>
+    <dt>Morph</dt><dd>Depends on the type: SVF low → band → high, Formant the vowel, Comb damping. <span class="range">0 … 100 %</span></dd>
+    <dt>Drive</dt><dd>Pushes the grains into the filter: grit and a fatter resonance. <span class="range">0 … 100 %</span></dd>
+    <dt>Key</dt><dd>Filter Key Tracking: how much the cutoff follows the note, from C4. At 100 % an octave per octave. <span class="range">0 … 100 %</span></dd>
+  </dl>
+</section>
+
+<section id="effects">
+  <h2>Effects, macros, XY pad</h2>
+  <p class="sub">After the voices.</p>
+  <p>Four slots in series, starting as Chorus, Delay, Reverb and an empty one. Each has a <strong>menu</strong> (which effect: OTT, Distortion, EQ, Chorus, Delay, Reverb, Reverb 2, Flanger, Phaser, Width, Compressor, Pitch, Filter, Gate), an <strong>edit</strong> button that opens the effect's own editor with its live display, a <strong>power button</strong>, a <strong>Mix</strong> or <strong>Send</strong> knob and its two most useful controls. Drag a slot by its number and dots to reorder; its settings come along.</p>
+  <dl class="params">
+    <dt>Macros</dt><dd>Eight knobs. Right-click any effect control to map it to one, over a range of your choice; route them to and from the matrix; right-click a macro to rename it. All automatable.</dd>
+    <dt>XY Pad</dt><dd>The second tab beside the effects. Drag the dot to play <strong>XY X</strong> and <strong>XY Y</strong>, two bipolar matrix sources; the corners show where they're routed, and the output's recent peaks run behind it. Double-click to centre.</dd>
+    <dt>Spring</dt><dd>Lit: the dot glides back to the centre when you let go (XY Spring). Off: it stays where you leave it.</dd>
+  </dl>
+</section>
+
+<section id="presets">
+  <h2>Presets</h2>
+  <p class="sub">Everything is saved: knobs, drawings, the window, the sample, effects and macros.</p>
+  <table>
+    <tr><th>Preset</th><th>What it does</th></tr>
+    <tr><td>Default</td><td>A gentle cloud of the Glass Choir.</td></tr>
+    <tr><td>Glass Cloud</td><td>A slow, wide cloud of the choir, an octave above and below now and then, into a long reverb. The mod wheel scatters it.</td></tr>
+    <tr><td>Bell Shimmer</td><td>Bell grains scattered over fifths, a third of them backwards, through delay and reverb.</td></tr>
+    <tr><td>Frozen Breath</td><td>The breath held still, a slow drawn sweep through the filter.</td></tr>
+    <tr><td>Stutter Arp</td><td>Short grains at a steady pulse, the position stepping through the arpeggio in time with the song.</td></tr>
+    <tr><td>Drone Scanner</td><td>Long grains riding along the drone at its own speed, an octave down, smeared wide.</td></tr>
+    <tr><td>Reverse Rain</td><td>Every grain backwards, long and sparse, with a window that swells and cuts off.</td></tr>
+    <tr><td>XY Explorer</td><td>The XY pad plays the cloud: X moves through the choir, Y scatters the pitch and shortens the grains.</td></tr>
+  </table>
+  <p><strong>SAVE</strong> stores your sound as a user preset; the menu also has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. A <strong>*</strong> after the name means you've changed something since loading it. If a preset's sample is missing on another computer, the rest of the preset still loads.</p>
+</section>
+
+<section id="recipes">
+  <h2>Recipes</h2>
+  <p class="sub">Starting points; then explore.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Freeze a moment</span><p>Load a vocal, Scan 0 %, Size 200 ms, Density 30 /s, Spray 40 ms, Spread 70 %. Click along the waveform to find a vowel that sings.</p></div>
+    <div class="card"><span class="tag">Time stretch</span><p>Scan 25 %, Size 120 ms, Density 40 /s, Jitter 30 %, Spray 0: the sample plays four times slower, at its own pitch.</p></div>
+    <div class="card"><span class="tag">Shimmer pad</span><p>Pitch Spray 12 st on Octaves, Reverse 20 %, a long Volume release, Reverb 2 at 40 %.</p></div>
+    <div class="card"><span class="tag">Glitch</span><p>Size 15 ms, Density 8 /s, Jitter 0, Spray 1 s, a Percussion window like Snap: rhythmic shards of the sample.</p></div>
+    <div class="card"><span class="tag">Velocity cloud</span><p>Matrix: Velocity → Spray +60 %, Velocity → Spread +40 %. Soft notes stay focused, hard ones explode.</p></div>
+    <div class="card"><span class="tag">Drums from anything</span><p>Key Track off, Volume with loop Off and a short Percussion shape, Size 60 ms, Density 100 /s.</p></div>
+  </div>
+</section>
+
+<section id="specs">
+  <h2>Specifications</h2>
+  <p class="sub">The numbers.</p>
+  <table>
+    <tr><th>Property</th><th>Value</th></tr>
+    <tr><td>Polyphony</td><td>1–16 voices; up to 64 grains per voice</td></tr>
+    <tr><td>Samples</td><td>5 built-in sources; WAV, AIFF, FLAC, OGG, MP3 up to two minutes</td></tr>
+    <tr><td>Grains</td><td>Size 5 ms – 2 s, Density 0.5–200 /s, Spray up to 2 s, Pitch ±24 st plus Pitch Spray up to 24 st</td></tr>
+    <tr><td>Modulation</td><td>4 drawn envelopes and an 8-slot matrix per voice; 8 macros; XY pad</td></tr>
+    <tr><td>Filter</td><td>14 types, per voice</td></tr>
+    <tr><td>Effects</td><td>4 slots in series, 14 effects</td></tr>
+    <tr><td>CPU</td><td>Voices that have finished, and a switched-off filter, cost nothing; effects rest once their tails have died away</td></tr>
+    <tr><td>Formats</td><td>AU, VST3, Standalone (with an on-screen keyboard)</td></tr>
+  </table>
+</section>
+
+<footer>
+  <div class="sig">Robotic Audio</div>
+  Grainstorm was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
+  Fonts: Big Shoulders Display and Inter, under the SIL Open Font License.
+</footer>
+
+</div>
+</main>
+<script>
+// Highlight the section being read in the contents
+const links = [...document.querySelectorAll("nav.toc a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+sections.forEach(s => s && observer.observe(s));
+</script>
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impact Manual</title>
+<style>
+@font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Big Shoulders"; font-weight: 800; src: url("fonts/BigShouldersDisplay-ExtraBold.ttf") format("truetype"); }
+
+:root {
+  --bg: #0d0b0a;
+  --surface: #17120f;
+  --surface-2: #211a15;
+  --line: rgba(255, 236, 220, 0.10);
+  --line-strong: rgba(255, 236, 220, 0.22);
+  --text: #f4ece4;
+  --muted: #a99e94;
+  --ember: #ff3b0a;
+  --fire: #ff6a1a;
+  --hot: #ffb23e;
+  --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
+  --radius: 14px;
+  --sidebar: 260px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 500 16px/1.65 "Inter", -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--hot); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Sidebar */
+nav.toc {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar);
+  overflow-y: auto; padding: 32px 24px 40px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+}
+nav.toc .brand { font: 600 11px/1 "Inter"; letter-spacing: .32em; color: var(--fire); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+nav.toc .brand::before { content: ""; width: 18px; height: 2px; background: var(--fire-gradient); }
+nav.toc .product { font: 800 34px/1 "Big Shoulders"; letter-spacing: .02em; margin: 10px 0 26px; text-transform: uppercase; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+nav.toc li { counter-increment: s; }
+nav.toc li a {
+  display: flex; gap: 12px; padding: 7px 10px; margin: 0 -10px; border-radius: 8px;
+  color: var(--muted); font-size: 14px;
+}
+nav.toc li a::before { content: counter(s, decimal-leading-zero); color: var(--line-strong); font-variant-numeric: tabular-nums; }
+nav.toc li a:hover, nav.toc li a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
+nav.toc li a.active::before { color: var(--fire); }
+
+main { margin-left: var(--sidebar); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+/* Hero */
+header.hero { position: relative; padding: 72px 0 40px; overflow: hidden; }
+header.hero::before {
+  content: ""; position: absolute; inset: -40% -10% auto; height: 520px;
+  background: radial-gradient(closest-side, rgba(255, 59, 10, .20), transparent);
+  pointer-events: none;
+}
+.kicker { font: 600 12px/1 "Inter"; letter-spacing: .34em; text-transform: uppercase; color: var(--fire); display: flex; align-items: center; gap: 12px; }
+.kicker::before { content: ""; width: 28px; height: 2px; background: var(--fire-gradient); }
+h1 {
+  font: 800 clamp(64px, 11vw, 132px)/.86 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em;
+  margin: 18px 0 18px;
+  background: linear-gradient(180deg, var(--text) 30%, #d9c9bb); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lede { font-size: 20px; line-height: 1.55; color: var(--text); max-width: 640px; margin: 0; }
+.lede em { font-style: normal; background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; padding: 0; list-style: none; }
+.facts li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+
+figure { margin: 32px 0; }
+figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); }
+figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+/* Sections */
+section { padding: 56px 0 8px; border-top: 1px solid var(--line); }
+h2 {
+  font: 800 52px/1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em; margin: 0 0 6px;
+}
+h2 + .sub { color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+h3 { font: 600 13px/1.2 "Inter"; letter-spacing: .24em; text-transform: uppercase; color: var(--hot); margin: 36px 0 12px; display: flex; align-items: center; gap: 10px; }
+h3::before { content: ""; width: 14px; height: 2px; background: var(--fire-gradient); }
+h4 { font: 800 24px/1.1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 4px; }
+p { margin: 0 0 14px; }
+strong { font-weight: 600; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* Parameter lists */
+dl.params { display: grid; grid-template-columns: 170px 1fr; gap: 0; margin: 0 0 18px; border-top: 1px solid var(--line); }
+dl.params dt, dl.params dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+dl.params dt { font: 600 12px/1.5 "Inter"; letter-spacing: .16em; text-transform: uppercase; color: var(--text); padding-right: 16px; padding-top: 13px; }
+dl.params dd { color: #e3d8ce; }
+dl.params dd .range { display: inline-block; margin-left: 8px; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+
+/* Cards and grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0 24px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.card p { margin: 6px 0 0; color: #e3d8ce; font-size: 15px; }
+.card .tag { font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--fire); }
+
+.callout { position: relative; background: linear-gradient(135deg, rgba(255, 59, 10,.10), rgba(255, 178, 62,.04)); border: 1px solid rgba(255, 59, 10,.35); border-radius: var(--radius); padding: 16px 20px 16px 52px; margin: 22px 0; }
+.callout::before { content: "✦"; position: absolute; left: 20px; top: 15px; color: var(--hot); font-size: 18px; }
+.callout strong { color: var(--hot); }
+
+kbd {
+  font: 600 12px/1 "Inter"; padding: 4px 7px; border-radius: 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  background: var(--surface-2); color: var(--text); white-space: nowrap;
+}
+table { width: 100%; border-collapse: collapse; margin: 8px 0 22px; font-size: 15px; }
+th { text-align: left; font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line-strong); }
+td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #e3d8ce; }
+td:first-child { color: var(--text); white-space: nowrap; }
+
+/* Signal flow */
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 20px; margin: 24px 0; overflow-x: auto; }
+.flow svg { display: block; min-width: 760px; width: 100%; height: auto; }
+
+/* Effects */
+.fx { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 22px 0 40px; }
+.fx img { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 10px 0 14px; }
+.fx .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.fx .head .what { color: var(--muted); }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 2px; transform: translateY(-1px); }
+
+footer { padding: 60px 0 80px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 40px; }
+footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+
+@media (max-width: 980px) {
+  nav.toc { position: static; width: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav.toc ol { columns: 2; }
+  main { margin-left: 0; }
+  .wrap { padding: 0 20px; }
+  dl.params { grid-template-columns: 1fr; }
+  dl.params dt { border-bottom: 0; padding-bottom: 0; }
+}
+@media print {
+  :root { --bg: #fff; --surface: #f6f2ee; --surface-2: #eee7e0; --text: #1a1410; --muted: #6e6259; --line: #e4dbd2; --line-strong: #cfc3b8; }
+  nav.toc { display: none; }
+  main { margin: 0; }
+  section { break-inside: avoid-page; }
+  h1 { color: #1a1410; background: none; }
+  dl.params dd, td, .card p { color: #2a2018; }
+}
+
+/* Block diagrams */
+.flow svg text { fill: var(--text); font-weight: 600; font-size: 13.5px; text-anchor: middle; }
+.flow svg text.sub { fill: var(--muted); font-weight: 500; font-size: 11px; }
+.flow svg .box { fill: var(--surface-2); stroke: var(--line-strong); }
+.flow svg .box.hot { stroke: url(#g); }
+.flow svg .pill { fill: var(--bg); stroke: var(--line-strong); }
+.flow svg .frame { fill: none; stroke: var(--line-strong); stroke-dasharray: 6 6; }
+.flow svg .wire { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.flow svg .dash { stroke-dasharray: 5 5; }
+.flow svg .arrow { fill: var(--muted); }
+.flow svg .tick { stroke: var(--line-strong); stroke-width: 1; }
+.flow svg .head { stroke: var(--hot); stroke-width: 2.5; fill: none; }
+svg.defs { position: absolute; width: 0; height: 0; }
+
+/* Curves */
+.plots { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: center; margin: 18px 0 24px; }
+.plots.three { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: start; gap: 14px; }
+.plot { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.plot h4 { margin: 2px 0 10px; }
+.plot svg { display: block; width: 100%; height: auto; }
+.plot svg text { fill: var(--muted); font-size: 10px; font-weight: 500; }
+.plot .axis { fill: none; stroke: var(--line-strong); }
+.plot .grid { fill: none; stroke: var(--line); }
+.plot .knee { fill: none; stroke: var(--line-strong); stroke-dasharray: 2 4; }
+.plot .ref { fill: none; stroke: var(--line-strong); stroke-dasharray: 4 4; }
+.plot .c1, .plot .c2, .plot .c3 { fill: none; stroke-width: 2; stroke-linejoin: round; }
+.plot .c1 { stroke: var(--muted); }
+.plot .c2 { stroke: var(--fire); }
+.plot .c3 { stroke: var(--hot); }
+.legend { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 12px; margin-top: 10px; }
+.legend span { display: inline-block; width: 14px; height: 2px; margin-left: 8px; }
+.legend span:first-child { margin-left: 0; }
+.legend .k1 { background: var(--muted); } .legend .k2 { background: var(--fire); } .legend .k3 { background: var(--hot); }
+.plot-text p:last-child { margin-bottom: 0; }
+.formula { font: 600 17px/1.4 "Inter"; color: var(--hot); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 18px; display: inline-block; }
+@media (max-width: 720px) { .plots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<svg class="defs" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#ff3b0a"/><stop offset=".45" stop-color="#ff6a1a"/><stop offset="1" stop-color="#ffb23e"/></linearGradient><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z" fill="#a99e94"/></marker></defs></svg>
+
+<nav class="toc" aria-label="Contents">
+  <div class="brand">Robotic Audio</div>
+  <div class="product">Impact</div>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#overview">The window</a></li>
+    <li><a href="#flow">Signal flow</a></li>
+    <li><a href="#pads">Pads</a></li>
+    <li><a href="#layers">Layers and engines</a></li>
+    <li><a href="#drive">Drive and filter</a></li>
+    <li><a href="#envelopes">Envelopes</a></li>
+    <li><a href="#matrix">Matrix</a></li>
+    <li><a href="#pad">The Pad card</a></li>
+    <li><a href="#fx">FX page</a></li>
+    <li><a href="#kits">Kits and sounds</a></li>
+    <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#specs">Specifications</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Robotic Audio · User manual</div>
+  <h1>Impact</h1>
+  <p class="lede">An electronic percussion designer. Sixteen pads, each a drum <em>built from scratch</em>: two layers of tone, noise, FM, wavetable or sample, shaped by hand-drawn envelopes, moved by its own modulation matrix, then driven, filtered and sent through an effect rack. Thirty genre kits to start from, a RANDOM button for when you want surprises.</p>
+  <ul class="facts">
+    <li>16 pads, MIDI C1–D#2</li>
+    <li>2 layers, 5 engines</li>
+    <li>6 drawn envelopes per pad</li>
+    <li>8-slot matrix per pad</li>
+    <li>Drive and 14-type filter</li>
+    <li>4 effects, chain and sends</li>
+    <li>31 factory kits</li>
+    <li>AU · VST3 · Standalone</li>
+  </ul>
+  <figure>
+    <img src="images/impact.jpg" alt="Impact's window on the Pad page">
+    <figcaption>Impact on its Pad page: the selected pad's two layers, drive, filter and envelopes on the left; the sixteen pads, the layers' engines and the pad's mixer strip on the right.</figcaption>
+  </figure>
+</header>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">From a kit to your own drum.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">01</span><h4>Load a kit</h4><p>Use the arrows or the menu in the header: <strong>DnB</strong>, <strong>Dubstep</strong>, <strong>Glitch</strong>, <strong>IDM</strong> and <strong>Techno</strong> kits, six each.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Play</h4><p>Click a pad (harder towards its top) or play MIDI notes C1 to D#2. Pad 1 is at the bottom left.</p></div>
+    <div class="card"><span class="tag">03</span><h4>Pick a pad to edit</h4><p>Clicking a pad selects it: the left side, the Engines and the Pad card now show that pad.</p></div>
+    <div class="card"><span class="tag">04</span><h4>Change its engines</h4><p>In the Engines card, choose what each layer is made of: <strong>TONAL</strong>, <strong>NOISE</strong>, <strong>FM</strong>, <strong>WAVETABLE</strong> or <strong>SAMPLE</strong>.</p></div>
+    <div class="card"><span class="tag">05</span><h4>Roll the dice</h4><p>Press <strong>RANDOM</strong> in the Pad card for a new drum from those engines. Again for another.</p></div>
+    <div class="card"><span class="tag">06</span><h4>Shape it</h4><p>Draw Vol A to change how the hit decays; Mod 1 sweeps Layer A's pitch for the classic drop.</p></div>
+  </div>
+  <div class="callout"><strong>Hover over anything.</strong> The strip along the bottom of the window says what the control under the mouse does.</div>
+</section>
+
+<section id="overview">
+  <h2>The window</h2>
+  <p class="sub">Three pages on the left, the pads always on the right.</p>
+  <dl class="params">
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE) for kits, the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits.</dd>
+    <dt>Pad page</dt><dd>The selected pad's Layer A, Layer B, Drive, Filter and Envelopes.</dd>
+    <dt>Matrix page</dt><dd>The selected pad's modulation matrix, with the Envelopes under it.</dd>
+    <dt>FX page</dt><dd>Macros, Output level, the Mixer (every pad's level) and the four Effects.</dd>
+    <dt>Pads</dt><dd>The sixteen pads, each with its note, number, name and colour.</dd>
+    <dt>Engines</dt><dd>Each layer's power button and engine.</dd>
+    <dt>Pad</dt><dd>The selected pad's name, SOUND and RANDOM, its mixer strip (level, pan, tune, decay, velocity, chain, sends, mute), choke group and colour.</dd>
+  </dl>
+  <p>Knobs reset with a double-click and take fine steps with <kbd>Cmd</kbd>, <kbd>Ctrl</kbd> or <kbd>Alt</kbd>. A knob the matrix moves shows a ring with its range and a dot where it is. The window can be made larger: drag its bottom-right corner. Its colour follows the selected pad's.</p>
+</section>
+
+<section id="flow">
+  <h2>Signal flow</h2>
+  <p class="sub">What happens on a hit.</p>
+  <div class="flow">
+    <svg viewBox="0 0 900 190" role="img" aria-label="Layer A and B, drive, filter, output, then chain or straight out, plus sends">
+      <rect class="box hot" x="10" y="20" width="120" height="50" rx="10"/><text x="70" y="42">Layer A</text><text class="sub" x="70" y="58">engine · Vol A</text>
+      <rect class="box hot" x="10" y="90" width="120" height="50" rx="10"/><text x="70" y="112">Layer B</text><text class="sub" x="70" y="128">engine · Vol B</text>
+      <rect class="box" x="170" y="55" width="100" height="50" rx="10"/><text x="220" y="78">Drive</text><text class="sub" x="220" y="94">2× oversampled</text>
+      <rect class="box" x="300" y="55" width="100" height="50" rx="10"/><text x="350" y="78">Filter</text><text class="sub" x="350" y="94">14 types</text>
+      <rect class="box" x="430" y="55" width="110" height="50" rx="10"/><text x="485" y="78">Pad strip</text><text class="sub" x="485" y="94">output · level · pan</text>
+      <rect class="box hot" x="590" y="20" width="150" height="50" rx="10"/><text x="665" y="42">Effect chain</text><text class="sub" x="665" y="58">slots 1–4 in series</text>
+      <rect class="box" x="590" y="110" width="150" height="50" rx="10"/><text x="665" y="132">Sends 1–4</text><text class="sub" x="665" y="148">each effect alone, wet</text>
+      <rect class="pill" x="780" y="60" width="100" height="40" rx="20"/><text x="830" y="85">Out</text>
+      <path class="wire" d="M130 45 C150 45 150 75 168 78M130 115 C150 115 150 85 168 82M270 80H298M400 80H428" marker-end="url(#a)"/>
+      <path class="wire" d="M540 75 C565 70 565 45 588 45M540 85 C565 90 565 135 588 135M740 45 C760 45 760 75 778 78M740 135 C760 135 760 85 778 82" marker-end="url(#a)"/>
+      <path class="wire dash" d="M540 80H778" marker-end="url(#a)"/>
+      <text class="sub" x="665" y="98">Chain off: straight out</text>
+      <text class="sub" x="300" y="180">Mod 1–4, Vol A/B, MIDI and the macros move the pad through its own matrix</text>
+    </svg>
+  </div>
+  <p>The two layers are mixed, run through the drive and the filter, and set by the sound's <strong>Output</strong>. Then the pad's mixer strip: level, pan, and where it goes. With <strong>Chain</strong> lit the pad plays through the four effect slots one after another; off, it goes straight to the output. Each <strong>Send</strong> feeds one slot's effect on its own, a second copy beside the chain whose wet sound alone comes back: a reverb or delay used as a send effect. The master <strong>Level</strong> sets the whole kit.</p>
+  <p>A pad that has finished sounding costs nothing, once its drive and filter have rung out.</p>
+</section>
+
+<section id="pads">
+  <h2>Pads</h2>
+  <p class="sub">Sixteen drums, C1 to D#2.</p>
+  <p>Pads run from <strong>1</strong> at the bottom left (C1, MIDI note 36) to <strong>16</strong> at the top right (D#2). Each shows its note, number, name and colour, and lights on every hit.</p>
+  <table>
+    <tr><th>Do this</th><th>To</th></tr>
+    <tr><td>Click a pad</td><td>select it and play it, louder towards its top</td></tr>
+    <tr><td>Right-click a pad</td><td>copy, paste, init or randomise its sound, load a built-in or saved sound</td></tr>
+    <tr><td>Drop an audio file on a pad</td><td>load it as that pad's sample</td></tr>
+  </table>
+  <p>Selecting a pad shows its settings everywhere on the left. Every pad keeps its own sound, saved with the session and the kit.</p>
+</section>
+
+<section id="layers">
+  <h2>Layers and engines</h2>
+  <p class="sub">Two sound sources per pad.</p>
+  <p>Each pad has <strong>Layer A</strong> and <strong>Layer B</strong>, each with a power button (off, it isn't calculated) and an engine, chosen in the layer's menu or the Engines card. Every layer has <strong>Pitch</strong> (shown as a frequency), <strong>Level</strong> and <strong>Pan</strong>; the rest follows the engine.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Tonal</span><p>A pitched wave, for kicks, toms, zaps and anything with a note. <strong>Wave</strong>: Sine (pure), Triangle, Saw or Square. <strong>Shape</strong> pushes it into a soft clip towards a square: more harmonics, more weight. <strong>Phase</strong>: where in its cycle the wave starts each hit; 0° from zero (soft), 90° from its peak (a click).</p></div>
+    <div class="card"><span class="tag">Noise</span><p>Filtered noise for snares, hats, claps and cymbals. <strong>Noise</strong>: White, Pink (darker) or Metallic (six square waves at a cymbal's ratios, tuned by Pitch). <strong>Filter</strong>: Low-pass, Band-pass or High-pass at <strong>Cutoff</strong>, with <strong>Reso</strong>. <strong>Width</strong>: how different the noise is left and right.</p></div>
+    <div class="card"><span class="tag">FM</span><p>A sine modulating a sine, for bells, rims, cowbells and metal. <strong>Ratio</strong>: the modulator's pitch against the carrier's (whole numbers harmonic, in between bells and metal). <strong>Amount</strong>: brightness. <strong>Feedback</strong>: the modulator modulating itself, from a sine towards a saw, then noise.</p></div>
+    <div class="card"><span class="tag">Wavetable</span><p>A morphing wavetable with unison, for glitchy, modern percussion. <strong>Wavetable</strong>: a built-in table or <strong>Random</strong>; <strong>RANDOM</strong> rolls a new one (3–5 random waveforms morphing into each other), kept with the pad by its seed. <strong>Position</strong>, <strong>Unison</strong> (1–7), <strong>Detune</strong>, <strong>Spread</strong>.</p></div>
+    <div class="card"><span class="tag">Sample</span><p>An audio file, shaped by the same envelopes. <strong>LOAD</strong> a file, up to a minute long (or drop one on a pad); <strong>Tune</strong> (±24 st, faster and slower), <strong>Start</strong> (where each hit starts) and <strong>Reverse</strong>.</p></div>
+  </div>
+</section>
+
+<section id="drive">
+  <h2>Drive and filter</h2>
+  <p class="sub">After the layers.</p>
+  <h3>Drive</h3>
+  <dl class="params">
+    <dt>Type</dt><dd>Off, <strong>Overdrive</strong> (warm, slightly asymmetric), <strong>Distortion</strong> (a harder clip) or <strong>Fuzz</strong> (a biased hard clip, splatty). Runs at twice the sample rate against aliasing.</dd>
+    <dt>Amount</dt><dd>How hard the drive is driven. Route an envelope to it in the Matrix for a hit that starts dirty and cleans up. <span class="range">0 … 100 %</span></dd>
+    <dt>Output</dt><dd>The sound's own level, after the drive and the filter (which can leave it much quieter or louder). <span class="range">±24 dB</span></dd>
+  </dl>
+  <h3>Filter</h3>
+  <dl class="params">
+    <dt>On</dt><dd>The power button (Filter On). Off, it costs nothing.</dd>
+    <dt>Type</dt><dd>Ladder LP / HP / BP at 24 or 12 dB, SVF Morph and Notch, Diode, MS-20, Formant, Comb + and −, Phaser. The knobs' names follow the type (a comb's Cutoff is its Pitch, its Resonance its Feedback).</dd>
+    <dt>Cutoff</dt><dd>The filter's frequency. <span class="range">20 Hz … 20 kHz</span></dd>
+    <dt>Resonance</dt><dd>A peak at the cutoff; high values ring. <span class="range">0 … 100 %</span></dd>
+    <dt>Morph</dt><dd>Filter Morph: SVF low → band → high, Formant the vowel, Comb damping; greyed out where it does nothing. <span class="range">0 … 100 %</span></dd>
+    <dt>Drive</dt><dd>Filter Drive: pushes the signal into the filter. <span class="range">0 … 100 %</span></dd>
+  </dl>
+</section>
+
+<section id="envelopes">
+  <h2>Envelopes</h2>
+  <p class="sub">Six drawings per pad.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Vol A · Vol B</span><p>Each layer's volume over a hit, drawn by hand: the whole drawing lasts Length. Always on.</p></div>
+    <div class="card"><span class="tag">Mod 1–4</span><p>Envelopes for the Matrix: a pitch, a filter, an FM amount… Each hit plays them from the start. Mod 1 is on and sweeps Layer A's pitch.</p></div>
+  </div>
+  <dl class="params">
+    <dt>Length</dt><dd>How long the whole drawing lasts. The pad's Decay scales it. <span class="range">5 ms … 10 s</span></dd>
+    <dt>Sync</dt><dd><strong>Free</strong>: Length sets the time. <strong>Note</strong>, <strong>Dotted</strong>, <strong>Triplet</strong>: the drawing lasts a note value (<strong>Rate</strong>, clockwise shorter) at the song's tempo (120 BPM without a host); the loop handles snap to a beat grid (hold <kbd>Cmd</kbd> to place them freely).</dd>
+    <dt>Loop</dt><dd>The button with the arrow: click to step through, right-click to pick. <strong>Off</strong> plays the drawing once. With a loop, the part between the loop handles repeats (forwards, backwards or back and forth) while the note is held: rolls and rhythms.</dd>
+    <dt>Release</dt><dd>Vol A and B: with the loop on, how long the layer takes to fade out after the note is let go. With the loop off, a hit always plays the drawing through. <span class="range">5 ms … 5 s</span></dd>
+    <dt>On · Bipolar</dt><dd>Mod 1–4: the power button (off, not calculated, nothing into the matrix) and Bipolar (the drawing goes up and down from a centre line, −100 to +100 %; off, from the bottom, 0 to 100 %).</dd>
+  </dl>
+  <h3>Drawing</h3>
+  <p>The tools are the suite's envelope editor, as in Contour: <strong>Draw</strong>, <strong>Line</strong> (with a curve handle), <strong>Warp</strong>, <strong>Lift</strong> and <strong>Move</strong>; <strong>RANDOM</strong>, <strong>SMOOTH</strong> and <strong>NORMALIZE</strong>; the menu (≡, or right-click) with undo, copy and paste, edits, random generators, Waveforms, Windows and ready-made shapes, <strong>Percussion</strong> first: Punch, Snap, Thump, Boom, 808 Decay, Gated, Clap, Flam, rolls, Bouncing Ball, reverses and sweeps. <kbd>Shift</kbd>-drag marks a region to edit; <kbd>Cmd</kbd>+<kbd>Z</kbd> undoes; <kbd>Cmd</kbd>+<kbd>C</kbd> / <kbd>Cmd</kbd>+<kbd>V</kbd> copy between envelopes and pads.</p>
+</section>
+
+<section id="matrix">
+  <h2>Matrix</h2>
+  <p class="sub">Eight slots, each pad its own.</p>
+  <figure>
+    <img src="images/matrix.jpg" alt="Impact's Matrix page">
+    <figcaption>The Matrix page: the selected pad's eight slots with MIDI learn beside them, the Envelopes underneath.</figcaption>
+  </figure>
+  <p>Each slot is <strong>Source × Amount (× Via) + Offset → Destination</strong>, optionally smoothed. Click a cell for its menu; drag Amount, Offset or Smooth up and down, double-click to reset.</p>
+  <dl class="params">
+    <dt>Source</dt><dd><strong>Envelopes</strong>: Vol A, Vol B, Mod 1–4. <strong>MIDI</strong>: Velocity, Random (a new value per hit), Mod Wheel, Aftertouch, Pitch Bend, CC A, CC B. <strong>Macros</strong> 1–8.</dd>
+    <dt>Destination</dt><dd><strong>Layer A</strong> and <strong>Layer B</strong>: Level, Pan, Pitch, Tonal Shape, Noise Cutoff, Noise Resonance, FM Ratio, FM Amount, FM Feedback, WT Position, WT Detune. <strong>Drive</strong>: Amount. <strong>Filter</strong>: Cutoff, Resonance, Morph, Drive.</dd>
+    <dt>Amount · Offset</dt><dd>How far, either way (pitches in semitones: 100 % = 48 st), and a fixed shift. <span class="range">±100 %</span></dd>
+    <dt>Smooth</dt><dd>Glides the slot's output. <span class="range">0 … 2000 ms</span></dd>
+    <dt>MIDI learn</dt><dd>CC A and CC B: click <strong>LEARN</strong>, then move a knob on your controller.</dd>
+  </dl>
+  <div class="callout"><strong>Velocity to pitch</strong> makes harder hits higher, like a real drum: Velocity → A Pitch at +5 %.</div>
+</section>
+
+<section id="pad">
+  <h2>The Pad card</h2>
+  <p class="sub">The selected pad's mixer strip.</p>
+  <dl class="params">
+    <dt>Name</dt><dd>Click it to rename the pad.</dd>
+    <dt>SOUND</dt><dd>The pad's sound menu: Copy, Paste, Init, Random, the <strong>Built-in</strong> drums, <strong>Yours</strong> (sounds you saved), <strong>Save Sound As…</strong> and <strong>Show Sounds Folder</strong>.</dd>
+    <dt>RANDOM</dt><dd>A new random drum for this pad, from the engines its layers have now. Pick the engines first, then roll.</dd>
+    <dt>Level</dt><dd>The pad's level in the kit. <span class="range">−48 … +6 dB</span></dd>
+    <dt>Pan</dt><dd>Where the pad sits. <span class="range">±100 %</span></dd>
+    <dt>Tune</dt><dd>Both layers' pitch. <span class="range">±24 st</span></dd>
+    <dt>Decay</dt><dd>Scales every envelope's Length: tighter or longer. <span class="range">25 … 400 %</span></dd>
+    <dt>Velocity</dt><dd>How much the hit's velocity sets the pad's level. 0: every hit at full level. <span class="range">0 … 100 %</span></dd>
+    <dt>Chain</dt><dd>Lit: the pad plays through the effect chain. Off: straight to the output, dry; its sends still reach the effects.</dd>
+    <dt>Sends</dt><dd>Send 1–4, named after the slots' effects: how much of the pad goes to each effect on its own. <span class="range">0 … 100 %</span></dd>
+    <dt>Mute</dt><dd>Silences the pad.</dd>
+    <dt>Choke</dt><dd>Choke Group: pads in the same group (1–8) cut each other off: a closed hat stops the open one.</dd>
+    <dt>Colour</dt><dd>Pad Colour: the pad's colour, on the pad and in the editor while it's selected.</dd>
+  </dl>
+  <p>Level, Pan, Tune, Decay, Mute, Chain and the sends are host parameters for every pad, so you can automate them. Everything else is the pad's sound, saved with it.</p>
+</section>
+
+<section id="fx">
+  <h2>FX page</h2>
+  <p class="sub">The kit as a whole.</p>
+  <figure>
+    <img src="images/fx.jpg" alt="Impact's FX page">
+    <figcaption>The FX page: macros and the output level, a fader per pad in its colour, and the four effect slots.</figcaption>
+  </figure>
+  <dl class="params">
+    <dt>Macros</dt><dd>Eight knobs. Right-click any effect control to map it to one, over a range; route them in each pad's matrix; right-click a macro to rename it.</dd>
+    <dt>Output</dt><dd>Level: the whole kit's output level, after the effects. <span class="range">−48 … +6 dB</span></dd>
+    <dt>Mixer</dt><dd>Every pad's level, each fader in its pad's colour (the same as Level in its strip).</dd>
+    <dt>Effects</dt><dd>Four slots, starting as Compressor, EQ, Reverb and Delay, all off. Each has a menu (fourteen effects), an edit button that opens the effect's own editor with its live display, a power button, Mix (or Send) and its two most useful controls. Drag a slot by its grip to reorder.</dd>
+  </dl>
+</section>
+
+<section id="kits">
+  <h2>Kits and sounds</h2>
+  <p class="sub">Whole kits in the header, single drums per pad.</p>
+  <p>The header's presets are kits: all sixteen pads, the effects and the macros. <strong>Default</strong> is the built-in kit (Kick, Rim, Snare, Clap, Snap, three toms, three hats, Zap, Cowbell, Crash, Bell and Ride), then thirty designed kits:</p>
+  <table>
+    <tr><th>Genre</th><th>Kits</th></tr>
+    <tr><td>DnB</td><td>Darkside Coil, Halftime Fog, Jungle Splinter, Liquid Glass, Neuro Rust, Tech Scalpel</td></tr>
+    <tr><td>Dubstep</td><td>Deep Dungeon, Growl Pit, Riddim Gears, Swamp Step, Tear Out, Wub Foundry</td></tr>
+    <tr><td>Glitch</td><td>Bent Circuit, Bit Rot, Click Garden, Data Moth, Micro Shards, Stutter Lab</td></tr>
+    <tr><td>IDM</td><td>Braindance, Fractal Toys, Glass Ants, Lattice, Soft Machine, Wire Birds</td></tr>
+    <tr><td>Techno</td><td>Acid Tin, Dub Concrete, Hard Rivet, Hypno Loop, Rumble Hall, Warehouse Iron</td></tr>
+  </table>
+  <p><strong>SAVE</strong> stores the whole kit as a user preset; the menu also has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. To keep a single drum, use <strong>SOUND → Save Sound As…</strong>: it appears under <em>Yours</em> on every pad. A kit remembers where its samples are on your disk (it doesn't copy them): keep the files where they are, or the layers that play them fall silent.</p>
+</section>
+
+<section id="recipes">
+  <h2>Recipes</h2>
+  <p class="sub">Classic drums from scratch: Init the pad first (SOUND → Init Sound).</p>
+  <div class="grid">
+    <div class="card"><span class="tag">808 kick</span><p>Layer A Tonal sine at 50 Hz, Vol A a long decay (808 Decay), Mod 1 a fast drop → A Pitch +24 st. Overdrive at 20 %.</p></div>
+    <div class="card"><span class="tag">Snare</span><p>Layer A Tonal triangle at 180 Hz, short; Layer B Noise, Band-pass at 3 kHz, Vol B a Snap. Velocity → B Level.</p></div>
+    <div class="card"><span class="tag">Closed and open hat</span><p>Two pads of Metallic noise, High-pass at 7 kHz, one short, one long, both in Choke group 1.</p></div>
+    <div class="card"><span class="tag">FM rim</span><p>Layer A FM, Ratio 3.5x, Amount 60 %, Vol A 30 ms. Mod 1 → A FM Amount +40 % for the snap.</p></div>
+    <div class="card"><span class="tag">Roll</span><p>Vol A with the loop Forward over a short hit, Sync Note 1/32: hold the note for a roll, let go and it fades over Release.</p></div>
+    <div class="card"><span class="tag">Reverb send</span><p>Slot 3 Reverb on, Mix 0 %; on the snare, Send 3 at 30 %. Only the snare gets the room.</p></div>
+  </div>
+</section>
+
+<section id="specs">
+  <h2>Specifications</h2>
+  <p class="sub">The numbers.</p>
+  <table>
+    <tr><th>Property</th><th>Value</th></tr>
+    <tr><td>Pads</td><td>16, MIDI notes 36–51 (C1–D#2), choke groups 1–8</td></tr>
+    <tr><td>Layers</td><td>2 per pad: Tonal, Noise, FM, Wavetable, Sample</td></tr>
+    <tr><td>Modulation</td><td>6 drawn envelopes and an 8-slot matrix per pad; 8 macros</td></tr>
+    <tr><td>Drive · filter</td><td>Overdrive, Distortion, Fuzz at 2× oversampling; 14 filter types</td></tr>
+    <tr><td>Routing</td><td>Per pad: through the effect chain or straight out, plus four sends</td></tr>
+    <tr><td>Effects</td><td>4 slots, 14 effects</td></tr>
+    <tr><td>Kits</td><td>Default and 30 genre kits</td></tr>
+    <tr><td>CPU</td><td>A pad costs nothing once it has finished sounding; effects rest once their tails have died away</td></tr>
+    <tr><td>Formats</td><td>AU, VST3, Standalone (with an on-screen keyboard)</td></tr>
+  </table>
+</section>
+
+<footer>
+  <div class="sig">Robotic Audio</div>
+  Impact was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
+  Fonts: Big Shoulders Display and Inter, under the SIL Open Font License.
+</footer>
+
+</div>
+</main>
+<script>
+// Highlight the section being read in the contents
+const links = [...document.querySelectorAll("nav.toc a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+sections.forEach(s => s && observer.observe(s));
+</script>
+</body>
+</html>

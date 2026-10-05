@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parametric EQ Manual</title>
+<style>
+@font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Big Shoulders"; font-weight: 800; src: url("fonts/BigShouldersDisplay-ExtraBold.ttf") format("truetype"); }
+
+:root {
+  --bg: #0d0b0a;
+  --surface: #17120f;
+  --surface-2: #211a15;
+  --line: rgba(255, 236, 220, 0.10);
+  --line-strong: rgba(255, 236, 220, 0.22);
+  --text: #f4ece4;
+  --muted: #a99e94;
+  --ember: #2f6bff;
+  --fire: #22b8ff;
+  --hot: #a8f0ff;
+  --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
+  --radius: 14px;
+  --sidebar: 260px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 500 16px/1.65 "Inter", -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--hot); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Sidebar */
+nav.toc {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar);
+  overflow-y: auto; padding: 32px 24px 40px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+}
+nav.toc .brand { font: 600 11px/1 "Inter"; letter-spacing: .32em; color: var(--fire); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+nav.toc .brand::before { content: ""; width: 18px; height: 2px; background: var(--fire-gradient); }
+nav.toc .product { font: 800 34px/1 "Big Shoulders"; letter-spacing: .02em; margin: 10px 0 26px; text-transform: uppercase; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+nav.toc li { counter-increment: s; }
+nav.toc li a {
+  display: flex; gap: 12px; padding: 7px 10px; margin: 0 -10px; border-radius: 8px;
+  color: var(--muted); font-size: 14px;
+}
+nav.toc li a::before { content: counter(s, decimal-leading-zero); color: var(--line-strong); font-variant-numeric: tabular-nums; }
+nav.toc li a:hover, nav.toc li a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
+nav.toc li a.active::before { color: var(--fire); }
+
+main { margin-left: var(--sidebar); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+/* Hero */
+header.hero { position: relative; padding: 72px 0 40px; overflow: hidden; }
+header.hero::before {
+  content: ""; position: absolute; inset: -40% -10% auto; height: 520px;
+  background: radial-gradient(closest-side, rgba(47, 107, 255, .20), transparent);
+  pointer-events: none;
+}
+.kicker { font: 600 12px/1 "Inter"; letter-spacing: .34em; text-transform: uppercase; color: var(--fire); display: flex; align-items: center; gap: 12px; }
+.kicker::before { content: ""; width: 28px; height: 2px; background: var(--fire-gradient); }
+h1 {
+  font: 800 clamp(64px, 11vw, 132px)/.86 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em;
+  margin: 18px 0 18px;
+  background: linear-gradient(180deg, var(--text) 30%, #d9c9bb); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lede { font-size: 20px; line-height: 1.55; color: var(--text); max-width: 640px; margin: 0; }
+.lede em { font-style: normal; background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; padding: 0; list-style: none; }
+.facts li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+
+figure { margin: 32px 0; }
+figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); }
+figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+/* Sections */
+section { padding: 56px 0 8px; border-top: 1px solid var(--line); }
+h2 {
+  font: 800 52px/1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em; margin: 0 0 6px;
+}
+h2 + .sub { color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+h3 { font: 600 13px/1.2 "Inter"; letter-spacing: .24em; text-transform: uppercase; color: var(--hot); margin: 36px 0 12px; display: flex; align-items: center; gap: 10px; }
+h3::before { content: ""; width: 14px; height: 2px; background: var(--fire-gradient); }
+h4 { font: 800 24px/1.1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 4px; }
+p { margin: 0 0 14px; }
+strong { font-weight: 600; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* Parameter lists */
+dl.params { display: grid; grid-template-columns: 170px 1fr; gap: 0; margin: 0 0 18px; border-top: 1px solid var(--line); }
+dl.params dt, dl.params dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+dl.params dt { font: 600 12px/1.5 "Inter"; letter-spacing: .16em; text-transform: uppercase; color: var(--text); padding-right: 16px; padding-top: 13px; }
+dl.params dd { color: #e3d8ce; }
+dl.params dd .range { display: inline-block; margin-left: 8px; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+
+/* Cards and grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0 24px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.card p { margin: 6px 0 0; color: #e3d8ce; font-size: 15px; }
+.card .tag { font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--fire); }
+
+.callout { position: relative; background: linear-gradient(135deg, rgba(47, 107, 255,.10), rgba(168, 240, 255,.04)); border: 1px solid rgba(47, 107, 255,.35); border-radius: var(--radius); padding: 16px 20px 16px 52px; margin: 22px 0; }
+.callout::before { content: "✦"; position: absolute; left: 20px; top: 15px; color: var(--hot); font-size: 18px; }
+.callout strong { color: var(--hot); }
+
+kbd {
+  font: 600 12px/1 "Inter"; padding: 4px 7px; border-radius: 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  background: var(--surface-2); color: var(--text); white-space: nowrap;
+}
+table { width: 100%; border-collapse: collapse; margin: 8px 0 22px; font-size: 15px; }
+th { text-align: left; font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line-strong); }
+td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #e3d8ce; }
+td:first-child { color: var(--text); white-space: nowrap; }
+
+/* Signal flow */
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 20px; margin: 24px 0; overflow-x: auto; }
+.flow svg { display: block; min-width: 760px; width: 100%; height: auto; }
+
+/* Effects */
+.fx { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 22px 0 40px; }
+.fx img { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 10px 0 14px; }
+.fx .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.fx .head .what { color: var(--muted); }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 2px; transform: translateY(-1px); }
+
+footer { padding: 60px 0 80px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 40px; }
+footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+
+@media (max-width: 980px) {
+  nav.toc { position: static; width: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav.toc ol { columns: 2; }
+  main { margin-left: 0; }
+  .wrap { padding: 0 20px; }
+  dl.params { grid-template-columns: 1fr; }
+  dl.params dt { border-bottom: 0; padding-bottom: 0; }
+}
+@media print {
+  :root { --bg: #fff; --surface: #f6f2ee; --surface-2: #eee7e0; --text: #1a1410; --muted: #6e6259; --line: #e4dbd2; --line-strong: #cfc3b8; }
+  nav.toc { display: none; }
+  main { margin: 0; }
+  section { break-inside: avoid-page; }
+  h1 { color: #1a1410; background: none; }
+  dl.params dd, td, .card p { color: #2a2018; }
+}
+
+/* Block diagrams */
+.flow svg text { fill: var(--text); font-weight: 600; font-size: 13.5px; text-anchor: middle; }
+.flow svg text.sub { fill: var(--muted); font-weight: 500; font-size: 11px; }
+.flow svg .box { fill: var(--surface-2); stroke: var(--line-strong); }
+.flow svg .box.hot { stroke: url(#g); }
+.flow svg .pill { fill: var(--bg); stroke: var(--line-strong); }
+.flow svg .frame { fill: none; stroke: var(--line-strong); stroke-dasharray: 6 6; }
+.flow svg .wire { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.flow svg .dash { stroke-dasharray: 5 5; }
+.flow svg .arrow { fill: var(--muted); }
+.flow svg .tick { stroke: var(--line-strong); stroke-width: 1; }
+.flow svg .head { stroke: var(--hot); stroke-width: 2.5; fill: none; }
+svg.defs { position: absolute; width: 0; height: 0; }
+
+/* Curves */
+.plots { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: center; margin: 18px 0 24px; }
+.plots.three { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: start; gap: 14px; }
+.plot { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.plot h4 { margin: 2px 0 10px; }
+.plot svg { display: block; width: 100%; height: auto; }
+.plot svg text { fill: var(--muted); font-size: 10px; font-weight: 500; }
+.plot .axis { fill: none; stroke: var(--line-strong); }
+.plot .grid { fill: none; stroke: var(--line); }
+.plot .knee { fill: none; stroke: var(--line-strong); stroke-dasharray: 2 4; }
+.plot .ref { fill: none; stroke: var(--line-strong); stroke-dasharray: 4 4; }
+.plot .c1, .plot .c2, .plot .c3 { fill: none; stroke-width: 2; stroke-linejoin: round; }
+.plot .c1 { stroke: var(--muted); }
+.plot .c2 { stroke: var(--fire); }
+.plot .c3 { stroke: var(--hot); }
+.legend { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 12px; margin-top: 10px; }
+.legend span { display: inline-block; width: 14px; height: 2px; margin-left: 8px; }
+.legend span:first-child { margin-left: 0; }
+.legend .k1 { background: var(--muted); } .legend .k2 { background: var(--fire); } .legend .k3 { background: var(--hot); }
+.plot-text p:last-child { margin-bottom: 0; }
+.formula { font: 600 17px/1.4 "Inter"; color: var(--hot); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 18px; display: inline-block; }
+@media (max-width: 720px) { .plots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<svg class="defs" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#2f6bff"/><stop offset=".45" stop-color="#22b8ff"/><stop offset="1" stop-color="#a8f0ff"/></linearGradient><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z" fill="#a99e94"/></marker></defs></svg>
+
+<nav class="toc" aria-label="Contents">
+  <div class="brand">Robotic Audio</div>
+  <div class="product">Parametric EQ</div>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#overview">The window</a></li>
+    <li><a href="#graph">The graph</a></li>
+    <li><a href="#types">Band types</a></li>
+    <li><a href="#controls">Band and output</a></li>
+    <li><a href="#presets">Presets</a></li>
+    <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#specs">Specifications</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Robotic Audio · User manual</div>
+  <h1>Parametric EQ</h1>
+  <p class="lede">Eight bands, each <em>any filter you need</em>: steep cuts, shelves, bells and notches, dragged straight on the graph over the live spectrum of what comes out. Quick enough for everyday mixing, precise enough for surgery.</p>
+  <ul class="facts">
+    <li>8 bands</li>
+    <li>8 filter types</li>
+    <li>12 and 48 dB/oct cuts</li>
+    <li>Drag on the graph</li>
+    <li>Scale every gain at once</li>
+    <li>Live spectrum</li>
+    <li>8 factory presets</li>
+    <li>AU · VST3 · Standalone</li>
+  </ul>
+  <figure>
+    <img src="images/parametriceq.jpg" alt="Parametric EQ's window">
+    <figcaption>Parametric EQ on its Vocal Polish preset: the graph with the numbered band dots over the output's spectrum, the eight bands' switches and types, the selected band's knobs and the output.</figcaption>
+  </figure>
+</header>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">From flat to finished.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">01</span><h4>Insert it</h4><p>At Default it does nothing: bands 2–7 are on but flat, the two cuts (1 and 8) are off.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Drag a dot</h4><p>Sideways for the frequency, up or down for the gain. Scroll on it for the width (Q).</p></div>
+    <div class="card"><span class="tag">03</span><h4>Cut the rumble</h4><p>Double-click dot <strong>1</strong> to switch the low cut on, then drag it up to just under the lowest note you want to keep.</p></div>
+    <div class="card"><span class="tag">04</span><h4>Match the level</h4><p>Use <strong>Output</strong> to match the level after boosting, then compare with the power button.</p></div>
+  </div>
+  <div class="callout"><strong>Fine control.</strong> Double-click a knob to reset it; <kbd>Cmd</kbd>, <kbd>Ctrl</kbd> or <kbd>Alt</kbd> while dragging a knob gives fine steps. Hover over anything and the strip along the bottom says what it does.</div>
+</section>
+
+<section id="overview">
+  <h2>The window</h2>
+  <p class="sub">The graph, the bands, the selected band.</p>
+  <dl class="params">
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits.</dd>
+    <dt>Graph</dt><dd>The whole EQ's curve and the eight numbered dots over the output's spectrum. See <a href="#graph">The graph</a>.</dd>
+    <dt>Bands</dt><dd>A switch (1–8) and a type menu per band. Click either to select that band; a lit line under its menu marks the selected one.</dd>
+    <dt>Band</dt><dd>The selected band's number and type in the title, and its Freq, Gain and Q knobs.</dd>
+    <dt>Output</dt><dd>Scale and Output.</dd>
+    <dt>Tooltip strip</dt><dd>Along the bottom: what the control under the mouse does.</dd>
+  </dl>
+  <p>The window can be resized: drag its bottom-right corner.</p>
+</section>
+
+<section id="graph">
+  <h2>The graph</h2>
+  <p class="sub">Where most of the work happens.</p>
+  <p>Frequency runs across (20 Hz to 20 kHz, logarithmic), gain up and down (±15 dB). The bright line is the whole EQ's real response; the selected band's own shape is shaded under it in its colour.</p>
+  <table>
+    <tr><th>Do this</th><th>To</th></tr>
+    <tr><td>Click a dot</td><td>select its band</td></tr>
+    <tr><td>Drag a dot sideways</td><td>move its frequency</td></tr>
+    <tr><td>Drag a dot up or down</td><td>boost or cut (bells and shelves); for cuts and notches, a sharper (higher) Q</td></tr>
+    <tr><td>Scroll on a dot (or anywhere, for the selected band)</td><td>change its Q</td></tr>
+    <tr><td>Double-click a dot</td><td>switch its band on or off</td></tr>
+  </table>
+  <p>Dots of bands that are off are drawn dim, so you can still grab and move them. The spectrum behind is the output's, tilted so music looks roughly level; it settles when the sound stops.</p>
+</section>
+
+<section id="types">
+  <h2>Band types</h2>
+  <p class="sub">Any band can be any type.</p>
+  <dl class="params">
+    <dt>Low Cut 48</dt><dd>Removes everything below the frequency, steeply (48 dB per octave): rumble, handling noise, mud on tracks that don't need lows. Q sets the resonance at the corner.</dd>
+    <dt>Low Cut 12</dt><dd>A gentle low cut (12 dB per octave). With a high Q it peaks at the corner: a classic resonant high-pass.</dd>
+    <dt>Low Shelf</dt><dd>Raises or lowers everything below the frequency.</dd>
+    <dt>Bell</dt><dd>Boosts or cuts round the frequency; Q is how narrow.</dd>
+    <dt>Notch</dt><dd>Removes a narrow band entirely: hum, a whistle, a ringing tom. Higher Q is narrower.</dd>
+    <dt>High Shelf</dt><dd>Raises or lowers everything above the frequency.</dd>
+    <dt>High Cut 12</dt><dd>A gentle high cut (12 dB per octave), resonant with a high Q.</dd>
+    <dt>High Cut 48</dt><dd>Removes everything above the frequency, steeply.</dd>
+  </dl>
+  <p>Switching a band on or off, or to another type, crossfades it over 10 ms, so it never clicks, even while playing. Frequency, gain and Q glide when they move, so sweeps and automation stay smooth.</p>
+</section>
+
+<section id="controls">
+  <h2>Band and output</h2>
+  <p class="sub">Numbers for what the dots do, and two controls for everything.</p>
+  <h3>Band</h3>
+  <dl class="params">
+    <dt>On (1–8)</dt><dd>Each band's switch, in the Bands card. Off, a band costs nothing.</dd>
+    <dt>Type</dt><dd>The band's filter (see <a href="#types">Band types</a>).</dd>
+    <dt>Freq</dt><dd>Where the band works. <span class="range">20 Hz … 20 kHz</span></dd>
+    <dt>Gain</dt><dd>Boost or cut, for bells and shelves (greyed out for cuts and notches). <span class="range">±15 dB</span></dd>
+    <dt>Q</dt><dd>The width: higher is narrower. For cuts, the resonance at the corner. 0.71 is the default: smooth, no peak. <span class="range">0.10 … 18</span></dd>
+  </dl>
+  <h3>Output</h3>
+  <dl class="params">
+    <dt>Scale</dt><dd>Every band's gain, scaled: 100 % as set, 50 % half as much, 0 % flat, and negative turns boosts into cuts. Cuts and notches are left alone. <span class="range">−200 … +200 %</span></dd>
+    <dt>Output</dt><dd>The level after the EQ, to match a boost or a cut. <span class="range">±18 dB</span></dd>
+  </dl>
+  <div class="callout"><strong>Scale to taste.</strong> Set up the curve a little too strong, so you clearly hear what it does, then turn Scale down until it sits. Or flip it to −100 % to hear the opposite.</div>
+</section>
+
+<section id="presets">
+  <h2>Presets</h2>
+  <p class="sub">Eight starting points, and room for your own.</p>
+  <table>
+    <tr><th>Preset</th><th>What it does</th></tr>
+    <tr><td>Default</td><td>Flat: bands 2–7 on at 0 dB, cuts off.</td></tr>
+    <tr><td>Vocal Polish</td><td>Low cut at 90 Hz, less boxiness at 300 Hz, presence at 3.2 kHz, a little less sibilance at 6.5 kHz and air on top.</td></tr>
+    <tr><td>Kick Punch</td><td>Weight at 60 Hz, less cardboard at 350 Hz, click at 4 kHz.</td></tr>
+    <tr><td>Bass Tighten</td><td>Low cut at 35 Hz, a low shelf, less mud at 250 Hz and a gentle high cut at 5 kHz.</td></tr>
+    <tr><td>Mix Bus Air</td><td>A gentle low cut, a touch of low shelf, a wide dip at 400 Hz and a high shelf.</td></tr>
+    <tr><td>Hum Notch</td><td>Notches at 50, 100 and 150 Hz for mains hum.</td></tr>
+    <tr><td>Telephone</td><td>Steep cuts at 400 Hz and 3.2 kHz, the middle pushed.</td></tr>
+    <tr><td>Resonant Sweep</td><td>Resonant 12 dB cuts at both ends, ready to automate.</td></tr>
+  </table>
+  <p>Press <strong>SAVE</strong> in the header to keep your own. The preset menu has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. An asterisk after the preset's name means you've changed something since loading it. Every control is a host parameter and can be automated.</p>
+</section>
+
+<section id="recipes">
+  <h2>Recipes</h2>
+  <p class="sub">Settings to start from; then use your ears.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Search and destroy</span><p>A Bell at +12 dB, Q 6. Sweep it until something rings or honks, then pull the gain down to −4 dB.</p></div>
+    <div class="card"><span class="tag">60 Hz hum</span><p>Hum Notch, then move the three notches to 60, 120 and 180 Hz.</p></div>
+    <div class="card"><span class="tag">Make it smaller</span><p>Low Cut 48 at 200 Hz and High Cut 48 at 6 kHz for a voice in another room, or a bass in a breakdown.</p></div>
+    <div class="card"><span class="tag">Filter build-up</span><p>Resonant Sweep, then automate band 1's Freq from 20 Hz up to 1 kHz over eight bars.</p></div>
+    <div class="card"><span class="tag">Gentle master</span><p>Mix Bus Air at Scale 50 %: the same tilt, half as strong.</p></div>
+  </div>
+</section>
+
+<section id="specs">
+  <h2>Specifications</h2>
+  <p class="sub">The numbers.</p>
+  <table>
+    <tr><th>Property</th><th>Value</th></tr>
+    <tr><td>Bands</td><td>8, in series, each with its own type</td></tr>
+    <tr><td>Types</td><td>Low Cut 48 and 12, Low Shelf, Bell, Notch, High Shelf, High Cut 12 and 48</td></tr>
+    <tr><td>Range</td><td>20 Hz – 20 kHz; ±15 dB; Q 0.1 – 18; output ±18 dB; Scale ±200 %</td></tr>
+    <tr><td>48 dB cuts</td><td>Four Butterworth stages; Q sets the resonance of the last</td></tr>
+    <tr><td>Switching</td><td>On, off and type changes crossfade over 10 ms</td></tr>
+    <tr><td>Spectrum</td><td>4096-point FFT of the output</td></tr>
+    <tr><td>Latency</td><td>None</td></tr>
+    <tr><td>CPU</td><td>Bands that are off, or flat bells and shelves, cost nothing; rests while silence comes in</td></tr>
+    <tr><td>Channels</td><td>Stereo (mono tracks work too)</td></tr>
+    <tr><td>Formats</td><td>AU, VST3, Standalone</td></tr>
+  </table>
+</section>
+
+<footer>
+  <div class="sig">Robotic Audio</div>
+  Parametric EQ was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
+  Fonts: Big Shoulders Display and Inter, under the SIL Open Font License.
+</footer>
+
+</div>
+</main>
+<script>
+// Highlight the section being read in the contents
+const links = [...document.querySelectorAll("nav.toc a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+sections.forEach(s => s && observer.observe(s));
+</script>
+</body>
+</html>

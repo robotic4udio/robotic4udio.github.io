@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Splicer Manual</title>
+<style>
+@font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Big Shoulders"; font-weight: 800; src: url("fonts/BigShouldersDisplay-ExtraBold.ttf") format("truetype"); }
+
+:root {
+  --bg: #0d0b0a;
+  --surface: #17120f;
+  --surface-2: #211a15;
+  --line: rgba(255, 236, 220, 0.10);
+  --line-strong: rgba(255, 236, 220, 0.22);
+  --text: #f4ece4;
+  --muted: #a99e94;
+  --ember: #b4581c;
+  --fire: #e08a2c;
+  --hot: #ffc46b;
+  --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
+  --radius: 14px;
+  --sidebar: 260px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 500 16px/1.65 "Inter", -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--hot); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Sidebar */
+nav.toc {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar);
+  overflow-y: auto; padding: 32px 24px 40px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+}
+nav.toc .brand { font: 600 11px/1 "Inter"; letter-spacing: .32em; color: var(--fire); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+nav.toc .brand::before { content: ""; width: 18px; height: 2px; background: var(--fire-gradient); }
+nav.toc .product { font: 800 34px/1 "Big Shoulders"; letter-spacing: .02em; margin: 10px 0 26px; text-transform: uppercase; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+nav.toc li { counter-increment: s; }
+nav.toc li a {
+  display: flex; gap: 12px; padding: 7px 10px; margin: 0 -10px; border-radius: 8px;
+  color: var(--muted); font-size: 14px;
+}
+nav.toc li a::before { content: counter(s, decimal-leading-zero); color: var(--line-strong); font-variant-numeric: tabular-nums; }
+nav.toc li a:hover, nav.toc li a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
+nav.toc li a.active::before { color: var(--fire); }
+
+main { margin-left: var(--sidebar); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+/* Hero */
+header.hero { position: relative; padding: 72px 0 40px; overflow: hidden; }
+header.hero::before {
+  content: ""; position: absolute; inset: -40% -10% auto; height: 520px;
+  background: radial-gradient(closest-side, rgba(224, 138, 44, .20), transparent);
+  pointer-events: none;
+}
+.kicker { font: 600 12px/1 "Inter"; letter-spacing: .34em; text-transform: uppercase; color: var(--fire); display: flex; align-items: center; gap: 12px; }
+.kicker::before { content: ""; width: 28px; height: 2px; background: var(--fire-gradient); }
+h1 {
+  font: 800 clamp(64px, 11vw, 132px)/.86 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em;
+  margin: 18px 0 18px;
+  background: linear-gradient(180deg, var(--text) 30%, #d9c9bb); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lede { font-size: 20px; line-height: 1.55; color: var(--text); max-width: 640px; margin: 0; }
+.lede em { font-style: normal; background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; padding: 0; list-style: none; }
+.facts li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+
+figure { margin: 32px 0; }
+figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); }
+figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+/* Sections */
+section { padding: 56px 0 8px; border-top: 1px solid var(--line); }
+h2 {
+  font: 800 52px/1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em; margin: 0 0 6px;
+}
+h2 + .sub { color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+h3 { font: 600 13px/1.2 "Inter"; letter-spacing: .24em; text-transform: uppercase; color: var(--hot); margin: 36px 0 12px; display: flex; align-items: center; gap: 10px; }
+h3::before { content: ""; width: 14px; height: 2px; background: var(--fire-gradient); }
+h4 { font: 800 24px/1.1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 4px; }
+p { margin: 0 0 14px; }
+strong { font-weight: 600; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* Parameter lists */
+dl.params { display: grid; grid-template-columns: 170px 1fr; gap: 0; margin: 0 0 18px; border-top: 1px solid var(--line); }
+dl.params dt, dl.params dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+dl.params dt { font: 600 12px/1.5 "Inter"; letter-spacing: .16em; text-transform: uppercase; color: var(--text); padding-right: 16px; padding-top: 13px; }
+dl.params dd { color: #e3d8ce; }
+dl.params dd .range { display: inline-block; margin-left: 8px; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+
+/* Cards and grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0 24px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.card p { margin: 6px 0 0; color: #e3d8ce; font-size: 15px; }
+.card .tag { font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--fire); }
+
+.callout { position: relative; background: linear-gradient(135deg, rgba(224, 138, 44,.10), rgba(255, 196, 107,.04)); border: 1px solid rgba(224, 138, 44,.35); border-radius: var(--radius); padding: 16px 20px 16px 52px; margin: 22px 0; }
+.callout::before { content: "✦"; position: absolute; left: 20px; top: 15px; color: var(--hot); font-size: 18px; }
+.callout strong { color: var(--hot); }
+
+kbd {
+  font: 600 12px/1 "Inter"; padding: 4px 7px; border-radius: 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  background: var(--surface-2); color: var(--text); white-space: nowrap;
+}
+table { width: 100%; border-collapse: collapse; margin: 8px 0 22px; font-size: 15px; }
+th { text-align: left; font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line-strong); }
+td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #e3d8ce; }
+td:first-child { color: var(--text); white-space: nowrap; }
+
+/* Signal flow */
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 20px; margin: 24px 0; overflow-x: auto; }
+.flow svg { display: block; min-width: 760px; width: 100%; height: auto; }
+
+/* Effects */
+.fx { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 22px 0 40px; }
+.fx img { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 10px 0 14px; }
+.fx .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.fx .head .what { color: var(--muted); }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 2px; transform: translateY(-1px); }
+
+footer { padding: 60px 0 80px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 40px; }
+footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+
+@media (max-width: 980px) {
+  nav.toc { position: static; width: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav.toc ol { columns: 2; }
+  main { margin-left: 0; }
+  .wrap { padding: 0 20px; }
+  dl.params { grid-template-columns: 1fr; }
+  dl.params dt { border-bottom: 0; padding-bottom: 0; }
+}
+@media print {
+  :root { --bg: #fff; --surface: #f6f2ee; --surface-2: #eee7e0; --text: #1a1410; --muted: #6e6259; --line: #e4dbd2; --line-strong: #cfc3b8; }
+  nav.toc { display: none; }
+  main { margin: 0; }
+  section { break-inside: avoid-page; }
+  h1 { color: #1a1410; background: none; }
+  dl.params dd, td, .card p { color: #2a2018; }
+}
+
+/* Block diagrams */
+.flow svg text { fill: var(--text); font-weight: 600; font-size: 13.5px; text-anchor: middle; }
+.flow svg text.sub { fill: var(--muted); font-weight: 500; font-size: 11px; }
+.flow svg .box { fill: var(--surface-2); stroke: var(--line-strong); }
+.flow svg .box.hot { stroke: url(#g); }
+.flow svg .pill { fill: var(--bg); stroke: var(--line-strong); }
+.flow svg .frame { fill: none; stroke: var(--line-strong); stroke-dasharray: 6 6; }
+.flow svg .wire { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.flow svg .dash { stroke-dasharray: 5 5; }
+.flow svg .arrow { fill: var(--muted); }
+.flow svg .tick { stroke: var(--line-strong); stroke-width: 1; }
+.flow svg .head { stroke: var(--hot); stroke-width: 2.5; fill: none; }
+svg.defs { position: absolute; width: 0; height: 0; }
+
+/* Curves */
+.plots { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: center; margin: 18px 0 24px; }
+.plots.three { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: start; gap: 14px; }
+.plot { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.plot h4 { margin: 2px 0 10px; }
+.plot svg { display: block; width: 100%; height: auto; }
+.plot svg text { fill: var(--muted); font-size: 10px; font-weight: 500; }
+.plot .axis { fill: none; stroke: var(--line-strong); }
+.plot .grid { fill: none; stroke: var(--line); }
+.plot .knee { fill: none; stroke: var(--line-strong); stroke-dasharray: 2 4; }
+.plot .ref { fill: none; stroke: var(--line-strong); stroke-dasharray: 4 4; }
+.plot .c1, .plot .c2, .plot .c3 { fill: none; stroke-width: 2; stroke-linejoin: round; }
+.plot .c1 { stroke: var(--muted); }
+.plot .c2 { stroke: var(--fire); }
+.plot .c3 { stroke: var(--hot); }
+.legend { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 12px; margin-top: 10px; }
+.legend span { display: inline-block; width: 14px; height: 2px; margin-left: 8px; }
+.legend span:first-child { margin-left: 0; }
+.legend .k1 { background: var(--muted); } .legend .k2 { background: var(--fire); } .legend .k3 { background: var(--hot); }
+.plot-text p:last-child { margin-bottom: 0; }
+.formula { font: 600 17px/1.4 "Inter"; color: var(--hot); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 18px; display: inline-block; }
+@media (max-width: 720px) { .plots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<svg class="defs" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#b4581c"/><stop offset=".45" stop-color="#e08a2c"/><stop offset="1" stop-color="#ffc46b"/></linearGradient><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z" fill="#a99e94"/></marker></defs></svg>
+
+<nav class="toc" aria-label="Contents">
+  <div class="brand">Robotic Audio</div>
+  <div class="product">Splicer</div>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#overview">The window</a></li>
+    <li><a href="#flow">Signal flow</a></li>
+    <li><a href="#chance">Chance, seeds &amp; repeatability</a></li>
+    <li><a href="#cuts">The generator</a></li>
+    <li><a href="#procedures">Procedures</a></li>
+    <li><a href="#gestures">Gestures</a></li>
+    <li><a href="#lanes">Effect lanes</a></li>
+    <li><a href="#motion">Motion &amp; ranges</a></li>
+    <li><a href="#modes">Modes</a></li>
+    <li><a href="#patterns">Patterns</a></li>
+    <li><a href="#song">Song</a></li>
+    <li><a href="#perform">Perform</a></li>
+    <li><a href="#midi">MIDI</a></li>
+    <li><a href="#display">The display</a></li>
+    <li><a href="#presets">Presets &amp; bypass</a></li>
+    <li><a href="#ideas">Ideas</a></li>
+    <li><a href="#specs">Specifications</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Robotic Audio · User manual</div>
+  <h1>Splicer</h1>
+  <p class="lede">A probabilistic cut-and-effects machine. Splicer slices whatever passes through it in time with your song, then <em>repeats, reverses, re-pitches, tape-stops and reorders</em> the slices, and throws filters, crushers, drive, gates, echoes and reverb at them. You design the cuts as patterns, or let the generator write them by chance inside bounds you set, then string patterns together into a song.</p>
+  <ul class="facts">
+    <li>BBCut-style cut engine</li>
+    <li>5 cut procedures on a strict grid</li>
+    <li>6 effect lanes with range knobs</li>
+    <li>Repeatable randomness</li>
+    <li>16 editable patterns and a song chain</li>
+    <li>Hand-played gestures and MIDI</li>
+    <li>Tempo synced</li>
+    <li>AU · VST3 · Standalone</li>
+  </ul>
+  <figure>
+    <img src="images/splicer.jpg" alt="Splicer's window">
+    <figcaption>Splicer's PATTERN page: the history on top, then the tabs, the sixteen patterns and the mode; the selected pattern's editor, the whole width, and the Generator panel with its recipe below.</figcaption>
+  </figure>
+</header>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">From install to mangled breaks in a minute.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">01</span><h4>Insert it</h4><p>Put Splicer on a drum loop, a bus or a whole mix and press play in your DAW. Splicer follows the song's tempo and position.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Watch the map</h4><p>The phrase map shows the pattern playing: pink for repeats, blue for reversed ones, amber ramps for tape stops and starts.</p></div>
+    <div class="card"><span class="tag">03</span><h4>Generate</h4><p>On the PATTERN page, choose a <strong>Procedure</strong> and set the Generator panel's knobs, then press <strong>GENERATE</strong>: the generator writes a new pattern into the selected slot. Press again for another.</p></div>
+    <div class="card"><span class="tag">04</span><h4>Edit it</h4><p>On the <strong>PATTERN</strong> page, <kbd>Shift</kbd>-drag to mark a region and add or clear gestures, or randomize just that part.</p></div>
+    <div class="card"><span class="tag">05</span><h4>Make a song</h4><p>Fill more slots, then chain them on the <strong>SONG</strong> page and set Mode to Song.</p></div>
+    <div class="card"><span class="tag">06</span><h4>Play it by hand</h4><p>Hold <strong>STUTTER</strong>, <strong>REVERSE</strong>, <strong>TAPE STOP</strong> or <strong>FREEZE</strong>, or play them from a MIDI keyboard.</p></div>
+  </div>
+  <div class="callout"><strong>Same song position, same result.</strong> Patterns play in step with the song, and their chances are seeded by the song position, so what you heard is what you get when you play the section again or bounce it.</div>
+</section>
+
+<section id="overview">
+  <h2>The window</h2>
+  <p class="sub">What's where.</p>
+  <dl class="params">
+    <dt>Header</dt><dd>The preset bar, the power button (bypass) and the menu (three lines) with this manual, About and the website.</dd>
+    <dt>Displays</dt><dd>The last 10 seconds in (with markers where a cut reads from: <strong>RPT</strong> repeats, <strong>REV</strong> reversed, <strong>TAPE</strong> tape stops and starts, <strong>FRZ</strong> freeze) and out. They stay on every page.</dd>
+    <dt>Pages, patterns, mode</dt><dd>On every page, one row: the page tabs, the sixteen patterns <strong>A</strong> to <strong>P</strong> (click one to select it) and the <strong>MODE</strong> menu, Pattern or Song (see <a href="#modes">Modes</a>).</dd>
+    <dt>PATTERN page</dt><dd>The selected pattern's editor, with the <strong>Generator</strong> panel below it: the pattern's recipe (how it's cut, which gestures, how often each effect is used), <strong>GENERATE</strong> and <strong>RANDOMIZE REGION</strong>. See <a href="#patterns">Patterns</a> and <a href="#cuts">The generator</a>.</dd>
+    <dt>EFFECTS page</dt><dd>The phrase map (what plays, effects included), how each of the six effects sounds (motion and two ranges) and <strong>Perform</strong>: Chaos, the seed, Mix and the gestures played by hand.</dd>
+    <dt>SONG page</dt><dd>The chain of patterns Song mode plays.</dd>
+    <dt>Tooltip bar</dt><dd>Along the bottom: point at any control to see what it does.</dd>
+  </dl>
+</section>
+
+<section id="flow">
+  <h2>Signal flow</h2>
+  <p class="sub">A recorder, a cut engine and a fixed chain of effects.</p>
+  <div class="flow">
+    <svg viewBox="0 0 1000 250" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <text x="34" y="65">IN</text>
+      <rect class="box hot" x="90" y="100" width="140" height="70" rx="10"/>
+      <text x="160" y="130">HISTORY</text><text class="sub" x="160" y="148">30 s, always recording</text>
+      <rect class="box hot" x="260" y="100" width="140" height="70" rx="10"/>
+      <text x="330" y="130">CUT ENGINE</text><text class="sub" x="330" y="148">reads where the plan says</text>
+      <rect class="box" x="430" y="100" width="70" height="70" rx="10"/><text x="465" y="140">FILTER</text>
+      <rect class="box" x="510" y="100" width="70" height="70" rx="10"/><text x="545" y="140">CRUSH</text>
+      <rect class="box" x="590" y="100" width="70" height="70" rx="10"/><text x="625" y="140">DRIVE</text>
+      <rect class="box" x="670" y="100" width="70" height="70" rx="10"/><text x="705" y="140">GATE</text>
+      <rect class="box" x="750" y="100" width="70" height="70" rx="10"/><text x="785" y="134">DELAY</text><text class="sub" x="785" y="150">send</text>
+      <rect class="box" x="830" y="100" width="70" height="70" rx="10"/><text x="865" y="134">REVERB</text><text class="sub" x="865" y="150">send</text>
+      <circle class="box" cx="940" cy="60" r="16"/><text x="940" y="66" style="font-size: 18px">+</text>
+      <text x="975" y="110">OUT</text>
+      <g class="wire" marker-end="url(#a)">
+        <path d="M52 60 H922"/>
+        <path d="M70 60 V135 H88"/>
+        <path d="M230 135 H258"/><path d="M400 135 H428"/><path d="M500 135 H508"/><path d="M580 135 H588"/>
+        <path d="M660 135 H668"/><path d="M740 135 H748"/><path d="M820 135 H828"/>
+        <path d="M900 135 H940 V78"/>
+        <path d="M956 60 C970 60 975 80 975 95"/>
+      </g>
+      <text class="sub" x="500" y="48">dry (Mix)</text>
+      <text class="sub" x="500" y="205">The plan decides, per block, what the engine reads and which lanes are on;</text>
+      <text class="sub" x="500" y="222">the delay and reverb tails keep ringing after a block ends.</text>
+    </svg>
+  </div>
+  <p>Everything that comes in is first written into a 30-second <strong>history</strong>. The <strong>cut engine</strong> then plays from it: while a block plays live it reads the sample that has just arrived, so nothing changes; during a cut it reads from wherever the plan says, forwards, backwards, faster, slower, or from further back in time. Every jump is crossfaded, so cuts don't click.</p>
+  <p>The engine's output runs through the <strong>effect lanes</strong> in a fixed order: filter, crush, drive, gate, then the delay and reverb throws. A lane only does anything while it is on for the block playing; switching fades over a few milliseconds. The delay and reverb are sends: sound goes in while the lane is on, and the tails ring out across the blocks that follow.</p>
+  <p><strong>Mix</strong> blends the dry input with all of this. The drive is oversampled, which delays the sound by a few samples; Splicer reports this to your host, which compensates for it.</p>
+</section>
+
+<section id="chance">
+  <h2>Chance, seeds &amp; repeatability</h2>
+  <p class="sub">Random, but the same every time.</p>
+  <p>Chance works in two places. The <strong>generator</strong> uses it to write patterns: GENERATE (and RANDOMIZE on the PATTERN page) draws a fresh seed every time, so each press writes something new, inside the bounds of the pattern's recipe (the Generator panel). And a pattern's blocks can have a <strong>chance</strong> of happening each time round, drawn from the seed and the song position: play bar 17 twice and you hear the same thing twice, and a bounce matches what you heard.</p>
+  <dl class="params">
+    <dt>Seed</dt><dd>Shown under Chaos: which way the blocks' chances fall. <strong>REROLL</strong> picks a new one at random. It's saved with your session and in presets, and can be automated. <span class="range">1 – 9999</span></dd>
+    <dt>Settings</dt><dd>The generator draws its own random numbers for each decision, so changing one setting changes only what it controls: with the same seed, turning up Reverse makes more blocks reversed, but the cuts themselves stay where they were.</dd>
+  </dl>
+  <div class="callout"><strong>Without a playing host</strong> (the standalone app, or with the transport stopped) Splicer runs its own clock at the host's tempo, or at 120 BPM.</div>
+</section>
+
+<section id="cuts">
+  <h2>The generator</h2>
+  <p class="sub">The engine: how the phrase is sliced.</p>
+  <dl class="params">
+    <dt>Recipes</dt><dd>The Generator panel under the editor on the PATTERN page shows the <strong>selected pattern's recipe</strong>: each pattern keeps its own settings, so a breaks pattern and a sparse glitch pattern sit side by side. Select another pattern and the panel shows its recipe; turn a knob and it's that pattern's recipe now (undo brings back the old one). <strong>GENERATE</strong> writes the whole pattern from it, <strong>RANDOMIZE REGION</strong> only the edit region; each press draws a fresh seed.</dd>
+    <dt>Procedure</dt><dd>The rules for slicing the phrase into blocks and repeats (see <a href="#procedures">Procedures</a>).</dd>
+    <dt>Optimized For</dt><dd>Leans everything towards your material without changing how anything works. <strong>Breaks</strong>: tight 2.5 ms crossfades, busy cutting. <strong>Mix / Bus</strong>: longer blocks, fewer repeats, more delay and reverb throws, less crushing. <strong>Melodic</strong>: smooth 12 ms crossfades, longer blocks, more reverse, pitch, tape and reverb, less gating. <strong>Performance</strong>: few automatic cuts and effects, so you can play the gestures by hand.</dd>
+    <dt>Grid</dt><dd>The step the cutting patterns are made of. Every block starts on it: at 1/8 (the default) every cut falls on an 8th note. Reach and the hand-played stutter are counted in it too. <span class="range">1/4, 1/8, 1/16</span></dd>
+    <dt>Density</dt><dd>How many blocks are cut; the rest play live. Where a block starts matters: the phrase's first beat nearly always comes through clean, bar downbeats are cut less, and cutting builds up through the last bar. <span class="range">0 – 100 %</span></dd>
+    <dt>Repeats</dt><dd>A range knob: how many times a cut block is repeated, picked inside the range for every cut and moved to the nearest count that divides the block musically: 1, 2, 4, 8 or 16 (a block of three units: 1, 3, 6 or 12). The repeats share the block's length: at the default of 2, a quarter-note block plays an 8th note twice. <span class="range">1 – 16</span></dd>
+    <dt>Roll</dt><dd>How often a cut becomes a roll: 8ths, then 16ths, then 32nds, each taking half of what's left (repeats of a block). Rolls happen mostly in the phrase's last bar. Negative values slow down instead (32nds to 8ths). <span class="range">−100 – +100 %</span></dd>
+    <dt>Fill</dt><dd>The chance a phrase ends with a fill: its last half or quarter bar becomes a roll (or now and then a tape stop), leading into the next phrase. <span class="range">0 – 100 %</span></dd>
+    <dt>Triplets</dt><dd>The chance a cut divides into threes (3, 6 or 12 repeats) instead. Turn it to 0 for none. <span class="range">0 – 100 %</span></dd>
+    <dt>Reach</dt><dd>A range knob: how far back, in beats, the repeats come from. At 0 a block repeats its own start: the first repeat is the live sound, the rest replay it. Further back plays music from earlier in the history, which reorders the song. <span class="range">0 – 8 beats</span></dd>
+  </dl>
+  <h3>Never ahead of time</h3>
+  <p>Splicer has no latency, so it can only play what has already been heard. Where a cut would need audio from the future (a reversed repeat of a block that has only just begun, or a pitched-up repeat that would run past "now"), its source moves back in time just far enough. The result: a reversed block at Reach 0 plays the audio just before the block backwards.</p>
+</section>
+
+<section id="procedures">
+  <h2>Procedures</h2>
+  <p class="sub">Five ways to slice a phrase, after Nick Collins's BBCut.</p>
+  <p>Each procedure cuts the phrase with patterns of eight grid units (a bar of 8ths at the default grid), chosen at random from its own set, so blocks always tile the bar and land on the beat.</p>
+  <table>
+    <tr><th>Procedure</th><th>Patterns (grid units)</th><th>Character</th></tr>
+    <tr><td>Break Roller</td><td>3+3+2 (most often), 2+2+2+2, 4+2+2, 2+2+4, 4+4, 2+3+3</td><td>Jungle's tresillo feel.</td></tr>
+    <tr><td>Warp</td><td>4+4, 8</td><td>Long blocks; rolls stretch across them.</td></tr>
+    <tr><td>SQ Pusher</td><td>2+2+2+2, 1+1+2+2+2, 2+2+1+1+2, 1+1+1+1+2+2</td><td>Frantic: cuts more often, with twice as many repeats.</td></tr>
+    <tr><td>Sparse Glitch</td><td>8, 4+4</td><td>Cuts rarely, about a third as often, but tape stops, starts and reverses are twice as likely.</td></tr>
+    <tr><td>Straight</td><td>2+2+2+2</td><td>Even, predictable blocks: stutters exactly on the beat.</td></tr>
+  </table>
+  <p>Melodic and Mix / Bus double every block's length (patterns of 16 units).</p>
+</section>
+
+<section id="gestures">
+  <h2>Gestures</h2>
+  <p class="sub">What a cut block does.</p>
+  <p>A cut block is a tape stop, a tape start or (most often) a run of repeats. Repeats can also be reversed and pitched.</p>
+  <dl class="params">
+    <dt>Reverse</dt><dd>The chance that a cut plays its repeats backwards. <span class="range">0 – 100 %</span></dd>
+    <dt>Pitch</dt><dd>The chance that a cut's repeats step in pitch, each one by another Pitch Step: up for rising rolls, down for falling ones. The first repeat keeps the original pitch. Pitch changes with speed, like tape, from two octaves down to one up. <span class="range">0 – 100 %</span></dd>
+    <dt>Pitch Step</dt><dd>A range knob: the semitones added per repeat, always whole semitones. <span class="range">−12 – +12 st</span></dd>
+    <dt>Tape Stop</dt><dd>The chance that a cut block slows down to a standstill instead of repeating, then stays silent until the next block. <span class="range">0 – 100 %</span></dd>
+    <dt>Tape Start</dt><dd>The chance that a cut block starts from standstill and spins up to speed. <span class="range">0 – 100 %</span></dd>
+    <dt>Tape Length</dt><dd>A range knob: how much of the block the stop or start takes, in quarters of the block. <span class="range">10 – 100 %</span></dd>
+  </dl>
+</section>
+
+<section id="lanes">
+  <h2>Effect lanes</h2>
+  <p class="sub">Six effects that fire by chance, block by block.</p>
+  <figure>
+    <img src="images/effects.jpg" alt="The effects page">
+    <figcaption>The EFFECTS page: what plays, how each effect sounds, and Perform.</figcaption>
+  </figure>
+  <p>How each effect <em>sounds</em> is set on the <strong>EFFECTS</strong> page: its <strong>Motion</strong> (how its values move during a block) and two <strong>range knobs</strong> that bound those values. <em>Where</em> it plays is in the pattern: switch it on or off per block by clicking its lane row in the editor, or let the generator do it: the Generator panel's <strong>Effects: how often</strong> knobs say on how many blocks it switches each effect on.</p>
+  <table>
+    <tr><th>Lane</th><th>First range</th><th>Second range</th><th>Extra</th></tr>
+    <tr><td>Filter</td><td>Cutoff, 40 Hz – 18 kHz</td><td>Resonance</td><td>Filter type: all 14 of the suite's filters (ladders, SVF, diode, MS-20, formant, combs, phaser)</td></tr>
+    <tr><td>Crush</td><td>Bits, 1 – 16</td><td>Sample rate, 400 Hz – 44.1 kHz</td><td></td></tr>
+    <tr><td>Drive</td><td>Drive amount</td><td>Colour: saturation → overdrive → distortion → fuzz</td><td>Oversampled 4×</td></tr>
+    <tr><td>Gate</td><td>Length: the share of each slice that's open</td><td>Steps: slices per repeat, 1, 2, 3, 4, 6 or 8</td><td>Follows the repeats (or grid units in a live block)</td></tr>
+    <tr><td>Delay</td><td>Send</td><td>Feedback, 0 – 95 %</td><td>Delay time in notes, 1/32 to 1/2, dotted and triplet</td></tr>
+    <tr><td>Reverb</td><td>Send</td><td>Decay, 0.3 – 12 s</td><td>Splicer's large algorithmic reverb</td></tr>
+  </table>
+  <p>The delay and reverb are <strong>throws</strong>: the block's sound goes in while the lane is on, and the echoes and tail carry on over the blocks that follow, mixed on top of the sound.</p>
+</section>
+
+<section id="motion">
+  <h2>Motion &amp; ranges</h2>
+  <p class="sub">Bounded randomness.</p>
+  <p>A range knob sets a range, not a value: drag it to move the range, <kbd>Shift</kbd>-drag (or <kbd>Shift</kbd>-scroll) to make it wider or narrower, double-click to reset. A lit dot on the ring shows where the value is right now, while the lane is playing.</p>
+  <table>
+    <tr><th>Motion</th><th>During a block</th></tr>
+    <tr><td>Hold</td><td>One random value inside the range, held.</td></tr>
+    <tr><td>Ramp Up</td><td>From the bottom of the range to the top: a rising filter sweep.</td></tr>
+    <tr><td>Ramp Down</td><td>From the top to the bottom.</td></tr>
+    <tr><td>Walk</td><td>A smooth random wander through the range.</td></tr>
+    <tr><td>Steps</td><td>A new random value for every repeat.</td></tr>
+    <tr><td>Alternate</td><td>Flips between the two ends of the range with every repeat.</td></tr>
+    <tr><td>Random</td><td>One of the above, chosen anew for every block.</td></tr>
+  </table>
+  <p>Both of a lane's controls follow the same motion, each with its own random values.</p>
+</section>
+
+<section id="modes">
+  <h2>Modes</h2>
+  <p class="sub">What plays.</p>
+  <p>The <strong>MODE</strong> menu, at the right of the page tabs, decides which pattern the cut engine plays. Everything after that (the history, the gestures you play by hand, the effect lanes' motions and ranges, Chaos and Mix) works the same in both modes.</p>
+  <table>
+    <tr><th>Mode</th><th>What plays</th></tr>
+    <tr><td>Pattern</td><td>The selected pattern loops, in step with the song. Choosing another pattern (on the PATTERN page, by automating the Pattern parameter, or with a MIDI note from C1 to D#2) switches at the next bar line.</td></tr>
+    <tr><td>Song</td><td>The chain on the SONG page plays from the song's start, looping at its end.</td></tr>
+  </table>
+  <p>Both follow the song position, so playing a section again or bouncing it gives the same result. Chaos scales the blocks' chances: at 50 % they're as set; turn it down and fewer blocks happen.</p>
+</section>
+
+<section id="patterns">
+  <h2>Patterns</h2>
+  <p class="sub">Cuts you design, keep and play.</p>
+  <figure>
+    <img src="images/pattern.jpg" alt="The pattern page">
+    <figcaption>The PATTERN page with Total Chaos's pattern A, written by the generator from the recipe below it.</figcaption>
+  </figure>
+  <p>The <strong>PATTERN</strong> page edits sixteen patterns, <strong>A</strong> to <strong>P</strong>. A pattern is 1, 2 or 4 bars of blocks on a grid of 16th notes: each block plays live or is cut, may switch effect lanes on, and has a chance of happening. Click a slot to edit it (in Pattern mode it also starts playing at the next bar line); slots holding something show a dot per bar.</p>
+  <h3>Selecting</h3>
+  <p>As in the envelope editor, <kbd>Shift</kbd>-drag across the timeline to mark the <strong>edit region</strong>; it snaps to the <strong>Grid</strong> (1/8 by default). With <kbd>Shift</kbd> held, drag either edge of the region to resize it. A plain click selects the block under the mouse, <kbd>Cmd</kbd>+<kbd>A</kbd> selects everything and <kbd>Esc</kbd> selects nothing.</p>
+  <h3>Edits</h3>
+  <table>
+    <tr><th>Edit</th><th>What it does to the selection</th></tr>
+    <tr><td>Repeat</td><td>Plays it as 1, 2, 3, 4, 6, 8 or 16 equal repeats: two repeats over a quarter note are two 8ths.</td></tr>
+    <tr><td>Roll</td><td>A roll: 8ths, then 16ths, then 32nds, each taking half of what's left (or slowing down; or in triplets).</td></tr>
+    <tr><td>Reverse</td><td>Plays its repeats backwards (a live block becomes one reversed repeat). Again to turn it off.</td></tr>
+    <tr><td>Pitch</td><td>Each repeat a step higher or lower: ±1, 2, 3, 5, 7 or 12 semitones.</td></tr>
+    <tr><td>Reach</td><td>Takes the repeats from an 8th, a beat, two beats or a bar further back: reorders the music.</td></tr>
+    <tr><td>Tape</td><td>A tape stop or start, over the whole block or its first quarter, half or three quarters.</td></tr>
+    <tr><td>Freeze</td><td>Holds a 1/32 note from just before the selection as a sustained tone.</td></tr>
+    <tr><td>Chance</td><td>How often its blocks (and their effects) happen: 100, 75, 50 or 25 %. Drawn from the seed and the pass, so repeatable; Reroll changes the outcome.</td></tr>
+    <tr><td>Clear</td><td>Back to live, effects off (<kbd>Delete</kbd>).</td></tr>
+    <tr><td>Randomize</td><td>The generator fills only the edit region (or, with nothing marked, the whole pattern) using the pattern's recipe, with a fresh seed each time.</td></tr>
+    <tr><td>Split / Merge</td><td>Cuts blocks at the selection's edges, or joins the selection into one block.</td></tr>
+    <tr><td>Copy / Paste</td><td><kbd>Cmd</kbd>+<kbd>C</kbd> and <kbd>Cmd</kbd>+<kbd>V</kbd> (pastes at the selection's start, between patterns too).</td></tr>
+    <tr><td>Undo / Redo</td><td><kbd>Cmd</kbd>+<kbd>Z</kbd> and <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd>, 100 steps, patterns and chain alike.</td></tr>
+  </table>
+  <p>Every edit is in the toolbar and in the right-click menu. <strong>Click a cell in a lane row</strong> to switch that effect on or off for the block under it (or for the whole selection, if you click inside it); the lane's motion and ranges stay as set on the EFFECTS page. An effect moves the same way in a block every time round (as the editor draws it), and editing one region never changes the effects anywhere else; only the blocks' chances fall anew on each pass.</p>
+  <h3>Generate, length and files</h3>
+  <dl class="params">
+    <dt>Generate</dt><dd>The generator writes a whole new pattern into the slot (as long as it is), from the Generator panel's settings (the pattern's recipe), with a fresh seed each press: the cutting rules (strict grid, a clean first beat, fills at the end) all apply. Not what you wanted? Press again, or undo. </dd>
+    <dt>Length</dt><dd>1, 2 or 4 bars. New bars play live; bars past the new end are dropped.</dd>
+    <dt>Pattern menu</dt><dd>Save or load the pattern, copy, paste or clear it; save or load the whole bank (all sixteen patterns and the chain); load the demo bank; open the Patterns folder. Files go to a <strong>Patterns</strong> folder next to your presets.</dd>
+  </dl>
+  <div class="callout"><strong>Patterns travel with presets and sessions.</strong> Saving a preset keeps the whole bank and chain; each factory preset brings its own patterns, generated from its settings (Default and Demo Song: the hand-made demo bank). Save your bank as a file to use it with any preset.</div>
+</section>
+
+<section id="song">
+  <h2>Song</h2>
+  <p class="sub">Patterns strung together into a performance.</p>
+  <p>The <strong>SONG</strong> page holds the chain that Song mode plays: a row of steps, each a pattern played a number of times, optionally ending with a fill.</p>
+  <dl class="params">
+    <dt>Pattern</dt><dd>Click the big letter to choose the step's pattern.</dd>
+    <dt>Repeats</dt><dd><strong>−</strong> and <strong>+</strong> set how many times it plays (1 to 32); the tile shows how many bars that is.</dd>
+    <dt>Fill</dt><dd>Click to choose a pattern that replaces the end of the step's last pass: a one-bar fill pattern plays over its last bar. Longer fills play their last bars.</dd>
+    <dt>Step menu</dt><dd>Click the tile (or right-click) to insert a step before it, duplicate, move it left or right, or delete it; the cross deletes too.</dd>
+    <dt>Add Step</dt><dd>Puts the pattern being edited at the end.</dd>
+  </dl>
+  <figure>
+    <img src="images/song.jpg" alt="The song page">
+    <figcaption>The SONG page: the demo chain (A three times ending in fill B, A twice ending in fill C, then D) and its timeline.</figcaption>
+  </figure>
+  <p>Underneath, the <strong>timeline</strong> shows the whole song in proportion, every pass of every step with the fills at their ends, and a playhead. The chain follows the song position from bar 1 and loops at its end, so a 12-bar chain plays bars 1-12, then again from bar 13.</p>
+</section>
+
+<section id="perform">
+  <h2>Perform</h2>
+  <p class="sub">The big knob and the buttons, on the EFFECTS page.</p>
+  <dl class="params">
+    <dt>Chaos</dt><dd>Scales the blocks' chances as they play (and, when generating, every chance and range width). At 50 % everything is as set; lower, fewer blocks happen; at 100 % every chance is doubled. <span class="range">0 – 100 %</span></dd>
+    <dt>Reroll</dt><dd>A new seed: the blocks' chances fall another way.</dd>
+    <dt>Stutter</dt><dd>While held, repeats one grid unit from the moment you pressed.</dd>
+    <dt>Reverse</dt><dd>While held, plays the history backwards from the moment you pressed.</dd>
+    <dt>Tape Stop</dt><dd>While held, slows to a standstill (in just over a beat) and stays silent.</dd>
+    <dt>Freeze</dt><dd>While held, loops the last 1/32 note (at least 30 ms) with long crossfades: a sustained, frozen tone.</dd>
+    <dt>Mix</dt><dd>The dry input against Splicer's output. <span class="range">0 – 100 %</span></dd>
+  </dl>
+  <p>Hand-played gestures take over from the plan while held (the newest press wins) and crossfade back on release; the effect lanes keep following the plan. The buttons are host parameters: automate them to place gestures exactly. Like all momentary buttons in the suite, they're never stored in presets or sessions.</p>
+</section>
+
+<section id="midi">
+  <h2>MIDI</h2>
+  <p class="sub">Choose patterns and play the gestures from a keyboard or pads.</p>
+  <p>Send MIDI to Splicer (in most DAWs: route a MIDI track to it, or load it as a MIDI-controlled effect).</p>
+  <table>
+    <tr><th>Notes</th><th>What they do</th><th>Velocity</th></tr>
+    <tr><td>C1 – D#2 (36 – 51)</td><td>Choose patterns A – P. In Pattern mode the new one starts at the next bar line.</td><td></td></tr>
+    <tr><td>C (any other octave)</td><td>Stutter, while held</td><td>Soft: two grid units · medium: one · hard: half a unit</td></tr>
+    <tr><td>D</td><td>Reverse, while held</td><td>Above 100: double speed, an octave up</td></tr>
+    <tr><td>E</td><td>Tape Stop, while held</td><td>Harder stops faster: from two beats down to a quarter of a beat</td></tr>
+    <tr><td>F</td><td>Freeze, while held</td><td></td></tr>
+  </table>
+  <p>Notes are sample-accurate. In the standalone app, the keyboard strip under the window plays them too.</p>
+</section>
+
+<section id="display">
+  <h2>The display</h2>
+  <p class="sub">Seeing the chaos.</p>
+  <p>The <strong>phrase map</strong> shows the pattern playing (its letter at the top right), numbered by bar, with a line per beat and a playhead running through it. In the <strong>CUTS</strong> row, outlined blocks play live; filled ones are cut: pink for repeats (with a line between repeats), blue with a back arrow for reversed repeats, amber ramps for tape stops and starts. A small staircase shows pitched repeats, and a line running left from under a block shows how far back its repeats are taken from.</p>
+  <p>Below, a row per <strong>effect lane</strong> shows the blocks the lane fires on, with the movement of its first control (cutoff, bits, drive, length, send) drawn as a curve through the block.</p>
+  <p>The map always shows exactly what plays this time round (blocks whose chance didn't come up show as live), and it updates the moment you edit or change a setting.</p>
+</section>
+
+<section id="presets">
+  <h2>Presets &amp; bypass</h2>
+  <p class="sub">The header every Robotic Audio plugin shares.</p>
+  <dl class="params">
+    <dt>Preset bar</dt><dd>Previous, next, the preset list (with Save As, Delete and Open Folder) and SAVE. Presets store every setting, the seed, the mode, the sixteen patterns and the chain included.</dd>
+    <dt>Factory presets</dt><dd>Default, Jungle Roller, SQ Fill Frenzy, Tape Ghost, Bus Throws, Lo-Fi Stutter, Melodic Smear, Hands On, Demo Song (Song mode, playing the demo bank's chain) and Total Chaos. Each brings its own patterns: two grooves (A, B) and two fills (C, D), chained.</dd>
+    <dt>Power</dt><dd>Bypasses the plugin with a short, click-free crossfade.</dd>
+  </dl>
+</section>
+
+<section id="ideas">
+  <h2>Ideas</h2>
+  <p class="sub">Things to try.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Amen</span><p>Break Roller on a break at 170 BPM, Roll at 60 %, Fill at 80 %, Reach 0 to 2 beats: instant jungle edits with a roll into every phrase.</p></div>
+    <div class="card"><span class="tag">Section seeds</span><p>Automate the seed: one value per chorus, another per verse. Each section gets its own pattern.</p></div>
+    <div class="card"><span class="tag">Transitions</span><p>Mix / Bus on the master with Density at 0; automate Density up for the last bar before a drop.</p></div>
+    <div class="card"><span class="tag">Dub</span><p>Delay chance high, Send range 60 – 100 %, Feedback around 70 %, motion Hold: echoes thrown from random blocks.</p></div>
+    <div class="card"><span class="tag">Glitch pads</span><p>Melodic, Sparse Glitch, Tape Stop and Reverse up, Reverb chance 40 %: slowly falling, swelling textures.</p></div>
+    <div class="card"><span class="tag">Finger drumming</span><p>Performance, with C, D, E and F on pads: stutters, reverses, stops and freezes, by hand.</p></div>
+  </div>
+</section>
+
+<section id="specs">
+  <h2>Specifications</h2>
+  <p class="sub">The numbers.</p>
+  <table>
+    <tr><th>Property</th><th>Value</th></tr>
+    <tr><td>History</td><td>30 seconds, stereo</td></tr>
+    <tr><td>Generator</td><td>Patterns of 1, 2 or 4 bars (4/4) on a grid of 1/4, 1/8 or 1/16</td></tr>
+    <tr><td>Repeats</td><td>1, 2, 4, 8, 16 (triplets 3, 6, 12) per block; rolls up to 32; none shorter than a 1/64 note</td></tr>
+    <tr><td>Crossfades</td><td>2.5 – 12 ms by material, on every jump</td></tr>
+    <tr><td>Pitch</td><td>Varispeed, −24 to +12 semitones</td></tr>
+    <tr><td>Latency</td><td>A few samples (the drive's 4× oversampling), reported to the host</td></tr>
+    <tr><td>Tail</td><td>Up to 14 seconds (delay and reverb)</td></tr>
+    <tr><td>CPU at rest</td><td>Rests once silence has come in for longer than a cut can reach back and the tails have died away</td></tr>
+    <tr><td>Patterns</td><td>16 per bank, 1, 2 or 4 bars on a 16th-note grid, up to 64 blocks each; a chain of up to 64 steps</td></tr>
+    <tr><td>Formats</td><td>AU, VST3, Standalone; takes MIDI</td></tr>
+  </table>
+</section>
+
+<footer>
+  <div class="sig">Robotic Audio</div>
+  Splicer was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
+  The cut procedures follow the ideas of Nick Collins's BBCut library for SuperCollider.<br>
+  Fonts: Big Shoulders Display and Inter, under the SIL Open Font License.
+</footer>
+
+</div>
+</main>
+<script>
+// Highlight the section being read in the contents
+const links = [...document.querySelectorAll("nav.toc a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+sections.forEach(s => s && observer.observe(s));
+</script>
+</body>
+</html>
