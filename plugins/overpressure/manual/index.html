@@ -536,6 +536,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <tr><td>DC blocker</td><td>6 dB/octave high-pass at 10 Hz</td></tr>
     <tr><td>Meters</td><td>Peak in and out, −60 … +6 dBFS with clip lamps; gain reduction 0 … 20 dB</td></tr>
     <tr><td>Latency</td><td>A few samples, reported to the host</td></tr>
+    <tr><td>CPU</td><td>Rests (costs next to nothing) while silence comes in, once the drive and the filter have rung out</td></tr>
     <tr><td>Channels</td><td>Stereo (mono tracks work too)</td></tr>
     <tr><td>Formats</td><td>AU, VST3, Standalone</td></tr>
   </table>
