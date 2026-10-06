@@ -162,6 +162,16 @@ p { margin: 0 0 1.1em; }
 /* ---------- Home ---------- */
 
 .hero { padding: clamp(40px, 7vw, 88px) 0 clamp(56px, 8vw, 96px); background: radial-gradient(60% 50% at 78% 28%, rgba(255, 106, 26, 0.2), transparent 70%); }
+.hero--picture { padding-top: 0; }
+.hero__picture { max-width: 1440px; margin: 0 auto; }
+.hero__picture img {
+  display: block; width: 100%; height: auto;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent), linear-gradient(to bottom, #000 62%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent), linear-gradient(to bottom, #000 62%, transparent);
+  mask-composite: intersect;
+}
+.hero__picture + .container { position: relative; margin-top: clamp(-96px, -6vw, -16px); }
 .hero__title {
   font-size: clamp(4.4rem, 15vw, 11rem); line-height: 0.86; letter-spacing: 0.005em; margin: 0 0 0.3em;
   background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
