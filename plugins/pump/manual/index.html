@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pump Manual</title>
+<style>
+@font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Big Shoulders"; font-weight: 800; src: url("fonts/BigShouldersDisplay-ExtraBold.ttf") format("truetype"); }
+
+:root {
+  --bg: #0d0b0a;
+  --surface: #17120f;
+  --surface-2: #211a15;
+  --line: rgba(255, 236, 220, 0.10);
+  --line-strong: rgba(255, 236, 220, 0.22);
+  --text: #f4ece4;
+  --muted: #a99e94;
+  --ember: #12804c;
+  --fire: #35e08f;
+  --hot: #c4ffe0;
+  --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
+  --radius: 14px;
+  --sidebar: 260px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 500 16px/1.65 "Inter", -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--hot); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Sidebar */
+nav.toc {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar);
+  overflow-y: auto; padding: 32px 24px 40px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+}
+nav.toc .brand { font: 600 11px/1 "Inter"; letter-spacing: .32em; color: var(--fire); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+nav.toc .brand::before { content: ""; width: 18px; height: 2px; background: var(--fire-gradient); }
+nav.toc .product { font: 800 34px/1 "Big Shoulders"; letter-spacing: .02em; margin: 10px 0 26px; text-transform: uppercase; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+nav.toc li { counter-increment: s; }
+nav.toc li a {
+  display: flex; gap: 12px; padding: 7px 10px; margin: 0 -10px; border-radius: 8px;
+  color: var(--muted); font-size: 14px;
+}
+nav.toc li a::before { content: counter(s, decimal-leading-zero); color: var(--line-strong); font-variant-numeric: tabular-nums; }
+nav.toc li a:hover, nav.toc li a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
+nav.toc li a.active::before { color: var(--fire); }
+
+main { margin-left: var(--sidebar); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+/* Hero */
+header.hero { position: relative; padding: 72px 0 40px; overflow: hidden; }
+header.hero::before {
+  content: ""; position: absolute; inset: -40% -10% auto; height: 520px;
+  background: radial-gradient(closest-side, rgba(53, 224, 143, .18), transparent);
+  pointer-events: none;
+}
+.kicker { font: 600 12px/1 "Inter"; letter-spacing: .34em; text-transform: uppercase; color: var(--fire); display: flex; align-items: center; gap: 12px; }
+.kicker::before { content: ""; width: 28px; height: 2px; background: var(--fire-gradient); }
+h1 {
+  font: 800 clamp(64px, 11vw, 132px)/.86 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em;
+  margin: 18px 0 18px;
+  background: linear-gradient(180deg, var(--text) 30%, #d9c9bb); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lede { font-size: 20px; line-height: 1.55; color: var(--text); max-width: 640px; margin: 0; }
+.lede em { font-style: normal; background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; padding: 0; list-style: none; }
+.facts li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+
+figure { margin: 32px 0; }
+figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); }
+figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+/* Sections */
+section { padding: 56px 0 8px; border-top: 1px solid var(--line); }
+h2 {
+  font: 800 52px/1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em; margin: 0 0 6px;
+}
+h2 + .sub { color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+h3 { font: 600 13px/1.2 "Inter"; letter-spacing: .24em; text-transform: uppercase; color: var(--hot); margin: 36px 0 12px; display: flex; align-items: center; gap: 10px; }
+h3::before { content: ""; width: 14px; height: 2px; background: var(--fire-gradient); }
+h4 { font: 800 24px/1.1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 4px; }
+p { margin: 0 0 14px; }
+strong { font-weight: 600; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* Parameter lists */
+dl.params { display: grid; grid-template-columns: 170px 1fr; gap: 0; margin: 0 0 18px; border-top: 1px solid var(--line); }
+dl.params dt, dl.params dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+dl.params dt { font: 600 12px/1.5 "Inter"; letter-spacing: .16em; text-transform: uppercase; color: var(--text); padding-right: 16px; padding-top: 13px; }
+dl.params dd { color: #e3d8ce; }
+dl.params dd .range { display: inline-block; margin-left: 8px; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+
+/* Cards and grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0 24px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.card p { margin: 6px 0 0; color: #e3d8ce; font-size: 15px; }
+.card .tag { font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--fire); }
+
+.callout { position: relative; background: linear-gradient(135deg, rgba(53, 224, 143,.10), rgba(196, 255, 224,.04)); border: 1px solid rgba(53, 224, 143,.35); border-radius: var(--radius); padding: 16px 20px 16px 52px; margin: 22px 0; }
+.callout::before { content: "✦"; position: absolute; left: 20px; top: 15px; color: var(--hot); font-size: 18px; }
+.callout strong { color: var(--hot); }
+
+kbd {
+  font: 600 12px/1 "Inter"; padding: 4px 7px; border-radius: 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  background: var(--surface-2); color: var(--text); white-space: nowrap;
+}
+table { width: 100%; border-collapse: collapse; margin: 8px 0 22px; font-size: 15px; }
+th { text-align: left; font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line-strong); }
+td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #e3d8ce; }
+td:first-child { color: var(--text); white-space: nowrap; }
+
+/* Signal flow */
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 20px; margin: 24px 0; overflow-x: auto; }
+.flow svg { display: block; min-width: 760px; width: 100%; height: auto; }
+
+/* Effects */
+.fx { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 22px 0 40px; }
+.fx img { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 10px 0 14px; }
+.fx .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.fx .head .what { color: var(--muted); }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 2px; transform: translateY(-1px); }
+
+footer { padding: 60px 0 80px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 40px; }
+footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+
+@media (max-width: 980px) {
+  nav.toc { position: static; width: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav.toc ol { columns: 2; }
+  main { margin-left: 0; }
+  .wrap { padding: 0 20px; }
+  dl.params { grid-template-columns: 1fr; }
+  dl.params dt { border-bottom: 0; padding-bottom: 0; }
+}
+@media print {
+  :root { --bg: #fff; --surface: #f6f2ee; --surface-2: #eee7e0; --text: #1a1410; --muted: #6e6259; --line: #e4dbd2; --line-strong: #cfc3b8; }
+  nav.toc { display: none; }
+  main { margin: 0; }
+  section { break-inside: avoid-page; }
+  h1 { color: #1a1410; background: none; }
+  dl.params dd, td, .card p { color: #2a2018; }
+}
+
+/* Block diagrams */
+.flow svg text { fill: var(--text); font-weight: 600; font-size: 13.5px; text-anchor: middle; }
+.flow svg text.sub { fill: var(--muted); font-weight: 500; font-size: 11px; }
+.flow svg .box { fill: var(--surface-2); stroke: var(--line-strong); }
+.flow svg .box.hot { stroke: url(#g); }
+.flow svg .pill { fill: var(--bg); stroke: var(--line-strong); }
+.flow svg .frame { fill: none; stroke: var(--line-strong); stroke-dasharray: 6 6; }
+.flow svg .wire { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.flow svg .dash { stroke-dasharray: 5 5; }
+.flow svg .arrow { fill: var(--muted); }
+.flow svg .tick { stroke: var(--line-strong); stroke-width: 1; }
+.flow svg .head { stroke: var(--hot); stroke-width: 2.5; fill: none; }
+svg.defs { position: absolute; width: 0; height: 0; }
+
+/* Curves */
+.plots { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: center; margin: 18px 0 24px; }
+.plots.three { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: start; gap: 14px; }
+.plot { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.plot h4 { margin: 2px 0 10px; }
+.plot svg { display: block; width: 100%; height: auto; }
+.plot svg text { fill: var(--muted); font-size: 10px; font-weight: 500; }
+.plot .axis { fill: none; stroke: var(--line-strong); }
+.plot .grid { fill: none; stroke: var(--line); }
+.plot .knee { fill: none; stroke: var(--line-strong); stroke-dasharray: 2 4; }
+.plot .ref { fill: none; stroke: var(--line-strong); stroke-dasharray: 4 4; }
+.plot .c1, .plot .c2, .plot .c3 { fill: none; stroke-width: 2; stroke-linejoin: round; }
+.plot .c1 { stroke: var(--muted); }
+.plot .c2 { stroke: var(--fire); }
+.plot .c3 { stroke: var(--hot); }
+.legend { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 12px; margin-top: 10px; }
+.legend span { display: inline-block; width: 14px; height: 2px; margin-left: 8px; }
+.legend span:first-child { margin-left: 0; }
+.legend .k1 { background: var(--muted); } .legend .k2 { background: var(--fire); } .legend .k3 { background: var(--hot); }
+.plot-text p:last-child { margin-bottom: 0; }
+.formula { font: 600 17px/1.4 "Inter"; color: var(--hot); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 18px; display: inline-block; }
+@media (max-width: 720px) { .plots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<svg class="defs" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#12804c"/><stop offset=".45" stop-color="#35e08f"/><stop offset="1" stop-color="#c4ffe0"/></linearGradient><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z" fill="#a99e94"/></marker></defs></svg>
+
+<nav class="toc" aria-label="Contents">
+  <div class="brand">Robotic Audio</div>
+  <div class="product">Pump</div>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#overview">The window</a></li>
+    <li><a href="#flow">Signal flow</a></li>
+    <li><a href="#motion">Motion</a></li>
+    <li><a href="#shapes">Shapes</a></li>
+    <li><a href="#lanes">Lanes</a></li>
+    <li><a href="#effects">Effects</a></li>
+    <li><a href="#output">Output</a></li>
+    <li><a href="#presets">Presets</a></li>
+    <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#specs">Specifications</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Robotic Audio · User manual</div>
+  <h1>Pump</h1>
+  <p class="lede">Pump ducks your sound <em>in time with the song</em>, the way a kick's sidechain does, with or without a sidechain. Pick one of 21 shapes and a rate, set how deep it goes, then put up to four effects after it and let any of their settings pump along: a filter that breathes, echoes cut on the beat, a reverb that blooms in the gaps, a tape that brakes on every kick.</p>
+  <ul class="facts">
+    <li>21 pump shapes</li>
+    <li>Locked to the song, notes or a sidechain</li>
+    <li>Four effect slots, 20 effects</li>
+    <li>Every effect setting can pump</li>
+    <li>Each lane its own depth, phase and shape</li>
+    <li>Rests in silence</li>
+    <li>AU · VST3 · Standalone</li>
+  </ul>
+  <figure>
+    <img src="images/pump.jpg" alt="Pump's window">
+    <figcaption>Pump: the display on top (here the Filter's Cutoff lane at a quarter of the pump's speed, one sweep over four beats) beside Motion, the four effect slots as tabs, the shown slot's effect with a lane under every knob, and Output along the bottom.</figcaption>
+  </figure>
+</header>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">From a steady pad to a pumping one in a minute.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">01</span><h4>Insert it</h4><p>On a pad, a bass, a bus. Press play: the Default preset ducks the sound on every beat and swells back up.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Shape the pump</h4><p>Pick a <strong>Shape</strong> above the display (or scroll over it) and set <strong>AMOUNT</strong>, or drag the display up and down.</p></div>
+    <div class="card"><span class="tag">03</span><h4>Add an effect</h4><p>Switch on a slot in the tabs (the power button) and choose its effect. Its own view appears below, with a small lane under every knob.</p></div>
+    <div class="card"><span class="tag">04</span><h4>Pump a setting</h4><p>Drag a lane up or down: that setting now moves with the pump. Click the lane to see it in the big display and set its phase and shape.</p></div>
+  </div>
+  <div class="callout"><strong>Hover to learn.</strong> Hover over any control and the strip along the bottom of the window says what it does.</div>
+</section>
+
+<section id="overview">
+  <h2>The window</h2>
+  <p class="sub">The display and Motion on top, the effects below, Output along the bottom.</p>
+  <dl class="params">
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits.</dd>
+    <dt>Display</dt><dd>One cycle of the volume, or of the lane you last clicked, with a line where the cycle is now and a dot at the value it really gives. With the volume, <strong>GAIN</strong> reads the gain now; drag up or down for Amount (down pumps harder), double-click to reset it, scroll to change the shape. <strong>/2</strong> and <strong>X2</strong>, just after the card's title, halve or double the tempo (the Rate), or a lane's speed while a lane is shown. With a lane, the header names it (<strong>FX 1 FILTER / CUTOFF 10.9 KHZ</strong>) and the title row shows <strong>VOLUME</strong> (back to the volume), the lane's Depth and Phase, and its Shape, with its speed in the header (<strong>1/4X</strong>); see <a href="#lanes">Lanes</a>. On the right: the rate, and the mode (and <strong>WAITING FOR TRIGGER</strong> while a Trig mode waits), or with a sidechain source the source and the key's level (<strong>KEY −14 DB</strong>, <strong>(OWN INPUT)</strong> when nothing is connected to the sidechain).</dd>
+    <dt>Motion</dt><dd>Source, Mode, Rate, Feel, Amount, Threshold, and the TRIGGER, LOOP and SONG POS buttons. See <a href="#motion">Motion</a>.</dd>
+    <dt>Slot tabs</dt><dd>FX 1 to FX 4: each its grip, power button and effect menu, and a dot while any of its lanes pump. Click a tab to show that slot below; drag it by its grip (or its background) onto another tab to move the slot there, its settings and lanes with it, the slots between shifting along.</dd>
+    <dt>Effect</dt><dd>The shown slot's effect: its live display (which moves as its lanes move it), its controls in groups, a lane under each one that can pump, and the slot's <strong>MIX</strong> with its own lane. See <a href="#effects">Effects</a>.</dd>
+    <dt>Output</dt><dd>Color, Compress, Intensity, Output and Mix. See <a href="#output">Output</a>.</dd>
+    <dt>Tooltip strip</dt><dd>Along the bottom: what the control under the mouse does.</dd>
+  </dl>
+  <p>In the standalone app a keyboard strip sits under the window: its notes trigger the pump just as MIDI notes do.</p>
+</section>
+
+<section id="flow">
+  <h2>Signal flow</h2>
+  <p class="sub">One pump moves everything.</p>
+  <div class="flow">
+    <svg viewBox="0 0 860 250" role="img" aria-label="Pump's signal flow">
+      <rect class="pill" x="10" y="50" width="60" height="44" rx="22"/><text x="40" y="77">In</text>
+      <rect class="box" x="88" y="40" width="102" height="64" rx="10"/><text x="139" y="68">Compress</text><text class="sub" x="139" y="87">2 ms ahead</text>
+      <rect class="box hot" x="205" y="40" width="110" height="64" rx="10"/><text x="260" y="68">Color + duck</text><text class="sub" x="260" y="87">the volume</text>
+      <rect class="box hot" x="330" y="40" width="80" height="64" rx="10"/><text x="370" y="68">FX 1</text><text class="sub" x="370" y="87">lanes</text>
+      <rect class="box hot" x="425" y="40" width="80" height="64" rx="10"/><text x="465" y="68">FX 2</text><text class="sub" x="465" y="87">lanes</text>
+      <rect class="box hot" x="520" y="40" width="80" height="64" rx="10"/><text x="560" y="68">FX 3</text><text class="sub" x="560" y="87">lanes</text>
+      <rect class="box hot" x="615" y="40" width="80" height="64" rx="10"/><text x="655" y="68">FX 4</text><text class="sub" x="655" y="87">lanes</text>
+      <rect class="box" x="710" y="40" width="60" height="64" rx="10"/><text x="740" y="68">Mix</text><text class="sub" x="740" y="87">dry/wet</text>
+      <rect class="pill" x="785" y="50" width="65" height="44" rx="22"/><text x="817" y="77">Out</text>
+      <path class="wire" d="M70 72H86" marker-end="url(#a)"/>
+      <path class="wire" d="M190 72H203" marker-end="url(#a)"/>
+      <path class="wire" d="M315 72H328" marker-end="url(#a)"/>
+      <path class="wire" d="M410 72H423" marker-end="url(#a)"/>
+      <path class="wire" d="M505 72H518" marker-end="url(#a)"/>
+      <path class="wire" d="M600 72H613" marker-end="url(#a)"/>
+      <path class="wire" d="M695 72H708" marker-end="url(#a)"/>
+      <path class="wire" d="M770 72H783" marker-end="url(#a)"/>
+      <path class="wire dash" d="M40 50V22H740V38" marker-end="url(#a)"/><text class="sub" x="390" y="16">dry, delayed to match</text>
+      <rect class="box hot" x="230" y="190" width="400" height="48" rx="10"/><text x="430" y="212">The pump</text><text class="sub" x="430" y="229">Shape at Rate, or the sidechain; each lane its own phase and shape</text>
+      <path class="wire dash" d="M260 190V106" marker-end="url(#a)"/>
+      <path class="wire dash" d="M370 190V106" marker-end="url(#a)"/>
+      <path class="wire dash" d="M465 190V106" marker-end="url(#a)"/>
+      <path class="wire dash" d="M560 190V106" marker-end="url(#a)"/>
+      <path class="wire dash" d="M655 190V106" marker-end="url(#a)"/>
+    </svg>
+  </div>
+  <p>The pump is a value for every sample: how far the sound is ducked right now. It sets the volume (through Color), and every lane reads the same cycle, each at its own phase and shape, to move its effect setting. Lanes move their settings every 32 samples, smoothed so nothing steps or clicks; the volume's drops are softened over 1.5 ms.</p>
+  <p>The effects come after the volume's duck, in slot order, so a delay or reverb rings on into the gaps the pump leaves. Everything runs 2 ms behind the input, so Compress can see peaks coming; the plugin reports this to the host, which lines the track up again. While silence comes in and every echo and tail has died away, Pump rests and costs nothing.</p>
+</section>
+
+<section id="motion">
+  <h2>Motion</h2>
+  <p class="sub">When it pumps, how fast and how deep.</p>
+  <dl class="params">
+    <dt>Source</dt><dd>What drives the pump. <strong>Tempo</strong> plays the shape in time with the song, by Mode, Rate, MIDI notes and TRIGGER. <strong>Sidechain</strong> plays one cycle of the shape (at Rate) on each hit on the sidechain input that rises over Threshold, then rests open until the next. <strong>Follow</strong> has no shape: it ducks by how far the sidechain goes over Threshold (24 dB over ducks all the way), letting go over half a cycle of Rate. With nothing connected to the sidechain, Pump keys from its own input. Mode, TRIGGER, LOOP and SONG POS only play the Tempo source and are greyed out for the others.</dd>
+    <dt>Mode</dt><dd><strong>Auto</strong> pumps all the time. <strong>Trig</strong> rests low (ducked) and swells up while it's triggered, then drops back when you let go. <strong>Trig Inv</strong> rests open and ducks while it's triggered. Trigger with the TRIGGER button or any MIDI note.</dd>
+    <dt>Rate</dt><dd>How long one cycle of the shape takes, as a note value. 1/4 is one beat, 1/1 one bar. In Follow, how fast the duck lets go. <span class="range">8/1 … 1/64</span></dd>
+    <dt>Feel</dt><dd><strong>Straight</strong>, <strong>Dotted</strong> (one and a half times as long) or <strong>Triplet</strong> (two thirds).</dd>
+    <dt>Amount</dt><dd>How deep the volume pumps. A touch adds movement; 50 % ducks to −12 dB at the deepest point; 100 % reaches silence. Turn it to 0 to pump only the effects. <span class="range">0 … 100 %</span></dd>
+    <dt>Threshold</dt><dd>How loud the sidechain has to get, for Sidechain and Follow. A hit counts when the key rises over it, and the next one only once it has fallen 6 dB below it and 40 ms have passed, so a flam or a ringing kick isn't two hits. Watch <strong>KEY</strong> in the display to set it. <span class="range">−60 … 0 dB</span></dd>
+    <dt>Trigger</dt><dd>Hold it to play the pump in the Trig modes. In Auto it starts the cycle again (with Song Pos or Loop off; following the song, it has nothing to restart). It isn't saved with presets or sessions.</dd>
+    <dt>Loop</dt><dd>On, the shape repeats. Off, it plays once from each start (a trigger, a note, or pressing play) and then stays where the shape ends.</dd>
+    <dt>Song Pos</dt><dd>On, the cycle follows the song's position: start playback anywhere and the pump is where it would have been from the start, and notes don't move it. Off, Pump keeps its own time, and the first note after silence (or pressing play) starts the cycle again. With Loop off it has no effect and is greyed out.</dd>
+  </dl>
+  <h3>Using the sidechain</h3>
+  <p>Pump has a second, stereo input for the key. In your host, send the kick (or any track) to it: in Ableton Live, open the Sidechain section of Pump's device and choose the track; in Logic, choose it from the Side Chain menu at the top of the plugin window; in other hosts, route a send or bus to Pump's sidechain input. Then set <strong>SOURCE</strong> to Sidechain or Follow and bring <strong>THRESHOLD</strong> down until each kick shows. The key only drives the pump; it is never heard.</p>
+  <div class="callout"><strong>Without a host playing,</strong> Pump keeps counting at the song's tempo (120 BPM without a host), so the standalone app and stopped transports keep pumping.</div>
+</section>
+
+<section id="shapes">
+  <h2>Shapes</h2>
+  <p class="sub">21 ways to move over one cycle.</p>
+  <p>Each shape says how far the sound ducks over one cycle; Amount sets how deep that is. Most drop on the beat and come back up, like a sidechained kick.</p>
+  <table>
+    <tr><th>Shape</th><th>Moves</th></tr>
+    <tr><td>Classic</td><td>Drops on the beat and swells back over about two thirds of the cycle: the sidechain pump.</td></tr>
+    <tr><td>Deep</td><td>The same, but slower to recover, almost to the end of the cycle.</td></tr>
+    <tr><td>Ramp</td><td>Rises in a straight line from the bottom to full.</td></tr>
+    <tr><td>Snap</td><td>A short, sharp dip right on the beat.</td></tr>
+    <tr><td>Offbeat</td><td>Dips halfway through the cycle instead of on the beat.</td></tr>
+    <tr><td>Swell</td><td>A smooth S-curve from the bottom up.</td></tr>
+    <tr><td>Hold</td><td>Stays down for almost a third of the cycle, then comes up quickly.</td></tr>
+    <tr><td>Sine</td><td>A smooth wave: down at the start and end, full in the middle.</td></tr>
+    <tr><td>Triangle</td><td>Straight lines down to full in the middle and back.</td></tr>
+    <tr><td>Kick</td><td>A dip with a small second bump, like a kick's bounce.</td></tr>
+    <tr><td>Steps</td><td>Climbs back up in steps.</td></tr>
+    <tr><td>Flutter</td><td>Four fast dips that fade away over the cycle.</td></tr>
+    <tr><td>Fall</td><td>The reverse of Ramp: from full down to the bottom.</td></tr>
+    <tr><td>Gate</td><td>Off for the first half, on for the second.</td></tr>
+    <tr><td>Bounce</td><td>Dips that come back again and again, smaller each time.</td></tr>
+    <tr><td>Stutter</td><td>Two quick chops in the first half, then open.</td></tr>
+    <tr><td>Wave</td><td>A rounded wave with a second ripple.</td></tr>
+    <tr><td>Chop</td><td>Four hard gates per cycle.</td></tr>
+    <tr><td>Seethe</td><td>A restless, uneven wobble that repeats every cycle.</td></tr>
+    <tr><td>Quake</td><td>A long, deep duck with a fast tremor through it.</td></tr>
+    <tr><td>Shuffle</td><td>A dip on the beat and a smaller, swung one two thirds of the way through.</td></tr>
+  </table>
+</section>
+
+<section id="lanes">
+  <h2>Lanes</h2>
+  <p class="sub">Any effect setting, pumping.</p>
+  <p>Under every effect knob that can move (and under each slot's MIX) sits a small lane: a picture of how the pump moves that setting over one cycle, flat while it doesn't. A lane rests at the knob's own value and moves away from it with the pump: most at the top of the shape (where the volume ducks deepest), not at all at the bottom.</p>
+  <dl class="params">
+    <dt>On a lane</dt><dd>Drag up or down to set its depth (up moves the setting up). Click it to show it in the big display, where it lights up. Double-click it to stop it moving.</dd>
+    <dt>In the display</dt><dd>The lane's setting over a cycle on its own scale (its values down the side), the knob's value dashed. Drag up or down for the depth, Shift-drag sideways for the phase, scroll for the shape, /2 and X2 for the speed, double-click to stop it. <strong>VOLUME</strong> takes the display back to the volume.</dd>
+    <dt>Depth</dt><dd>How far the lane moves its setting at the top of the shape, up (positive) or down (negative), as a share of the setting's whole range: +50 % moves a cutoff half of its way from 20 Hz to 20 kHz. Moves stop at the ends of the range. <span class="range">−100 … +100 %</span></dd>
+    <dt>Phase</dt><dd>Moves the lane earlier (positive) or later than the volume's pump, in parts of a cycle. At ±50 % it moves on the offbeat. <span class="range">−50 … +50 %</span></dd>
+    <dt>Speed</dt><dd>How fast the lane runs against the pump, from an eighth of its speed to eight times: <strong>/2</strong> and <strong>X2</strong> at the start of the display's title row halve or double it (the header shows it, e.g. <strong>1/4X</strong>). A slower lane takes several of the pump's cycles for one of its own, and the display then shows its whole cycle, a stronger line where each of the pump's starts: a filter can sweep once a bar while the volume pumps every beat. With the volume shown, the same buttons halve or double the Rate. <span class="range">1/8x … 8x</span></dd>
+    <dt>Shape</dt><dd><strong>Pump Shape</strong> follows the pump's shape (the one above the display); any other is this lane's own, so a filter can sweep a slow Sine while the volume pumps Classic.</dd>
+  </dl>
+  <p>Each effect keeps its own lanes, as it keeps its settings: switch a slot to another effect and back and they are still there. Choices and switches (a filter's type, a delay's sync) don't have lanes. <strong>INTENSITY</strong> scales every lane's depth and Amount at once.</p>
+  <div class="callout"><strong>Ideas.</strong> A delay's <strong>Feedback</strong> pumped down cuts the repeats that come round on the beat and keeps the ones in the gaps. A reverb's <strong>Decay</strong> pumped down gates its tail on every beat. A <strong>MIX</strong> pumped down lets an effect sound only in the gaps; pumped up, only on the beat.</div>
+</section>
+
+<section id="effects">
+  <h2>Effects</h2>
+  <p class="sub">Four slots, twenty effects.</p>
+  <p>The slots run in order, FX 1 first, after the volume's duck; drag a tab onto another to change the order. Each tab has a power button and the effect menu; click a tab to see that slot. Each effect has its own view: a live display (drag its handles; it moves as its lanes move it) over its controls in groups, drawn in the effect's own colours. <strong>MIX</strong>, beside it, blends the effect in; delays and reverbs keep the sound at full level and add themselves on top.</p>
+  <table>
+    <tr><th>Effect</th><th>What it does, and what pumps well</th></tr>
+    <tr><td>Filter</td><td>Fourteen filter characters. Pump the <strong>Cutoff</strong> down for the classic breathing filter.</td></tr>
+    <tr><td>Distortion</td><td>Tube, fold, rectify, crush, downsample, hard clip. Pump the <strong>Drive</strong> for grit that hits with the beat.</td></tr>
+    <tr><td>Drive</td><td>Contour's four drive stages stacked: <strong>Saturation</strong>, <strong>Overdrive</strong>, <strong>Distortion</strong> and <strong>Fuzz</strong>, each with its own amount (0 % is off), at four times the sample rate so it stays clean of aliasing, then Tone and Output. Pump each stage on its own: a fuzz that grows in the gaps under an overdrive that hits on the beat.</td></tr>
+    <tr><td>Crusher</td><td>Fewer bits and a lower sample rate, both gliding smoothly. Pump them down for a bit drop on every beat.</td></tr>
+    <tr><td>Ring Mod</td><td>The sound times a carrier, from a tremolo to clangy bells. Pump the <strong>Amount</strong> or the <strong>Frequency</strong>.</td></tr>
+    <tr><td>Freq Shift</td><td>Every frequency moved by the same number of Hz, with a feedback spiral. Pump the <strong>Shift</strong> for laser drops.</td></tr>
+    <tr><td>Tape Stop</td><td>A tape that slows (the pitch falls and the sound drags behind) and catches up afterwards, a little high. Pump the <strong>Speed</strong> down for a brake on every beat.</td></tr>
+    <tr><td>Pan</td><td>Moves the sound between the speakers. Pump the <strong>Pan</strong> to throw it from side to side.</td></tr>
+    <tr><td>Delay</td><td>Tempo-synced echoes with tape wobble. Pump the <strong>Feedback</strong> or the Mix.</td></tr>
+    <tr><td>Reverb, Reverb 2</td><td>A classic room, and a dense, modulated hall. Pump the <strong>Decay</strong>, the size or the Mix.</td></tr>
+    <tr><td>Chorus, Flanger, Phaser</td><td>Modulated delays and all-passes. Pump the depth, the feedback or the Phaser's <strong>Centre</strong>.</td></tr>
+    <tr><td>Pitch</td><td>Granular pitch shifting, two octaves either way. Pump the Mix for an octave that blooms on the beat.</td></tr>
+    <tr><td>Width</td><td>Stereo width with a mono low end. Pump the <strong>Width</strong> for a sound that opens out.</td></tr>
+    <tr><td>EQ, Compressor, OTT, Gate</td><td>Shelves and a bell, a peak compressor, three-band upward and downward compression, a tempo-synced gate.</td></tr>
+  </table>
+</section>
+
+<section id="output">
+  <h2>Output</h2>
+  <p class="sub">Colour, density, level and blend.</p>
+  <dl class="params">
+    <dt>Color</dt><dd>How the volume's pump changes the tone besides the level:
+      <br><strong>Clean</strong>: volume only.
+      <br><strong>Low Pump</strong>: below about 180 Hz ducks all the way; the rest ducks only a little. The classic kick-and-bass sidechain.
+      <br><strong>Air Pump</strong>: above about 1.8 kHz ducks all the way; the lows only a little.
+      <br><strong>Muffle</strong>: a low-pass closes as it ducks, from 18 kHz down to 280 Hz.
+      <br><strong>Thin</strong>: a high-pass opens as it ducks, from 20 Hz up to 2.4 kHz.
+      <br><strong>Telephone</strong>: both at once, narrowing to a band between 650 Hz and 2.2 kHz.
+      <br><strong>Resonant</strong>: a resonant low-pass sweeps down to 380 Hz, a wah on every pump.
+      <br><strong>Wide</strong>: the middle ducks and the sides much less, so the sound opens out on each duck.</dd>
+    <dt>Compress</dt><dd>Squeezes the sound before the pump, so the pump stands out more. As it goes up the threshold falls to −30 dB and the ratio rises to 10:1, with part of the reduction made up. It looks 2 ms ahead, so even sharp attacks are caught. <span class="range">0 … 100 %</span></dd>
+    <dt>Intensity</dt><dd>Every depth at once: Amount and each lane's depth. Ride it to bring the whole pump in and out without losing the balance between them. <span class="range">0 … 100 %</span></dd>
+    <dt>Output</dt><dd>The level after everything. The bottom of the range is silence. <span class="range">−inf … +9.5 dB</span></dd>
+    <dt>Mix</dt><dd>How much of the pumped sound, effects included, against the untouched one. <span class="range">0 … 100 %</span></dd>
+  </dl>
+</section>
+
+<section id="presets">
+  <h2>Presets</h2>
+  <p class="sub">Starting points, and your own.</p>
+  <p>Pump comes with 74 presets, in groups:</p>
+  <table>
+    <tr><th>Group</th><th>Presets</th></tr>
+    <tr><td>The volume alone</td><td>Default, Four On The Floor, Big Room Duck, Gentle Breathing, Kick Bounce, Offbeat Lift, Wide Swell, Trance Gate, Swell On Note and Duck On Note (these two use the Trig modes: play notes to hear them)</td></tr>
+    <tr><td>Effects, one idea each</td><td>Filter Breath, Offbeat Sweep, Acid Pump, Crunch On The Beat, Fuzz In The Gaps, Bit Drop, Dub Echo Chop, Echoes In The Gaps, Gated Verb, Swelling Room, Octave Bloom, Laser Drops, Spiral Riser, Tape Brake, Ring Throb, Side To Side, Phaser Pump, Half Time Sweep, Everything Pumps</td></tr>
+    <tr><td>House and garage</td><td>Deep House Pump, Disco Filter House, Tech House Shuffle, Garage Skip, French Touch</td></tr>
+    <tr><td>Big room and EDM</td><td>Festival Drop, Riser Builder, Supersaw Breath, Future Bass Wobble</td></tr>
+    <tr><td>Dubstep and bass</td><td>Wub Machine, Growl Gate, Reese Pressure, Neuro Shredder, Halftime Stomp</td></tr>
+    <tr><td>Techno and industrial</td><td>Warehouse Pressure, Hypnotic Loop, Rumble Generator, Metal Hammer, Acid Rail</td></tr>
+    <tr><td>Ambient and pads</td><td>Breathing Cathedral, Shimmer Swell, Tidal Pad, Frozen Lake, Underwater</td></tr>
+    <tr><td>Lo-fi and hip-hop</td><td>Dusty Sidechain, Cassette Wobble, Vinyl Brake Beat, Boom Bap Glue</td></tr>
+    <tr><td>Glitch and IDM</td><td>Stutter Crush, Granular Grit, Laser Ping Pong, Broken Radio, Bit Rain, Tape Chop</td></tr>
+    <tr><td>Guitars and live instruments</td><td>Tremolo Amp, Swirl Pedal, Slapback Pump, Spring Bounce</td></tr>
+    <tr><td>Vocals</td><td>Vocal Throw, Radio Ducker, Formant Talker</td></tr>
+    <tr><td>The sidechain</td><td>Kick Keyed, Keyed Echo Duck, Follow Filter, Follow The Kick (they want a kick on the sidechain input; without one they key from the sound itself)</td></tr>
+  </table>
+  <p>They are starting points: each one's lanes show what moves, so open a slot, click a lane and change its depth, phase, speed or shape.</p>
+  <p>Press <strong>SAVE</strong> in the header to keep your own: presets keep the effects, their settings and every lane. The preset menu has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>; an asterisk after the name means you've changed something since loading it. The pump's controls and each slot's effect, power and mix are host parameters and can be automated; ride <strong>INTENSITY</strong> to automate every lane at once. The power button bypasses Pump without clicks, with its latency kept so the track stays in time.</p>
+</section>
+
+<section id="recipes">
+  <h2>Recipes</h2>
+  <p class="sub">Starting points; then make them yours.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Sidechain bass</span><p>Classic, 1/4, Amount 70 %, Color Low Pump: the lows get out of the kick's way and the top keeps going.</p></div>
+    <div class="card"><span class="tag">Breathing filter</span><p>Amount 35 %, FX 1 Filter at 9 kHz, its Cutoff lane at −45 %: the sound darkens on every beat and opens as it swells back.</p></div>
+    <div class="card"><span class="tag">Dub chop</span><p>FX 3 Delay at 40 % Mix, Feedback 70 %, its Feedback lane at −65 %: the echoes on the beat are cut, the offbeat ones ring on.</p></div>
+    <div class="card"><span class="tag">Gated reverb</span><p>FX 4 Reverb 2, Decay 6 s, its Decay lane at −70 %: a big tail slammed shut on every beat.</p></div>
+    <div class="card"><span class="tag">Tape brake</span><p>FX 1 Tape Stop, its Speed lane at −85 % with the Snap shape: the tape stumbles on every beat and catches up.</p></div>
+    <div class="card"><span class="tag">Bar-long sweep</span><p>A Filter's Cutoff lane at −50 % with the Sine shape, /2 twice (1/4x): one slow sweep a bar under a pump on every beat.</p></div>
+    <div class="card"><span class="tag">Offbeat sweep</span><p>Amount 0 %, a high-pass Filter whose Cutoff lane has Phase 50 %: no volume pump, just a filter that thins the sound on the offbeats.</p></div>
+    <div class="card"><span class="tag">Real kick</span><p>Source Sidechain, the kick on the sidechain input, Classic, 1/4, Amount 70 %: the pump lands on every real kick, fills and drops included.</p></div>
+  </div>
+</section>
+
+<section id="specs">
+  <h2>Specifications</h2>
+  <p class="sub">The numbers.</p>
+  <table>
+    <tr><th>Property</th><th>Value</th></tr>
+    <tr><td>Shapes</td><td>21, plus Amount, Mode and Feel; each lane the pump's shape or its own</td></tr>
+    <tr><td>Rate</td><td>8/1 to 1/64, straight, dotted or triplet, following the song's position or its own clock</td></tr>
+    <tr><td>Triggers</td><td>TRIGGER button and MIDI notes (any note, any channel), or hits on the sidechain input (or its level, in Follow)</td></tr>
+    <tr><td>Sidechain</td><td>A second stereo or mono input; without it, the plugin's own input keys the sidechain sources. Threshold −60 to 0 dB</td></tr>
+    <tr><td>Effects</td><td>Four slots in series after the volume: Filter, Drive, Distortion, Crusher, Ring Mod, Freq Shift, Tape Stop, Pan, Delay, Reverb, Reverb 2, Chorus, Flanger, Phaser, Pitch, Width, EQ, Compressor, OTT, Gate</td></tr>
+    <tr><td>Lanes</td><td>Every continuous effect setting and each slot's Mix: depth ±100 % of the range, phase ±half a cycle, a speed (1/8x to 8x the pump's), a shape; updated every 32 samples, smoothed over 3 ms</td></tr>
+    <tr><td>Smoothing</td><td>1.5 ms on the volume's pump, so drops don't click</td></tr>
+    <tr><td>Compressor</td><td>Threshold to −30 dB, ratio to 10:1, 1 ms attack, 90 ms release, 2 ms lookahead</td></tr>
+    <tr><td>Latency</td><td>2 ms, reported to the host</td></tr>
+    <tr><td>CPU</td><td>Very low for the volume alone, more with reverbs; nothing while silent</td></tr>
+    <tr><td>Channels</td><td>Stereo (mono tracks work too)</td></tr>
+    <tr><td>Formats</td><td>AU, VST3, Standalone</td></tr>
+  </table>
+</section>
+
+<footer>
+  <div class="sig">Robotic Audio</div>
+  Pump was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
+  Fonts: Big Shoulders Display and Inter, under the SIL Open Font License.
+</footer>
+
+</div>
+</main>
+<script>
+// Highlight the section being read in the contents
+const links = [...document.querySelectorAll("nav.toc a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+sections.forEach(s => s && observer.observe(s));
+</script>
+</body>
+</html>
