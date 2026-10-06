@@ -1,6 +1,12 @@
 ---
 ---
-<section class="hero">
+<section class="hero hero--picture">
+  <div class="hero__picture">
+    <img src="{{ '/assets/images/home/hero-plugins.jpg' | relative_url }}"
+         srcset="{{ '/assets/images/home/hero-plugins-960.jpg' | relative_url }} 960w, {{ '/assets/images/home/hero-plugins.jpg' | relative_url }} 1280w"
+         sizes="(max-width: 1440px) 100vw, 1440px" width="1280" height="720" fetchpriority="high"
+         alt="Contour, Pump, Overpressure, Parametric EQ and Gatekeeper, side by side, each glowing in its own colour">
+  </div>
   <div class="container">
     <p class="kicker">{{ site.tagline }}</p>
     <h1 class="hero__title">Robotic<br>Audio</h1>
