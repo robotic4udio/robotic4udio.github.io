@@ -20,7 +20,7 @@ stats:
   - 5 drawn envelopes
   - 8-slot mod matrix
   - 14 filter types
-  - 14 effects in 4 slots
+  - 20 effects in 4 slots
   - 8 macros
   - XY performance pad
 
@@ -42,7 +42,7 @@ features:
   - title: Modulation matrix
     text: Eight slots route the envelopes, MIDI and the macros to almost anything, pitch included. Knobs show what is moving them.
   - title: Effects rack
-    text: Four slots in series and fourteen effects, from OTT and distortion to delay, two reverbs and a gate, each with its own editor and live display.
+    text: Four slots in series and twenty effects, from OTT, distortion and a stacked drive to delay, two reverbs, a gate, a frequency shifter and a tape stop, each with its own editor and live display.
   - title: Macros and XY pad
     text: Eight macro knobs and an XY pad for playing a patch with one hand. Right-click any effect control to map it.
   - title: Presets with everything in them

@@ -17,9 +17,9 @@
   --line-strong: rgba(255, 236, 220, 0.22);
   --text: #f4ece4;
   --muted: #a99e94;
-  --ember: #b4581c;
-  --fire: #e08a2c;
-  --hot: #ffc46b;
+  --ember: #fa4f0f;
+  --fire: #ff8022;
+  --hot: #ffc258;
   --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
   --radius: 14px;
   --sidebar: 260px;
@@ -194,7 +194,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
 </head>
 <body>
 
-<svg class="defs" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#b4581c"/><stop offset=".45" stop-color="#e08a2c"/><stop offset="1" stop-color="#ffc46b"/></linearGradient><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z" fill="#a99e94"/></marker></defs></svg>
+<svg class="defs" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#fa4f0f"/><stop offset=".45" stop-color="#ff8022"/><stop offset="1" stop-color="#ffc258"/></linearGradient><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z" fill="#a99e94"/></marker></defs></svg>
 
 <nav class="toc" aria-label="Contents">
   <div class="brand">Robotic Audio</div>
@@ -207,8 +207,9 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <li><a href="#cuts">The generator</a></li>
     <li><a href="#procedures">Procedures</a></li>
     <li><a href="#gestures">Gestures</a></li>
+    <li><a href="#stretch">Time stretch</a></li>
     <li><a href="#lanes">Effect lanes</a></li>
-    <li><a href="#motion">Motion &amp; ranges</a></li>
+    <li><a href="#lines">Drawing the lines</a></li>
     <li><a href="#modes">Modes</a></li>
     <li><a href="#patterns">Patterns</a></li>
     <li><a href="#song">Song</a></li>
@@ -227,11 +228,12 @@ svg.defs { position: absolute; width: 0; height: 0; }
 <header class="hero">
   <div class="kicker">Robotic Audio · User manual</div>
   <h1>Splicer</h1>
-  <p class="lede">A probabilistic cut-and-effects machine. Splicer slices whatever passes through it in time with your song, then <em>repeats, reverses, re-pitches, tape-stops and reorders</em> the slices, and throws filters, crushers, drive, gates, echoes and reverb at them. You design the cuts as patterns, or let the generator write them by chance inside bounds you set, then string patterns together into a song.</p>
+  <p class="lede">A probabilistic cut-and-effects machine. Splicer slices whatever passes through it in time with your song, then <em>repeats, reverses, re-pitches, time-stretches, gates, tape-stops and reorders</em> the slices, and throws filters, ring modulation, drive and bitcrushing, echoes and reverb at them, each moving along a line you can draw. You design the cuts as patterns, or let the generator write them by chance inside bounds you set, then string patterns together into a song.</p>
   <ul class="facts">
     <li>BBCut-style cut engine</li>
     <li>5 cut procedures on a strict grid</li>
-    <li>6 effect lanes with range knobs</li>
+    <li>Time stretch down to 0.78 %</li>
+    <li>5 effect lanes with drawn lines</li>
     <li>Repeatable randomness</li>
     <li>16 editable patterns and a song chain</li>
     <li>Hand-played gestures and MIDI</li>
@@ -249,7 +251,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <p class="sub">From install to mangled breaks in a minute.</p>
   <div class="grid">
     <div class="card"><span class="tag">01</span><h4>Insert it</h4><p>Put Splicer on a drum loop, a bus or a whole mix and press play in your DAW. Splicer follows the song's tempo and position.</p></div>
-    <div class="card"><span class="tag">02</span><h4>Watch the map</h4><p>The phrase map shows the pattern playing: pink for repeats, blue for reversed ones, amber ramps for tape stops and starts.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Watch the pattern</h4><p>The pattern editor shows the pattern with a playhead running through it: pink for repeats, blue for reversed ones, amber ramps for tape stops and starts.</p></div>
     <div class="card"><span class="tag">03</span><h4>Generate</h4><p>On the PATTERN page, choose a <strong>Procedure</strong> and set the Generator panel's knobs, then press <strong>GENERATE</strong>: the generator writes a new pattern into the selected slot. Press again for another.</p></div>
     <div class="card"><span class="tag">04</span><h4>Edit it</h4><p>On the <strong>PATTERN</strong> page, <kbd>Shift</kbd>-drag to mark a region and add or clear gestures, or randomize just that part.</p></div>
     <div class="card"><span class="tag">05</span><h4>Make a song</h4><p>Fill more slots, then chain them on the <strong>SONG</strong> page and set Mode to Song.</p></div>
@@ -263,10 +265,10 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <p class="sub">What's where.</p>
   <dl class="params">
     <dt>Header</dt><dd>The preset bar, the power button (bypass) and the menu (three lines) with this manual, About and the website.</dd>
-    <dt>Displays</dt><dd>The last 10 seconds in (with markers where a cut reads from: <strong>RPT</strong> repeats, <strong>REV</strong> reversed, <strong>TAPE</strong> tape stops and starts, <strong>FRZ</strong> freeze) and out. They stay on every page.</dd>
+    <dt>Displays</dt><dd>The last 10 seconds in (with markers where a cut reads from: <strong>RPT</strong> repeats, <strong>REV</strong> reversed, <strong>TAPE</strong> tape stops and starts, <strong>FRZ</strong> freeze, <strong>STR</strong> stretched) and out. They stay on every page.</dd>
     <dt>Pages, patterns, mode</dt><dd>On every page, one row: the page tabs, the sixteen patterns <strong>A</strong> to <strong>P</strong> (click one to select it) and the <strong>MODE</strong> menu, Pattern or Song (see <a href="#modes">Modes</a>).</dd>
-    <dt>PATTERN page</dt><dd>The selected pattern's editor, with the <strong>Generator</strong> panel below it: the pattern's recipe (how it's cut, which gestures, how often each effect is used), <strong>GENERATE</strong> and <strong>RANDOMIZE REGION</strong>. See <a href="#patterns">Patterns</a> and <a href="#cuts">The generator</a>.</dd>
-    <dt>EFFECTS page</dt><dd>The phrase map (what plays, effects included), how each of the six effects sounds (motion and two ranges) and <strong>Perform</strong>: Chaos, the seed, Mix and the gestures played by hand.</dd>
+    <dt>PATTERN page</dt><dd>The selected pattern's editor, with the <strong>Generator</strong> panel below it: the pattern's recipe (how it's cut, which gestures, how often blocks are stretched and each effect is used), <strong>GENERATE</strong> and <strong>RANDOMIZE REGION</strong>. Click an effect's name in the editor and its lines take the panel's place. See <a href="#patterns">Patterns</a>, <a href="#cuts">The generator</a> and <a href="#lines">Drawing the lines</a>.</dd>
+    <dt>EFFECTS page</dt><dd>The same pattern editor as on the PATTERN page (it edits the same pattern, toolbar and all), then each of the five effects' card, in the chain's order (its power, a grip to drag it to another place in the chain, and two ranges) and <strong>Perform</strong>: Chaos, the seed, Mix and the gestures played by hand. Click an effect's name in the editor and its lines take the place of the cards and Perform; <strong>EFFECTS</strong> brings them back. See <a href="#lanes">Effect lanes</a>.</dd>
     <dt>SONG page</dt><dd>The chain of patterns Song mode plays.</dd>
     <dt>Tooltip bar</dt><dd>Along the bottom: point at any control to see what it does.</dd>
   </dl>
@@ -283,9 +285,8 @@ svg.defs { position: absolute; width: 0; height: 0; }
       <rect class="box hot" x="260" y="100" width="140" height="70" rx="10"/>
       <text x="330" y="130">CUT ENGINE</text><text class="sub" x="330" y="148">reads where the plan says</text>
       <rect class="box" x="430" y="100" width="70" height="70" rx="10"/><text x="465" y="140">FILTER</text>
-      <rect class="box" x="510" y="100" width="70" height="70" rx="10"/><text x="545" y="140">CRUSH</text>
-      <rect class="box" x="590" y="100" width="70" height="70" rx="10"/><text x="625" y="140">DRIVE</text>
-      <rect class="box" x="670" y="100" width="70" height="70" rx="10"/><text x="705" y="140">GATE</text>
+      <rect class="box" x="510" y="100" width="70" height="70" rx="10"/><text x="545" y="140">RING</text>
+      <rect class="box" x="590" y="100" width="150" height="70" rx="10"/><text x="665" y="140">DRIVE</text>
       <rect class="box" x="750" y="100" width="70" height="70" rx="10"/><text x="785" y="134">DELAY</text><text class="sub" x="785" y="150">send</text>
       <rect class="box" x="830" y="100" width="70" height="70" rx="10"/><text x="865" y="134">REVERB</text><text class="sub" x="865" y="150">send</text>
       <circle class="box" cx="940" cy="60" r="16"/><text x="940" y="66" style="font-size: 18px">+</text>
@@ -294,17 +295,17 @@ svg.defs { position: absolute; width: 0; height: 0; }
         <path d="M52 60 H922"/>
         <path d="M70 60 V135 H88"/>
         <path d="M230 135 H258"/><path d="M400 135 H428"/><path d="M500 135 H508"/><path d="M580 135 H588"/>
-        <path d="M660 135 H668"/><path d="M740 135 H748"/><path d="M820 135 H828"/>
+        <path d="M740 135 H748"/><path d="M820 135 H828"/>
         <path d="M900 135 H940 V78"/>
         <path d="M956 60 C970 60 975 80 975 95"/>
       </g>
       <text class="sub" x="500" y="48">dry (Mix)</text>
-      <text class="sub" x="500" y="205">The plan decides, per block, what the engine reads and which lanes are on;</text>
-      <text class="sub" x="500" y="222">the delay and reverb tails keep ringing after a block ends.</text>
+      <text class="sub" x="500" y="205">The plan decides, per block, what the engine reads and which lanes are on; each lane's lines</text>
+      <text class="sub" x="500" y="222">set its controls there. The delay and reverb tails keep ringing after a block ends.</text>
     </svg>
   </div>
-  <p>Everything that comes in is first written into a 30-second <strong>history</strong>. The <strong>cut engine</strong> then plays from it: while a block plays live it reads the sample that has just arrived, so nothing changes; during a cut it reads from wherever the plan says, forwards, backwards, faster, slower, or from further back in time. Every jump is crossfaded, so cuts don't click.</p>
-  <p>The engine's output runs through the <strong>effect lanes</strong> in a fixed order: filter, crush, drive, gate, then the delay and reverb throws. A lane only does anything while it is on for the block playing; switching fades over a few milliseconds. The delay and reverb are sends: sound goes in while the lane is on, and the tails ring out across the blocks that follow.</p>
+  <p>Everything that comes in is first written into a 30-second <strong>history</strong>. The <strong>cut engine</strong> then plays from it: while a block plays live it reads the sample that has just arrived, so nothing changes; during a cut it reads from wherever the plan says, forwards, backwards, faster, slower, stretched, or from further back in time. Every jump is crossfaded, so cuts don't click.</p>
+  <p>The engine's output runs through the <strong>effect lanes</strong> in the order their cards stand on the EFFECTS page: filter, ring modulator, drive, delay and reverb at first. Drag a card by its grip (the dots at its top right) to another place to change the order: a delay before the drive echoes the clean sound and drives the echoes, after it echoes the driven sound; a ring before the reverb rings into it, after it rings the whole tail. The pattern editor's rows follow the order, and presets and sessions keep it. A lane only does anything while it is on for the block playing; switching fades over a few milliseconds. Its controls follow its lines (see <a href="#lines">Drawing the lines</a>), read about every 0.7 ms. The delay and reverb are sends: sound goes in while the lane is on, and the tails ring out across the blocks that follow.</p>
   <p><strong>Mix</strong> blends the dry input with all of this. The drive is oversampled, which delays the sound by a few samples; Splicer reports this to your host, which compensates for it.</p>
 </section>
 
@@ -325,13 +326,14 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <dl class="params">
     <dt>Recipes</dt><dd>The Generator panel under the editor on the PATTERN page shows the <strong>selected pattern's recipe</strong>: each pattern keeps its own settings, so a breaks pattern and a sparse glitch pattern sit side by side. Select another pattern and the panel shows its recipe; turn a knob and it's that pattern's recipe now (undo brings back the old one). <strong>GENERATE</strong> writes the whole pattern from it, <strong>RANDOMIZE REGION</strong> only the edit region; each press draws a fresh seed.</dd>
     <dt>Procedure</dt><dd>The rules for slicing the phrase into blocks and repeats (see <a href="#procedures">Procedures</a>).</dd>
-    <dt>Optimized For</dt><dd>Leans everything towards your material without changing how anything works. <strong>Breaks</strong>: tight 2.5 ms crossfades, busy cutting. <strong>Mix / Bus</strong>: longer blocks, fewer repeats, more delay and reverb throws, less crushing. <strong>Melodic</strong>: smooth 12 ms crossfades, longer blocks, more reverse, pitch, tape and reverb, less gating. <strong>Performance</strong>: few automatic cuts and effects, so you can play the gestures by hand.</dd>
+    <dt>Optimized For</dt><dd>Leans everything towards your material without changing how anything works. <strong>Breaks</strong>: tight 2.5 ms crossfades, busy cutting. <strong>Mix / Bus</strong>: longer blocks, fewer repeats, more delay and reverb throws, less ring modulation. <strong>Melodic</strong>: smooth 12 ms crossfades, longer blocks, more reverse, pitch, stretch, tape and reverb. <strong>Performance</strong>: few automatic cuts and effects, so you can play the gestures by hand.</dd>
     <dt>Grid</dt><dd>The step the cutting patterns are made of. Every block starts on it: at 1/8 (the default) every cut falls on an 8th note. Reach and the hand-played stutter are counted in it too. <span class="range">1/4, 1/8, 1/16</span></dd>
     <dt>Density</dt><dd>How many blocks are cut; the rest play live. Where a block starts matters: the phrase's first beat nearly always comes through clean, bar downbeats are cut less, and cutting builds up through the last bar. <span class="range">0 – 100 %</span></dd>
     <dt>Repeats</dt><dd>A range knob: how many times a cut block is repeated, picked inside the range for every cut and moved to the nearest count that divides the block musically: 1, 2, 4, 8 or 16 (a block of three units: 1, 3, 6 or 12). The repeats share the block's length: at the default of 2, a quarter-note block plays an 8th note twice. <span class="range">1 – 16</span></dd>
     <dt>Roll</dt><dd>How often a cut becomes a roll: 8ths, then 16ths, then 32nds, each taking half of what's left (repeats of a block). Rolls happen mostly in the phrase's last bar. Negative values slow down instead (32nds to 8ths). <span class="range">−100 – +100 %</span></dd>
     <dt>Fill</dt><dd>The chance a phrase ends with a fill: its last half or quarter bar becomes a roll (or now and then a tape stop), leading into the next phrase. <span class="range">0 – 100 %</span></dd>
     <dt>Triplets</dt><dd>The chance a cut divides into threes (3, 6 or 12 repeats) instead. Turn it to 0 for none. <span class="range">0 – 100 %</span></dd>
+    <dt>Filter … Reverb</dt><dd>Under <strong>Effects: how often, and what it draws</strong>, a row per effect: its chance (the share of blocks on which the generator switches it on) and, beside it, its motion (what the generator draws into its lines over each of those blocks, from the table under Effect lanes); both are part of the pattern's recipe (see <a href="#lanes">Effect lanes</a>). The phrase's first beat rarely gets one. <span class="range">0 – 100 %</span></dd>
     <dt>Reach</dt><dd>A range knob: how far back, in beats, the repeats come from. At 0 a block repeats its own start: the first repeat is the live sound, the rest replay it. Further back plays music from earlier in the history, which reorders the song. <span class="range">0 – 8 beats</span></dd>
   </dl>
   <h3>Never ahead of time</h3>
@@ -356,58 +358,86 @@ svg.defs { position: absolute; width: 0; height: 0; }
 <section id="gestures">
   <h2>Gestures</h2>
   <p class="sub">What a cut block does.</p>
-  <p>A cut block is a tape stop, a tape start or (most often) a run of repeats. Repeats can also be reversed and pitched.</p>
+  <p>A cut block is a tape stop, a tape start or (most often) a run of repeats. Repeats can also be reversed, pitched and stretched.</p>
   <dl class="params">
     <dt>Reverse</dt><dd>The chance that a cut plays its repeats backwards. <span class="range">0 – 100 %</span></dd>
     <dt>Pitch</dt><dd>The chance that a cut's repeats step in pitch, each one by another Pitch Step: up for rising rolls, down for falling ones. The first repeat keeps the original pitch. Pitch changes with speed, like tape, from two octaves down to one up. <span class="range">0 – 100 %</span></dd>
+    <dt>Pitch Mode</dt><dd>How the generator pitches a cut. <strong>Tape</strong>: pitch and speed together, like a tape played faster or slower (higher repeats read further along). <strong>Shift</strong>: the time stretch changes the pitch and the material keeps its timing, so every repeat replays the same slice, higher or lower: pitched rolls and risers. In the left column of the Generator panel. <span class="range">Tape, Shift</span></dd>
     <dt>Pitch Step</dt><dd>A range knob: the semitones added per repeat, always whole semitones. <span class="range">−12 – +12 st</span></dd>
     <dt>Tape Stop</dt><dd>The chance that a cut block slows down to a standstill instead of repeating, then stays silent until the next block. <span class="range">0 – 100 %</span></dd>
     <dt>Tape Start</dt><dd>The chance that a cut block starts from standstill and spins up to speed. <span class="range">0 – 100 %</span></dd>
+    <dt>Gate</dt><dd>The chance that a cut block is a gate: played through, silenced for part of every 8th, 16th or 32nd (or their triplets, by the Triplets chance), never slower than the block, open a quarter, half or three quarters of each. <span class="range">0 – 100 %</span></dd>
     <dt>Tape Length</dt><dd>A range knob: how much of the block the stop or start takes, in quarters of the block. <span class="range">10 – 100 %</span></dd>
+    <dt>Stretch</dt><dd>The chance that a cut's repeats are time-stretched (see <a href="#stretch">Time stretch</a>). <span class="range">0 – 100 %</span></dd>
+    <dt>Depth</dt><dd>How far a stretch may go: each stretched cut picks 50 % or slower, down to this, every step as likely. <span class="range">50 % – 0.78 %</span></dd>
   </dl>
+</section>
+
+<section id="stretch">
+  <h2>Time stretch</h2>
+  <p class="sub">Slower, at the same pitch.</p>
+  <p>Any live block or run of repeats can be <strong>stretched</strong>: its material goes by slower while keeping its pitch. A live block at 50 % plays the first half of itself over the whole block; a repeat at 25 % plays a quarter as much material, four times as long. Choose it with <strong>STRETCH</strong> on the PATTERN page (or Stretch in the right-click menu): Off, 50 %, 25 %, 12.5 %, 6.25 %, 3.13 %, 1.56 % or 0.78 % (128 times as long). From about 3 % down, a few milliseconds of sound are drawn out into a ringing, metallic drone. Tape stops, tape starts and freezes keep their own speed; gates stretch too. The generator stretches cuts by its <strong>Stretch</strong> and <strong>Depth</strong> (see <a href="#gestures">Gestures</a>).</p>
+  <p>The same engine pitches repeats in <strong>Shift</strong> mode (see <a href="#gestures">Gestures</a>): the material keeps its timing and only the pitch moves, which is what a pitched roll or riser wants.</p>
+  <p>Stretched sound is played as two overlapping 50 ms grains, each at the block's pitch, so pitch and time are separate: a stretched, pitched repeat steps in pitch without changing speed, and a stretched reversed repeat plays slowly backwards. Each new grain is lined up with the one it takes over from, so low notes and kick drums sustain smoothly instead of pulsing. Hits stay hits: Splicer marks every drum hit as it records, plays each one once, as it was, when the stretch reaches it, and lets the grains repeat only what follows it, so a kick stretched to 6.25 % sounds like one kick with a long tail, not a click train. A stretched block still starts sharply on its step, and like every cut it never needs audio from the future: slower only ever falls further behind.</p>
 </section>
 
 <section id="lanes">
   <h2>Effect lanes</h2>
-  <p class="sub">Six effects that fire by chance, block by block.</p>
+  <p class="sub">Five effects, switched on block by block, each following its lines.</p>
   <figure>
     <img src="images/effects.jpg" alt="The effects page">
-    <figcaption>The EFFECTS page: what plays, how each effect sounds, and Perform.</figcaption>
+    <figcaption>The EFFECTS page with Total Chaos: the pattern editor (as on the PATTERN page) with each effect's line through the blocks it's on for, the effect cards and Perform.</figcaption>
   </figure>
-  <p>How each effect <em>sounds</em> is set on the <strong>EFFECTS</strong> page: its <strong>Motion</strong> (how its values move during a block) and two <strong>range knobs</strong> that bound those values. <em>Where</em> it plays is in the pattern: switch it on or off per block by clicking its lane row in the editor, or let the generator do it: the Generator panel's <strong>Effects: how often</strong> knobs say on how many blocks it switches each effect on.</p>
+  <p><em>Where</em> an effect plays is in the pattern: switch it on or off per block by clicking its row in the editor, or let the generator do it (the Generator panel's <strong>Stretch and effects: how often</strong> knobs). <em>How</em> it moves is its two <strong>lines</strong>, one per control, drawn across the pattern (see <a href="#lines">Drawing the lines</a>). Each effect's card on the <strong>EFFECTS</strong> page sets the rest:</p>
+  <dl class="params">
+    <dt>Power</dt><dd>The square by the title (or the title itself) switches the effect on and off: lit, it plays where the pattern switches it on; dark, it's left out everywhere: its controls grey out, its row in the pattern editor turns faint grey, the rings round its knobs and the playhead over its lines stop, and it changes nothing in the sound. Every effect starts on; the switches (Filter On … Reverb On in your host) are saved with presets and sessions.</dd>
+    <dt>Order</dt><dd>Drag a card by its grip (the dots at its top right) to another place: the sound runs through the effects in the cards' order, left to right, and the pattern editor's rows follow. See <a href="#flow">Signal flow</a>.</dd>
+    <dt>Range knobs</dt><dd>Where the lines take the two controls: the bottom of a line is the bottom of the range, its top the top. Drag to move the range, <kbd>Shift</kbd>-drag (or <kbd>Shift</kbd>-scroll) to make it wider or narrower, double-click to reset. While a pattern plays, a thin ring round the knob shows the range its line takes it over, with a dot where the line has the control right now (as on Contour's knobs); it only reaches the sound where the effect is on.</dd>
+  </dl>
   <table>
-    <tr><th>Lane</th><th>First range</th><th>Second range</th><th>Extra</th></tr>
+    <tr><th>Effect</th><th>First control</th><th>Second control</th><th>Extra</th></tr>
     <tr><td>Filter</td><td>Cutoff, 40 Hz – 18 kHz</td><td>Resonance</td><td>Filter type: all 14 of the suite's filters (ladders, SVF, diode, MS-20, formant, combs, phaser)</td></tr>
-    <tr><td>Crush</td><td>Bits, 1 – 16</td><td>Sample rate, 400 Hz – 44.1 kHz</td><td></td></tr>
-    <tr><td>Drive</td><td>Drive amount</td><td>Colour: saturation → overdrive → distortion → fuzz</td><td>Oversampled 4×</td></tr>
-    <tr><td>Gate</td><td>Length: the share of each slice that's open</td><td>Steps: slices per repeat, 1, 2, 3, 4, 6 or 8</td><td>Follows the repeats (or grid units in a live block)</td></tr>
+    <tr><td>Ring</td><td>Freq: the carrier, 20 Hz – 5 kHz (low: a tremolo-like flutter; high: metallic, bell-like, robotic)</td><td>Mix: how much of the ringing replaces the sound</td><td>Ring wave: the carrier's shape: Sine (clean), Triangle, Square (harsh)</td></tr>
+    <tr><td>Drive</td><td>Drive amount</td><td>Colour: with Blend, which stage (saturation → overdrive → distortion → fuzz); with Bitcrush, how low the sample rate goes (44.1 kHz down to 400 Hz); with Downsample, how much the steps are smoothed (harsh to muffled); with the others, an offset before the drive, for uneven, buzzy harmonics</td><td>Drive type: Blend, Saturation, Overdrive, Distortion, Fuzz, Stack (overdrive, distortion and fuzz together in series, as Contour's Aggressor can; these six oversampled 4×), Tube, Fold (a wavefolder), Rectify (an octave up), Hard Clip, Bitcrush (Drive takes the bits, 16 down to 1) and Downsample (Drive takes the sample rate, 44.1 kHz down to 400 Hz, with no bits lost)</td></tr>
     <tr><td>Delay</td><td>Send</td><td>Feedback, 0 – 95 %</td><td>Delay time in notes, 1/32 to 1/2, dotted and triplet</td></tr>
     <tr><td>Reverb</td><td>Send</td><td>Decay, 0.3 – 12 s</td><td>Splicer's large algorithmic reverb</td></tr>
   </table>
-  <p>The delay and reverb are <strong>throws</strong>: the block's sound goes in while the lane is on, and the echoes and tail carry on over the blocks that follow, mixed on top of the sound.</p>
-</section>
-
-<section id="motion">
-  <h2>Motion &amp; ranges</h2>
-  <p class="sub">Bounded randomness.</p>
-  <p>A range knob sets a range, not a value: drag it to move the range, <kbd>Shift</kbd>-drag (or <kbd>Shift</kbd>-scroll) to make it wider or narrower, double-click to reset. A lit dot on the ring shows where the value is right now, while the lane is playing.</p>
   <table>
-    <tr><th>Motion</th><th>During a block</th></tr>
-    <tr><td>Hold</td><td>One random value inside the range, held.</td></tr>
-    <tr><td>Ramp Up</td><td>From the bottom of the range to the top: a rising filter sweep.</td></tr>
+    <tr><th>Motion (Generator panel)</th><th>What GENERATE draws over a block</th></tr>
+    <tr><td>Hold</td><td>One random level, held.</td></tr>
+    <tr><td>Ramp Up</td><td>From the bottom to the top: a rising filter sweep.</td></tr>
     <tr><td>Ramp Down</td><td>From the top to the bottom.</td></tr>
-    <tr><td>Walk</td><td>A smooth random wander through the range.</td></tr>
-    <tr><td>Steps</td><td>A new random value for every repeat.</td></tr>
-    <tr><td>Alternate</td><td>Flips between the two ends of the range with every repeat.</td></tr>
+    <tr><td>Walk</td><td>A smooth random wander.</td></tr>
+    <tr><td>Steps</td><td>A new random level for every repeat.</td></tr>
+    <tr><td>Alternate</td><td>Flips between the bottom and the top with every repeat.</td></tr>
     <tr><td>Random</td><td>One of the above, chosen anew for every block.</td></tr>
   </table>
-  <p>Both of a lane's controls follow the same motion, each with its own random values.</p>
+  <p>The delay and reverb are <strong>throws</strong>: the block's sound goes in while the effect is on, and the echoes and tail carry on over the blocks that follow, mixed on top of the sound.</p>
+</section>
+
+<section id="lines">
+  <h2>Drawing the lines</h2>
+  <p class="sub">Every effect's movement, drawn across the pattern.</p>
+  <figure>
+    <img src="images/lines.jpg" alt="The filter's lines">
+    <figcaption>The PATTERN page with the filter selected: its Cutoff line under the pattern, lined up with the blocks, with the tabs, both ranges, the filter type and the Grid above it.</figcaption>
+  </figure>
+  <p>Each effect has a line for each of its two controls, running across the whole pattern under the blocks. Where the effect is on, the line sets the control inside its range; where it's off, the line does nothing. The generator draws the lines as it writes a pattern (each block's motion), and you can redraw any of it.</p>
+  <p><strong>Click an effect's name</strong> in the pattern editor (FILTER, RING …) and its lines open under it, lined up with the pattern above: on the PATTERN page in the Generator panel's place, on the EFFECTS page in place of the effect cards and Perform. Click the name again, CUTS, or the button at the top right (<strong>GENERATOR</strong> or <strong>EFFECTS</strong>) to go back.</p>
+  <p><strong><kbd>Cmd</kbd>-click an effect's cell</strong> to edit its lines over that block only: the block is selected, the lines zoom to it, and drawing, ready-made shapes and RANDOM change only that part (the note above the drawing says where, e.g. ONLY 2.3.1 – 2.4.4). Click the effect's name for the whole lines again.</p>
+  <dl class="params">
+    <dt>Tabs</dt><dd>The effect's two controls (e.g. <strong>CUTOFF</strong> and <strong>RESONANCE</strong>): which line to draw. The other line shows faintly behind it, see-through, so you can draw one against the other.</dd>
+    <dt>Drawing</dt><dd>The suite's envelope editor: draw freehand, in lines, or warp, lift and move the shape with the tools; <strong>RANDOM</strong>, <strong>SMOOTH</strong> and <strong>NORMALIZE</strong>; right-click (or the menu button) for ready-made shapes, waveforms and windows; <kbd>Shift</kbd>-drag to edit only part of it. A playhead runs through it while the pattern plays.</dd>
+    <dt>Grid</dt><dd>The note value the drawing snaps to and shows: 1/4, 1/8, 1/16 (the pattern's steps, the default), 1/32, or the triplets 1/4T to 1/32T.</dd>
+    <dt>Power, ranges</dt><dd>The same as on the effect's card on the EFFECTS page. What GENERATE draws into the lines is the effect's motion, in the Generator panel.</dd>
+  </dl>
+  <p>The lines belong to the pattern: select another pattern and you see its lines, and drawing is an edit of the pattern like any other, undone with <kbd>Cmd</kbd>+<kbd>Z</kbd> on the PATTERN page. Copy and paste, Randomize and changing the pattern's length take the lines along with the blocks; GENERATE draws them anew.</p>
 </section>
 
 <section id="modes">
   <h2>Modes</h2>
   <p class="sub">What plays.</p>
-  <p>The <strong>MODE</strong> menu, at the right of the page tabs, decides which pattern the cut engine plays. Everything after that (the history, the gestures you play by hand, the effect lanes' motions and ranges, Chaos and Mix) works the same in both modes.</p>
+  <p>The <strong>MODE</strong> menu, at the right of the page tabs, decides which pattern the cut engine plays. Everything after that (the history, the gestures you play by hand, the effect lanes' power and ranges, Chaos and Mix) works the same in both modes.</p>
   <table>
     <tr><th>Mode</th><th>What plays</th></tr>
     <tr><td>Pattern</td><td>The selected pattern loops, in step with the song. Choosing another pattern (on the PATTERN page, by automating the Pattern parameter, or with a MIDI note from C1 to D#2) switches at the next bar line.</td></tr>
@@ -420,33 +450,35 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>Patterns</h2>
   <p class="sub">Cuts you design, keep and play.</p>
   <figure>
-    <img src="images/pattern.jpg" alt="The pattern page">
+    <img src="images/splicer.jpg" alt="The pattern page">
     <figcaption>The PATTERN page with Total Chaos's pattern A, written by the generator from the recipe below it.</figcaption>
   </figure>
-  <p>The <strong>PATTERN</strong> page edits sixteen patterns, <strong>A</strong> to <strong>P</strong>. A pattern is 1, 2 or 4 bars of blocks on a grid of 16th notes: each block plays live or is cut, may switch effect lanes on, and has a chance of happening. Click a slot to edit it (in Pattern mode it also starts playing at the next bar line); slots holding something show a dot per bar.</p>
+  <p>The <strong>PATTERN</strong> page edits sixteen patterns, <strong>A</strong> to <strong>P</strong>. A pattern is 1, 2 or 4 bars of blocks on a grid of 16th notes: each block plays live or is cut, may be stretched, may switch effects on, and has a chance of happening. Each pattern also has its own lines for the effects. Click a slot to edit it (in Pattern mode it also starts playing at the next bar line); slots holding something show a dot per bar.</p>
   <h3>Selecting</h3>
   <p>As in the envelope editor, <kbd>Shift</kbd>-drag across the timeline to mark the <strong>edit region</strong>; it snaps to the <strong>Grid</strong> (1/8 by default). With <kbd>Shift</kbd> held, drag either edge of the region to resize it. A plain click selects the block under the mouse, <kbd>Cmd</kbd>+<kbd>A</kbd> selects everything and <kbd>Esc</kbd> selects nothing.</p>
   <h3>Edits</h3>
   <table>
     <tr><th>Edit</th><th>What it does to the selection</th></tr>
     <tr><td>Repeat</td><td>Plays it as 1, 2, 3, 4, 6, 8 or 16 equal repeats: two repeats over a quarter note are two 8ths.</td></tr>
-    <tr><td>Roll</td><td>A roll: 8ths, then 16ths, then 32nds, each taking half of what's left (or slowing down; or in triplets).</td></tr>
+    <tr><td>Roll</td><td>A roll: 8ths, then 16ths, then 32nds, each taking half of what's left (or slowing down; or in triplets). A <strong>Riser</strong> climbs a semitone each repeat as it speeds up, a <strong>Faller</strong> drops as it slows: both shifted, so every repeat replays the same slice.</td></tr>
     <tr><td>Reverse</td><td>Plays its repeats backwards (a live block becomes one reversed repeat). Again to turn it off.</td></tr>
-    <tr><td>Pitch</td><td>Each repeat a step higher or lower: ±1, 2, 3, 5, 7 or 12 semitones.</td></tr>
+    <tr><td>Pitch</td><td>Each repeat a step higher or lower: ±1, 2, 3, 5, 7 or 12 semitones; <strong>Tape</strong> (pitch and speed together) or <strong>Shift</strong> (pitch only, through the time stretch: the timing stays).</td></tr>
     <tr><td>Reach</td><td>Takes the repeats from an 8th, a beat, two beats or a bar further back: reorders the music.</td></tr>
     <tr><td>Tape</td><td>A tape stop or start, over the whole block or its first quarter, half or three quarters.</td></tr>
     <tr><td>Freeze</td><td>Holds a 1/32 note from just before the selection as a sustained tone.</td></tr>
+    <tr><td>Gate</td><td>The sound plays through, silenced for part of every note value you pick: every 1/4, 1/8, 1/8T, 1/16, 1/16T, 1/32, 1/32T or 1/64, open for 25, 50 or 75 % of each (1 ms edges, so it doesn't click). Can be stretched too.</td></tr>
+    <tr><td>Stretch</td><td>Plays its live blocks, repeats and gates slower at their own pitch: 50 % down to 0.78 %, or Off (see <a href="#stretch">Time stretch</a>).</td></tr>
     <tr><td>Chance</td><td>How often its blocks (and their effects) happen: 100, 75, 50 or 25 %. Drawn from the seed and the pass, so repeatable; Reroll changes the outcome.</td></tr>
-    <tr><td>Clear</td><td>Back to live, effects off (<kbd>Delete</kbd>).</td></tr>
+    <tr><td>Clear</td><td>Back to live, unstretched, effects off (<kbd>Delete</kbd>).</td></tr>
     <tr><td>Randomize</td><td>The generator fills only the edit region (or, with nothing marked, the whole pattern) using the pattern's recipe, with a fresh seed each time.</td></tr>
     <tr><td>Split / Merge</td><td>Cuts blocks at the selection's edges, or joins the selection into one block.</td></tr>
     <tr><td>Copy / Paste</td><td><kbd>Cmd</kbd>+<kbd>C</kbd> and <kbd>Cmd</kbd>+<kbd>V</kbd> (pastes at the selection's start, between patterns too).</td></tr>
     <tr><td>Undo / Redo</td><td><kbd>Cmd</kbd>+<kbd>Z</kbd> and <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd>, 100 steps, patterns and chain alike.</td></tr>
   </table>
-  <p>Every edit is in the toolbar and in the right-click menu. <strong>Click a cell in a lane row</strong> to switch that effect on or off for the block under it (or for the whole selection, if you click inside it); the lane's motion and ranges stay as set on the EFFECTS page. An effect moves the same way in a block every time round (as the editor draws it), and editing one region never changes the effects anywhere else; only the blocks' chances fall anew on each pass.</p>
+  <p>Every edit is in the toolbar and in the right-click menu. <strong>Click a cell in an effect's row</strong> to switch that effect on or off for the block under it (or for the whole selection, if you click inside it); <strong>Lanes</strong> in the right-click menu does it for the selection or a whole row. Each row shows the effect's first line through the blocks it's on for, and its second as a faint line over it. <strong>Click an effect's name</strong> to draw its lines. Editing one region never changes anything anywhere else; only the blocks' chances fall anew on each pass.</p>
   <h3>Generate, length and files</h3>
   <dl class="params">
-    <dt>Generate</dt><dd>The generator writes a whole new pattern into the slot (as long as it is), from the Generator panel's settings (the pattern's recipe), with a fresh seed each press: the cutting rules (strict grid, a clean first beat, fills at the end) all apply. Not what you wanted? Press again, or undo. </dd>
+    <dt>Generate</dt><dd>The generator writes a whole new pattern into the slot (as long as it is), from the Generator panel's settings (the pattern's recipe), with a fresh seed each press: the cutting rules (strict grid, a clean first beat, fills at the end) all apply. It draws the effects' lines anew. Not what you wanted? Press again, or undo.</dd>
     <dt>Length</dt><dd>1, 2 or 4 bars. New bars play live; bars past the new end are dropped.</dd>
     <dt>Pattern menu</dt><dd>Save or load the pattern, copy, paste or clear it; save or load the whole bank (all sixteen patterns and the chain); load the demo bank; open the Patterns folder. Files go to a <strong>Patterns</strong> folder next to your presets.</dd>
   </dl>
@@ -473,7 +505,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
 
 <section id="perform">
   <h2>Perform</h2>
-  <p class="sub">The big knob and the buttons, on the EFFECTS page.</p>
+  <p class="sub">Chaos, the seed, Mix and the buttons, along the bottom of the EFFECTS page.</p>
   <dl class="params">
     <dt>Chaos</dt><dd>Scales the blocks' chances as they play (and, when generating, every chance and range width). At 50 % everything is as set; lower, fewer blocks happen; at 100 % every chance is doubled. <span class="range">0 – 100 %</span></dd>
     <dt>Reroll</dt><dd>A new seed: the blocks' chances fall another way.</dd>
@@ -504,8 +536,8 @@ svg.defs { position: absolute; width: 0; height: 0; }
 <section id="display">
   <h2>The display</h2>
   <p class="sub">Seeing the chaos.</p>
-  <p>The <strong>phrase map</strong> shows the pattern playing (its letter at the top right), numbered by bar, with a line per beat and a playhead running through it. In the <strong>CUTS</strong> row, outlined blocks play live; filled ones are cut: pink for repeats (with a line between repeats), blue with a back arrow for reversed repeats, amber ramps for tape stops and starts. A small staircase shows pitched repeats, and a line running left from under a block shows how far back its repeats are taken from.</p>
-  <p>Below, a row per <strong>effect lane</strong> shows the blocks the lane fires on, with the movement of its first control (cutoff, bits, drive, length, send) drawn as a curve through the block.</p>
+  <p>The <strong>pattern editor</strong>, on the PATTERN and EFFECTS pages alike, shows the selected pattern numbered by bar, with a line per beat and a playhead running through it while it plays. In the <strong>CUTS</strong> row, outlined blocks play live; filled ones are cut: pink for repeats (with a line between repeats), blue with a back arrow for reversed repeats, amber ramps for tape stops and starts, a gold line along the bottom (and the speed at the top right) for stretched blocks. A small staircase shows pitched repeats, and a line running left from under a block shows how far back its repeats are taken from.</p>
+  <p>Below, a row per <strong>effect lane</strong> shows the blocks the effect is on for, with its first control's line (cutoff, bits, drive, send) filled in and its second as a faint line over it.</p>
   <p>The map always shows exactly what plays this time round (blocks whose chance didn't come up show as live), and it updates the moment you edit or change a setting.</p>
 </section>
 
@@ -513,8 +545,8 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>Presets &amp; bypass</h2>
   <p class="sub">The header every Robotic Audio plugin shares.</p>
   <dl class="params">
-    <dt>Preset bar</dt><dd>Previous, next, the preset list (with Save As, Delete and Open Folder) and SAVE. Presets store every setting, the seed, the mode, the sixteen patterns and the chain included.</dd>
-    <dt>Factory presets</dt><dd>Default, Jungle Roller, SQ Fill Frenzy, Tape Ghost, Bus Throws, Lo-Fi Stutter, Melodic Smear, Hands On, Demo Song (Song mode, playing the demo bank's chain) and Total Chaos. Each brings its own patterns: two grooves (A, B) and two fills (C, D), chained.</dd>
+    <dt>Preset bar</dt><dd>Previous, next, the preset list (with Save As, Delete and Open Folder) and SAVE. Presets store every setting, the seed, the mode, the sixteen patterns (their lines included) and the chain.</dd>
+    <dt>Factory presets</dt><dd>Default, Jungle Roller, SQ Fill Frenzy, Tape Ghost, Bus Throws, Lo-Fi Stutter, Melodic Smear, Stretch Lab, Hands On, Demo Song (Song mode, playing the demo bank's chain) and Total Chaos. Each brings its own patterns: two grooves (A, B) and two fills (C, D), chained.</dd>
     <dt>Power</dt><dd>Bypasses the plugin with a short, click-free crossfade.</dd>
   </dl>
 </section>
@@ -526,8 +558,12 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <div class="card"><span class="tag">Amen</span><p>Break Roller on a break at 170 BPM, Roll at 60 %, Fill at 80 %, Reach 0 to 2 beats: instant jungle edits with a roll into every phrase.</p></div>
     <div class="card"><span class="tag">Section seeds</span><p>Automate the seed: one value per chorus, another per verse. Each section gets its own pattern.</p></div>
     <div class="card"><span class="tag">Transitions</span><p>Mix / Bus on the master with Density at 0; automate Density up for the last bar before a drop.</p></div>
-    <div class="card"><span class="tag">Dub</span><p>Delay chance high, Send range 60 – 100 %, Feedback around 70 %, motion Hold: echoes thrown from random blocks.</p></div>
-    <div class="card"><span class="tag">Glitch pads</span><p>Melodic, Sparse Glitch, Tape Stop and Reverse up, Reverb chance 40 %: slowly falling, swelling textures.</p></div>
+    <div class="card"><span class="tag">Dub</span><p>Delay chance high, Send range 60 – 100 %, Feedback around 70 %, motion Hold: echoes thrown from random blocks. Then draw a spike into the Send line where you want a big one.</p></div>
+    <div class="card"><span class="tag">Glitch pads</span><p>Melodic, Sparse Glitch, Tape Stop, Reverse and Stretch up, Depth 6.25 %, Reverb chance 40 %: slowly falling, smeared, swelling textures.</p></div>
+    <div class="card"><span class="tag">Filter ride</span><p>A 4-bar pattern, the filter on everywhere (Lanes in the right-click menu), one long curve drawn into its Cutoff line: a filter move across the whole pattern.</p></div>
+    <div class="card"><span class="tag">Gate build</span><p>Gate the last bar: the first two beats every 1/8, then every 1/16, then 1/32: the chop speeds up into the drop.</p></div>
+    <div class="card"><span class="tag">Metal</span><p>A single snare hit, STRETCH at 0.78 %: a few milliseconds become a long, ringing, metallic drone. Add the reverb lane.</p></div>
+    <div class="card"><span class="tag">Riser</span><p>Mark the last bar, ROLL → Riser: a roll that speeds up and climbs a semitone each repeat, replaying one slice. Add the filter opening up.</p></div>
     <div class="card"><span class="tag">Finger drumming</span><p>Performance, with C, D, E and F on pads: stutters, reverses, stops and freezes, by hand.</p></div>
   </div>
 </section>
@@ -541,7 +577,10 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <tr><td>Generator</td><td>Patterns of 1, 2 or 4 bars (4/4) on a grid of 1/4, 1/8 or 1/16</td></tr>
     <tr><td>Repeats</td><td>1, 2, 4, 8, 16 (triplets 3, 6, 12) per block; rolls up to 32; none shorter than a 1/64 note</td></tr>
     <tr><td>Crossfades</td><td>2.5 – 12 ms by material, on every jump</td></tr>
-    <tr><td>Pitch</td><td>Varispeed, −24 to +12 semitones</td></tr>
+    <tr><td>Pitch</td><td>−24 to +12 semitones; Tape (varispeed) or Shift (through the time stretch, keeping the timing)</td></tr>
+    <tr><td>Gate</td><td>Every 1/4 to 1/64 (with triplets), open 25, 50 or 75 %, 1 ms edges</td></tr>
+    <tr><td>Time stretch</td><td>50 % down to 0.78 % (2 to 128 times as long); two lined-up 50 ms grains, hits kept intact</td></tr>
+    <tr><td>Effect lanes</td><td>5, two lines each per pattern (257 points across it), read every 32 samples</td></tr>
     <tr><td>Latency</td><td>A few samples (the drive's 4× oversampling), reported to the host</td></tr>
     <tr><td>Tail</td><td>Up to 14 seconds (delay and reverb)</td></tr>
     <tr><td>CPU at rest</td><td>Rests once silence has come in for longer than a cut can reach back and the tails have died away</td></tr>

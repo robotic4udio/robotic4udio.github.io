@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voicebox Manual</title>
+<style>
+@font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Big Shoulders"; font-weight: 800; src: url("fonts/BigShouldersDisplay-ExtraBold.ttf") format("truetype"); }
+
+:root {
+  --bg: #0d0b0a;
+  --surface: #17120f;
+  --surface-2: #211a15;
+  --line: rgba(255, 236, 220, 0.10);
+  --line-strong: rgba(255, 236, 220, 0.22);
+  --text: #f4ece4;
+  --muted: #a99e94;
+  --ember: #a4401c;
+  --fire: #d9773f;
+  --hot: #ffc49a;
+  --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
+  --radius: 14px;
+  --sidebar: 260px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 500 16px/1.65 "Inter", -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--hot); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Sidebar */
+nav.toc {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar);
+  overflow-y: auto; padding: 32px 24px 40px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+}
+nav.toc .brand { font: 600 11px/1 "Inter"; letter-spacing: .32em; color: var(--fire); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+nav.toc .brand::before { content: ""; width: 18px; height: 2px; background: var(--fire-gradient); }
+nav.toc .product { font: 800 34px/1 "Big Shoulders"; letter-spacing: .02em; margin: 10px 0 26px; text-transform: uppercase; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+nav.toc li { counter-increment: s; }
+nav.toc li a {
+  display: flex; gap: 12px; padding: 7px 10px; margin: 0 -10px; border-radius: 8px;
+  color: var(--muted); font-size: 14px;
+}
+nav.toc li a::before { content: counter(s, decimal-leading-zero); color: var(--line-strong); font-variant-numeric: tabular-nums; }
+nav.toc li a:hover, nav.toc li a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
+nav.toc li a.active::before { color: var(--fire); }
+
+main { margin-left: var(--sidebar); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+/* Hero */
+header.hero { position: relative; padding: 72px 0 40px; overflow: hidden; }
+header.hero::before {
+  content: ""; position: absolute; inset: -40% -10% auto; height: 520px;
+  background: radial-gradient(closest-side, rgba(164, 64, 28, .20), transparent);
+  pointer-events: none;
+}
+.kicker { font: 600 12px/1 "Inter"; letter-spacing: .34em; text-transform: uppercase; color: var(--fire); display: flex; align-items: center; gap: 12px; }
+.kicker::before { content: ""; width: 28px; height: 2px; background: var(--fire-gradient); }
+h1 {
+  font: 800 clamp(64px, 11vw, 132px)/.86 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em;
+  margin: 18px 0 18px;
+  background: linear-gradient(180deg, var(--text) 30%, #d9c9bb); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lede { font-size: 20px; line-height: 1.55; color: var(--text); max-width: 640px; margin: 0; }
+.lede em { font-style: normal; background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; padding: 0; list-style: none; }
+.facts li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+
+figure { margin: 32px 0; }
+figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); }
+figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+/* Sections */
+section { padding: 56px 0 8px; border-top: 1px solid var(--line); }
+h2 {
+  font: 800 52px/1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em; margin: 0 0 6px;
+}
+h2 + .sub { color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+h3 { font: 600 13px/1.2 "Inter"; letter-spacing: .24em; text-transform: uppercase; color: var(--hot); margin: 36px 0 12px; display: flex; align-items: center; gap: 10px; }
+h3::before { content: ""; width: 14px; height: 2px; background: var(--fire-gradient); }
+h4 { font: 800 24px/1.1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 4px; }
+p { margin: 0 0 14px; }
+strong { font-weight: 600; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* Parameter lists */
+dl.params { display: grid; grid-template-columns: 170px 1fr; gap: 0; margin: 0 0 18px; border-top: 1px solid var(--line); }
+dl.params dt, dl.params dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+dl.params dt { font: 600 12px/1.5 "Inter"; letter-spacing: .16em; text-transform: uppercase; color: var(--text); padding-right: 16px; padding-top: 13px; }
+dl.params dd { color: #e3d8ce; }
+dl.params dd .range { display: inline-block; margin-left: 8px; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+
+/* Cards and grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0 24px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.card p { margin: 6px 0 0; color: #e3d8ce; font-size: 15px; }
+.card .tag { font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--fire); }
+
+.callout { position: relative; background: linear-gradient(135deg, rgba(164, 64, 28,.10), rgba(255, 196, 154,.04)); border: 1px solid rgba(164, 64, 28,.35); border-radius: var(--radius); padding: 16px 20px 16px 52px; margin: 22px 0; }
+.callout::before { content: "✦"; position: absolute; left: 20px; top: 15px; color: var(--hot); font-size: 18px; }
+.callout strong { color: var(--hot); }
+
+kbd {
+  font: 600 12px/1 "Inter"; padding: 4px 7px; border-radius: 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  background: var(--surface-2); color: var(--text); white-space: nowrap;
+}
+table { width: 100%; border-collapse: collapse; margin: 8px 0 22px; font-size: 15px; }
+th { text-align: left; font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line-strong); }
+td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #e3d8ce; }
+td:first-child { color: var(--text); white-space: nowrap; }
+
+/* Signal flow */
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 20px; margin: 24px 0; overflow-x: auto; }
+.flow svg { display: block; min-width: 760px; width: 100%; height: auto; }
+
+/* Effects */
+.fx { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 22px 0 40px; }
+.fx img { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 10px 0 14px; }
+.fx .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.fx .head .what { color: var(--muted); }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 2px; transform: translateY(-1px); }
+
+footer { padding: 60px 0 80px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 40px; }
+footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+
+@media (max-width: 980px) {
+  nav.toc { position: static; width: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav.toc ol { columns: 2; }
+  main { margin-left: 0; }
+  .wrap { padding: 0 20px; }
+  dl.params { grid-template-columns: 1fr; }
+  dl.params dt { border-bottom: 0; padding-bottom: 0; }
+}
+@media print {
+  :root { --bg: #fff; --surface: #f6f2ee; --surface-2: #eee7e0; --text: #1a1410; --muted: #6e6259; --line: #e4dbd2; --line-strong: #cfc3b8; }
+  nav.toc { display: none; }
+  main { margin: 0; }
+  section { break-inside: avoid-page; }
+  h1 { color: #1a1410; background: none; }
+  dl.params dd, td, .card p { color: #2a2018; }
+}
+
+/* Block diagrams */
+.flow svg text { fill: var(--text); font-weight: 600; font-size: 13.5px; text-anchor: middle; }
+.flow svg text.sub { fill: var(--muted); font-weight: 500; font-size: 11px; }
+.flow svg .box { fill: var(--surface-2); stroke: var(--line-strong); }
+.flow svg .box.hot { stroke: url(#g); }
+.flow svg .pill { fill: var(--bg); stroke: var(--line-strong); }
+.flow svg .frame { fill: none; stroke: var(--line-strong); stroke-dasharray: 6 6; }
+.flow svg .wire { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.flow svg .dash { stroke-dasharray: 5 5; }
+.flow svg .arrow { fill: var(--muted); }
+.flow svg .tick { stroke: var(--line-strong); stroke-width: 1; }
+.flow svg .head { stroke: var(--hot); stroke-width: 2.5; fill: none; }
+svg.defs { position: absolute; width: 0; height: 0; }
+
+/* Curves */
+.plots { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: center; margin: 18px 0 24px; }
+.plots.three { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: start; gap: 14px; }
+.plot { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.plot h4 { margin: 2px 0 10px; }
+.plot svg { display: block; width: 100%; height: auto; }
+.plot svg text { fill: var(--muted); font-size: 10px; font-weight: 500; }
+.plot .axis { fill: none; stroke: var(--line-strong); }
+.plot .grid { fill: none; stroke: var(--line); }
+.plot .knee { fill: none; stroke: var(--line-strong); stroke-dasharray: 2 4; }
+.plot .ref { fill: none; stroke: var(--line-strong); stroke-dasharray: 4 4; }
+.plot .c1, .plot .c2, .plot .c3 { fill: none; stroke-width: 2; stroke-linejoin: round; }
+.plot .c1 { stroke: var(--muted); }
+.plot .c2 { stroke: var(--fire); }
+.plot .c3 { stroke: var(--hot); }
+.legend { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 12px; margin-top: 10px; }
+.legend span { display: inline-block; width: 14px; height: 2px; margin-left: 8px; }
+.legend span:first-child { margin-left: 0; }
+.legend .k1 { background: var(--muted); } .legend .k2 { background: var(--fire); } .legend .k3 { background: var(--hot); }
+.plot-text p:last-child { margin-bottom: 0; }
+.formula { font: 600 17px/1.4 "Inter"; color: var(--hot); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 18px; display: inline-block; }
+@media (max-width: 720px) { .plots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<svg class="defs" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#a4401c"/><stop offset=".45" stop-color="#d9773f"/><stop offset="1" stop-color="#ffc49a"/></linearGradient><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z" fill="#a99e94"/></marker></defs></svg>
+
+<nav class="toc" aria-label="Contents">
+  <div class="brand">Robotic Audio</div>
+  <div class="product">Voicebox</div>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#overview">The window</a></li>
+    <li><a href="#flow">Signal flow</a></li>
+    <li><a href="#eq">The EQ display</a></li>
+    <li><a href="#waveform">The waveform</a></li>
+    <li><a href="#clean">Clean</a></li>
+    <li><a href="#pops">Pops</a></li>
+    <li><a href="#deess">De-ess</a></li>
+    <li><a href="#tone">Tone</a></li>
+    <li><a href="#compressor">Compressor</a></li>
+    <li><a href="#loudness">Loudness</a></li>
+    <li><a href="#output">Output</a></li>
+    <li><a href="#metering">The readouts &amp; graph</a></li>
+    <li><a href="#presets">Presets</a></li>
+    <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#specs">Specifications</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Robotic Audio · User manual</div>
+  <h1>Voicebox</h1>
+  <p class="lede">A voice's whole finishing chain in <em>one plugin</em>, for podcasts and speech buses. It takes out rumble, hum and mud, removes plosives and sibilance, shapes the tone, compresses gently, then rides the level onto your loudness target and keeps the true peaks under the ceiling, measuring everything the way the podcast platforms and broadcasters do.</p>
+  <ul class="facts">
+    <li>Low cut, hum notches, mud dip</li>
+    <li>Plosive remover</li>
+    <li>Relative de-esser with Listen</li>
+    <li>Body, Presence, Air</li>
+    <li>Gentle compressor</li>
+    <li>Before/after waveform</li>
+    <li>EBU R128 metering</li>
+    <li>Auto Level onto a target</li>
+    <li>True-peak limiter</li>
+    <li>18 presets</li>
+    <li>AU · VST3 · Standalone</li>
+  </ul>
+  <figure>
+    <img src="images/voicebox.jpg" alt="Voicebox's window">
+    <figcaption>Voicebox on Boxy Room with the hum notches at 50 Hz: the loudness readouts along the top, the EQ curve over the spectrum and the waveform before and after in the middle, and the cards in signal order below: Clean, Pops, De-ess, Tone, then Compressor, Loudness and Output.</figcaption>
+  </figure>
+</header>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">From a raw recording to a voice that meets the spec.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">01</span><h4>Put it on the voice</h4><p>Insert Voicebox on a voice track, a speech bus, or the master of a speech-only podcast. Put it last if it's the only thing between the voice and the file, since it limits the true peaks.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Pick the standard</h4><p>Choose a preset for where it's going: <strong>Podcast Stereo -16 LUFS</strong>, <strong>Podcast Mono -19 LUFS</strong>, <strong>Spotify / YouTube -14 LUFS</strong> and so on. Default already aims at −16 LUFS with Auto Level on.</p></div>
+    <div class="card"><span class="tag">03</span><h4>Clean it up</h4><p>Play a stretch of speech. Raise <strong>Low Cut</strong> until the rumble is gone but the voice keeps its weight. If you hear a steady drone, set <strong>Hum</strong> to 50 or 60 Hz. If the voice sounds boxy, turn up <strong>Mud</strong> and sweep <strong>Mud Freq</strong>.</p></div>
+    <div class="card"><span class="tag">04</span><h4>Pops and esses</h4><p>Listen for thumps on P and B, and sharp S sounds. Turn <strong>Pops</strong> and <strong>De-ess</strong> up until they're gone. The bars under the knobs show what each one is taking out.</p></div>
+    <div class="card"><span class="tag">05</span><h4>Tone and compression</h4><p>Shape the voice with <strong>Body</strong>, <strong>Presence</strong> and <strong>Air</strong>. Set <strong>Threshold</strong> so the compressor's bar flickers by 2–4 dB while someone speaks.</p></div>
+    <div class="card"><span class="tag">06</span><h4>Check the loudness</h4><p>Play it through. <strong>Integrated</strong> should read on target (in the accent colour), and <strong>True peak</strong> should stay under the ceiling. For an exact landing, press <strong>MATCH TARGET</strong> and play it through again.</p></div>
+  </div>
+  <div class="callout"><strong>Hover over anything</strong> and the strip along the bottom of the window says what it does.</div>
+</section>
+
+<section id="overview">
+  <h2>The window</h2>
+  <p class="sub">Numbers on top, pictures in the middle, the chain below.</p>
+  <dl class="params">
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits.</dd>
+    <dt>Readouts</dt><dd>Integrated (wide), Short-term, Momentary, Range and True peak, all measuring the output. See <a href="#metering">The readouts &amp; graph</a>.</dd>
+    <dt>EQ display</dt><dd>The clean-up and tone curve over the output's spectrum, with handles you can drag. See <a href="#eq">The EQ display</a>.</dd>
+    <dt>WAVEFORM · LOUDNESS</dt><dd>Two tabs over the right-hand panel. <strong>WAVEFORM</strong> shows the last 10 seconds coming in and going out on top of each other (see <a href="#waveform">The waveform</a>); <strong>LOUDNESS</strong> shows the last 60 seconds of loudness round the target, with Auto Level's gain and the limiter's reduction in a strip under it. Voicebox remembers the tab while its window is closed.</dd>
+    <dt>First row</dt><dd><strong>Clean</strong>, <strong>Pops</strong>, <strong>De-ess</strong> and <strong>Tone</strong>: the voice's processing, in the order the sound passes through.</dd>
+    <dt>Second row</dt><dd><strong>Compressor</strong>, <strong>Loudness</strong> (with the Auto Level switch in its title) and <strong>Output</strong>.</dd>
+    <dt>Reduction bars</dt><dd>Along the bottom of Pops, De-ess and Compressor: how far that stage is turning the sound down right now, growing from the right, with the figure in dB.</dd>
+    <dt>Tooltip strip</dt><dd>Along the bottom: what the control under the mouse does.</dd>
+  </dl>
+</section>
+
+<section id="flow">
+  <h2>Signal flow</h2>
+  <p class="sub">Clean, de-pop, shape, de-ess, compress, then level and limit.</p>
+  <div class="flow">
+    <svg viewBox="0 0 860 210" role="img" aria-label="Input, clean, pops, tone, de-ess, compressor, then Auto Level, gain, limiter and output meter">
+      <rect class="pill" x="10" y="35" width="60" height="40" rx="20"/><text x="40" y="60">In</text>
+      <rect class="box hot" x="95" y="20" width="120" height="70" rx="10"/><text x="155" y="52">Clean</text><text class="sub" x="155" y="70">low cut · hum · mud</text>
+      <rect class="box hot" x="240" y="20" width="110" height="70" rx="10"/><text x="295" y="52">Pops</text><text class="sub" x="295" y="70">plosives</text>
+      <rect class="box hot" x="375" y="20" width="120" height="70" rx="10"/><text x="435" y="52">Tone</text><text class="sub" x="435" y="70">body · presence · air</text>
+      <rect class="box hot" x="520" y="20" width="110" height="70" rx="10"/><text x="575" y="52">De-ess</text><text class="sub" x="575" y="70">sibilance</text>
+      <rect class="box hot" x="655" y="20" width="120" height="70" rx="10"/><text x="715" y="52">Compressor</text><text class="sub" x="715" y="70">gentle</text>
+      <rect class="box" x="95" y="125" width="120" height="70" rx="10"/><text x="155" y="157">Measure</text><text class="sub" x="155" y="175">momentary</text>
+      <rect class="box hot" x="240" y="125" width="110" height="70" rx="10"/><text x="295" y="157">Auto Level</text><text class="sub" x="295" y="175">rides the gain</text>
+      <rect class="box hot" x="375" y="125" width="120" height="70" rx="10"/><text x="435" y="157">Gain</text><text class="sub" x="435" y="175">Match Target</text>
+      <rect class="box hot" x="520" y="125" width="110" height="70" rx="10"/><text x="575" y="157">Limiter</text><text class="sub" x="575" y="175">true peak</text>
+      <rect class="box" x="655" y="125" width="120" height="70" rx="10"/><text x="715" y="157">Readouts</text><text class="sub" x="715" y="175">output meter</text>
+      <rect class="pill" x="795" y="140" width="55" height="40" rx="20"/><text x="822" y="165">Out</text>
+      <path class="wire" d="M70 55H93M215 55H238M350 55H373M495 55H518M630 55H653" marker-end="url(#a)"/>
+      <path class="wire" d="M775 55H800V108H155V123" marker-end="url(#a)"/>
+      <path class="wire" d="M215 160H238M350 160H373M495 160H518M630 160H653M775 160H793" marker-end="url(#a)"/>
+    </svg>
+  </div>
+  <p>The voice runs through the five processing stages first, both channels linked, so the two sides are always treated alike. The loudness stage then measures what comes out of them every 100 ms, and <strong>Auto Level</strong> sets its gain from that. <strong>Gain</strong> is added next, the limiter keeps the true peaks under the <strong>Ceiling</strong>, and the readouts and graph measure the very end: what your listeners will hear.</p>
+  <p>Tone comes before the de-esser, so a lift in Presence or Air can't bring the esses back. The compressor comes after, so it isn't pushed around by thumps and hiss that have already been taken out.</p>
+  <p>The limiter looks 2 ms ahead, so the audio is delayed by that much (plus a few samples), on or off. The host is told and compensates. While silence comes in, the processing stages rest and cost next to nothing.</p>
+</section>
+
+<section id="eq">
+  <h2>The EQ display</h2>
+  <p class="sub">The clean-up and tone curve, drawn over what's coming out.</p>
+  <p>The curve is the response of every filter in Clean and Tone together, drawn over a live spectrum of the output. It runs from 20 Hz to 20 kHz, with ±15 dB of scale. When Hum is on, small red marks along the bottom show where its notches sit.</p>
+  <dl class="params">
+    <dt>LOW CUT</dt><dd>Drag sideways to set Low Cut.</dd>
+    <dt>MUD</dt><dd>Drag anywhere: sideways sets Mud Freq, down sets how deep Mud cuts.</dd>
+    <dt>BODY · PRESENCE · AIR</dt><dd>Drag up or down to boost or cut. Each sits at its fixed frequency: 120 Hz, 3.5 kHz and 10 kHz.</dd>
+  </dl>
+  <p>While you hover or drag, a handle shows its name and value. Double-click a handle to reset it. Scroll over it to nudge it: the gain if it has one, otherwise the frequency. Gains catch at 0 dB, so a handle is easy to put back. A lit handle is doing something; a dark one is flat (or, for Low Cut, at its lowest).</p>
+</section>
+
+<section id="waveform">
+  <h2>The waveform</h2>
+  <p class="sub">What came in and what went out, on top of each other.</p>
+  <p>The <strong>WAVEFORM</strong> tab draws the last 10 seconds twice on the same scale: what comes into Voicebox as a grey silhouette, and what goes out, after everything including Auto Level, Gain and the limiter, in colour on top. Now is on the right. The scale is in decibels, mirrored round the centre line, from 0 dB at the edges down to −48 dB at the centre, so quiet speech and pauses are as easy to read as the peaks.</p>
+  <dl class="params">
+    <dt>Grey over the colour</dt><dd>What Voicebox took away: a plosive's thump, an S, a peak the compressor or the limiter held down, or Auto Level turning a loud passage down.</dd>
+    <dt>Colour over the grey</dt><dd>What it added: Auto Level or Gain bringing a quiet voice up. The input's outline is drawn on top in a light line, so you can see its edge here too.</dd>
+    <dt>The two together</dt><dd>Words that came in at different heights and go out at the same height are the leveller and the compressor doing their job. Pauses that stay low show that silence isn't being pulled up.</dd>
+  </dl>
+  <p>It redraws only while audio arrives, and stops while everything on show is silent.</p>
+</section>
+
+<section id="clean">
+  <h2>Clean</h2>
+  <p class="sub">Take out what doesn't belong in a voice.</p>
+  <dl class="params">
+    <dt>Low Cut</dt><dd>Removes rumble, handling noise, traffic and air conditioning under this frequency, at 24 dB per octave. 70–100 Hz suits most voices; go higher for a thin voice or a noisy room, lower for a deep voice. At 20 Hz it does next to nothing. <span class="range">20 Hz … 300 Hz</span></dd>
+    <dt>Hum</dt><dd>Notches out mains hum: <strong>50 Hz</strong> in Europe and most of the world, <strong>60 Hz</strong> in the Americas. Each notch is narrow and also removes the hum's first three harmonics (100, 150 and 200 Hz, or 120, 180 and 240 Hz), so the voice around them is left alone. <span class="range">Off · 50 Hz · 60 Hz</span></dd>
+    <dt>Mud</dt><dd>Dips the boxy, muddy band that small rooms and close mics pile up. <span class="range">0 … −12 dB</span></dd>
+    <dt>Mud Freq</dt><dd>Where the mud sits. Turn Mud up high, sweep Mud Freq until the voice sounds most boxy, then bring Mud back down until it just clears. <span class="range">150 Hz … 800 Hz</span></dd>
+  </dl>
+</section>
+
+<section id="pops">
+  <h2>Pops</h2>
+  <p class="sub">Plosives out, the voice's weight kept.</p>
+  <p>A plosive is the puff of air from a P or B hitting the mic: a burst of low end with little else in it. Voicebox splits off the band under <strong>Pop Freq</strong> and turns it down the moment it bursts well above the voice in the band over it, then lets it back within about 50 ms. The rest of the voice isn't touched, and neither is the low band while it's just the voice's own warmth.</p>
+  <dl class="params">
+    <dt>Pops</dt><dd>How readily it acts. At low settings, only a thump far louder than the voice is caught; at 100 % the low band is held down whenever it rises above the voice at all. It never takes more than 24 dB off the low band, and ignores the low band while it's under −50 dBFS. 0 % turns it off. <span class="range">0 … 100 %</span></dd>
+    <dt>Pop Freq</dt><dd>The top of the band the thumps live in. Raise it for thumps that sound more like a knock than a rumble; lower it if a deep voice loses weight. <span class="range">60 Hz … 250 Hz</span></dd>
+  </dl>
+  <p>The bar along the bottom shows how far the low band is turned down right now, up to 24 dB. On plain speech it should rest at 0 dB and flick out on the plosives.</p>
+</section>
+
+<section id="deess">
+  <h2>De-ess</h2>
+  <p class="sub">Sharp esses tamed, whether the voice is quiet or loud.</p>
+  <p>Everything above <strong>De-ess Freq</strong> is treated as sibilance. Voicebox listens to how large a share of the whole voice that band takes, and turns only that band down while the share is too large. Because it listens to the share, not the level, it catches an S the same in a whisper as in a shout, and a level change earlier in the chain doesn't throw it off.</p>
+  <dl class="params">
+    <dt>De-ess</dt><dd>How much. Higher catches milder sibilance and cuts deeper: from 3 dB at most near 0 % to 18 dB at 100 %. Below −54 dBFS (room noise between words) it does nothing. 0 % turns it off. <span class="range">0 … 100 %</span></dd>
+    <dt>De-ess Freq</dt><dd>The bottom of the sibilant band. Lower it for a dull, lisping S; raise it for a whistling one. <span class="range">3 kHz … 10 kHz</span></dd>
+    <dt>LISTEN</dt><dd>Plays only what the de-esser removes. Use it to tune the two knobs: you should hear the esses and little else. Listen is never saved in a preset and turns off when a session loads, but remember to turn it off yourself before you bounce.</dd>
+  </dl>
+  <p>The bar along the bottom shows how far the sibilant band is turned down right now, up to 18 dB.</p>
+</section>
+
+<section id="tone">
+  <h2>Tone</h2>
+  <p class="sub">Three broad strokes at the frequencies voices need.</p>
+  <dl class="params">
+    <dt>Body</dt><dd>Warmth and weight: a shelf under 120 Hz. Up for a thin voice or a phone-like recording, down for a boomy one. <span class="range">−12 … +12 dB</span></dd>
+    <dt>Presence</dt><dd>Clarity and intelligibility: a broad bell at 3.5 kHz. Up to cut through music or a busy mix, down for a harsh voice. <span class="range">−12 … +12 dB</span></dd>
+    <dt>Air</dt><dd>Openness and breath: a shelf over 10 kHz. <span class="range">−12 … +12 dB</span></dd>
+  </dl>
+</section>
+
+<section id="compressor">
+  <h2>Compressor</h2>
+  <p class="sub">A gentle hand on the dynamics within each phrase.</p>
+  <p>The compressor evens out the words within a sentence; Auto Level, after it, evens out the sentences and the speakers. It listens to the average level, not the peaks, with a soft 10 dB knee, a 12 ms attack and a 150 ms release, so it stays transparent on speech. It has no make-up gain: the loudness stage after it brings the level back up.</p>
+  <dl class="params">
+    <dt>Threshold</dt><dd>The level it starts working at. Set it so the bar flickers by 2–4 dB while someone speaks. It depends on how loud the recording is, so set it again for a much quieter or louder source. <span class="range">−50 … 0 dB</span></dd>
+    <dt>Ratio</dt><dd>How firmly it holds the voice above the threshold. 2:1 is a light touch; 1:1 turns it off. <span class="range">1:1 … 4:1</span></dd>
+  </dl>
+  <p>The bar along the bottom shows how far it is turning the voice down right now, up to 12 dB.</p>
+</section>
+
+<section id="loudness">
+  <h2>Loudness</h2>
+  <p class="sub">An engineer on the fader, aiming at the target.</p>
+  <dl class="params">
+    <dt>Target</dt><dd>The integrated loudness to aim for: Apple Podcasts −16, Spotify and YouTube −14, mono podcasts −19, audiobooks −20, EBU R128 broadcast −23 LUFS. Auto Level, MATCH TARGET, the readouts and the graph all work towards it. <span class="range">−30 … −10 LUFS</span></dd>
+    <dt>Auto Level</dt><dd>The <strong>On</strong> pill in the card's title, on by default. It measures the voice's momentary loudness every 100 ms, keeps a slow average of it and sets the gain that brings that average to the target. A soft speaker comes up, a loud one goes down. Its gain glides between steps, so it never clicks. Off, its gain glides back to 0 dB and Speed and Range grey out.</dd>
+    <dt>Speed</dt><dd>How many seconds Auto Level listens back before it moves. Short follows every phrase; long only rides big changes, like a new speaker. It turns down four times faster than it turns up, as a compressor would. <span class="range">0.5 … 10 s</span></dd>
+    <dt>Range</dt><dd>The most Auto Level may turn up or down. <span class="range">1 … 24 dB</span></dd>
+  </dl>
+  <div class="callout"><strong>Silence is never pulled up.</strong> Under −50 LUFS (pauses, breaths, room noise) Auto Level holds its gain. A dip more than 10 LU under the average is taken for a gap between words, not a quieter voice, and only starts to count once it has lasted 1.5 seconds.</div>
+</section>
+
+<section id="output">
+  <h2>Output</h2>
+  <p class="sub">Trim, limit and measure.</p>
+  <dl class="params">
+    <dt>Gain</dt><dd>Added after Auto Level, before the limiter. MATCH TARGET sets it for you. <span class="range">−24 … +24 dB</span></dd>
+    <dt>Ceiling</dt><dd>The highest true peak allowed out. −1 dBTP suits most platforms; audiobooks often ask for −3. <span class="range">−9 … 0 dBTP</span></dd>
+    <dt>True-peak limiter</dt><dd>Keeps peaks, between samples too, under the Ceiling. It looks 2 ms ahead, so the gain is already down when a peak arrives, and recovers smoothly. Off, the audio is still delayed by the same amount, so switching it never moves the timing.</dd>
+    <dt>MATCH TARGET</dt><dd>Sets Gain so the integrated loudness lands on the target, then starts the measurement over. It needs a measurement first: play the whole episode, or a typical stretch of it.</dd>
+    <dt>RESET</dt><dd>Starts the integrated, range and peak measurements over.</dd>
+    <dt>Reset on play</dt><dd>Starts the measurement over whenever the host starts playing, so a bounce or a take is measured from its start.</dd>
+  </dl>
+  <div class="callout"><strong>Auto Level gets you close; MATCH TARGET gets you exact.</strong> Auto Level aims its slow average at the target, so the integrated figure usually lands within a decibel of it. To land it exactly, play the whole episode, press MATCH TARGET and play it through once more to check.</div>
+</section>
+
+<section id="metering">
+  <h2>The readouts &amp; graph</h2>
+  <p class="sub">Five numbers and the last minute, all measuring the output.</p>
+  <dl class="params">
+    <dt>Integrated</dt><dd>The loudness of everything since the last reset, gated as EBU R128 does it, so silence and pauses don't pull it down. This is the number delivery specs talk about. Under it, you see whether you're on target (within 1 LU) or how many LU too loud or too quiet. Its colour says the same: the accent on target, red too loud, blue too quiet.</dd>
+    <dt>Short-term</dt><dd>The loudness of the last 3 seconds, and the highest it has been since the reset.</dd>
+    <dt>Momentary</dt><dd>The loudness of the last 400 ms, and its highest.</dd>
+    <dt>Range</dt><dd>How much the loudness varies (LRA, EBU Tech 3342), once there are 3 seconds or more to judge. Speech usually sits between 3 and 8 LU. Under it you see <strong>Even</strong>, <strong>Dynamic</strong> (over 6 LU) or <strong>Very dynamic</strong> (over 10 LU).</dd>
+    <dt>True peak</dt><dd>The highest peak since the reset, between samples too, as a decoder will see it. It turns red when it has gone over the ceiling.</dd>
+  </dl>
+  <h3>The graph</h3>
+  <p>Time runs from right (now) to left (a minute ago). The scale is centred on the target, 12 LU above it and 24 below, with the target drawn as a band. The filled area is the momentary loudness and the bright line the short-term. In the strip underneath, the green line is Auto Level's gain (<strong>LEVELLER</strong>) and red bars are the limiter's reduction (<strong>LIMITER</strong>). Frequent red bars mean the limiter is working hard: lower Gain or the Target.</p>
+</section>
+
+<section id="presets">
+  <h2>Presets</h2>
+  <p class="sub">Delivery standards first, then voices that need more of one thing.</p>
+  <table>
+    <tr><th>Preset</th><th>What it changes from Default</th></tr>
+    <tr><td>Default</td><td>−16 LUFS, Auto Level on (3 s, ±9 dB), Low Cut 80 Hz, Pops 50 %, De-ess 40 %, compressor −24 dB at 2:1</td></tr>
+    <tr><td>Podcast Stereo -16 LUFS</td><td>Target −16 LUFS</td></tr>
+    <tr><td>Podcast Mono -19 LUFS</td><td>Target −19 LUFS</td></tr>
+    <tr><td>Spotify / YouTube -14 LUFS</td><td>Target −14 LUFS</td></tr>
+    <tr><td>Audiobook -20 LUFS</td><td>Target −20 LUFS, Ceiling −3 dBTP, a slower, narrower Auto Level (5 s, ±6 dB)</td></tr>
+    <tr><td>Broadcast EBU R128 -23 LUFS</td><td>Target −23 LUFS</td></tr>
+    <tr><td>Speech Bus</td><td>−18 LUFS, a quick Auto Level (1.5 s, ±12 dB), lighter pops, de-essing and compression</td></tr>
+    <tr><td>Interview, Two Mics</td><td>A fast, wide Auto Level (1 s, ±18 dB) to even out two speakers, Low Cut 100 Hz, a little Mud</td></tr>
+    <tr><td>Close Mic, Plosives</td><td>Pops 85 % up to 180 Hz, Low Cut 90 Hz, a touch less Body</td></tr>
+    <tr><td>Sharp Sibilance</td><td>De-ess 75 % from 5.5 kHz, a touch less Air</td></tr>
+    <tr><td>Boxy Room</td><td>Mud −5 dB at 380 Hz, a little Presence, Low Cut 100 Hz</td></tr>
+    <tr><td>Warm Voice</td><td>More Body, a little Presence, less Air, Low Cut 60 Hz</td></tr>
+    <tr><td>Bright Voice</td><td>Less Body, more Presence and Air, more de-essing to match</td></tr>
+    <tr><td>Phone-Thin Fix</td><td>Body +4 dB, less Presence, Low Cut 40 Hz</td></tr>
+    <tr><td>Hum 50 Hz (EU)</td><td>Hum 50 Hz</td></tr>
+    <tr><td>Hum 60 Hz (US)</td><td>Hum 60 Hz</td></tr>
+    <tr><td>Gentle Touch</td><td>Less of everything: Pops 30 %, De-ess 25 %, ratio 1.5:1, a slow Auto Level (6 s, ±6 dB)</td></tr>
+    <tr><td>Meter Only</td><td>All processing and the limiter off: Voicebox only measures (and delays by its lookahead)</td></tr>
+  </table>
+  <p>Press <strong>SAVE</strong> in the header to keep your own. The preset menu has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. An asterisk after the preset's name means you've changed something since loading it. Every control is a host parameter and can be automated.</p>
+</section>
+
+<section id="recipes">
+  <h2>Recipes</h2>
+  <p class="sub">Starting points for common jobs.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Solo podcast</span><p>Default on the voice. Clean it up, play the whole episode, press MATCH TARGET, play it again to check, bounce.</p></div>
+    <div class="card"><span class="tag">Two-person interview</span><p>One Voicebox per mic, each with its own clean-up, pops and esses, and Auto Level on to even out the two voices. Or <strong>Interview, Two Mics</strong> on a bus of both.</p></div>
+    <div class="card"><span class="tag">Speech over music</span><p>Voicebox on the voice bus with <strong>Speech Bus</strong>, and a little more Presence so the words cut through. Put a loudness meter on the master for the final figure.</p></div>
+    <div class="card"><span class="tag">USB mic at a desk</span><p>Low Cut 100 Hz against desk thumps, Mud at about 300 Hz, Pops up if the mic is close. If you hear a drone, try Hum.</p></div>
+    <div class="card"><span class="tag">Narration</span><p><strong>Audiobook -20 LUFS</strong> or <strong>Gentle Touch</strong>: they even out the slow drift of a long read without flattening its expression.</p></div>
+    <div class="card"><span class="tag">Already processed</span><p><strong>Meter Only</strong>, then turn on just what's missing, such as Auto Level and the limiter for the final loudness.</p></div>
+  </div>
+</section>
+
+<section id="specs">
+  <h2>Specifications</h2>
+  <p class="sub">The numbers.</p>
+  <table>
+    <tr><th>Property</th><th>Value</th></tr>
+    <tr><td>Low cut</td><td>24 dB/octave (Butterworth), 20–300 Hz</td></tr>
+    <tr><td>Hum</td><td>Narrow notches at 50 or 60 Hz and the next three harmonics</td></tr>
+    <tr><td>Mud</td><td>Bell cut, 0–12 dB, 150–800 Hz</td></tr>
+    <tr><td>Pops</td><td>Split-band, low band 60–250 Hz, at most 24 dB of reduction, about 50 ms recovery</td></tr>
+    <tr><td>De-ess</td><td>Split-band, relative to the whole voice, 3–10 kHz, at most 3–18 dB of reduction</td></tr>
+    <tr><td>Tone</td><td>Body shelf at 120 Hz, Presence bell at 3.5 kHz, Air shelf at 10 kHz, ±12 dB each</td></tr>
+    <tr><td>Compressor</td><td>Average-level detection, 10 dB soft knee, 12 ms attack, 150 ms release, ratio 1:1–4:1, stereo-linked, no make-up gain</td></tr>
+    <tr><td>Metering</td><td>ITU-R BS.1770 K-weighting; momentary 400 ms, short-term 3 s; integrated gated at −70 LUFS absolute and −10 LU relative (EBU R128); loudness range per EBU Tech 3342; 4× true-peak estimate</td></tr>
+    <tr><td>Auto Level</td><td>Steps every 100 ms; Speed 0.5–10 s (four times faster down than up); Range ±1–24 dB; holds under −50 LUFS</td></tr>
+    <tr><td>Limiter</td><td>True-peak, 2 ms lookahead, stereo-linked</td></tr>
+    <tr><td>Latency</td><td>2 ms plus 16 samples, on or off, reported to the host</td></tr>
+    <tr><td>Waveform</td><td>The last 10 seconds before and after, peaks on a dB scale from 0 to −48 dB</td></tr>
+    <tr><td>CPU</td><td>The processing rests while silence comes in and the meters rest on digital silence; the window redraws only what changes</td></tr>
+    <tr><td>Channels</td><td>Stereo (mono tracks work too), both channels processed alike</td></tr>
+    <tr><td>Formats</td><td>AU, VST3, Standalone</td></tr>
+  </table>
+</section>
+
+<footer>
+  <div class="sig">Robotic Audio</div>
+  Voicebox was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
+  Fonts: Big Shoulders Display and Inter, under the SIL Open Font License.
+</footer>
+
+</div>
+</main>
+<script>
+// Highlight the section being read in the contents
+const links = [...document.querySelectorAll("nav.toc a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+sections.forEach(s => s && observer.observe(s));
+</script>
+</body>
+</html>

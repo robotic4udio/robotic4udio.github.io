@@ -194,7 +194,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <li>5 drawn envelopes</li>
     <li>8-slot mod matrix</li>
     <li>14 filter types</li>
-    <li>14 effects · 4 slots</li>
+    <li>20 effects · 4 slots</li>
     <li>8 macros</li>
     <li>XY performance pad</li>
     <li>AU · VST3 · Standalone</li>
@@ -213,7 +213,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <div class="card"><span class="tag">02</span><h4>Play low</h4><p>Contour plays one note at a time; the last one wins. Hold a note to hear the loop of the volume envelope repeat.</p></div>
     <div class="card"><span class="tag">03</span><h4>Draw</h4><p>Drag across the Volume envelope to draw a new shape. Try <strong>RANDOM</strong> for instant rhythms.</p></div>
     <div class="card"><span class="tag">04</span><h4>Sync it</h4><p>Set the envelope's Sync to <strong>Note</strong> and its Rate to 1/1 so the wobble locks to your song's tempo.</p></div>
-    <div class="card"><span class="tag">05</span><h4>Make it nasty</h4><p>Switch on Overdrive or Fuzz in the Aggressor, pick the <strong>MS-20</strong> or <strong>Diode</strong> filter, and route Mod 1 to the cutoff.</p></div>
+    <div class="card"><span class="tag">05</span><h4>Make it nasty</h4><p>Switch on a drive stage in the Aggressor (try Fuzz or Wavefolder), pick the <strong>MS-20</strong> or <strong>Diode</strong> filter, and route Mod 1 to the cutoff.</p></div>
     <div class="card"><span class="tag">06</span><h4>Save</h4><p>Press <strong>SAVE</strong> in the header. Your preset joins the list, saved with every setting and every drawing.</p></div>
   </div>
   <div class="callout"><strong>Hover over anything.</strong> The strip along the bottom of the window says what the control under the mouse does: the fastest way to learn Contour.</div>
@@ -227,7 +227,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <dt>Oscillator</dt><dd>Tabs <strong>Osc 1</strong>, <strong>Osc 2</strong> and <strong>Sub</strong>: what makes the raw tone.</dd>
     <dt>Pitch Drop</dt><dd>A fast pitch slide at the start of every note: the classic "dive-bomb" attack.</dd>
     <dt>Modulation</dt><dd>The drawn envelopes <strong>Volume</strong> and <strong>Mod 1–4</strong>, and the <strong>Matrix</strong> that routes them (and MIDI and the macros) to almost anything.</dd>
-    <dt>Aggressor · Filter · Voice</dt><dd>Three drive stages, a 14-type filter, and the voice: level, transpose and portamento.</dd>
+    <dt>Aggressor · Filter · Voice</dt><dd>Three drive stages (18 algorithms), a 14-type filter, and the voice: level, transpose and portamento.</dd>
     <dt>Effects</dt><dd>Four effect slots in series and, beside them, two tabs: the eight macro knobs or the XY pad.</dd>
   </dl>
   <h3>Using the controls</h3>
@@ -236,7 +236,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <tr><td>Drag a knob up or down</td><td>change it (the value shows while you touch it)</td></tr>
     <tr><td><kbd>Cmd</kbd> / <kbd>Ctrl</kbd> / <kbd>Alt</kbd> + drag</td><td>fine adjustment</td></tr>
     <tr><td>Double-click a knob</td><td>reset it to its default</td></tr>
-    <tr><td>Click a lit chip (OVERDRIVE, SPRING…)</td><td>switch that part on or off</td></tr>
+    <tr><td>Click a lit chip (LEGATO, SPRING…)</td><td>switch that part on or off</td></tr>
     <tr><td>Right-click an effect control</td><td>map it to a macro</td></tr>
     <tr><td>Drag a card's grip (⠿)</td><td>reorder: Aggressor and Filter, or effect slots</td></tr>
   </table>
@@ -257,7 +257,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
         <rect x="10" y="100" width="120" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="70" y="124">OSC 2</text><text x="70" y="140" font-size="10" fill="#a99e94" font-weight="500">Layer · FM · Ring · Sync</text>
         <rect x="10" y="180" width="120" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="70" y="204">SUB · NOISE</text><text x="70" y="220" font-size="10" fill="#a99e94" font-weight="500">· SAMPLE</text>
         <rect x="190" y="65" width="150" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="265" y="89">PITCH</text><text x="265" y="104" font-size="10" fill="#a99e94" font-weight="500">drop · portamento · bend · matrix</text>
-        <rect x="390" y="65" width="150" height="50" rx="10" fill="#211a15" stroke="url(#g)"/><text x="465" y="89">AGGRESSOR</text><text x="465" y="104" font-size="10" fill="#a99e94" font-weight="500">overdrive · distortion · fuzz</text>
+        <rect x="390" y="65" width="150" height="50" rx="10" fill="#211a15" stroke="url(#g)"/><text x="465" y="89">AGGRESSOR</text><text x="465" y="104" font-size="10" fill="#a99e94" font-weight="500">three drives · 18 algorithms</text>
         <rect x="590" y="65" width="110" height="50" rx="10" fill="#211a15" stroke="url(#g)"/><text x="645" y="89">FILTER</text><text x="645" y="104" font-size="10" fill="#a99e94" font-weight="500">drag to swap</text>
         <rect x="740" y="65" width="110" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="795" y="89">VOLUME</text><text x="795" y="104" font-size="10" fill="#a99e94" font-weight="500">drawn envelope</text>
         <rect x="880" y="65" width="110" height="50" rx="10" fill="#211a15" stroke="url(#g)"/><text x="935" y="89">EFFECTS</text><text x="935" y="104" font-size="10" fill="#a99e94" font-weight="500">4 slots · level</text>
@@ -271,7 +271,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
       <text x="500" y="22" font-size="11" fill="#a99e94" text-anchor="middle">Mod 1–4, MIDI and the macros reach almost every stage (pitch too) through the matrix</text>
     </svg>
   </div>
-  <p>The Aggressor's three stages run in order: <strong>Overdrive → Distortion → Fuzz</strong>, each only when its chip is lit. The filter sits after them, or before them: drag a card by its grip (the dots at its top right) past the other to swap them; the sound runs left to right, with an arrow between. Filtering first and then distorting gives the classic growl.</p>
+  <p>The Aggressor's three drive stages run in order, left to right, each only when its power button is lit and each with its own algorithm (Overdrive, Distortion and Fuzz to begin with). The filter sits after them, or before them: drag a card by its grip (the dots at its top right) past the other to swap them; the sound runs left to right, with an arrow between. Filtering first and then distorting gives the classic growl.</p>
 </section>
 
 <section id="oscillator">
@@ -426,7 +426,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <dl class="params">
     <dt>Source</dt><dd><strong>Envelopes</strong>: Volume, Mod 1–4. <strong>MIDI</strong>: Velocity, Note (key tracking, centred on C4), Mod Wheel, Aftertouch, Pitch Bend, CC A, CC B and Random (a new value on every note). <strong>XY Pad</strong>: X and Y. <strong>Macros</strong> 1–8.</dd>
     <dt>Via</dt><dd>A second source that scales the slot, e.g. the mod wheel bringing in an envelope. None: always on.</dd>
-    <dt>Destination</dt><dd>Osc 1 Position, Detune, Spread, Level, Shape; Osc 2 Position, Level, Pitch, Mod Amount, Shape; Sub Level; Noise Level, Colour; Sample Level; Pitch, Level, Pitch Drop, Portamento; Overdrive, Distortion, Fuzz; Filter Cutoff, Resonance, Morph, Drive; Macros 1–8.</dd>
+    <dt>Destination</dt><dd>Osc 1 Position, Detune, Spread, Level, Shape; Osc 2 Position, Level, Pitch, Mod Amount, Shape; Sub Level; Noise Level, Colour; Sample Level; Pitch, Level, Pitch Drop, Portamento; Drive 1, Drive 2, Drive 3; Filter Cutoff, Resonance, Morph, Drive; Macros 1–8.</dd>
     <dt>Amount</dt><dd>How far, either way: 100 % moves the destination across its whole range. Pitch destinations show it in semitones (100 % = 24 st). <span class="range">±100 %</span></dd>
     <dt>Offset</dt><dd>A fixed shift added to the slot, in the same units as the amount (a pitch: semitones). It works with no source too, e.g. Osc 2 Pitch +7 st for a fifth. <span class="range">±100 %</span></dd>
     <dt>Smooth</dt><dd>Glides the slot's output over this time, softening steps and jumps: a stepped shape turns into slides, a MIDI CC stops zippering. − is none (and costs nothing). <span class="range">0–2000 ms</span></dd>
@@ -437,13 +437,29 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
 
 <section id="aggressor">
   <h2>Aggressor</h2>
-  <p class="sub">Three drive stages, from warm to wrecked.</p>
+  <p class="sub">Three drive stages, from warm to wrecked, each running any of eighteen algorithms.</p>
+  <p>Each stage has a menu with its algorithm, a power button and a knob for how hard it's driven. They start as Overdrive, Distortion and Fuzz and run left to right, so stages can be stacked: Tube into Wavefolder into Bitcrush, say. Changing a stage's algorithm while it plays fades the old one out and the new one in.</p>
   <dl class="params">
     <dt>Overdrive</dt><dd>Warm, slightly asymmetric saturation. <span class="range">up to 30 dB</span></dd>
     <dt>Distortion</dt><dd>A harder clip, for bite. <span class="range">up to 36 dB</span></dd>
-    <dt>Fuzz</dt><dd>A biased hard clip, splatty and gated: the gnarliest of the three. <span class="range">up to 48 dB</span></dd>
+    <dt>Fuzz</dt><dd>A biased hard clip, splatty and gated: the gnarliest of the clippers. <span class="range">up to 48 dB</span></dd>
+    <dt>Soft Clip</dt><dd>A smooth, symmetric clip with a rounder knee than Overdrive. <span class="range">up to 30 dB</span></dd>
+    <dt>Hard Clip</dt><dd>Flat-topped clipping: square and buzzy when pushed. <span class="range">up to 30 dB</span></dd>
+    <dt>Tube</dt><dd>Lopsided like a pushed valve: one half rounds off later than the other, adding even harmonics. <span class="range">up to 30 dB</span></dd>
+    <dt>Tape</dt><dd>Gentle: squeezes the peaks before it clips. <span class="range">up to 24 dB</span></dd>
+    <dt>Diode</dt><dd>One half clips early and softly, the other late and hard. <span class="range">up to 30 dB</span></dd>
+    <dt>Half Wave</dt><dd>A half-wave rectifier: the bottom half cut away. Hollow and reedy. <span class="range">up to 24 dB</span></dd>
+    <dt>Rectify</dt><dd>A full-wave rectifier: the bottom half folded up, so the note jumps an octave. <span class="range">up to 24 dB</span></dd>
+    <dt>Sine Fold</dt><dd>A sine waveshaper: the wave folds over and over as it's pushed, glassy and bright. <span class="range">up to 24 dB</span></dd>
+    <dt>Wavefolder</dt><dd>Triangle folding, the West Coast way: sweep the knob for moving harmonics. <span class="range">up to 24 dB</span></dd>
+    <dt>Wrap</dt><dd>Past the edge, the wave wraps round to the other side: digital and nasty. <span class="range">up to 18 dB</span></dd>
+    <dt>Bitcrush</dt><dd>Fewer and fewer levels. <span class="range">12 bits down to 3</span></dd>
+    <dt>Downsample</dt><dd>Sample and hold: the sample rate drops, folding metallic tones back down. <span class="range">down to 1/64 of the rate</span></dd>
+    <dt>Harmonics</dt><dd>A soft clip that turns into the third harmonic (a Chebyshev shaper): an octave and a fifth up. <span class="range">up to 12 dB</span></dd>
+    <dt>Crossover</dt><dd>A dead band round zero, like a starved amplifier: quiet parts sputter and gate. <span class="range">up to 12 dB</span></dd>
+    <dt>Slew</dt><dd>The wave can only move so fast: sharp edges turn into ramps, high notes dull and thin out.</dd>
   </dl>
-  <p>Click a chip to switch its stage on; the knob below sets how hard. Stages can be combined: they run in the order shown.</p>
+  <p>For Bitcrush the knob sets how few levels remain, for Downsample how low the rate falls, for Crossover how wide the dead band is and for Slew how slowly the edges may move. The drive runs at four times the sample rate, so clipping and folding don't alias.</p>
 </section>
 
 <section id="filter">
@@ -489,7 +505,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
 
 <section id="effects">
   <h2>Effects</h2>
-  <p class="sub">Four slots in series, fourteen effects, each with its own editor.</p>
+  <p class="sub">Four slots in series, twenty effects, each with its own editor.</p>
   <p>Each slot has a <strong>menu</strong> (which effect), a <strong>power button</strong>, a <strong>Mix</strong> or <strong>Send</strong> knob and its two most useful controls. The slots run left to right; drag a slot by its <strong>number and dots</strong> to move it, and all its settings come along.</p>
   <dl class="params">
     <dt>Mix</dt><dd>Crossfades the dry sound and the effect.</dd>
@@ -531,6 +547,12 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <div><div class="head"><h4><span class="swatch" style="background:#5fd1a0"></span> Width · Pitch · Filter · Gate</h4><span class="what">Utilities with attitude</span></div>
       <img src="images/fx-gate.jpg" alt="Gate">
       <p><strong>Width</strong>: from mono to extra wide, the low end kept mono below a frequency, plus a Haas delay. <strong>Pitch</strong>: granular shifting two octaves either way, with fine tune and stereo spread. <strong>Filter</strong>: any of the fourteen filter types as an effect. <strong>Gate</strong>: a tempo-synced trance gate following the song.</p></div>
+    <div><div class="head"><h4><span class="swatch" style="background:#ff6a1a"></span> Drive</h4><span class="what">Four drive stages, stacked</span></div>
+      <img src="images/fx-drive.jpg" alt="Drive">
+      <p>The Aggressor's four stages as an effect: <strong>Saturation</strong>, <strong>Overdrive</strong>, <strong>Distortion</strong> and <strong>Fuzz</strong>, each with its own amount (0 % is off), at four times the sample rate, then <strong>Tone</strong> and <strong>Output</strong>. The display runs a sine through it and names the stages that are on; drag the handle up for overdrive and sideways for the tone, scroll it for fuzz.</p></div>
+    <div><div class="head"><h4><span class="swatch" style="background:#d9773f"></span> Crusher · Ring Mod · Freq Shift · Tape Stop · Pan</h4><span class="what">Strange machines</span></div>
+      <img src="images/fx-ringmod.jpg" alt="Ring Mod">
+      <p><strong>Crusher</strong>: fewer bits and a lower sample rate, both gliding smoothly. <strong>Ring Mod</strong>: the sound times a carrier from a tremolo to clangy bells, sine to square. <strong>Freq Shift</strong>: every frequency moved by the same number of Hz, with a feedback spiral. <strong>Tape Stop</strong>: a tape that slows (the pitch falls and the sound drags) and catches up afterwards. <strong>Pan</strong>: the sound moved between the speakers, narrowed first by Width. Map them to a macro and the matrix moves them.</p></div>
   </div>
 </section>
 
