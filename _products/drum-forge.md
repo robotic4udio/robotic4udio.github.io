@@ -9,9 +9,11 @@ image: /assets/images/drum-forge/drum-forge.jpg
 image_alt: "Drum Forge with a kit loaded: the sixteen pads on the left; the selected pad on the right, its takes and waveform over its sound; the effects along the bottom"
 manual: /plugins/drum-forge/manual/
 
-# Set these when Drum Forge is on sale: the button changes from "Notify me" to "Buy".
+# Set these when Drum Forge is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/drum-forge)
+# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/drum-forge) adds "Try it free".
 buy_url:
 price:
+trial_url:
 
 screenshots:
   - file: /assets/images/drum-forge/drum-forge.jpg

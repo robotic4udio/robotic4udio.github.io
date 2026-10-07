@@ -7,8 +7,13 @@ layout: default
     <h1 class="display display--xl">{{ page.title }}</h1>
     <p class="lead">{{ page.tagline }}</p>
     <div class="actions">
-      {%- if page.buy_url %}
+      {%- if page.buy_url and page.free %}
+      <a class="btn btn--fire" href="{{ page.buy_url }}">Get {{ page.title }} free</a>
+      {%- elsif page.buy_url %}
       <a class="btn btn--fire" href="{{ page.buy_url }}">Buy {{ page.title }}{% if page.price %} · {{ page.price }}{% endif %}</a>
+      {%- if page.trial_url %}
+      <a class="btn btn--ghost" href="{{ page.trial_url }}">Try it free for {{ site.shop.trial_days }} days</a>
+      {%- endif %}
       {%- else %}
       <a class="btn btn--fire" href="#notify">Notify me at release</a>
       {%- endif %}

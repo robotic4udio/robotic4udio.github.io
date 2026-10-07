@@ -9,9 +9,11 @@ image: /assets/images/loudness-pilot/loudness-pilot.jpg
 image_alt: "Loudness Pilot's window: six loudness readouts along the top, the last minute of loudness with the leveller's gain and the limiter under it, and the Target, Auto Level and Output cards below"
 manual: /plugins/loudness-pilot/manual/
 
-# Set these when Loudness Pilot is on sale: the button changes from "Notify me" to "Buy".
+# Set these when Loudness Pilot is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/loudness-pilot)
+# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/loudness-pilot) adds "Try it free".
 buy_url:
 price:
+trial_url:
 
 stats:
   - EBU R128 / BS.1770 metering

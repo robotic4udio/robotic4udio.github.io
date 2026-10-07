@@ -9,9 +9,10 @@ image: /assets/images/reverser/reverser.jpg
 manual: /plugins/reverser/manual/
 image_alt: "Reverser's window: a display of the recent audio with a playhead, above the Reverse and Reverse 2x buttons"
 
-# Set these when Reverser is on sale: the button changes from "Notify me" to "Buy".
+# Free. When Reverser is out, set buy_url to its Moonbase checkout,
+# https://roboticaudio.moonbase.sh/buy/reverser: the button changes from "Notify me" to "Get Reverser free".
+free: true
 buy_url:
-price:
 
 stats:
   - Live reverse effect

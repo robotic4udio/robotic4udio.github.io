@@ -15,4 +15,4 @@ bundle exec jekyll serve      # http://localhost:4000
 - `assets/audio/<name>/`: audio demos; list them under `demos:` in the plugin's file.
 - `assets/images/<name>/`: screenshots; `image:` and `screenshots:` point at them. The current ones are drawn by the plugin repo's `tools/EditorShots` (e.g. `EchoEngineShots shot.png 1`), then converted to JPEG.
 - `_config.yml`: `newsletter_action` turns the "notify me" email links into a sign-up form once a newsletter service is chosen.
-- A plugin goes on sale by setting `buy_url` (and `price`) in its file.
+- The shop is Moonbase (account `roboticaudio`, https://roboticaudio.moonbase.sh): a plugin goes on sale by setting `buy_url` to its checkout, `https://roboticaudio.moonbase.sh/buy/<product id>`, and `price` in its file; `trial_url` (its download page, `.../download/<product id>`) adds a "Try it free" button. Free plugins have `free: true`: their `buy_url` (a free checkout) shows "Get <name> free". `shop.open: true` in `_config.yml` adds the Account link (the customer portal) to the menu.

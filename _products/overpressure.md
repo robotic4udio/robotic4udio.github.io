@@ -9,9 +9,11 @@ image: /assets/images/overpressure/overpressure.jpg
 manual: /plugins/overpressure/manual/
 image_alt: "Overpressure's window: input and output meters, a gain-reduction VU meter, the compressor controls and the FX Aggression section"
 
-# Set these when Overpressure is on sale: the button changes from "Notify me" to "Buy".
+# Set these when Overpressure is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/overpressure)
+# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/overpressure) adds "Try it free".
 buy_url:
 price:
+trial_url:
 
 stats:
   - Soft-knee compressor
