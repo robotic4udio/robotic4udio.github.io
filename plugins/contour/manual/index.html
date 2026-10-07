@@ -176,6 +176,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <li><a href="#effects">Effects</a></li>
     <li><a href="#macros">Macros</a></li>
     <li><a href="#presets">Presets</a></li>
+    <li><a href="#ai">Designing with Claude</a></li>
     <li><a href="#shortcuts">Shortcuts</a></li>
     <li><a href="#recipes">Sound recipes</a></li>
   </ol>
@@ -223,7 +224,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <h2>The window</h2>
   <p class="sub">Six areas, top to bottom, roughly in the order the sound flows.</p>
   <dl class="params">
-    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu with this manual. Click the logo for version and credits.</dd>
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu with this manual. Click the logo for version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>.</dd>
     <dt>Oscillator</dt><dd>Tabs <strong>Osc 1</strong>, <strong>Osc 2</strong> and <strong>Sub</strong>: what makes the raw tone.</dd>
     <dt>Pitch Drop</dt><dd>A fast pitch slide at the start of every note: the classic "dive-bomb" attack.</dd>
     <dt>Modulation</dt><dd>The drawn envelopes <strong>Volume</strong> and <strong>Mod 1–4</strong>, and the <strong>Matrix</strong> that routes them (and MIDI and the macros) to almost anything.</dd>
@@ -569,6 +570,23 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <p class="sub">Everything is saved: knobs, drawings, random tables, effects and macros.</p>
   <p>Use the <strong>arrows</strong> to step through presets or click the name for the list. <strong>SAVE</strong> stores your sound as a user preset; the menu also has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. A <strong>*</strong> after the name means you've changed something since loading it.</p>
   <p>User presets are XML files in <code>~/Library/Audio/Presets/Robotic Audio/Contour</code> (macOS) or <code>Documents/Presets/Robotic Audio/Contour</code> (Windows): easy to back up and share. Saved wavetables are in a <code>Wavetables</code> folder beside them.</p>
+</section>
+
+<section id="ai">
+  <h2>Designing with Claude</h2>
+  <p class="sub">Describe a sound; Claude sets Contour to make it.</p>
+  <p>With your own Anthropic key, the <strong>&gt;_</strong> beside the presets opens a designer: describe what you want in your own words, such as <em>"a growling dubstep bass that wobbles in eighths"</em>, and Claude sets the oscillators, sub, noise and sample, the Aggressor and filter, the voice, the Volume and Mod 1-4 envelopes, the matrix and the macros, and the effects with all their settings and macro mappings. It is told what every part does and how it is set now, so it can design from scratch or change only what you ask for.</p>
+  <dl class="params">
+    <dt>Keys</dt><dd>Menu (three lines) &gt; <strong>AI...</strong>: an Anthropic key for Claude, and an ElevenLabs key for new samples. They are your own, shared by every Robotic Audio plugin and kept on this computer, never in sessions or presets; each design uses your credits with the service. Without a key nothing of this shows.</dd>
+    <dt>&gt;_</dt><dd>Left of the preset bar, while a key works: opens the designer over the window. Type a description and press Return (or <strong>EXECUTE</strong>); <strong>ESC</strong> closes it, and what is running carries on.</dd>
+    <dt>PATCH</dt><dd>Claude sets the patch, as a <strong>NEW SOUND</strong> from your words or <strong>EDIT THIS</strong>: the patch as it is, changed as you ask ("darker", "slower attack"), keeping the rest.</dd>
+    <dt>SAMPLES</dt><dd>A new sample too: the sample, heard through the Sample source or an oscillator set to Granular with its grain source on Sample. Claude writes its prompt and ElevenLabs makes it, in up to four <strong>TAKES</strong>; the first plays as soon as it arrives, the TAKE buttons switch between them, and all are kept with your samples. With PATCH on, a sample is made only if the patch Claude designs plays one (Claude is told whether it does); SAMPLES alone makes one to fit the patch as it is and changes nothing else. With only the ElevenLabs key, your words are the sample's prompt as written.</dd>
+    <dt>REVERT</dt><dd>Puts the patch back as it was before Claude's last design.</dd>
+    <dt>SAVE AS PRESET</dt><dd>Keeps the design as one of your presets, named after your words.</dd>
+    <dt>The log</dt><dd>What Claude made, and what it changed, part by part.</dd>
+    <dt>&gt;_ and AI...</dt><dd>The designer and its keys: see <a href="#ai">Designing with Claude</a>.</dd>
+  </dl>
+  <div class="callout">This is optional: Contour works the same without a key. The designer needs a network connection and is part of the macOS and Windows plugins.</div>
 </section>
 
 <section id="shortcuts">

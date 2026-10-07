@@ -210,6 +210,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <li><a href="#pad">The Pad card</a></li>
     <li><a href="#fx">FX page</a></li>
     <li><a href="#kits">Kits and sounds</a></li>
+    <li><a href="#ai">Designing with Claude</a></li>
     <li><a href="#recipes">Recipes</a></li>
     <li><a href="#specs">Specifications</a></li>
   </ol>
@@ -256,7 +257,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>The window</h2>
   <p class="sub">Three pages on the left, the pads always on the right.</p>
   <dl class="params">
-    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE) for kits, the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits.</dd>
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE) for kits, the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>.</dd>
     <dt>Pad page</dt><dd>The selected pad's Layer A, Layer B, Drive, Filter and Envelopes.</dd>
     <dt>Matrix page</dt><dd>The selected pad's modulation matrix, with the Envelopes under it.</dd>
     <dt>FX page</dt><dd>Macros, Output level, the Mixer (every pad's level) and the four Effects.</dd>
@@ -422,6 +423,22 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <tr><td>Techno</td><td>Acid Tin, Dub Concrete, Hard Rivet, Hypno Loop, Rumble Hall, Warehouse Iron</td></tr>
   </table>
   <p><strong>SAVE</strong> stores the whole kit as a user preset; the menu also has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. To keep a single drum, use <strong>SOUND → Save Sound As…</strong>: it appears under <em>Yours</em> on every pad. A kit remembers where its samples are on your disk (it doesn't copy them): keep the files where they are, or the layers that play them fall silent.</p>
+</section>
+
+<section id="ai">
+  <h2>Designing with Claude</h2>
+  <p class="sub">Describe a sound; Claude sets Impact to make it.</p>
+  <p>With your own Anthropic key, the <strong>&gt;_</strong> beside the presets opens a designer: describe what you want in your own words, such as <em>"a deep 808 kick with a short click"</em>, and Claude sets the selected pad: its two layers, their envelopes' settings, the drive, filter and the pad's matrix. It is told what every part does and how it is set now, so it can design from scratch or change only what you ask for.</p>
+  <dl class="params">
+    <dt>Keys</dt><dd>Menu (three lines) &gt; <strong>AI...</strong>: an Anthropic key for Claude, and an ElevenLabs key for new samples. They are your own, shared by every Robotic Audio plugin and kept on this computer, never in sessions or presets; each design uses your credits with the service. Without a key nothing of this shows.</dd>
+    <dt>&gt;_</dt><dd>Left of the preset bar, while a key works: opens the designer over the window. Type a description and press Return (or <strong>EXECUTE</strong>); <strong>ESC</strong> closes it, and what is running carries on.</dd>
+    <dt>PATCH</dt><dd>Claude sets the patch, as a <strong>NEW SOUND</strong> from your words or <strong>EDIT THIS</strong>: the patch as it is, changed as you ask ("darker", "slower attack"), keeping the rest.</dd>
+    <dt>SAMPLES</dt><dd>A new sample too: a sample for one of the selected pad's layers (the layer set to Sample, else one that's off, else layer B). Claude writes its prompt and ElevenLabs makes it, in up to four <strong>TAKES</strong>; the first plays as soon as it arrives, the TAKE buttons switch between them, and all are kept with your samples. With PATCH on, a sample is made only if the patch Claude designs plays one (Claude is told whether it does); SAMPLES alone makes one to fit the patch as it is and changes nothing else. With only the ElevenLabs key, your words are the sample's prompt as written.</dd>
+    <dt>REVERT</dt><dd>Puts the patch back as it was before Claude's last design.</dd>
+    <dt>SAVE AS PRESET</dt><dd>Keeps the design as one of your presets, named after your words.</dd>
+    <dt>The log</dt><dd>What Claude made, and what it changed, part by part.</dd>
+  </dl>
+  <div class="callout">This is optional: Impact works the same without a key. The designer needs a network connection and is part of the macOS and Windows plugins.</div>
 </section>
 
 <section id="recipes">

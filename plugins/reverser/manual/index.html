@@ -210,6 +210,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <li><a href="#reach">How far back</a></li>
     <li><a href="#automation">Automation</a></li>
     <li><a href="#presets">Presets &amp; bypass</a></li>
+    <li><a href="#ai">Designing with Claude</a></li>
     <li><a href="#ideas">Ideas</a></li>
     <li><a href="#specs">Specifications</a></li>
   </ol>
@@ -255,7 +256,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>The window</h2>
   <p class="sub">A display and two buttons.</p>
   <dl class="params">
-    <dt>Header</dt><dd>The preset bar, the power button (bypass) and the menu (three lines) with this manual, About and the website. Click the logo for the version and credits.</dd>
+    <dt>Header</dt><dd>The preset bar, the power button (bypass) and the menu (three lines) with this manual, About and the website. Click the logo for the version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>.</dd>
     <dt>History display</dt><dd>The waveform of the last 30 seconds that passed through the plugin. <strong>NOW</strong> is the right-hand edge; the grid marks every 5 seconds back to −30 s. It scrolls to the left as time passes.</dd>
     <dt>Reverse</dt><dd>A push button that lights while you hold it. Plays the history backwards at normal speed.</dd>
     <dt>Reverse 2x</dt><dd>The same, at double speed and an octave up.</dd>
@@ -426,7 +427,23 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <dt>Preset bar</dt><dd>Previous, next, the preset list (with Save As, Delete and Open Folder) and SAVE. Reverser has nothing to store besides its buttons, which presets leave out, so it ships with a single <strong>Default</strong> preset.</dd>
     <dt>Power</dt><dd>Bypasses the plugin with a short, click-free crossfade. While bypassed, Reverser does not record: the history picks up again when you switch it back on.</dd>
     <dt>Menu</dt><dd>This manual, About Reverser and the website.</dd>
+    <dt>&gt;_ and AI...</dt><dd>The designer and its keys: see <a href="#ai">Designing with Claude</a>.</dd>
   </dl>
+</section>
+
+<section id="ai">
+  <h2>Designing with Claude</h2>
+  <p class="sub">Describe a sound; Claude sets Reverser to make it.</p>
+  <p>With your own Anthropic key, the <strong>&gt;_</strong> beside the presets opens a designer: describe what you want in your own words, such as <em>"a slow backwards swell into each bar, then a quick double-speed rewind"</em>, and Claude sets every control you could automate. It is told what every part does and how it is set now, so it can design from scratch or change only what you ask for.</p>
+  <dl class="params">
+    <dt>Keys</dt><dd>Menu (three lines) &gt; <strong>AI...</strong>: an Anthropic key for Claude. They are your own, shared by every Robotic Audio plugin and kept on this computer, never in sessions or presets; each design uses your credits with the service. Without a key nothing of this shows.</dd>
+    <dt>&gt;_</dt><dd>Left of the preset bar, while a key works: opens the designer over the window. Type a description and press Return (or <strong>EXECUTE</strong>); <strong>ESC</strong> closes it, and what is running carries on.</dd>
+    <dt>NEW SOUND / EDIT THIS</dt><dd><strong>NEW SOUND</strong> designs a new patch from your words; <strong>EDIT THIS</strong> changes the patch as it is, as you ask ("brighter", "less", "more subtle"), keeping the rest.</dd>
+    <dt>REVERT</dt><dd>Puts the patch back as it was before Claude's last design.</dd>
+    <dt>SAVE AS PRESET</dt><dd>Keeps the design as one of your presets, named after your words.</dd>
+    <dt>The log</dt><dd>What Claude made, and what it changed, part by part.</dd>
+  </dl>
+  <div class="callout">This is optional: Reverser works the same without a key. The designer needs a network connection and is part of the macOS and Windows plugins.</div>
 </section>
 
 <section id="ideas">

@@ -217,6 +217,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <li><a href="#midi">MIDI</a></li>
     <li><a href="#display">The display</a></li>
     <li><a href="#presets">Presets &amp; bypass</a></li>
+    <li><a href="#ai">Designing with Claude</a></li>
     <li><a href="#ideas">Ideas</a></li>
     <li><a href="#specs">Specifications</a></li>
   </ol>
@@ -264,7 +265,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>The window</h2>
   <p class="sub">What's where.</p>
   <dl class="params">
-    <dt>Header</dt><dd>The preset bar, the power button (bypass) and the menu (three lines) with this manual, About and the website.</dd>
+    <dt>Header</dt><dd>The preset bar, the power button (bypass) and the menu (three lines) with this manual, About and the website. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>.</dd>
     <dt>Displays</dt><dd>The last 10 seconds in (with markers where a cut reads from: <strong>RPT</strong> repeats, <strong>REV</strong> reversed, <strong>TAPE</strong> tape stops and starts, <strong>FRZ</strong> freeze, <strong>STR</strong> stretched) and out. They stay on every page.</dd>
     <dt>Pages, patterns, mode</dt><dd>On every page, one row: the page tabs, the sixteen patterns <strong>A</strong> to <strong>P</strong> (click one to select it) and the <strong>MODE</strong> menu, Pattern or Song (see <a href="#modes">Modes</a>).</dd>
     <dt>PATTERN page</dt><dd>The selected pattern's editor, with the <strong>Generator</strong> panel below it: the pattern's recipe (how it's cut, which gestures, how often blocks are stretched and each effect is used), <strong>GENERATE</strong> and <strong>RANDOMIZE REGION</strong>. Click an effect's name in the editor and its lines take the panel's place. See <a href="#patterns">Patterns</a>, <a href="#cuts">The generator</a> and <a href="#lines">Drawing the lines</a>.</dd>
@@ -548,7 +549,23 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <dt>Preset bar</dt><dd>Previous, next, the preset list (with Save As, Delete and Open Folder) and SAVE. Presets store every setting, the seed, the mode, the sixteen patterns (their lines included) and the chain.</dd>
     <dt>Factory presets</dt><dd>Default, Jungle Roller, SQ Fill Frenzy, Tape Ghost, Bus Throws, Lo-Fi Stutter, Melodic Smear, Stretch Lab, Hands On, Demo Song (Song mode, playing the demo bank's chain) and Total Chaos. Each brings its own patterns: two grooves (A, B) and two fills (C, D), chained.</dd>
     <dt>Power</dt><dd>Bypasses the plugin with a short, click-free crossfade.</dd>
+    <dt>&gt;_ and AI...</dt><dd>The designer and its keys: see <a href="#ai">Designing with Claude</a>.</dd>
   </dl>
+</section>
+
+<section id="ai">
+  <h2>Designing with Claude</h2>
+  <p class="sub">Describe a sound; Claude sets Splicer to make it.</p>
+  <p>With your own Anthropic key, the <strong>&gt;_</strong> beside the presets opens a designer: describe what you want in your own words, such as <em>"busier stutters with more pitched repeats and short delay throws"</em>, and Claude sets every control you could automate (the patterns you've drawn stay yours). It is told what every part does and how it is set now, so it can design from scratch or change only what you ask for.</p>
+  <dl class="params">
+    <dt>Keys</dt><dd>Menu (three lines) &gt; <strong>AI...</strong>: an Anthropic key for Claude. They are your own, shared by every Robotic Audio plugin and kept on this computer, never in sessions or presets; each design uses your credits with the service. Without a key nothing of this shows.</dd>
+    <dt>&gt;_</dt><dd>Left of the preset bar, while a key works: opens the designer over the window. Type a description and press Return (or <strong>EXECUTE</strong>); <strong>ESC</strong> closes it, and what is running carries on.</dd>
+    <dt>NEW SOUND / EDIT THIS</dt><dd><strong>NEW SOUND</strong> designs a new patch from your words; <strong>EDIT THIS</strong> changes the patch as it is, as you ask ("brighter", "less", "more subtle"), keeping the rest.</dd>
+    <dt>REVERT</dt><dd>Puts the patch back as it was before Claude's last design.</dd>
+    <dt>SAVE AS PRESET</dt><dd>Keeps the design as one of your presets, named after your words.</dd>
+    <dt>The log</dt><dd>What Claude made, and what it changed, part by part.</dd>
+  </dl>
+  <div class="callout">This is optional: Splicer works the same without a key. The designer needs a network connection and is part of the macOS and Windows plugins.</div>
 </section>
 
 <section id="ideas">
