@@ -9,9 +9,10 @@ image: /assets/images/graphic-eq/graphic-eq.jpg
 image_alt: "Graphic EQ on its Smile preset: the curve with a dot per band over the output's spectrum on top, the ten band sliders and the output below"
 manual: /plugins/graphic-eq/manual/
 
-# Set these when Graphic EQ is on sale: the button changes from "Notify me" to "Buy".
+# Free. When Graphic EQ is out, set buy_url to its Moonbase checkout,
+# https://roboticaudio.moonbase.sh/buy/graphic-eq: the button changes from "Notify me" to "Get Graphic EQ free".
+free: true
 buy_url:
-price:
 
 stats:
   - 10 octave bands

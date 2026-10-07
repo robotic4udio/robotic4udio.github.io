@@ -9,9 +9,11 @@ image: /assets/images/grainstorm/grainstorm.jpg
 image_alt: "Grainstorm's window: the sample with the grains flying over it and the voice on top, the grain controls and their drawn window, the modulation and the filter, and the effects with the macros along the bottom"
 manual: /plugins/grainstorm/manual/
 
-# Set these when Grainstorm is on sale: the button changes from "Notify me" to "Buy".
+# Set these when Grainstorm is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/grainstorm)
+# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/grainstorm) adds "Try it free".
 buy_url:
 price:
+trial_url:
 
 stats:
   - Up to 16 voices

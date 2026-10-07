@@ -8,6 +8,9 @@
       {%- for item in site.data.nav %}
       <a href="{{ item.url | relative_url }}"{% if page.url contains item.url %} aria-current="page"{% endif %}>{{ item.title }}</a>
       {%- endfor %}
+      {%- if site.shop.open %}
+      <a href="{{ site.shop.account_url }}">Account</a>
+      {%- endif %}
     </nav>
   </div>
 </header>

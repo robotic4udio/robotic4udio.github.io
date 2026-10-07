@@ -9,9 +9,11 @@ image: /assets/images/pump/pump.jpg
 manual: /plugins/pump/manual/
 image_alt: "Pump's window: the pump's curve beside Motion, four effect slot tabs, the shown effect's live display with a lane under each knob, and Output"
 
-# Set these when Pump is on sale: the button changes from "Notify me" to "Buy".
+# Set these when Pump is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/pump)
+# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/pump) adds "Try it free".
 buy_url:
 price:
+trial_url:
 
 stats:
   - 21 pump shapes

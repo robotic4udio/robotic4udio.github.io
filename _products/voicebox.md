@@ -9,9 +9,10 @@ image: /assets/images/voicebox/voicebox.jpg
 manual: /plugins/voicebox/manual/
 image_alt: "Voicebox's window: loudness readouts along the top, the EQ curve over the spectrum and the waveform before and after, and the cards in signal order: Clean, Pops, De-ess, Tone, Compressor, Loudness and Output"
 
-# Set these when Voicebox is on sale: the button changes from "Notify me" to "Buy".
+# Free. When Voicebox is out, set buy_url to its Moonbase checkout,
+# https://roboticaudio.moonbase.sh/buy/podcast-polish: the button changes from "Notify me" to "Get Voicebox free".
+free: true
 buy_url:
-price:
 
 stats:
   - Clean-up EQ

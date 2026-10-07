@@ -9,9 +9,11 @@ image: /assets/images/contour/contour.jpg
 image_alt: "Contour's window: the sound sources and pitch drop on top, the drawn envelopes in the middle, then drive, filter, voice and the effects rack with its macros"
 manual: /plugins/contour/manual/
 
-# Set these when Contour is on sale: the button changes from "Notify me" to "Buy".
+# Set these when Contour is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/contour)
+# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/contour) adds "Try it free".
 buy_url:
 price:
+trial_url:
 
 stats:
   - Monophonic bass synth

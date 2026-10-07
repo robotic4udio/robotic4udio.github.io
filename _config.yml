@@ -11,6 +11,13 @@ email: hjalte.bested.hjorth@gmail.com
 # While empty, sign-ups are a "notify me" email link instead of a form.
 newsletter_action: ""
 
+# The shop (Moonbase): checkout, downloads and the customer's account. Each plugin's page gets its
+# buttons from its own buy_url (and trial_url); open: true adds the Account link to the menu.
+shop:
+  open: false
+  account_url: "https://roboticaudio.moonbase.sh"
+  trial_days: 14
+
 markdown: kramdown
 permalink: pretty
 

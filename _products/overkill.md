@@ -9,9 +9,11 @@ image: /assets/images/overkill/overkill.jpg
 image_alt: "Overkill's window: the three bands side by side over the spectrum, each band's knobs along its bottom, the master controls below and level meters down the sides"
 manual: /plugins/overkill/manual/
 
-# Set these when Overkill is on sale: the button changes from "Notify me" to "Buy".
+# Set these when Overkill is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/overkill)
+# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/overkill) adds "Try it free".
 buy_url:
 price:
+trial_url:
 
 stats:
   - 3 bands

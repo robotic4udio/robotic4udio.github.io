@@ -9,9 +9,11 @@ image: /assets/images/impact/impact.jpg
 image_alt: "Impact on its Pad page: the selected pad's two layers, drive, filter and envelopes on the left; the sixteen pads, the layers' engines and the pad's mixer strip on the right"
 manual: /plugins/impact/manual/
 
-# Set these when Impact is on sale: the button changes from "Notify me" to "Buy".
+# Set these when Impact is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/impact)
+# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/impact) adds "Try it free".
 buy_url:
 price:
+trial_url:
 
 stats:
   - 16 pads, MIDI C1–D#2

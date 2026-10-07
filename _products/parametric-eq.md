@@ -9,9 +9,10 @@ image: /assets/images/parametric-eq/parametric-eq.jpg
 image_alt: "Parametric EQ on its Vocal Polish preset: the graph with the numbered band dots over the output's spectrum, the eight bands' switches and types, the selected band's knobs and the output"
 manual: /plugins/parametric-eq/manual/
 
-# Set these when Parametric EQ is on sale: the button changes from "Notify me" to "Buy".
+# Free. When Parametric EQ is out, set buy_url to its Moonbase checkout,
+# https://roboticaudio.moonbase.sh/buy/parametric-eq: the button changes from "Notify me" to "Get Parametric EQ free".
+free: true
 buy_url:
-price:
 
 stats:
   - 8 bands

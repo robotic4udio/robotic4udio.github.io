@@ -9,9 +9,11 @@ image: /assets/images/splicer/splicer.jpg
 image_alt: "Splicer's pattern page: the input and output history on top, the sixteen patterns, the selected pattern's editor and the generator below"
 manual: /plugins/splicer/manual/
 
-# Set these when Splicer is on sale: the button changes from "Notify me" to "Buy".
+# Set these when Splicer is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/splicer)
+# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/splicer) adds "Try it free".
 buy_url:
 price:
+trial_url:
 
 stats:
   - BBCut-style cut engine
