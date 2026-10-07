@@ -51,6 +51,6 @@ specs:
   - name: Status
     value: In development, version 0.1
   - name: Price
-    value: To be announced
+    value: Free
 ---
 Graphic EQ has a slider for every octave from 31 Hz to 16 kHz, and a curve that is honest about them: push one and you hear exactly what the display shows, over the live spectrum of what comes out.

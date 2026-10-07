@@ -52,6 +52,6 @@ specs:
   - name: Status
     value: In development, version 0.1
   - name: Price
-    value: To be announced
+    value: Free
 ---
 Parametric EQ is the everyday mixing EQ: eight bands, each any type, shaped by dragging on the spectrum. Quick enough for a rough mix, precise enough to notch out a hum.

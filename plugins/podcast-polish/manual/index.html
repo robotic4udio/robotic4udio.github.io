@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Voicebox Manual</title>
+<title>Podcast Polish Manual</title>
 <style>
 @font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-Medium.ttf") format("truetype"); }
 @font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-SemiBold.ttf") format("truetype"); }
@@ -197,7 +197,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
 
 <nav class="toc" aria-label="Contents">
   <div class="brand">Robotic Audio</div>
-  <div class="product">Voicebox</div>
+  <div class="product">Podcast Polish</div>
   <ol>
     <li><a href="#start">Quick start</a></li>
     <li><a href="#overview">The window</a></li>
@@ -224,7 +224,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
 
 <header class="hero">
   <div class="kicker">Robotic Audio · User manual</div>
-  <h1>Voicebox</h1>
+  <h1>Podcast Polish</h1>
   <p class="lede">A voice's whole finishing chain in <em>one plugin</em>, for podcasts and speech buses. It takes out rumble, hum and mud, removes plosives and sibilance, shapes the tone, compresses gently, then rides the level onto your loudness target and keeps the true peaks under the ceiling, measuring everything the way the podcast platforms and broadcasters do.</p>
   <ul class="facts">
     <li>Low cut, hum notches, mud dip</li>
@@ -240,8 +240,8 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <li>AU · VST3 · Standalone</li>
   </ul>
   <figure>
-    <img src="images/voicebox.jpg" alt="Voicebox's window">
-    <figcaption>Voicebox on Boxy Room with the hum notches at 50 Hz: the loudness readouts along the top, the EQ curve over the spectrum and the waveform before and after in the middle, and the cards in signal order below: Clean, Pops, De-ess, Tone, then Compressor, Loudness and Output.</figcaption>
+    <img src="images/podcast-polish.jpg" alt="Podcast Polish's window">
+    <figcaption>Podcast Polish on Boxy Room with the hum notches at 50 Hz: the loudness readouts along the top, the EQ curve over the spectrum and the waveform before and after in the middle, and the cards in signal order below: Clean, Pops, De-ess, Tone, then Compressor, Loudness and Output.</figcaption>
   </figure>
 </header>
 
@@ -249,7 +249,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>Quick start</h2>
   <p class="sub">From a raw recording to a voice that meets the spec.</p>
   <div class="grid">
-    <div class="card"><span class="tag">01</span><h4>Put it on the voice</h4><p>Insert Voicebox on a voice track, a speech bus, or the master of a speech-only podcast. Put it last if it's the only thing between the voice and the file, since it limits the true peaks.</p></div>
+    <div class="card"><span class="tag">01</span><h4>Put it on the voice</h4><p>Insert Podcast Polish on a voice track, a speech bus, or the master of a speech-only podcast. Put it last if it's the only thing between the voice and the file, since it limits the true peaks.</p></div>
     <div class="card"><span class="tag">02</span><h4>Pick the standard</h4><p>Choose a preset for where it's going: <strong>Podcast Stereo -16 LUFS</strong>, <strong>Podcast Mono -19 LUFS</strong>, <strong>Spotify / YouTube -14 LUFS</strong> and so on. Default already aims at −16 LUFS with Auto Level on.</p></div>
     <div class="card"><span class="tag">03</span><h4>Clean it up</h4><p>Play a stretch of speech. Raise <strong>Low Cut</strong> until the rumble is gone but the voice keeps its weight. If you hear a steady drone, set <strong>Hum</strong> to 50 or 60 Hz. If the voice sounds boxy, turn up <strong>Mud</strong> and sweep <strong>Mud Freq</strong>.</p></div>
     <div class="card"><span class="tag">04</span><h4>Pops and esses</h4><p>Listen for thumps on P and B, and sharp S sounds. Turn <strong>Pops</strong> and <strong>De-ess</strong> up until they're gone. The bars under the knobs show what each one is taking out.</p></div>
@@ -266,7 +266,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>.</dd>
     <dt>Readouts</dt><dd>Integrated (wide), Short-term, Momentary, Range and True peak, all measuring the output. See <a href="#metering">The readouts &amp; graph</a>.</dd>
     <dt>EQ display</dt><dd>The clean-up and tone curve over the output's spectrum, with handles you can drag. See <a href="#eq">The EQ display</a>.</dd>
-    <dt>WAVEFORM · LOUDNESS</dt><dd>Two tabs over the right-hand panel. <strong>WAVEFORM</strong> shows the last 10 seconds coming in and going out on top of each other (see <a href="#waveform">The waveform</a>); <strong>LOUDNESS</strong> shows the last 60 seconds of loudness round the target, with Auto Level's gain and the limiter's reduction in a strip under it. Voicebox remembers the tab while its window is closed.</dd>
+    <dt>WAVEFORM · LOUDNESS</dt><dd>Two tabs over the right-hand panel. <strong>WAVEFORM</strong> shows the last 10 seconds coming in and going out on top of each other (see <a href="#waveform">The waveform</a>); <strong>LOUDNESS</strong> shows the last 60 seconds of loudness round the target, with Auto Level's gain and the limiter's reduction in a strip under it. Podcast Polish remembers the tab while its window is closed.</dd>
     <dt>First row</dt><dd><strong>Clean</strong>, <strong>Pops</strong>, <strong>De-ess</strong> and <strong>Tone</strong>: the voice's processing, in the order the sound passes through.</dd>
     <dt>Second row</dt><dd><strong>Compressor</strong>, <strong>Loudness</strong> (with the Auto Level switch in its title) and <strong>Output</strong>.</dd>
     <dt>Reduction bars</dt><dd>Along the bottom of Pops, De-ess and Compressor: how far that stage is turning the sound down right now, growing from the right, with the figure in dB.</dd>
@@ -316,9 +316,10 @@ svg.defs { position: absolute; width: 0; height: 0; }
 <section id="waveform">
   <h2>The waveform</h2>
   <p class="sub">What came in and what went out, on top of each other.</p>
-  <p>The <strong>WAVEFORM</strong> tab draws the last 10 seconds twice on the same scale: what comes into Voicebox as a grey silhouette, and what goes out, after everything including Auto Level, Gain and the limiter, in colour on top. Now is on the right. The scale is in decibels, mirrored round the centre line, from 0 dB at the edges down to −48 dB at the centre, so quiet speech and pauses are as easy to read as the peaks.</p>
+  <p>The <strong>WAVEFORM</strong> tab draws the last 10 seconds twice on the same scale: what comes into Podcast Polish as a grey silhouette, and what goes out, after everything including Auto Level, Gain and the limiter, in colour on top. Now is on the right. Each waveform rises from the bottom, −48 dB, towards 0 dB at the top. The scale is in decibels, so quiet speech and pauses are as easy to read as the peaks.</p>
+  <p>A faint red dashed line marks the limiter's <strong>Ceiling</strong>, labelled with its value. It follows the knob, and disappears while the true-peak limiter is off. Output peaks running flat along it are the limiter at work.</p>
   <dl class="params">
-    <dt>Grey over the colour</dt><dd>What Voicebox took away: a plosive's thump, an S, a peak the compressor or the limiter held down, or Auto Level turning a loud passage down.</dd>
+    <dt>Grey over the colour</dt><dd>What Podcast Polish took away: a plosive's thump, an S, a peak the compressor or the limiter held down, or Auto Level turning a loud passage down.</dd>
     <dt>Colour over the grey</dt><dd>What it added: Auto Level or Gain bringing a quiet voice up. The input's outline is drawn on top in a light line, so you can see its edge here too.</dd>
     <dt>The two together</dt><dd>Words that came in at different heights and go out at the same height are the leveller and the compressor doing their job. Pauses that stay low show that silence isn't being pulled up.</dd>
   </dl>
@@ -339,7 +340,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
 <section id="pops">
   <h2>Pops</h2>
   <p class="sub">Plosives out, the voice's weight kept.</p>
-  <p>A plosive is the puff of air from a P or B hitting the mic: a burst of low end with little else in it. Voicebox splits off the band under <strong>Pop Freq</strong> and turns it down the moment it bursts well above the voice in the band over it, then lets it back within about 50 ms. The rest of the voice isn't touched, and neither is the low band while it's just the voice's own warmth.</p>
+  <p>A plosive is the puff of air from a P or B hitting the mic: a burst of low end with little else in it. Podcast Polish splits off the band under <strong>Pop Freq</strong> and turns it down the moment it bursts well above the voice in the band over it, then lets it back within about 50 ms. The rest of the voice isn't touched, and neither is the low band while it's just the voice's own warmth.</p>
   <dl class="params">
     <dt>Pops</dt><dd>How readily it acts. At low settings, only a thump far louder than the voice is caught; at 100 % the low band is held down whenever it rises above the voice at all. It never takes more than 24 dB off the low band, and ignores the low band while it's under −50 dBFS. 0 % turns it off. <span class="range">0 … 100 %</span></dd>
     <dt>Pop Freq</dt><dd>The top of the band the thumps live in. Raise it for thumps that sound more like a knock than a rumble; lower it if a deep voice loses weight. <span class="range">60 Hz … 250 Hz</span></dd>
@@ -350,7 +351,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
 <section id="deess">
   <h2>De-ess</h2>
   <p class="sub">Sharp esses tamed, whether the voice is quiet or loud.</p>
-  <p>Everything above <strong>De-ess Freq</strong> is treated as sibilance. Voicebox listens to how large a share of the whole voice that band takes, and turns only that band down while the share is too large. Because it listens to the share, not the level, it catches an S the same in a whisper as in a shout, and a level change earlier in the chain doesn't throw it off.</p>
+  <p>Everything above <strong>De-ess Freq</strong> is treated as sibilance. Podcast Polish listens to how large a share of the whole voice that band takes, and turns only that band down while the share is too large. Because it listens to the share, not the level, it catches an S the same in a whisper as in a shout, and a level change earlier in the chain doesn't throw it off.</p>
   <dl class="params">
     <dt>De-ess</dt><dd>How much. Higher catches milder sibilance and cuts deeper: from 3 dB at most near 0 % to 18 dB at 100 %. Below −54 dBFS (room noise between words) it does nothing. 0 % turns it off. <span class="range">0 … 100 %</span></dd>
     <dt>De-ess Freq</dt><dd>The bottom of the sibilant band. Lower it for a dull, lisping S; raise it for a whistling one. <span class="range">3 kHz … 10 kHz</span></dd>
@@ -442,14 +443,14 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <tr><td>Hum 50 Hz (EU)</td><td>Hum 50 Hz</td></tr>
     <tr><td>Hum 60 Hz (US)</td><td>Hum 60 Hz</td></tr>
     <tr><td>Gentle Touch</td><td>Less of everything: Pops 30 %, De-ess 25 %, ratio 1.5:1, a slow Auto Level (6 s, ±6 dB)</td></tr>
-    <tr><td>Meter Only</td><td>All processing and the limiter off: Voicebox only measures (and delays by its lookahead)</td></tr>
+    <tr><td>Meter Only</td><td>All processing and the limiter off: Podcast Polish only measures (and delays by its lookahead)</td></tr>
   </table>
   <p>Press <strong>SAVE</strong> in the header to keep your own. The preset menu has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. An asterisk after the preset's name means you've changed something since loading it. Every control is a host parameter and can be automated.</p>
 </section>
 
 <section id="ai">
   <h2>Designing with Claude</h2>
-  <p class="sub">Describe a sound; Claude sets Voicebox to make it.</p>
+  <p class="sub">Describe a sound; Claude sets Podcast Polish to make it.</p>
   <p>With your own Anthropic key, the <strong>&gt;_</strong> beside the presets opens a designer: describe what you want in your own words, such as <em>"a warm, close radio voice, less sibilant"</em>, and Claude sets every control you could automate: the clean-up EQ, plosives, tone, de-esser, compressor and loudness. It is told what every part does and how it is set now, so it can design from scratch or change only what you ask for.</p>
   <dl class="params">
     <dt>Keys</dt><dd>Menu (three lines) &gt; <strong>AI...</strong>: an Anthropic key for Claude. They are your own, shared by every Robotic Audio plugin and kept on this computer, never in sessions or presets; each design uses your credits with the service. Without a key nothing of this shows.</dd>
@@ -460,7 +461,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <dt>The log</dt><dd>What Claude made, and what it changed, part by part.</dd>
     <dt>&gt;_ and AI...</dt><dd>The designer and its keys: see <a href="#ai">Designing with Claude</a>.</dd>
   </dl>
-  <div class="callout">This is optional: Voicebox works the same without a key. The designer needs a network connection and is part of the macOS and Windows plugins.</div>
+  <div class="callout">This is optional: Podcast Polish works the same without a key. The designer needs a network connection and is part of the macOS and Windows plugins.</div>
 </section>
 
 <section id="recipes">
@@ -468,8 +469,8 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <p class="sub">Starting points for common jobs.</p>
   <div class="grid">
     <div class="card"><span class="tag">Solo podcast</span><p>Default on the voice. Clean it up, play the whole episode, press MATCH TARGET, play it again to check, bounce.</p></div>
-    <div class="card"><span class="tag">Two-person interview</span><p>One Voicebox per mic, each with its own clean-up, pops and esses, and Auto Level on to even out the two voices. Or <strong>Interview, Two Mics</strong> on a bus of both.</p></div>
-    <div class="card"><span class="tag">Speech over music</span><p>Voicebox on the voice bus with <strong>Speech Bus</strong>, and a little more Presence so the words cut through. Put a loudness meter on the master for the final figure.</p></div>
+    <div class="card"><span class="tag">Two-person interview</span><p>One Podcast Polish per mic, each with its own clean-up, pops and esses, and Auto Level on to even out the two voices. Or <strong>Interview, Two Mics</strong> on a bus of both.</p></div>
+    <div class="card"><span class="tag">Speech over music</span><p>Podcast Polish on the voice bus with <strong>Speech Bus</strong>, and a little more Presence so the words cut through. Put a loudness meter on the master for the final figure.</p></div>
     <div class="card"><span class="tag">USB mic at a desk</span><p>Low Cut 100 Hz against desk thumps, Mud at about 300 Hz, Pops up if the mic is close. If you hear a drone, try Hum.</p></div>
     <div class="card"><span class="tag">Narration</span><p><strong>Audiobook -20 LUFS</strong> or <strong>Gentle Touch</strong>: they even out the slow drift of a long read without flattening its expression.</p></div>
     <div class="card"><span class="tag">Already processed</span><p><strong>Meter Only</strong>, then turn on just what's missing, such as Auto Level and the limiter for the final loudness.</p></div>
@@ -492,7 +493,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <tr><td>Auto Level</td><td>Steps every 100 ms; Speed 0.5–10 s (four times faster down than up); Range ±1–24 dB; holds under −50 LUFS</td></tr>
     <tr><td>Limiter</td><td>True-peak, 2 ms lookahead, stereo-linked</td></tr>
     <tr><td>Latency</td><td>2 ms plus 16 samples, on or off, reported to the host</td></tr>
-    <tr><td>Waveform</td><td>The last 10 seconds before and after, peaks on a dB scale from 0 to −48 dB</td></tr>
+    <tr><td>Waveform</td><td>The last 10 seconds before and after, peaks rising from −48 dB to 0 dB, with the limiter's ceiling as a dashed line</td></tr>
     <tr><td>CPU</td><td>The processing rests while silence comes in and the meters rest on digital silence; the window redraws only what changes</td></tr>
     <tr><td>Channels</td><td>Stereo (mono tracks work too), both channels processed alike</td></tr>
     <tr><td>Formats</td><td>AU, VST3, Standalone</td></tr>
@@ -501,7 +502,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
 
 <footer>
   <div class="sig">Robotic Audio</div>
-  Voicebox was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
+  Podcast Polish was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
   Fonts: Big Shoulders Display and Inter, under the SIL Open Font License.
 </footer>
 

@@ -210,6 +210,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <li><a href="#presets">Presets</a></li>
     <li><a href="#ai">Designing with Claude</a></li>
     <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#licence">Licence</a></li>
     <li><a href="#specs">Specifications</a></li>
   </ol>
 </nav>
@@ -252,7 +253,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>The window</h2>
   <p class="sub">The display and Motion on top, the effects below, Output along the bottom.</p>
   <dl class="params">
-    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>.</dd>
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>. Until Pump is licensed, a <strong>DEMO</strong> or <strong>TRIAL</strong> chip beside the menu opens the <a href="#licence">licence</a>.</dd>
     <dt>Display</dt><dd>One cycle of the volume, or of the lane you last clicked, with a line where the cycle is now and a dot at the value it really gives. With the volume, <strong>GAIN</strong> reads the gain now; drag up or down for Amount (down pumps harder), double-click to reset it, scroll to change the shape. <strong>/2</strong> and <strong>X2</strong>, just after the card's title, halve or double the tempo (the Rate), or a lane's speed while a lane is shown. With a lane, the header names it (<strong>FX 1 FILTER / CUTOFF 10.9 KHZ</strong>) and the title row shows <strong>VOLUME</strong> (back to the volume), the lane's Depth and Phase, and its Shape, with its speed in the header (<strong>1/4X</strong>); see <a href="#lanes">Lanes</a>. On the right: the rate, and the mode (and <strong>WAITING FOR TRIGGER</strong> while a Trig mode waits), or with a sidechain source the source and the key's level (<strong>KEY −14 DB</strong>, <strong>(OWN INPUT)</strong> when nothing is connected to the sidechain).</dd>
     <dt>Motion</dt><dd>Source, Mode, Rate, Feel, Amount, Threshold, and the TRIGGER, LOOP and SONG POS buttons. See <a href="#motion">Motion</a>.</dd>
     <dt>Slot tabs</dt><dd>FX 1 to FX 4: each its grip, power button and effect menu, and a dot while any of its lanes pump. Click a tab to show that slot below; drag it by its grip (or its background) onto another tab to move the slot there, its settings and lanes with it, the slots between shifting along.</dd>
@@ -460,6 +461,20 @@ svg.defs { position: absolute; width: 0; height: 0; }
   </div>
 </section>
 
+<section id="licence">
+  <h2>Licence</h2>
+  <p class="sub">Try it, activate it, move it to another computer.</p>
+  <p>Without a licence, Pump runs as a demo: the sound drops out for 3 seconds every 45 seconds. Everything else works, saving included, so you can try it properly and keep what you made when you buy it. While it isn't licensed, the header shows <strong>DEMO</strong> (or <strong>TRIAL</strong> with the days left); click it, or choose <strong>Licence...</strong> in the menu, for the licence panel. It also opens by itself when the window opens in demo.</p>
+  <dl class="params">
+    <dt>ACTIVATE</dt><dd>Opens the shop in your browser. Sign in, choose your licence for this computer, and Pump unlocks a few seconds later.</dd>
+    <dt>START TRIAL</dt><dd>Everything, free, for 14 days, once per computer. The header counts the days down. Activate a licence at any time; your sounds and sessions stay as they are.</dd>
+    <dt>BUY</dt><dd>The plugin's page on roboticaudio.com, with its Buy button.</dd>
+    <dt>SAVE DEVICE FILE / LOAD LICENCE FILE</dt><dd>For a computer without the internet. Save the device file, take it to the shop's activation page on a computer that is online, and load the licence file it gives you back.</dd>
+    <dt>DEACTIVATE</dt><dd>Frees this computer's seat, so you can activate the licence on another one. <strong>CHECK NOW</strong> confirms the licence with the shop straight away.</dd>
+  </dl>
+  <div class="callout">One licence covers every format on the computer (AU, VST3 and the standalone app) in every host: activate once and they all unlock. It is confirmed online about once a day and keeps working offline for 30 days after the last check.</div>
+</section>
+
 <section id="specs">
   <h2>Specifications</h2>
   <p class="sub">The numbers.</p>
@@ -477,6 +492,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <tr><td>CPU</td><td>Very low for the volume alone, more with reverbs; nothing while silent</td></tr>
     <tr><td>Channels</td><td>Stereo (mono tracks work too)</td></tr>
     <tr><td>Formats</td><td>AU, VST3, Standalone</td></tr>
+    <tr><td>Licence</td><td>Activation in the browser or with a licence file; 14-day trial; a demo without either</td></tr>
   </table>
 </section>
 
