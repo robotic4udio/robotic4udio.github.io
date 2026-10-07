@@ -4,9 +4,9 @@ order: 1
 kind: Synth
 status_label: Coming soon
 tagline: A gnarly wobble-bass synth where you draw the movement.
-description: Contour is a monophonic wobble-bass synth with drawn envelopes, nine oscillator types, noise and a sample layer, a drive section, fourteen filters and a full effects rack. AU, VST3 and standalone.
+description: Contour is a wobble-bass synth with drawn envelopes, four generators of twelve types (a sampler among them), mono or up to 16 voices, a drive section, fourteen filters and a full effects rack. AU, VST3 and standalone.
 image: /assets/images/contour/contour.jpg
-image_alt: "Contour's window: the sound sources and pitch drop on top, the drawn envelopes in the middle, then drive, filter, voice and the effects rack with its macros"
+image_alt: "Contour's window: the four generators and the pitch drop on top, the drawn envelopes in the middle, then drive, filter, voice and the effects rack with its macros"
 manual: /plugins/contour/manual/
 
 # Set these when Contour is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/contour)
@@ -16,11 +16,11 @@ price:
 trial_url:
 
 stats:
-  - Monophonic bass synth
-  - 2 oscillators, 9 types
-  - Sub, noise and a sample
+  - Mono, or up to 16 voices
+  - 4 generators, 12 types
+  - Sampler with velocity layers and round robin
   - 5 drawn envelopes
-  - 8-slot mod matrix
+  - Mod matrix, up to 32 rows
   - 14 filter types
   - 20 effects in 4 slots
   - 8 macros
@@ -29,20 +29,24 @@ stats:
 features:
   - title: Draw the movement
     text: Five drawn envelopes, Volume and Mod 1–4. Draw freehand, lay down lines and curves or press RANDOM, then loop the part you like and lock it to the song's tempo.
-  - title: Two oscillators, nine types
-    text: Wavetable, Waveform, Phase Dist, Shaper, Harmonic, String, Formant, Supersaw and Granular, with up to seven unison copies. Osc 2 layers with Osc 1 or bends it with FM, Ring or Sync.
+  - title: Four generators, twelve types
+    text: Wavetable, Waveform, Phase Dist, Shaper, Harmonic, String, Formant, Supersaw, Granular, Sampler, Sub and Noise, each with its own unison and detune. Generator 1 plays the note; 2, 3 and 4 layer with it or bend any generator with FM, Ring or Sync.
   - title: Draw the sound too
     text: Harmonic adds up 64 partials whose levels you draw, twice, and morphs between the two spectra. The Shaper runs a sine through a curve you draw.
   - title: Strings, voices and grains
-    text: String is a plucked string that can ring for ever, Formant sings the vowels A to U, Supersaw stacks seven detuned saws and Granular plays grains of a wavetable or of your own sample.
-  - title: Sub, noise and a sample
-    text: A sub under the note, four kinds of noise and an audio file played on every note, for a kick or a click on the attack. Each has a direct path that skips the drive and the filter, so the low end and the transient stay clean however nasty the rest gets.
+    text: String is a plucked string that can ring for ever, Formant sings the vowels A to U, Supersaw stacks seven detuned saws and Granular plays grains of a wavetable or of your own samples.
+  - title: A sampler inside
+    text: The Sampler type plays your own samples mapped across the keys, with four velocity layers, round robin and choke groups. Drop files on the map, or, with your own ElevenLabs key, describe a sound and it makes the samples for you.
+  - title: Clean where it counts
+    text: Any generator can take the DIRECT path past the drive and the filter, so a sub or a transient stays clean however nasty the rest gets.
   - title: Aggressor
     text: Three drive stages in a row, Overdrive, Distortion and Fuzz. Drag the filter before or after them; filtering first and then distorting gives the classic growl.
   - title: Fourteen filters
     text: Ladder, state-variable morph and notch, diode, MS-20, formant, comb and phaser types, all open to modulation.
   - title: Modulation matrix
-    text: Eight slots route the envelopes, MIDI and the macros to almost anything, pitch included. Knobs show what is moving them.
+    text: Up to 32 rows route the envelopes, MIDI and the macros to almost anything, pitch included. Right-click a knob to modulate it straight away; knobs show what is moving them.
+  - title: Mono or polyphonic
+    text: One voice with legato and portamento for basses and leads, or up to 16 for chords, each note with its own envelopes and modulation.
   - title: Effects rack
     text: Four slots in series and twenty effects, from OTT, distortion and a stacked drive to delay, two reverbs, a gate, a frequency shifter and a tape stop, each with its own editor and live display.
   - title: Macros and XY pad
@@ -78,7 +82,7 @@ thumbnails:
 
 specs:
   - name: Type
-    value: Monophonic synthesizer (instrument plugin)
+    value: Synthesizer, mono or up to 16 voices (instrument plugin)
   - name: Formats
     value: AU, VST3 and Standalone
   - name: macOS

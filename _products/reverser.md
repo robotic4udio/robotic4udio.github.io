@@ -51,6 +51,6 @@ specs:
   - name: Status
     value: In development, version 0.1
   - name: Price
-    value: To be announced
+    value: Free
 ---
 Reverser is a performance effect with two buttons. It remembers what you just played and plays it backwards for as long as you hold on, which makes it good for fills, transitions and rewinds on a live input or a whole mix.

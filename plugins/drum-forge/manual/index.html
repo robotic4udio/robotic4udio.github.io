@@ -214,6 +214,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <li><a href="#ai">Keys</a></li>
     <li><a href="#kits">Kits &amp; presets</a></li>
     <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#licence">Licence</a></li>
     <li><a href="#specs">Specifications</a></li>
   </ol>
 </nav>
@@ -259,7 +260,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>The window</h2>
   <p class="sub">The kit on the left, the selected pad on the right, the effects below.</p>
   <dl class="params">
-    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE) for kits, the power button (bypass) and the menu (three lines) with this manual and <strong>AI...</strong>. With a working ElevenLabs key, a <strong>&gt;_</strong> beside the preset bar opens the kit's terminal. Click the logo for the version and credits.</dd>
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE) for kits, the power button (bypass) and the menu (three lines) with this manual and <strong>AI...</strong>. With a working ElevenLabs key, a <strong>&gt;_</strong> beside the preset bar opens the kit's terminal. Click the logo for the version and credits. Until Drum Forge is licensed, a <strong>DEMO</strong> or <strong>TRIAL</strong> chip beside the menu opens the <a href="#licence">licence</a>.</dd>
     <dt>KIT</dt><dd>The sixteen pads. <strong>KIT</strong> above them opens the kit menu, <strong>&gt;_</strong> the kit's terminal.</dd>
     <dt>PAD</dt><dd>The selected pad: its name, <strong>Play Mode</strong>, <strong>LOCK</strong> and <strong>&gt;_</strong>; the tabs <strong>TAKE</strong>, <strong>VOLUME</strong>, <strong>MOD 1</strong>, <strong>MOD 2</strong> and <strong>MATRIX</strong>; its sound as two rows of knobs; and Filter, Choke, Takes, Reverse and Mute.</dd>
     <dt>EFFECTS</dt><dd>On tabs: the pad's two effect slots (<strong>PAD FX</strong>), its sends and the two send effects (<strong>SENDS</strong>), and the master chain (<strong>MASTER</strong>).</dd>
@@ -378,6 +379,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <figcaption>The MATRIX page: Mod 1 sweeping the cutoff down, velocity raising the level.</figcaption>
   </figure>
   <p>Each pad has six slots. A slot adds its <strong>SOURCE</strong> (times its <strong>VIA</strong>, if it has one) times <strong>AMT</strong> to its <strong>DESTINATION</strong>; <strong>OFFSET</strong> adds a fixed amount, <strong>SMOOTH</strong> glides it. An amount of 100 % moves the destination across its whole range.</p>
+  <p>The matrix shows the rows in use and one empty row after them. <strong>+ ADD ROW</strong> adds more, up to six. Right-click a row to <strong>insert a row above it</strong>, <strong>remove it</strong> (the rows below move up) or <strong>clear it</strong>.</p>
   <dl class="params">
     <dt>Sources</dt><dd><strong>Vol Env</strong>, <strong>Mod 1</strong>, <strong>Mod 2</strong>, <strong>Velocity</strong>, <strong>Random</strong> (a new value per hit, both ways), <strong>Mod Wheel</strong> and <strong>Aftertouch</strong>.</dd>
     <dt>Destinations</dt><dd><strong>Tune</strong>, <strong>Level</strong>, <strong>Pan</strong>, <strong>Cutoff</strong>, <strong>Resonance</strong>, <strong>Drive</strong>, <strong>Send A</strong> and <strong>Send B</strong>, which move while the pad sounds; and <strong>Decay</strong>, <strong>Start</strong> and <strong>Attack</strong>, which are taken at each hit.</dd>
@@ -454,6 +456,20 @@ svg.defs { position: absolute; width: 0; height: 0; }
   </div>
 </section>
 
+<section id="licence">
+  <h2>Licence</h2>
+  <p class="sub">Try it, activate it, move it to another computer.</p>
+  <p>Without a licence, Drum Forge runs as a demo: the sound drops out for 3 seconds every 45 seconds. Everything else works, saving included, so you can try it properly and keep what you made when you buy it. While it isn't licensed, the header shows <strong>DEMO</strong> (or <strong>TRIAL</strong> with the days left); click it, or choose <strong>Licence...</strong> in the menu, for the licence panel. It also opens by itself when the window opens in demo.</p>
+  <dl class="params">
+    <dt>ACTIVATE</dt><dd>Opens the shop in your browser. Sign in, choose your licence for this computer, and Drum Forge unlocks a few seconds later.</dd>
+    <dt>START TRIAL</dt><dd>Everything, free, for 14 days, once per computer. The header counts the days down. Activate a licence at any time; your sounds and sessions stay as they are.</dd>
+    <dt>BUY</dt><dd>The plugin's page on roboticaudio.com, with its Buy button.</dd>
+    <dt>SAVE DEVICE FILE / LOAD LICENCE FILE</dt><dd>For a computer without the internet. Save the device file, take it to the shop's activation page on a computer that is online, and load the licence file it gives you back.</dd>
+    <dt>DEACTIVATE</dt><dd>Frees this computer's seat, so you can activate the licence on another one. <strong>CHECK NOW</strong> confirms the licence with the shop straight away.</dd>
+  </dl>
+  <div class="callout">One licence covers every format on the computer (AU, VST3 and the standalone app) in every host: activate once and they all unlock. It is confirmed online about once a day and keeps working offline for 30 days after the last check.</div>
+</section>
+
 <section id="specs">
   <h2>Specifications</h2>
   <p class="sub">The numbers.</p>
@@ -471,6 +487,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <tr><td>Generated takes</td><td>0.5 to 30 s, 24-bit WAV, with your ElevenLabs key</td></tr>
     <tr><td>CPU</td><td>A pad silent for three seconds costs nothing</td></tr>
     <tr><td>Formats</td><td>AU, VST3, Standalone</td></tr>
+    <tr><td>Licence</td><td>Activation in the browser or with a licence file; 14-day trial; a demo without either</td></tr>
   </table>
 </section>
 

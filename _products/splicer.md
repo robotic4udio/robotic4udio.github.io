@@ -18,9 +18,10 @@ trial_url:
 stats:
   - BBCut-style cut engine
   - 5 cut procedures on a strict grid
-  - 6 effect lanes
+  - Time stretch down to 0.78 %
+  - 5 effect lanes with drawn lines
   - Repeatable randomness
-  - 16 patterns and a song chain
+  - 16 editable patterns and a song chain
   - Hand-played gestures and MIDI
   - Tempo synced
 
@@ -32,7 +33,7 @@ features:
   - title: Design your own
     text: Sixteen patterns of one to four bars, each block with its gesture, its chance and its effects, edited by hand or partly regenerated. Chain the patterns into a song with fills.
   - title: Effects on every slice
-    text: Six lanes, filter, crush, drive, gate, delay and reverb throws, each with its own motion and range.
+    text: Five lanes, filter, ring modulator, drive (bitcrush and downsample among its types), delay and reverb throws, switched on block by block and each following lines you draw across the pattern, in any order you drag them.
   - title: Play it live
     text: Trigger gestures from buttons or MIDI notes, and switch patterns from MIDI at the next bar line.
   - title: Presets to start from
