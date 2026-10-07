@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drum Forge Manual</title>
+<style>
+@font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Big Shoulders"; font-weight: 800; src: url("fonts/BigShouldersDisplay-ExtraBold.ttf") format("truetype"); }
+
+:root {
+  --bg: #0d0b0a;
+  --surface: #17120f;
+  --surface-2: #211a15;
+  --line: rgba(255, 236, 220, 0.10);
+  --line-strong: rgba(255, 236, 220, 0.22);
+  --text: #f4ece4;
+  --muted: #a99e94;
+  --ember: #12804c;
+  --fire: #35e08f;
+  --hot: #c4ffe0;
+  --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
+  --radius: 14px;
+  --sidebar: 260px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 500 16px/1.65 "Inter", -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--hot); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Sidebar */
+nav.toc {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar);
+  overflow-y: auto; padding: 32px 24px 40px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+}
+nav.toc .brand { font: 600 11px/1 "Inter"; letter-spacing: .32em; color: var(--fire); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+nav.toc .brand::before { content: ""; width: 18px; height: 2px; background: var(--fire-gradient); }
+nav.toc .product { font: 800 34px/1 "Big Shoulders"; letter-spacing: .02em; margin: 10px 0 26px; text-transform: uppercase; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+nav.toc li { counter-increment: s; }
+nav.toc li a {
+  display: flex; gap: 12px; padding: 7px 10px; margin: 0 -10px; border-radius: 8px;
+  color: var(--muted); font-size: 14px;
+}
+nav.toc li a::before { content: counter(s, decimal-leading-zero); color: var(--line-strong); font-variant-numeric: tabular-nums; }
+nav.toc li a:hover, nav.toc li a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
+nav.toc li a.active::before { color: var(--fire); }
+
+main { margin-left: var(--sidebar); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+/* Hero */
+header.hero { position: relative; padding: 72px 0 40px; overflow: hidden; }
+header.hero::before {
+  content: ""; position: absolute; inset: -40% -10% auto; height: 520px;
+  background: radial-gradient(closest-side, rgba(18, 128, 76, .20), transparent);
+  pointer-events: none;
+}
+.kicker { font: 600 12px/1 "Inter"; letter-spacing: .34em; text-transform: uppercase; color: var(--fire); display: flex; align-items: center; gap: 12px; }
+.kicker::before { content: ""; width: 28px; height: 2px; background: var(--fire-gradient); }
+h1 {
+  font: 800 clamp(64px, 11vw, 132px)/.86 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em;
+  margin: 18px 0 18px;
+  background: linear-gradient(180deg, var(--text) 30%, #d9c9bb); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lede { font-size: 20px; line-height: 1.55; color: var(--text); max-width: 640px; margin: 0; }
+.lede em { font-style: normal; background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; padding: 0; list-style: none; }
+.facts li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+
+figure { margin: 32px 0; }
+figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); }
+figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+/* Sections */
+section { padding: 56px 0 8px; border-top: 1px solid var(--line); }
+h2 {
+  font: 800 52px/1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em; margin: 0 0 6px;
+}
+h2 + .sub { color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+h3 { font: 600 13px/1.2 "Inter"; letter-spacing: .24em; text-transform: uppercase; color: var(--hot); margin: 36px 0 12px; display: flex; align-items: center; gap: 10px; }
+h3::before { content: ""; width: 14px; height: 2px; background: var(--fire-gradient); }
+h4 { font: 800 24px/1.1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 4px; }
+p { margin: 0 0 14px; }
+strong { font-weight: 600; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* Parameter lists */
+dl.params { display: grid; grid-template-columns: 170px 1fr; gap: 0; margin: 0 0 18px; border-top: 1px solid var(--line); }
+dl.params dt, dl.params dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+dl.params dt { font: 600 12px/1.5 "Inter"; letter-spacing: .16em; text-transform: uppercase; color: var(--text); padding-right: 16px; padding-top: 13px; }
+dl.params dd { color: #e3d8ce; }
+dl.params dd .range { display: inline-block; margin-left: 8px; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+
+/* Cards and grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0 24px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.card p { margin: 6px 0 0; color: #e3d8ce; font-size: 15px; }
+.card .tag { font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--fire); }
+
+.callout { position: relative; background: linear-gradient(135deg, rgba(18, 128, 76,.10), rgba(196, 255, 224,.04)); border: 1px solid rgba(18, 128, 76,.35); border-radius: var(--radius); padding: 16px 20px 16px 52px; margin: 22px 0; }
+.callout::before { content: "✦"; position: absolute; left: 20px; top: 15px; color: var(--hot); font-size: 18px; }
+.callout strong { color: var(--hot); }
+
+kbd {
+  font: 600 12px/1 "Inter"; padding: 4px 7px; border-radius: 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  background: var(--surface-2); color: var(--text); white-space: nowrap;
+}
+table { width: 100%; border-collapse: collapse; margin: 8px 0 22px; font-size: 15px; }
+th { text-align: left; font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line-strong); }
+td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #e3d8ce; }
+td:first-child { color: var(--text); white-space: nowrap; }
+
+/* Signal flow */
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 20px; margin: 24px 0; overflow-x: auto; }
+.flow svg { display: block; min-width: 760px; width: 100%; height: auto; }
+
+/* Effects */
+.fx { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 22px 0 40px; }
+.fx img { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 10px 0 14px; }
+.fx .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.fx .head .what { color: var(--muted); }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 2px; transform: translateY(-1px); }
+
+footer { padding: 60px 0 80px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 40px; }
+footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+
+@media (max-width: 980px) {
+  nav.toc { position: static; width: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav.toc ol { columns: 2; }
+  main { margin-left: 0; }
+  .wrap { padding: 0 20px; }
+  dl.params { grid-template-columns: 1fr; }
+  dl.params dt { border-bottom: 0; padding-bottom: 0; }
+}
+@media print {
+  :root { --bg: #fff; --surface: #f6f2ee; --surface-2: #eee7e0; --text: #1a1410; --muted: #6e6259; --line: #e4dbd2; --line-strong: #cfc3b8; }
+  nav.toc { display: none; }
+  main { margin: 0; }
+  section { break-inside: avoid-page; }
+  h1 { color: #1a1410; background: none; }
+  dl.params dd, td, .card p { color: #2a2018; }
+}
+
+/* Block diagrams */
+.flow svg text { fill: var(--text); font-weight: 600; font-size: 13.5px; text-anchor: middle; }
+.flow svg text.sub { fill: var(--muted); font-weight: 500; font-size: 11px; }
+.flow svg .box { fill: var(--surface-2); stroke: var(--line-strong); }
+.flow svg .box.hot { stroke: url(#g); }
+.flow svg .pill { fill: var(--bg); stroke: var(--line-strong); }
+.flow svg .frame { fill: none; stroke: var(--line-strong); stroke-dasharray: 6 6; }
+.flow svg .wire { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.flow svg .dash { stroke-dasharray: 5 5; }
+.flow svg .arrow { fill: var(--muted); }
+.flow svg .tick { stroke: var(--line-strong); stroke-width: 1; }
+.flow svg .head { stroke: var(--hot); stroke-width: 2.5; fill: none; }
+svg.defs { position: absolute; width: 0; height: 0; }
+
+/* Curves */
+.plots { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: 22px; align-items: center; margin: 18px 0 24px; }
+.plots.three { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: start; gap: 14px; }
+.plot { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.plot h4 { margin: 2px 0 10px; }
+.plot svg { display: block; width: 100%; height: auto; }
+.plot svg text { fill: var(--muted); font-size: 10px; font-weight: 500; }
+.plot .axis { fill: none; stroke: var(--line-strong); }
+.plot .grid { fill: none; stroke: var(--line); }
+.plot .knee { fill: none; stroke: var(--line-strong); stroke-dasharray: 2 4; }
+.plot .ref { fill: none; stroke: var(--line-strong); stroke-dasharray: 4 4; }
+.plot .c1, .plot .c2, .plot .c3 { fill: none; stroke-width: 2; stroke-linejoin: round; }
+.plot .c1 { stroke: var(--muted); }
+.plot .c2 { stroke: var(--fire); }
+.plot .c3 { stroke: var(--hot); }
+.legend { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 12px; margin-top: 10px; }
+.legend span { display: inline-block; width: 14px; height: 2px; margin-left: 8px; }
+.legend span:first-child { margin-left: 0; }
+.legend .k1 { background: var(--muted); } .legend .k2 { background: var(--fire); } .legend .k3 { background: var(--hot); }
+.plot-text p:last-child { margin-bottom: 0; }
+.formula { font: 600 17px/1.4 "Inter"; color: var(--hot); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 18px; display: inline-block; }
+@media (max-width: 720px) { .plots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<svg class="defs" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#12804c"/><stop offset=".45" stop-color="#35e08f"/><stop offset="1" stop-color="#c4ffe0"/></linearGradient><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z" fill="#a99e94"/></marker></defs></svg>
+
+<nav class="toc" aria-label="Contents">
+  <div class="brand">Robotic Audio</div>
+  <div class="product">Drum Forge</div>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#overview">The window</a></li>
+    <li><a href="#flow">Signal flow</a></li>
+    <li><a href="#kit">The kit</a></li>
+    <li><a href="#takes">Takes</a></li>
+    <li><a href="#sound">The pad's sound</a></li>
+    <li><a href="#ranges">Ranges &amp; Chance</a></li>
+    <li><a href="#envelopes">Envelopes</a></li>
+    <li><a href="#matrix">Matrix</a></li>
+    <li><a href="#effects">Effects</a></li>
+    <li><a href="#generate">Generating sounds</a></li>
+    <li><a href="#claude">Claude designs the kit</a></li>
+    <li><a href="#ai">Keys</a></li>
+    <li><a href="#kits">Kits &amp; presets</a></li>
+    <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#specs">Specifications</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Robotic Audio · User manual</div>
+  <h1>Drum Forge</h1>
+  <p class="lede">A sixteen-pad drum sampler. Load your own hits, or, with your own ElevenLabs key, <em>generate</em> them: a whole kit from a style, or one pad from a prompt, with Claude designing the kit around them if you add an Anthropic key. Every hit can pick its own tune, level, pan and more from a range, play a random take, or not play at all; three drawn envelopes and a matrix per pad move the rest.</p>
+  <ul class="facts">
+    <li>16 pads, MIDI C1–D#2</li>
+    <li>4 takes per pad</li>
+    <li>Ranges per hit, Chance</li>
+    <li>3 drawn envelopes per pad</li>
+    <li>6-slot matrix per pad</li>
+    <li>2 effects per pad, 2 sends, 4 master</li>
+    <li>Optional AI generation</li>
+    <li>AU · VST3 · Standalone</li>
+  </ul>
+  <figure>
+    <img src="images/drumforge.jpg" alt="Drum Forge's window with a kit loaded">
+    <figcaption>Drum Forge with a kit loaded: the sixteen pads on the left; the selected pad on the right, its takes and waveform over its sound; the effects along the bottom.</figcaption>
+  </figure>
+</header>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">From an empty kit to your first beat.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">01</span><h4>Fill a pad</h4><p>Drop an audio file on a pad, or right-click it and choose <strong>Load a File...</strong>. Drop more files on the same pad for up to four takes.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Play</h4><p>Click a pad (harder towards its top) or play MIDI notes C1 to D#2. Pad 1 is at the bottom left.</p></div>
+    <div class="card"><span class="tag">03</span><h4>Shape it</h4><p>The pad you click is the one the right side shows: tune it, shorten its <strong>Decay</strong>, filter it, give it effects.</p></div>
+    <div class="card"><span class="tag">04</span><h4>Make it breathe</h4><p>Shift-drag <strong>Tune</strong> or <strong>Level</strong> to give it a range: every hit picks its own value inside it.</p></div>
+    <div class="card"><span class="tag">05</span><h4>Or generate it</h4><p>With an ElevenLabs key (menu &gt; <strong>AI...</strong>), the <strong>&gt;_</strong> on the kit makes a whole kit from a style, the one on a pad that pad's takes.</p></div>
+    <div class="card"><span class="tag">06</span><h4>Save the kit</h4><p><strong>SAVE</strong> in the header keeps the kit as a preset: every pad's takes, settings, envelopes, matrix and effects.</p></div>
+  </div>
+  <div class="callout"><strong>Hover over anything.</strong> The strip along the bottom of the window says what the control under the mouse does.</div>
+</section>
+
+<section id="overview">
+  <h2>The window</h2>
+  <p class="sub">The kit on the left, the selected pad on the right, the effects below.</p>
+  <dl class="params">
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE) for kits, the power button (bypass) and the menu (three lines) with this manual and <strong>AI...</strong>. With a working ElevenLabs key, a <strong>&gt;_</strong> beside the preset bar opens the kit's terminal. Click the logo for the version and credits.</dd>
+    <dt>KIT</dt><dd>The sixteen pads. <strong>KIT</strong> above them opens the kit menu, <strong>&gt;_</strong> the kit's terminal.</dd>
+    <dt>PAD</dt><dd>The selected pad: its name, <strong>Play Mode</strong>, <strong>LOCK</strong> and <strong>&gt;_</strong>; the tabs <strong>TAKE</strong>, <strong>VOLUME</strong>, <strong>MOD 1</strong>, <strong>MOD 2</strong> and <strong>MATRIX</strong>; its sound as two rows of knobs; and Filter, Choke, Takes, Reverse and Mute.</dd>
+    <dt>EFFECTS</dt><dd>On tabs: the pad's two effect slots (<strong>PAD FX</strong>), its sends and the two send effects (<strong>SENDS</strong>), and the master chain (<strong>MASTER</strong>).</dd>
+  </dl>
+  <p>Knobs reset with a double-click and take fine steps with <kbd>Cmd</kbd>, <kbd>Ctrl</kbd> or <kbd>Alt</kbd>. A knob the matrix moves shows a ring with its range and a dot where it is now.</p>
+</section>
+
+<section id="flow">
+  <h2>Signal flow</h2>
+  <p class="sub">What happens on a hit.</p>
+  <div class="flow">
+    <svg viewBox="0 0 900 190" role="img" aria-label="Take player, filter, drive, pad effects, level and pan, then the kit and the sends, then the master chain">
+      <rect class="box hot" x="10" y="55" width="130" height="50" rx="10"/><text x="75" y="78">Take</text><text class="sub" x="75" y="94">tune · start · attack · decay</text>
+      <rect class="box" x="170" y="55" width="110" height="50" rx="10"/><text x="225" y="78">Filter, Drive</text><text class="sub" x="225" y="94">every 32 samples</text>
+      <rect class="box" x="310" y="55" width="110" height="50" rx="10"/><text x="365" y="78">Pad FX</text><text class="sub" x="365" y="94">2 slots</text>
+      <rect class="box" x="450" y="55" width="110" height="50" rx="10"/><text x="505" y="78">Level, Pan</text><text class="sub" x="505" y="94">the pad's mixer</text>
+      <rect class="box hot" x="600" y="15" width="130" height="50" rx="10"/><text x="665" y="37">Master FX</text><text class="sub" x="665" y="53">4 slots · Master</text>
+      <rect class="box" x="600" y="110" width="130" height="50" rx="10"/><text x="665" y="132">Sends A, B</text><text class="sub" x="665" y="148">wet only</text>
+      <rect class="pill" x="780" y="20" width="100" height="40" rx="20"/><text x="830" y="45">Out</text>
+      <path class="wire" d="M140 80H168M280 80H308M420 80H448M560 75 C580 70 580 45 598 42M560 85 C580 90 580 130 598 135M730 40H778" marker-end="url(#a)"/>
+      <path class="wire dash" d="M730 135 C760 135 760 60 770 45" marker-end="url(#a)"/>
+      <text class="sub" x="300" y="180">Vol Env, Mod 1, Mod 2, velocity, random, mod wheel and aftertouch move the pad through its matrix</text>
+    </svg>
+  </div>
+  <p>A hit picks a take, plays it from <strong>Start</strong>, at <strong>Tune</strong>, through <strong>Attack</strong>, the <strong>Decay</strong> and the Volume envelope, then the pad's filter and drive and its two effect slots. Then its mixer: <strong>Level</strong>, <strong>Pan</strong> and the two sends. All sixteen pads meet in the master chain; the sends' effects come back into it too.</p>
+  <p>A pad always chokes itself: a new hit fades out what it still plays in 3 ms. A pad that has been silent for three seconds, its effects rung out, costs nothing until it's hit again.</p>
+</section>
+
+<section id="kit">
+  <h2>The kit</h2>
+  <p class="sub">Sixteen pads, C1 to D#2.</p>
+  <p>Pads run from <strong>1</strong> at the bottom left (C1, MIDI note 36) to <strong>16</strong> at the top right (D#2). Each shows its role, its name, a lock when it's locked and a dot for each take it has; it lights on every hit.</p>
+  <table>
+    <tr><th>Do this</th><th>To</th></tr>
+    <tr><td>Click a pad</td><td>Select it and play it (harder towards its top)</td></tr>
+    <tr><td>Drop an audio file on a pad</td><td>Add it as a take (WAV, AIFF, FLAC, MP3, OGG)</td></tr>
+    <tr><td>Right-click a pad</td><td>The pad menu: <strong>Generate...</strong> (with a key), <strong>Load a File...</strong>, its <strong>Role</strong>, <strong>Lock</strong> and <strong>Clear Pad</strong></td></tr>
+    <tr><td>Double-click the pad's name</td><td>Rename it</td></tr>
+  </table>
+  <h3>The kit menu</h3>
+  <dl class="params">
+    <dt>Apply Template (Roles)</dt><dd>Gives every unlocked pad a role, which its generated prompt asks for: <strong>Standard</strong>, <strong>Electronic</strong>, <strong>Percussion</strong>, <strong>FX / Foley</strong>, or <strong>Free (Pad 1-16)</strong>, where the pads have no role and the prompt alone decides what each is.</dd>
+    <dt>Apply Smart Defaults</dt><dd>Sets every unlocked pad's level, pan (from the drummer's seat), choke group, sends, takes and ranges for its role: the hats in one choke group, a little human variation on hats, claps and percussion, kicks tight.</dd>
+    <dt>Redesign the Settings with Claude</dt><dd>With an Anthropic key: Claude sets every unlocked pad's sound, mix and effects for the kit's style, without new sounds.</dd>
+    <dt>Clear Unlocked Pads</dt><dd>Empties every pad that isn't locked.</dd>
+    <dt>Open the Sample Library</dt><dd>The folder where generated takes are saved.</dd>
+  </dl>
+  <div class="callout"><strong>LOCK</strong> keeps a pad as it is when a whole kit is generated or a template applied.</div>
+</section>
+
+<section id="takes">
+  <h2>Takes</h2>
+  <p class="sub">Up to four versions of each hit.</p>
+  <p>The <strong>TAKE</strong> tab shows the pad's four takes as buttons over the selected take's waveform. Click a take to select and play it; right-click it to <strong>Load a File into Take</strong>, <strong>Remove</strong> it or <strong>Show in Finder</strong>. On the waveform, drag the line to set <strong>Start</strong>; the curve over it is the decay, and a line follows the playhead while the pad sounds.</p>
+  <dl class="params">
+    <dt>Takes</dt><dd>Which take a hit plays. <strong>Single Take</strong>: the selected one. <strong>Round Robin</strong>: the next of the pad's takes on every hit. <strong>Random Take</strong>: one at random, never the one just played. The view follows the take that plays.</dd>
+  </dl>
+</section>
+
+<section id="sound">
+  <h2>The pad's sound</h2>
+  <p class="sub">Two rows of knobs, and the switches under them.</p>
+  <dl class="params">
+    <dt>Play Mode</dt><dd><strong>One Shot</strong> plays the whole hit and ignores the note-off. <strong>Gate</strong> plays while the note is held, and Decay becomes the release after it.</dd>
+    <dt>Tune</dt><dd>The pad's pitch. <span class="range">−24 to +24 st</span></dd>
+    <dt>Attack</dt><dd>Fades the hit in, from a click to a swell. <span class="range">0 to 500 ms</span></dd>
+    <dt>Decay</dt><dd>How fast the hit dies away (to −60 dB); at <strong>Full</strong> the take plays out. In Gate mode, the release. <span class="range">10 ms to 10 s, Full</span></dd>
+    <dt>Cutoff, Reso</dt><dd>The filter's frequency and its peak. <span class="range">20 Hz to 20 kHz · 0 to 100 %</span></dd>
+    <dt>Drive</dt><dd>Saturation, from warmth to crushed. <span class="range">0 to 100 %</span></dd>
+    <dt>Velocity</dt><dd>How much softer a soft hit plays; 0 plays every hit the same. <span class="range">0 to 100 %</span></dd>
+    <dt>Start</dt><dd>Where in the take a hit starts (also the line on the waveform). <span class="range">0 to 100 %</span></dd>
+    <dt>Pan, Level</dt><dd>The pad's place and level in the kit. <span class="range">100 L to 100 R · −inf to +6 dB</span></dd>
+    <dt>Variation, Chance</dt><dd>See <a href="#ranges">Ranges &amp; Chance</a>.</dd>
+    <dt>Filter</dt><dd><strong>No Filter</strong>, or one of fourteen: ladder low, high and band passes (24 and 12 dB), SVF Morph and Notch, Diode, MS-20, Formant, Comb + and −, Phaser.</dd>
+    <dt>Choke</dt><dd>Pads in the same group (1 to 8) cut each other off: a closed hat stops the open one.</dd>
+    <dt>Reverse, Mute</dt><dd>Plays the take backwards; silences the pad.</dd>
+  </dl>
+  <p>Level, Pan, Tune, Decay, Mute and the two sends are host parameters for every pad, so you can automate them; the rest belong to the pad and are saved with the kit.</p>
+</section>
+
+<section id="ranges">
+  <h2>Ranges &amp; Chance</h2>
+  <p class="sub">Every hit a little different.</p>
+  <p><strong>Tune</strong>, <strong>Attack</strong>, <strong>Decay</strong>, <strong>Cutoff</strong>, <strong>Drive</strong>, <strong>Start</strong>, <strong>Pan</strong>, <strong>Level</strong> and the two sends are range knobs. Drag one to set its value as usual; <strong>Shift</strong>-drag (or Shift-scroll) to give it a range around that value. Every hit then picks its own value inside the range, and the knob's marker shows the last hit's pick. Double-click resets both.</p>
+  <dl class="params">
+    <dt>Variation</dt><dd>How much of the ranges each hit uses: 0 % plays every hit at the knobs' values, 100 % uses the whole ranges. One knob to dial a pad's looseness in or out.</dd>
+    <dt>Chance</dt><dd>How likely a hit is to play at all. Below 100 %, hits drop out at random; a hit that doesn't play chokes nothing either.</dd>
+  </dl>
+  <div class="callout">Small ranges humanise: a few cents of tune and a couple of dB of level on hats and percussion. Large ones turn a pad generative: a wide cutoff and pan on a glitch hit, or Chance at 60 % on a shaker.</div>
+</section>
+
+<section id="envelopes">
+  <h2>Envelopes</h2>
+  <p class="sub">Three drawn envelopes per pad.</p>
+  <figure>
+    <img src="images/envelopes.jpg" alt="The pad card's MOD 1 page: a drawn fall, the envelope's menus and knobs">
+    <figcaption>The MOD 1 page: the drawing, its tools along the top, Trigger, Sync and Bipolar, and Attack, Release, Rate and Drift beside it.</figcaption>
+  </figure>
+  <p><strong>VOLUME</strong> shapes the pad's level over time while its power button is on. <strong>MOD 1</strong> and <strong>MOD 2</strong> do nothing on their own: route them to something in the <a href="#matrix">matrix</a>. Each restarts with a hit; the drawing shows where it is.</p>
+  <dl class="params">
+    <dt>Drawing</dt><dd>Draw the shape with the tools along the top (draw, line, warp, lift, move), or start from the menu's shapes, waveforms and windows. <strong>RANDOM</strong>, <strong>SMOOTH</strong> and <strong>NORMALIZE</strong> work on the whole shape, or on a region you mark with Shift-drag. <kbd>Cmd</kbd>+<kbd>Z</kbd> undoes.</dd>
+    <dt>Loop</dt><dd>The loop button picks Off (play once and hold the end), Forward, Backward or Palindrome; drag the handles under the drawing to set the loop.</dd>
+    <dt>Trigger</dt><dd><strong>Trig</strong> restarts with every hit; <strong>Legato</strong> only when the pad isn't still sounding; <strong>Tempo</strong> follows the song position, like a tempo-synced LFO.</dd>
+    <dt>Sync</dt><dd><strong>Free</strong>: <strong>Rate</strong> sets the speed (at 1x the whole shape takes 2 s). <strong>Note</strong>, <strong>Dotted</strong> or <strong>Triplet</strong>: the shape lasts a note value at the host's tempo, chosen in place of Rate. While the host is stopped, it keeps time at the tempo.</dd>
+    <dt>Attack, Release</dt><dd>Fades over the shape at the start and after the note ends (Gate). Right-click either to switch it off.</dd>
+    <dt>Drift</dt><dd>A smooth random wobble added to the output.</dd>
+    <dt>Bipolar</dt><dd>Mod 1 and Mod 2: the middle of the drawing is no movement, so the envelope swings both ways (for pitch).</dd>
+  </dl>
+</section>
+
+<section id="matrix">
+  <h2>Matrix</h2>
+  <p class="sub">What moves what, for each pad.</p>
+  <figure>
+    <img src="images/matrix.jpg" alt="The pad card's MATRIX page with two routes">
+    <figcaption>The MATRIX page: Mod 1 sweeping the cutoff down, velocity raising the level.</figcaption>
+  </figure>
+  <p>Each pad has six slots. A slot adds its <strong>SOURCE</strong> (times its <strong>VIA</strong>, if it has one) times <strong>AMT</strong> to its <strong>DESTINATION</strong>; <strong>OFFSET</strong> adds a fixed amount, <strong>SMOOTH</strong> glides it. An amount of 100 % moves the destination across its whole range.</p>
+  <dl class="params">
+    <dt>Sources</dt><dd><strong>Vol Env</strong>, <strong>Mod 1</strong>, <strong>Mod 2</strong>, <strong>Velocity</strong>, <strong>Random</strong> (a new value per hit, both ways), <strong>Mod Wheel</strong> and <strong>Aftertouch</strong>.</dd>
+    <dt>Destinations</dt><dd><strong>Tune</strong>, <strong>Level</strong>, <strong>Pan</strong>, <strong>Cutoff</strong>, <strong>Resonance</strong>, <strong>Drive</strong>, <strong>Send A</strong> and <strong>Send B</strong>, which move while the pad sounds; and <strong>Decay</strong>, <strong>Start</strong> and <strong>Attack</strong>, which are taken at each hit.</dd>
+    <dt>Right-click a knob</dt><dd>Any knob the matrix can move: <strong>Modulate ... by</strong> lists the sources, the ones already routed to it ticked with their amount. Choose one to route it in a free slot at 25 %, a ticked one to remove it; <strong>Remove All Modulation</strong>, and <strong>Edit in the Matrix...</strong> to set the amount.</dd>
+  </dl>
+</section>
+
+<section id="effects">
+  <h2>Effects</h2>
+  <p class="sub">Two per pad, two sends, four for the kit.</p>
+  <dl class="params">
+    <dt>PAD FX</dt><dd>The selected pad's two effect slots, after its filter and drive: any of the suite's effects but the delay, the reverbs and Tape Stop (the sends have those).</dd>
+    <dt>SENDS</dt><dd>The pad's <strong>Send A</strong> and <strong>Send B</strong> (range knobs too), and the two send effects every pad feeds: a delay and a reverb to begin with, any effect if you like. Only their wet sound comes back.</dd>
+    <dt>MASTER</dt><dd>Four slots over the whole kit, in order, and <strong>Master</strong>, the kit's level.</dd>
+  </dl>
+  <p>In every slot: the menu picks the effect, the power button switches it, the knobs are its favourite settings and the edit button opens its full editor, with a display to drag on. Drag a slot by its grip to reorder the chain.</p>
+</section>
+
+<section id="generate">
+  <h2>Generating sounds</h2>
+  <p class="sub">With your own ElevenLabs key.</p>
+  <figure>
+    <img src="images/terminal.jpg" alt="The kit's terminal: a style, the template and takes menus, CLAUDE DESIGNS IT and EXECUTE">
+    <figcaption>The kit's terminal: the style, the template, takes per pad, CLAUDE DESIGNS IT and EXECUTE, with the log under them.</figcaption>
+  </figure>
+  <p>Once a key works (<a href="#ai">Keys</a>), a <strong>&gt;_</strong> shows on the kit, on the pad card, beside the presets, and on each pad under the mouse. It opens a terminal: type, press Return (or <strong>EXECUTE</strong>); <strong>ESC</strong> closes it, and what's running carries on. Press EXECUTE again (it reads <strong>CANCEL</strong>) to stop what hasn't arrived.</p>
+  <dl class="params">
+    <dt>Kit</dt><dd>A style (<em>"dusty 90s boom bap, vinyl crunch"</em>), a <strong>Template</strong> for the pads' roles and the takes per pad (1 to 4). Every unlocked pad gets takes for its role in that style.</dd>
+    <dt>Pad</dt><dd>The prompt itself, the pad's <strong>Role</strong>, the length to ask for (0.5 to 30 s) and the takes. The new takes replace the pad's own as they arrive.</dd>
+  </dl>
+  <p>Each take is cleaned up (faded in, levelled, the silence after the hit trimmed), saved as a 24-bit WAV with its prompt in the file's description in the sample library (<em>Samples/Generated/&lt;style&gt;</em> next to the presets), and loaded. A take that comes back nearly silent is asked for once more. A pad is named after its prompt. The log shows each pad's takes as they come in.</p>
+</section>
+
+<section id="claude">
+  <h2>Claude designs the kit</h2>
+  <p class="sub">With an Anthropic key as well.</p>
+  <p>With <strong>CLAUDE DESIGNS IT</strong> on in the kit's terminal, Claude first designs the kit from your style: each unlocked pad's prompt and length, its sound (tune, attack, decay, filter, drive, velocity), its mix (level, pan, choke group, sends), its two effect slots, its takes mode, ranges, Variation and Chance; and the send and master effects. Then the takes are generated from its prompts. Pads of the <strong>Free</strong> template have no role: Claude decides what each one is, from your words alone.</p>
+  <p>If Claude can't be reached, the template's prompts and the smart defaults are used instead. <strong>Redesign the Settings with Claude</strong> in the kit menu does the design without new sounds.</p>
+</section>
+
+<section id="ai">
+  <h2>Keys</h2>
+  <p class="sub">Menu &gt; AI...</p>
+  <figure>
+    <img src="images/ai-panel.jpg" alt="The AI panel: the ElevenLabs and Anthropic keys, the Claude model and Drum Forge's options">
+    <figcaption>The AI panel: each key with SAVE &amp; TEST, FORGET and GET A KEY, the Claude model, and Drum Forge's own options.</figcaption>
+  </figure>
+  <dl class="params">
+    <dt>SOUNDS: ELEVENLABS</dt><dd>The key that generates takes. Paste it and press <strong>SAVE &amp; TEST</strong>; the line under it says whether it works. <strong>GET A KEY</strong> opens ElevenLabs' page.</dd>
+    <dt>SETTINGS: ANTHROPIC CLAUDE</dt><dd>The key with which Claude designs kits.</dd>
+    <dt>CLAUDE MODEL</dt><dd>Claude Opus 5.5 (the default), Sonnet 5.5 or Haiku 4.5: quicker and cheaper as you go down.</dd>
+    <dt>KIT TAKES, PROMPT INFLUENCE</dt><dd>How many takes each pad gets when a whole kit is generated, and how closely the sounds follow the words.</dd>
+    <dt>OPEN LIBRARY</dt><dd>The folder of generated takes.</dd>
+  </dl>
+  <div class="callout">The keys are your own, shared by every Robotic Audio plugin and kept on this computer, never in sessions or presets; generations use your credits with each service. Without a key Drum Forge is a plain drum sampler, and nothing of this shows. Generating needs a network connection and is part of the macOS and Windows plugins.</div>
+</section>
+
+<section id="kits">
+  <h2>Kits &amp; presets</h2>
+  <p class="sub">A kit is a preset.</p>
+  <p><strong>SAVE</strong> keeps the whole kit: every pad's takes (the files, by where they are), name, role, settings, envelopes, matrix and effects, and the sends and master chain. Keep the files where they are (the sample library, for generated takes), so the kit finds them again. The power button bypasses the plugin with a short, click-free crossfade.</p>
+</section>
+
+<section id="recipes">
+  <h2>Recipes</h2>
+  <p class="sub">Starting points.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Live hats</span><p>Three or four takes of a hat, <strong>Random Take</strong>, Tune range 3 %, Level 12 %, Pan 6 %. Played straight, it sounds played.</p></div>
+    <div class="card"><span class="tag">Pitch drop</span><p>MOD 1 starts as a fall. Right-click Tune and choose Mod 1, then raise the amount in the matrix (25 % is 12 st): each hit starts high and swoops down to the pad's pitch. Raise Rate for a faster drop.</p></div>
+    <div class="card"><span class="tag">Filter on velocity</span><p>Right-click Cutoff, choose Velocity: soft hits dull, hard ones bright.</p></div>
+    <div class="card"><span class="tag">Gated wobble</span><p>A long noise or texture take in Gate mode; in VOLUME pick a square from the menu's waveforms, Trigger <strong>Tempo</strong>, Sync <strong>Note</strong> at 1/16. Hold the pad: it chops in time with the song.</p></div>
+    <div class="card"><span class="tag">Ghost notes</span><p>A copy of the snare on another pad, quieter, Chance 40 %, a wide Start range: play it on every sixteenth.</p></div>
+    <div class="card"><span class="tag">From words</span><p>Template <strong>Free (Pad 1-16)</strong>, CLAUDE DESIGNS IT on, and a style like <em>"a kit made of a ticking clock workshop"</em>.</p></div>
+  </div>
+</section>
+
+<section id="specs">
+  <h2>Specifications</h2>
+  <p class="sub">The numbers.</p>
+  <table>
+    <tr><th>Property</th><th>Value</th></tr>
+    <tr><td>Pads</td><td>16, MIDI notes C1 (36) to D#2 (51)</td></tr>
+    <tr><td>Takes</td><td>4 per pad; Single Take, Round Robin, Random Take</td></tr>
+    <tr><td>Ranges</td><td>Tune, Level, Pan, Decay, Start, Cutoff, Drive, Attack, Send A, Send B; Variation; Chance</td></tr>
+    <tr><td>Envelopes</td><td>3 drawn per pad (Volume, Mod 1, Mod 2); Trig, Legato or Tempo; Free or synced to note values</td></tr>
+    <tr><td>Matrix</td><td>6 slots per pad, 7 sources, 11 destinations</td></tr>
+    <tr><td>Filter</td><td>14 types, per pad</td></tr>
+    <tr><td>Choke groups</td><td>8</td></tr>
+    <tr><td>Effects</td><td>2 slots per pad, 2 send effects, 4 master slots</td></tr>
+    <tr><td>Host parameters per pad</td><td>Level, Pan, Tune, Decay, Mute, Send A, Send B, the effect slots</td></tr>
+    <tr><td>Generated takes</td><td>0.5 to 30 s, 24-bit WAV, with your ElevenLabs key</td></tr>
+    <tr><td>CPU</td><td>A pad silent for three seconds costs nothing</td></tr>
+    <tr><td>Formats</td><td>AU, VST3, Standalone</td></tr>
+  </table>
+</section>
+
+<footer>
+  <div class="sig">Robotic Audio</div>
+  Drum Forge was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
+  Fonts: Big Shoulders Display and Inter, under the SIL Open Font License.
+</footer>
+
+</div>
+</main>
+<script>
+// Highlight the section being read in the contents
+const links = [...document.querySelectorAll("nav.toc a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+sections.forEach(s => s && observer.observe(s));
+</script>
+</body>
+</html>

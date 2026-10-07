@@ -46,6 +46,8 @@ specs:
     value: macOS 11 or later, Apple Silicon and Intel
   - name: Windows and Linux
     value: VST3 and Standalone
+  - name: Sound design with Claude
+    value: "Optional, with your own Anthropic key: describe a sound and Claude sets Parametric EQ to make it (macOS and Windows)"
   - name: Status
     value: In development, version 0.1
   - name: Price

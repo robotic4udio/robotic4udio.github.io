@@ -212,6 +212,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <li><a href="#filter">Filter</a></li>
     <li><a href="#effects">Effects, macros, XY pad</a></li>
     <li><a href="#presets">Presets</a></li>
+    <li><a href="#ai">Designing with Claude</a></li>
     <li><a href="#recipes">Recipes</a></li>
     <li><a href="#specs">Specifications</a></li>
   </ol>
@@ -258,7 +259,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>The window</h2>
   <p class="sub">Roughly in the order the sound flows.</p>
   <dl class="params">
-    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits.</dd>
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>.</dd>
     <dt>Source</dt><dd>The sample the grains are read from, its menu and LOAD.</dd>
     <dt>Voice</dt><dd>Level, Voices, Root, Bend and Key Track.</dd>
     <dt>Grains</dt><dd>Ten knobs for where the grains come from and how they play, and the Pitch Spray steps menu.</dd>
@@ -303,6 +304,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <p class="sub">The sound the grains are made of.</p>
   <p>The menu lists the <strong>Built-in</strong> sources, made by Grainstorm and tuned to C4: <strong>Glass Choir</strong>, <strong>Metal Bells</strong>, <strong>Breath</strong>, <strong>Pluck Arp</strong> and <strong>Drone Sweep</strong>. Under <strong>Your Samples</strong> are the files in your Samples folder (next to Grainstorm's presets), and at the end <strong>Show Samples Folder</strong>.</p>
   <p><strong>LOAD</strong> (or dropping a file on the waveform) takes a WAV, AIFF, FLAC, OGG or MP3, up to two minutes, and copies it into your Samples folder, so sessions and presets find it again.</p>
+  <p>With an AI key, the <strong>&gt;_</strong> beside <strong>LOAD</strong> opens the <a href="#ai">designer</a>: it can make a new source from a description, and set the patch to match.</p>
   <dl class="params">
     <dt>Waveform</dt><dd>The whole sample, with its name, length and channels. The lit line is <strong>Position</strong>: click or drag to move it, double-click to reset. The shaded band round it is the <strong>Spray</strong>. Thin lines show where each voice is reading (Scan moves them on); the sparks are the grains, brighter while louder.</dd>
   </dl>
@@ -437,6 +439,23 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <tr><td>XY Explorer</td><td>The XY pad plays the cloud: X moves through the choir, Y scatters the pitch and shortens the grains.</td></tr>
   </table>
   <p><strong>SAVE</strong> stores your sound as a user preset; the menu also has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. A <strong>*</strong> after the name means you've changed something since loading it. If a preset's sample is missing on another computer, the rest of the preset still loads.</p>
+</section>
+
+<section id="ai">
+  <h2>Designing with Claude</h2>
+  <p class="sub">Describe a sound; Claude sets Grainstorm to make it.</p>
+  <p>With your own Anthropic key, the <strong>&gt;_</strong> beside the presets opens a designer: describe what you want in your own words, such as <em>"a frozen choir of low male voices, slowly breathing"</em>, and Claude sets the grains, pitch, filter and volume, its Volume, Mod 1-3 and grain window shapes, the matrix and the macros, and the four effects with all their settings and macro mappings. It is told what every part does and how it is set now, so it can design from scratch or change only what you ask for.</p>
+  <dl class="params">
+    <dt>Keys</dt><dd>Menu (three lines) &gt; <strong>AI...</strong>: an Anthropic key for Claude, and an ElevenLabs key for new samples. They are your own, shared by every Robotic Audio plugin and kept on this computer, never in sessions or presets; each design uses your credits with the service. Without a key nothing of this shows.</dd>
+    <dt>&gt;_</dt><dd>Left of the preset bar, while a key works: opens the designer over the window. Type a description and press Return (or <strong>EXECUTE</strong>); <strong>ESC</strong> closes it, and what is running carries on.</dd>
+    <dt>PATCH</dt><dd>Claude sets the patch, as a <strong>NEW SOUND</strong> from your words or <strong>EDIT THIS</strong>: the patch as it is, changed as you ask ("darker", "slower attack"), keeping the rest.</dd>
+    <dt>SAMPLES</dt><dd>A new sample too: the source sound the grains are read from (always heard). Claude writes its prompt and ElevenLabs makes it, in up to four <strong>TAKES</strong>; the first plays as soon as it arrives, the TAKE buttons switch between them, and all are kept with your samples. With PATCH on, a sample is made only if the patch Claude designs plays one (Claude is told whether it does); SAMPLES alone makes one to fit the patch as it is and changes nothing else. With only the ElevenLabs key, your words are the sample's prompt as written.</dd>
+    <dt>REVERT</dt><dd>Puts the patch back as it was before Claude's last design.</dd>
+    <dt>SAVE AS PRESET</dt><dd>Keeps the design as one of your presets, named after your words.</dd>
+    <dt>The log</dt><dd>What Claude made, and what it changed, part by part.</dd>
+    <dt>&gt;_ and AI...</dt><dd>The designer and its keys: see <a href="#ai">Designing with Claude</a>.</dd>
+  </dl>
+  <div class="callout">This is optional: Grainstorm works the same without a key. The designer needs a network connection and is part of the macOS and Windows plugins.</div>
 </section>
 
 <section id="recipes">

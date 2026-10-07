@@ -211,6 +211,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <li><a href="#filter">Filter</a></li>
     <li><a href="#quality">Oversampling</a></li>
     <li><a href="#presets">Presets</a></li>
+    <li><a href="#ai">Designing with Claude</a></li>
     <li><a href="#recipes">Recipes</a></li>
     <li><a href="#specs">Specifications</a></li>
   </ol>
@@ -257,7 +258,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>The window</h2>
   <p class="sub">Laid out the way the sound flows: in on the left, out on the right.</p>
   <dl class="params">
-    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits.</dd>
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>.</dd>
     <dt>IN meter</dt><dd>The level going into the compressor, after the Input knob.</dd>
     <dt>Gain reduction</dt><dd>The needle rests at 0 on the right and swings left as the compressor works, up to 20 dB.</dd>
     <dt>Compressor</dt><dd>Input, Threshold, Attack and Decay to the left of the big Ratio knob; Auto Makeup, Saturation and Output to its right.</dd>
@@ -507,6 +508,22 @@ svg.defs { position: absolute; width: 0; height: 0; }
   </table>
   <p>Press <strong>SAVE</strong> in the header to keep your own. Your presets join the list; the preset menu has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>, which shows where they are kept as files you can back up or share. An asterisk after the preset's name means you have changed something since loading it.</p>
   <p>Every knob and switch is a host parameter and can be automated.</p>
+</section>
+
+<section id="ai">
+  <h2>Designing with Claude</h2>
+  <p class="sub">Describe a sound; Claude sets Overpressure to make it.</p>
+  <p>With your own Anthropic key, the <strong>&gt;_</strong> beside the presets opens a designer: describe what you want in your own words, such as <em>"warm tape-like glue for a drum bus, a touch of grit"</em>, and Claude sets every control you could automate: the saturation, compressor, filter and makeup. It is told what every part does and how it is set now, so it can design from scratch or change only what you ask for.</p>
+  <dl class="params">
+    <dt>Keys</dt><dd>Menu (three lines) &gt; <strong>AI...</strong>: an Anthropic key for Claude. They are your own, shared by every Robotic Audio plugin and kept on this computer, never in sessions or presets; each design uses your credits with the service. Without a key nothing of this shows.</dd>
+    <dt>&gt;_</dt><dd>Left of the preset bar, while a key works: opens the designer over the window. Type a description and press Return (or <strong>EXECUTE</strong>); <strong>ESC</strong> closes it, and what is running carries on.</dd>
+    <dt>NEW SOUND / EDIT THIS</dt><dd><strong>NEW SOUND</strong> designs a new patch from your words; <strong>EDIT THIS</strong> changes the patch as it is, as you ask ("brighter", "less", "more subtle"), keeping the rest.</dd>
+    <dt>REVERT</dt><dd>Puts the patch back as it was before Claude's last design.</dd>
+    <dt>SAVE AS PRESET</dt><dd>Keeps the design as one of your presets, named after your words.</dd>
+    <dt>The log</dt><dd>What Claude made, and what it changed, part by part.</dd>
+    <dt>&gt;_ and AI...</dt><dd>The designer and its keys: see <a href="#ai">Designing with Claude</a>.</dd>
+  </dl>
+  <div class="callout">This is optional: Overpressure works the same without a key. The designer needs a network connection and is part of the macOS and Windows plugins.</div>
 </section>
 
 <section id="recipes">
