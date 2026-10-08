@@ -233,6 +233,7 @@ strong { font-weight: 700; }
   text-shadow: var(--glitch);
 }
 .brand:hover { color: var(--text); }
+.brand__lit { font-weight: inherit; color: var(--volt); text-shadow: -2px 1px 0 rgba(255, 42, 109, 0.9), 1.5px -1px 0 rgba(0, 234, 255, 0.55), 0 0 14px rgba(252, 238, 10, 0.35); }
 .brand:hover span { display: inline-block; animation: glitch-once 0.35s steps(1) 1; }
 
 .site-nav { display: flex; gap: clamp(14px, 3vw, 34px); }
