@@ -234,7 +234,6 @@ strong { font-weight: 700; }
 }
 .brand:hover { color: var(--text); }
 .brand:hover span { display: inline-block; animation: glitch-once 0.35s steps(1) 1; }
-.brand img { width: 32px; height: 32px; filter: drop-shadow(-1.5px 1.5px 0 rgba(255, 42, 109, 0.7)); }
 
 .site-nav { display: flex; gap: clamp(14px, 3vw, 34px); }
 .site-nav a {
@@ -441,9 +440,14 @@ a:hover .door__go::after { translate: 5px 0; }
   .doors, .feature, .plugin-card, .specs, .service__head { grid-template-columns: 1fr; }
   .feature__shot { order: -1; }
   .spec-list > div { grid-template-columns: 1fr; gap: 2px; }
-  .site-nav a { letter-spacing: 0.1em; font-size: 0.8rem; }
-  .brand span { display: none; }
+  .brand { font-size: 1.2rem; letter-spacing: 0.04em; }
+  .site-nav { gap: 14px; }
+  .site-nav a { letter-spacing: 0.08em; font-size: 0.76rem; }
   .shot, .feature__shot img { box-shadow: -5px 5px 0 -1px rgba(255, 42, 109, 0.55); }
+}
+
+@media (max-width: 360px) {
+  .site-header__inner { flex-wrap: wrap; justify-content: center; row-gap: 0; padding: 8px 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
