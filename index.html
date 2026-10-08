@@ -7,19 +7,30 @@
          sizes="(max-width: 1440px) 100vw, 1440px" width="1280" height="720" fetchpriority="high"
          alt="Contour, Pump, Overpressure, Parametric EQ and Gatekeeper, side by side, each glowing in its own colour">
   </div>
-  <div class="container">
-    <p class="kicker">{{ site.tagline }}</p>
-    <h1 class="hero__title">Robotic<br><span>Audio</span></h1>
-    <p class="lead">Robotic Audio makes audio plugins and builds sound for installations, stages and stories. It is the studio of Hjalte Bested Hjorth: musician, sound designer and creative technologist.</p>
+  <div class="container hero__body">
+    <div class="hero__text">
+      <p class="kicker">{{ site.tagline }}</p>
+      <h1 class="hero__title"><span class="glitch" data-text="Robotic">Robotic</span><br><span class="glitch hero__lit" data-text="Audio">Audio</span></h1>
+      <p class="lead">Robotic Audio makes audio plugins and builds sound for installations, stages and stories. It is the studio of Hjalte Bested Hjorth: musician, sound designer and creative technologist.</p>
+    </div>
+    <div class="readout">
+      <div class="readout__head"><span>Signal // Main out</span><span class="readout__live">Live</span></div>
+      <div class="bars" aria-hidden="true">{% for i in (1..28) %}<i></i>{% endfor %}</div>
+      <ul class="readout__lines">
+        <li><b>{{ site.products.size }}</b> plugins in the workshop</li>
+        <li>AU · VST3 · Standalone</li>
+        <li>Studio: installations, software, sound</li>
+      </ul>
+    </div>
   </div>
   <div class="container doors">
-    <a class="door" href="{{ '/plugins/' | relative_url }}">
+    <a class="door" data-num="01" href="{{ '/plugins/' | relative_url }}">
       <span class="kicker">01</span>
       <h2>Plugins</h2>
       <p>Instruments and effects for AU, VST3 and standalone: {% for plugin in site.products %}{% if forloop.last %} and {% elsif forloop.first == false %}, {% endif %}{{ plugin.title }}{% endfor %}.</p>
       <span class="door__go">See the plugins</span>
     </a>
-    <a class="door" href="{{ '/studio/' | relative_url }}">
+    <a class="door" data-num="02" href="{{ '/studio/' | relative_url }}">
       <span class="kicker">02</span>
       <h2>Studio</h2>
       <p>Sound installations, custom audio software, sound design and music, teaching and workshops.</p>
@@ -27,6 +38,14 @@
     </a>
   </div>
 </section>
+
+<div class="ticker-strip" aria-hidden="true"><div class="ticker">
+  <div class="ticker__track">
+    {%- for round in (1..2) %}
+    {%- for plugin in site.products %}<span>{{ plugin.title }}</span>{% endfor %}
+    {%- endfor %}
+  </div>
+</div></div>
 
 {%- assign featured = site.products | first %}
 <section class="section">

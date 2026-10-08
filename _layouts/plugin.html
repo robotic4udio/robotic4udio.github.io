@@ -4,7 +4,7 @@ layout: default
 <section class="page-head page-head--plugin">
   <div class="container">
     <p class="kicker">{{ page.kind }} · {{ page.status_label }}</p>
-    <h1 class="display display--xl">{{ page.title }}</h1>
+    <h1 class="display display--xl"><span class="glitch" data-text="{{ page.title | escape }}">{{ page.title }}</span></h1>
     <p class="lead">{{ page.tagline }}</p>
     <div class="actions">
       {%- if page.buy_url and page.free %}
