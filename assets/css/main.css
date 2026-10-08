@@ -130,7 +130,7 @@ p { margin: 0 0 1.1em; }
 
 .brand { display: flex; align-items: center; gap: 12px; color: var(--text); text-decoration: none; font-family: var(--font-display); font-weight: 800; font-size: 1.45rem; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
 .brand:hover { color: var(--text); }
-.brand img { width: 32px; height: 32px; }
+.brand__fire { background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 .site-nav { display: flex; gap: clamp(14px, 3vw, 32px); }
 .site-nav a { color: var(--muted); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 0; border-bottom: 2px solid transparent; }
@@ -261,7 +261,13 @@ a:hover .door__go::after { translate: 5px 0; }
   .feature__shot { order: -1; }
   .spec-list > div { grid-template-columns: 1fr; gap: 2px; }
   .site-nav a { letter-spacing: 0.08em; font-size: 0.72rem; }
-  .brand span { display: none; }
+  .brand { font-size: 1.25rem; }
+}
+
+@media (max-width: 380px) {
+  .brand { font-size: 1.1rem; }
+  .site-nav { gap: 10px; }
+  .site-nav a { letter-spacing: 0.04em; font-size: 0.68rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
