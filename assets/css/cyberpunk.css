@@ -616,3 +616,8 @@ a:hover .door__go::after { translate: 5px 0; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* The look switch in the footer */
+.site-footer__looks { margin-top: 8px !important; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.site-footer__looks a { color: var(--muted); }
+.site-footer__looks a[aria-current="true"] { color: var(--volt); text-decoration: none; }

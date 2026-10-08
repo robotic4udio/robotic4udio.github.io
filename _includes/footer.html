@@ -3,6 +3,16 @@
     <div>
       <div class="site-footer__brand">Robotic Audio</div>
       <p>{{ site.tagline }}, by {{ site.author }}.</p>
+      <p class="site-footer__looks">Look:
+        {%- for look in site.looks %}
+        <a href="?look={{ look }}" data-look="{{ look }}">{{ look | capitalize }}</a>{% unless forloop.last %} ·{% endunless %}
+        {%- endfor %}
+      </p>
+      <script>
+        document.querySelectorAll(".site-footer__looks a").forEach(function (a) {
+          if (a.dataset.look === document.documentElement.dataset.look) a.setAttribute("aria-current", "true");
+        });
+      </script>
     </div>
     <nav aria-label="Footer">
       <a href="{{ '/plugins/' | relative_url }}">Plugins</a>

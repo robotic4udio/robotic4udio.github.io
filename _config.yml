@@ -18,6 +18,11 @@ shop:
   account_url: "https://roboticaudio.moonbase.sh"
   trial_days: 14
 
+# The site's look: steampunk, cyberpunk or modern (assets/css/<look>.css). Visitors can try
+# another with ?look=<name> (the footer links to each); their choice is remembered.
+look: steampunk
+looks: [steampunk, cyberpunk, modern]
+
 markdown: kramdown
 permalink: pretty
 

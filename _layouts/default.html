@@ -16,8 +16,16 @@
   {%- endif %}
   <meta name="theme-color" content="#07060c">
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/robot.svg' | relative_url }}">
-  <link rel="preload" href="{{ '/assets/fonts/Rajdhani-Bold.ttf' | relative_url }}" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <script>
+    (function () {
+      var looks = {{ site.looks | jsonify }}, look = new URLSearchParams(location.search).get("look");
+      try { if (looks.indexOf(look) >= 0) localStorage.setItem("look", look); else look = localStorage.getItem("look"); } catch (e) {}
+      if (looks.indexOf(look) < 0) look = "{{ site.look }}";
+      document.documentElement.dataset.look = look;
+      document.write('<link rel="stylesheet" href="{{ '/assets/css/' | relative_url }}' + look + '.css">');
+    })();
+  </script>
+  <noscript><link rel="stylesheet" href="{{ '/assets/css/' | append: site.look | append: '.css' | relative_url }}"></noscript>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
