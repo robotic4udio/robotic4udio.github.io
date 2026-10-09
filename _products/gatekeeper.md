@@ -51,4 +51,4 @@ specs:
   - name: Price
     value: Free
 ---
-Gatekeeper is the envelope editor from Contour, given away as a plugin of its own: draw a volume shape and it plays in time with your song, from slow swells to machine-gun stutters.
+Gatekeeper is the envelope editor from Line Runner, given away as a plugin of its own: draw a volume shape and it plays in time with your song, from slow swells to machine-gun stutters.
