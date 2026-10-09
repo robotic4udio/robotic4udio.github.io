@@ -23,7 +23,7 @@ stats:
   - 5 drawn envelopes
   - Mod matrix, up to 32 rows
   - 14 filter types
-  - 22 effects in 4 slots
+  - 23 effects in 4 slots
   - 8 macros
   - XY performance pad
 
@@ -51,7 +51,7 @@ features:
   - title: Mono or polyphonic
     text: One voice with legato and portamento for basses and leads, or up to 16 for chords, each note with its own envelopes and modulation.
   - title: Effects rack
-    text: Four slots in series and twenty-two effects, from Overkill, OTT, distortion and a stacked drive to delays, reverbs, a gate, a frequency shifter, a tape stop and the whole of Event Horizon, each with its own editor and live display.
+    text: Four slots in series and twenty-three effects, from Overkill, OTT, distortion and a stacked drive to delays, reverbs, a gate, a frequency shifter, a tape stop, and the whole of Event Horizon and CyberPump, each with its own editor and live display.
   - title: Macros and XY pad
     text: Eight macro knobs and an XY pad for playing a patch with one hand. Right-click any control to route a macro to it.
   - title: Your look
@@ -81,7 +81,7 @@ thumbnails:
   - { file: /plugins/line-runner/manual/images/osc-formant.jpg, caption: Formant }
   - { file: /plugins/line-runner/manual/images/osc-granular.jpg, caption: Granular }
   - { file: /plugins/line-runner/manual/images/gen-sampler.jpg, caption: Sampler }
-  - { file: /plugins/line-runner/manual/images/fx-ott.jpg, caption: OTT }
+  - { file: /plugins/line-runner/manual/images/fx-ott.jpg, caption: Overkill }
   - { file: /plugins/line-runner/manual/images/fx-eq.jpg, caption: EQ }
   - { file: /plugins/line-runner/manual/images/fx-compressor.jpg, caption: Compressor }
   - { file: /plugins/line-runner/manual/images/fx-delay.jpg, caption: Delay }

@@ -235,7 +235,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <li>BBCut-style cut engine</li>
     <li>5 cut procedures on a strict grid</li>
     <li>Time stretch down to 0.78 %</li>
-    <li>5 effect lanes with drawn lines</li>
+    <li>6 effect lanes, any of the suite's effects in each, with drawn lines</li>
     <li>Repeatable randomness</li>
     <li>16 editable patterns and a song chain</li>
     <li>Hand-played gestures and MIDI</li>
@@ -270,7 +270,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <dt>Displays</dt><dd>The last 10 seconds in (with markers where a cut reads from: <strong>RPT</strong> repeats, <strong>REV</strong> reversed, <strong>TAPE</strong> tape stops and starts, <strong>FRZ</strong> freeze, <strong>STR</strong> stretched) and out. They stay on every page.</dd>
     <dt>Pages, patterns, mode</dt><dd>On every page, one row: the page tabs, the sixteen patterns <strong>A</strong> to <strong>P</strong> (click one to select it) and the <strong>MODE</strong> menu, Pattern or Song (see <a href="#modes">Modes</a>).</dd>
     <dt>PATTERN page</dt><dd>The selected pattern's editor, with the <strong>Generator</strong> panel below it: the pattern's recipe (how it's cut, which gestures, how often blocks are stretched and each effect is used), <strong>GENERATE</strong> and <strong>RANDOMIZE REGION</strong>. Click an effect's name in the editor and its lines take the panel's place. See <a href="#patterns">Patterns</a>, <a href="#cuts">The generator</a> and <a href="#lines">Drawing the lines</a>.</dd>
-    <dt>EFFECTS page</dt><dd>The same pattern editor as on the PATTERN page (it edits the same pattern, toolbar and all), then each of the five effects' card, in the chain's order (its power, a grip to drag it to another place in the chain, and two ranges) and <strong>Perform</strong>: Chaos, the seed, Mix and the gestures played by hand. Click an effect's name in the editor and its lines take the place of the cards and Perform; <strong>EFFECTS</strong> brings them back. See <a href="#lanes">Effect lanes</a>.</dd>
+    <dt>EFFECTS page</dt><dd>The same pattern editor as on the PATTERN page (it edits the same pattern, toolbar and all), then the lanes' effect rack (each slot's effect, its window, power and Mix, in the chain's order, with its two line ranges under it) and <strong>Perform</strong>: Chaos, the seed, Mix and the gestures played by hand. Click a lane's name in the editor and its lines take the place of the rack and Perform; <strong>EFFECTS</strong> brings them back. See <a href="#lanes">Effect lanes</a>.</dd>
     <dt>SONG page</dt><dd>The chain of patterns Song mode plays.</dd>
     <dt>Tooltip bar</dt><dd>Along the bottom: point at any control to see what it does.</dd>
   </dl>
@@ -307,7 +307,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     </svg>
   </div>
   <p>Everything that comes in is first written into a 30-second <strong>history</strong>. The <strong>cut engine</strong> then plays from it: while a block plays live it reads the sample that has just arrived, so nothing changes; during a cut it reads from wherever the plan says, forwards, backwards, faster, slower, stretched, or from further back in time. Every jump is crossfaded, so cuts don't click.</p>
-  <p>The engine's output runs through the <strong>effect lanes</strong> in the order their cards stand on the EFFECTS page: filter, ring modulator, drive, delay and reverb at first. Drag a card by its grip (the dots at its top right) to another place to change the order: a delay before the drive echoes the clean sound and drives the echoes, after it echoes the driven sound; a ring before the reverb rings into it, after it rings the whole tail. The pattern editor's rows follow the order, and presets and sessions keep it. A lane only does anything while it is on for the block playing; switching fades over a few milliseconds. Its controls follow its lines (see <a href="#lines">Drawing the lines</a>), read about every 0.7 ms. The delay and reverb are sends: sound goes in while the lane is on, and the tails ring out across the blocks that follow.</p>
+  <p>The engine's output runs through the <strong>effect lanes</strong> in the order their slots stand on the EFFECTS page: filter, ring modulator, drive, delay, reverb and crusher at first. Drag a slot by its grip to another place to change the order: a delay before the drive echoes the clean sound and drives the echoes, after it echoes the driven sound; a ring before the reverb rings into it, after it rings the whole tail. The pattern editor's rows follow the order, and presets and sessions keep it. A lane only does anything while it is on for the block playing; switching fades over a few milliseconds. What its lines move follows them (see <a href="#lines">Drawing the lines</a>), read about every 0.7 ms. Delays and reverbs are throws: sound goes in while the lane is on, and the tails ring out across the blocks that follow.</p>
   <p><strong>Mix</strong> blends the dry input with all of this. The drive is oversampled, which delays the sound by a few samples; Splicer reports this to your host, which compensates for it.</p>
 </section>
 
@@ -335,7 +335,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <dt>Roll</dt><dd>How often a cut becomes a roll: 8ths, then 16ths, then 32nds, each taking half of what's left (repeats of a block). Rolls happen mostly in the phrase's last bar. Negative values slow down instead (32nds to 8ths). <span class="range">−100 – +100 %</span></dd>
     <dt>Fill</dt><dd>The chance a phrase ends with a fill: its last half or quarter bar becomes a roll (or now and then a tape stop), leading into the next phrase. <span class="range">0 – 100 %</span></dd>
     <dt>Triplets</dt><dd>The chance a cut divides into threes (3, 6 or 12 repeats) instead. Turn it to 0 for none. <span class="range">0 – 100 %</span></dd>
-    <dt>Filter … Reverb</dt><dd>Under <strong>Effects: how often, and what it draws</strong>, a row per effect: its chance (the share of blocks on which the generator switches it on) and, beside it, its motion (what the generator draws into its lines over each of those blocks, from the table under Effect lanes); both are part of the pattern's recipe (see <a href="#lanes">Effect lanes</a>). The phrase's first beat rarely gets one. <span class="range">0 – 100 %</span></dd>
+    <dt>The lanes</dt><dd>Under <strong>Effects: how often, and what it draws</strong>, a row per lane, named after its effect: its chance (the share of blocks on which the generator switches it on) and, beside it, its motion (what the generator draws into its lines over each of those blocks, from the table under Effect lanes); both are part of the pattern's recipe (see <a href="#lanes">Effect lanes</a>). The phrase's first beat rarely gets one. <span class="range">0 – 100 %</span></dd>
     <dt>Reach</dt><dd>A range knob: how far back, in beats, the repeats come from. At 0 a block repeats its own start: the first repeat is the live sound, the rest replay it. Further back plays music from earlier in the history, which reorders the song. <span class="range">0 – 8 beats</span></dd>
   </dl>
   <h3>Never ahead of time</h3>
@@ -385,24 +385,28 @@ svg.defs { position: absolute; width: 0; height: 0; }
 
 <section id="lanes">
   <h2>Effect lanes</h2>
-  <p class="sub">Five effects, switched on block by block, each following its lines.</p>
+  <p class="sub">Six lanes, any of the suite's effects in each, switched on block by block, each following its lines.</p>
   <figure>
     <img src="images/effects.jpg" alt="The effects page">
-    <figcaption>The EFFECTS page with Total Chaos: the pattern editor (as on the PATTERN page) with each effect's line through the blocks it's on for, the effect cards and Perform.</figcaption>
+    <figcaption>The EFFECTS page with Total Chaos: the pattern editor (as on the PATTERN page) with a row per lane, named after its effect, the lanes' rack with each lane's two line ranges under its slot, and Perform.</figcaption>
   </figure>
-  <p><em>Where</em> an effect plays is in the pattern: switch it on or off per block by clicking its row in the editor, or let the generator do it (the Generator panel's <strong>Stretch and effects: how often</strong> knobs). <em>How</em> it moves is its two <strong>lines</strong>, one per control, drawn across the pattern (see <a href="#lines">Drawing the lines</a>). Each effect's card on the <strong>EFFECTS</strong> page sets the rest:</p>
+  <p>The lanes are the slots of an <strong>effect rack</strong>, the same as in the suite's other plugins: each plays whichever effect you choose from its menu (Filter, Ring Mod, Drive, Delay, Reverb 2 and Crusher at first; any of the suite's effects, Event Horizon and Pump included). <em>Where</em> a lane plays is in the pattern: switch it on or off per block by clicking its row in the editor, or let the generator do it (the Generator panel's <strong>Effects: how often, and what it draws</strong>). <em>How</em> it moves is its two <strong>lines</strong>, drawn across the pattern, each moving one setting of its effect (see <a href="#lines">Drawing the lines</a>). The <strong>EFFECTS</strong> page sets the rest:</p>
   <dl class="params">
-    <dt>Power</dt><dd>The square by the title (or the title itself) switches the effect on and off: lit, it plays where the pattern switches it on; dark, it's left out everywhere: its controls grey out, its row in the pattern editor turns faint grey, the rings round its knobs and the playhead over its lines stop, and it changes nothing in the sound. Every effect starts on; the switches (Filter On … Reverb On in your host) are saved with presets and sessions.</dd>
-    <dt>Order</dt><dd>Drag a card by its grip (the dots at its top right) to another place: the sound runs through the effects in the cards' order, left to right, and the pattern editor's rows follow. See <a href="#flow">Signal flow</a>.</dd>
-    <dt>Range knobs</dt><dd>Where the lines take the two controls: the bottom of a line is the bottom of the range, its top the top. Drag to move the range, <kbd>Shift</kbd>-drag (or <kbd>Shift</kbd>-scroll) to make it wider or narrower, double-click to reset. While a pattern plays, a thin ring round the knob shows the range its line takes it over, with a dot where the line has the control right now (as on Contour's knobs); it only reaches the sound where the effect is on.</dd>
+    <dt>Effect menu</dt><dd>The lane's effect, alphabetically. Another effect gives the lane's lines that effect's own starting settings to move (e.g. a delay's Send and Feedback); every effect keeps its own settings, so switching back finds them again.</dd>
+    <dt>Edit</dt><dd>The button beside the menu opens the effect's whole window over the page: its display and every control. What the lines don't move stays where you set it here. The square in front of its name switches the lane on and off (click it or the name), its own effect menu swaps the effect in place, <strong>EXPAND</strong> grows the window over the whole page for a big effect (Event Horizon; <strong>SHRINK</strong> back), and <strong>LINES</strong> shows the lane's lines in its place; <strong>EFFECT</strong> there comes back.</dd>
+    <dt>Power</dt><dd>Switches the lane on and off: on, it plays where the pattern switches it on; off, it's left out everywhere: its row in the pattern editor turns faint grey, the rings round its range knobs and the playhead over its lines stop, and it changes nothing in the sound. Every lane starts on; the switches (Lane 1 On … in your host) are saved with presets and sessions.</dd>
+    <dt>Mix</dt><dd>How much of the effect replaces the sound where the lane is on; for a delay or reverb (a <strong>throw</strong>, below), how much is sent into it. A line can move it too.</dd>
+    <dt>Order</dt><dd>Drag a slot by its grip (its number and dots) to another place: the sound runs through the lanes left to right, and the lane's cells, lines, ranges and what they move go with it in every pattern. See <a href="#flow">Signal flow</a>.</dd>
+    <dt>Range knobs</dt><dd>Under each slot, one per line, named after what it moves: where the line takes it. The bottom of a line is the bottom of the range, its top the top; hovered, the knob shows the range in the setting's own units. Drag to move the range, <kbd>Shift</kbd>-drag (or <kbd>Shift</kbd>-scroll) to make it wider or narrower, double-click to reset. While a pattern plays, a thin ring round the knob shows the range its line takes it over, with a dot where the line has it right now; it only reaches the sound where the lane is on.</dd>
   </dl>
   <table>
-    <tr><th>Effect</th><th>First control</th><th>Second control</th><th>Extra</th></tr>
-    <tr><td>Filter</td><td>Cutoff, 40 Hz – 18 kHz</td><td>Resonance</td><td>Filter type: all 14 of the suite's filters (ladders, SVF, diode, MS-20, formant, combs, phaser)</td></tr>
-    <tr><td>Ring</td><td>Freq: the carrier, 20 Hz – 5 kHz (low: a tremolo-like flutter; high: metallic, bell-like, robotic)</td><td>Mix: how much of the ringing replaces the sound</td><td>Ring wave: the carrier's shape: Sine (clean), Triangle, Square (harsh)</td></tr>
-    <tr><td>Drive</td><td>Drive amount</td><td>Colour: with Blend, which stage (saturation → overdrive → distortion → fuzz); with Bitcrush, how low the sample rate goes (44.1 kHz down to 400 Hz); with Downsample, how much the steps are smoothed (harsh to muffled); with the others, an offset before the drive, for uneven, buzzy harmonics</td><td>Drive type: Blend, Saturation, Overdrive, Distortion, Fuzz, Stack (overdrive, distortion and fuzz together in series, as Contour's Aggressor can; these six oversampled 4×), Tube, Fold (a wavefolder), Rectify (an octave up), Hard Clip, Bitcrush (Drive takes the bits, 16 down to 1) and Downsample (Drive takes the sample rate, 44.1 kHz down to 400 Hz, with no bits lost)</td></tr>
-    <tr><td>Delay</td><td>Send</td><td>Feedback, 0 – 95 %</td><td>Delay time in notes, 1/32 to 1/2, dotted and triplet</td></tr>
-    <tr><td>Reverb</td><td>Send</td><td>Decay, 0.3 – 12 s</td><td>Splicer's large algorithmic reverb</td></tr>
+    <tr><th>Lane at first</th><th>Line 1</th><th>Line 2</th></tr>
+    <tr><td>Filter</td><td>Cutoff</td><td>Resonance</td></tr>
+    <tr><td>Ring Mod</td><td>Frequency (low: a tremolo-like flutter; high: metallic, bell-like, robotic)</td><td>Amount</td></tr>
+    <tr><td>Drive</td><td>Overdrive</td><td>Distortion</td></tr>
+    <tr><td>Delay (a throw)</td><td>Send</td><td>Feedback</td></tr>
+    <tr><td>Reverb 2 (a throw)</td><td>Send</td><td>Decay</td></tr>
+    <tr><td>Crusher</td><td>Bits</td><td>Rate</td></tr>
   </table>
   <table>
     <tr><th>Motion (Generator panel)</th><th>What GENERATE draws over a block</th></tr>
@@ -414,7 +418,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <tr><td>Alternate</td><td>Flips between the bottom and the top with every repeat.</td></tr>
     <tr><td>Random</td><td>One of the above, chosen anew for every block.</td></tr>
   </table>
-  <p>The delay and reverb are <strong>throws</strong>: the block's sound goes in while the effect is on, and the echoes and tail carry on over the blocks that follow, mixed on top of the sound.</p>
+  <p>Delays and reverbs (Delay, Reverb, Reverb 2, Event Horizon) are <strong>throws</strong>: the block's sound goes in, at the lane's Mix, while the lane is on, and the echoes and tail carry on over the blocks that follow, mixed on top of the sound. Every other effect plays only where its lane is on, fading in and out over a few milliseconds and starting afresh each time.</p>
 </section>
 
 <section id="lines">
@@ -422,16 +426,19 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <p class="sub">Every effect's movement, drawn across the pattern.</p>
   <figure>
     <img src="images/lines.jpg" alt="The filter's lines">
-    <figcaption>The PATTERN page with the filter selected: its Cutoff line under the pattern, lined up with the blocks, with the tabs, both ranges, the filter type and the Grid above it.</figcaption>
+    <figcaption>The PATTERN page with the filter lane selected: its Cutoff line under the pattern, lined up with the blocks, with the tabs, both ranges, what the line moves and the Grid above it.</figcaption>
   </figure>
-  <p>Each effect has a line for each of its two controls, running across the whole pattern under the blocks. Where the effect is on, the line sets the control inside its range; where it's off, the line does nothing. The generator draws the lines as it writes a pattern (each block's motion), and you can redraw any of it.</p>
-  <p><strong>Click an effect's name</strong> in the pattern editor (FILTER, RING …) and its lines open under it, lined up with the pattern above: on the PATTERN page in the Generator panel's place, on the EFFECTS page in place of the effect cards and Perform. Click the name again, CUTS, or the button at the top right (<strong>GENERATOR</strong> or <strong>EFFECTS</strong>) to go back.</p>
+  <p>Each lane has two lines, running across the whole pattern under the blocks, each moving one setting of its effect. Where the lane is on, the line sets that setting inside its range; where it's off, the line does nothing. The generator draws the lines as it writes a pattern (each block's motion), and you can redraw any of it.</p>
+  <p><strong>Click a lane's name</strong> in the pattern editor (FILTER, RING MOD …) and its lines open under it, lined up with the pattern above: on the PATTERN page in the Generator panel's place, on the EFFECTS page in place of the rack and Perform. Click the name again, CUTS, or the button at the top right (<strong>GENERATOR</strong> or <strong>EFFECTS</strong>) to go back.</p>
   <p><strong><kbd>Cmd</kbd>-click an effect's cell</strong> to edit its lines over that block only: the block is selected, the lines zoom to it, and drawing, ready-made shapes and RANDOM change only that part (the note above the drawing says where, e.g. ONLY 2.3.1 – 2.4.4). Click the effect's name for the whole lines again.</p>
   <dl class="params">
-    <dt>Tabs</dt><dd>The effect's two controls (e.g. <strong>CUTOFF</strong> and <strong>RESONANCE</strong>): which line to draw. The other line shows faintly behind it, see-through, so you can draw one against the other.</dd>
+    <dt>Tabs</dt><dd>The lane's two lines, named after what they move (e.g. <strong>CUTOFF</strong> and <strong>RESONANCE</strong>): which line to draw. The other line shows faintly behind it, see-through, so you can draw one against the other.</dd>
     <dt>Drawing</dt><dd>The suite's envelope editor: draw freehand, in lines, or warp, lift and move the shape with the tools; <strong>RANDOM</strong>, <strong>SMOOTH</strong> and <strong>NORMALIZE</strong>; right-click (or the menu button) for ready-made shapes, waveforms and windows; <kbd>Shift</kbd>-drag to edit only part of it. A playhead runs through it while the pattern plays.</dd>
     <dt>Grid</dt><dd>The note value the drawing snaps to and shows: 1/4, 1/8, 1/16 (the pattern's steps, the default), 1/32, or the triplets 1/4T to 1/32T.</dd>
-    <dt>Power, ranges</dt><dd>The same as on the effect's card on the EFFECTS page. What GENERATE draws into the lines is the effect's motion, in the Generator panel.</dd>
+    <dt>Effect menu</dt><dd>At the left, under the title: the lane's effect, swapped in place; the lines stay, moving the new effect's settings (its own starting ones where it lacks theirs).</dd>
+    <dt>Effect</dt><dd>At the top right, beside GENERATOR or EFFECTS: the lane's effect window in place of its lines (on the PATTERN page it switches to the EFFECTS page); <strong>LINES</strong> there comes back.</dd>
+    <dt>Moves</dt><dd>What the selected line moves: any of the lane's effect's settings, or its Mix (a throw's Send). The tab, the range knob and the drawing take its name.</dd>
+    <dt>Power, ranges</dt><dd>The same as on the EFFECTS page. What GENERATE draws into the lines is the lane's motion, in the Generator panel.</dd>
   </dl>
   <p>The lines belong to the pattern: select another pattern and you see its lines, and drawing is an edit of the pattern like any other, undone with <kbd>Cmd</kbd>+<kbd>Z</kbd> on the PATTERN page. Copy and paste, Randomize and changing the pattern's length take the lines along with the blocks; GENERATE draws them anew.</p>
 </section>
@@ -612,7 +619,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <tr><td>Pitch</td><td>−24 to +12 semitones; Tape (varispeed) or Shift (through the time stretch, keeping the timing)</td></tr>
     <tr><td>Gate</td><td>Every 1/4 to 1/64 (with triplets), open 25, 50 or 75 %, 1 ms edges</td></tr>
     <tr><td>Time stretch</td><td>50 % down to 0.78 % (2 to 128 times as long); two lined-up 50 ms grains, hits kept intact</td></tr>
-    <tr><td>Effect lanes</td><td>5, two lines each per pattern (257 points across it), read every 32 samples</td></tr>
+    <tr><td>Effect lanes</td><td>6, an effect rack's slots (any of the suite's effects), two lines each per pattern (257 points across it), read every 32 samples</td></tr>
     <tr><td>Latency</td><td>A few samples (the drive's 4× oversampling), reported to the host</td></tr>
     <tr><td>Tail</td><td>Up to 14 seconds (delay and reverb)</td></tr>
     <tr><td>CPU at rest</td><td>Rests once silence has come in for longer than a cut can reach back and the tails have died away</td></tr>
