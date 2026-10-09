@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Event Horizon Manual</title>
+<style>
+@font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Big Shoulders"; font-weight: 800; src: url("fonts/BigShouldersDisplay-ExtraBold.ttf") format("truetype"); }
+
+:root {
+  --bg: #0d0b0a;
+  --surface: #17120f;
+  --surface-2: #211a15;
+  --line: rgba(255, 236, 220, 0.10);
+  --line-strong: rgba(255, 236, 220, 0.22);
+  --text: #f4ece4;
+  --muted: #a99e94;
+  --ember: #1c2f9e;
+  --fire: #3d6bff;
+  --hot: #a9c1ff;
+  --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
+  --radius: 14px;
+  --sidebar: 260px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 500 16px/1.65 "Inter", -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--hot); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Sidebar */
+nav.toc {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar);
+  overflow-y: auto; padding: 32px 24px 40px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+}
+nav.toc .brand { font: 600 11px/1 "Inter"; letter-spacing: .32em; color: var(--fire); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+nav.toc .brand::before { content: ""; width: 18px; height: 2px; background: var(--fire-gradient); }
+nav.toc .product { font: 800 34px/1 "Big Shoulders"; letter-spacing: .02em; margin: 10px 0 26px; text-transform: uppercase; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+nav.toc li { counter-increment: s; }
+nav.toc li a {
+  display: flex; gap: 12px; padding: 7px 10px; margin: 0 -10px; border-radius: 8px;
+  color: var(--muted); font-size: 14px;
+}
+nav.toc li a::before { content: counter(s, decimal-leading-zero); color: var(--line-strong); font-variant-numeric: tabular-nums; }
+nav.toc li a:hover, nav.toc li a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
+nav.toc li a.active::before { color: var(--fire); }
+
+main { margin-left: var(--sidebar); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+/* Hero */
+header.hero { position: relative; padding: 72px 0 40px; overflow: hidden; }
+header.hero::before {
+  content: ""; position: absolute; inset: -40% -10% auto; height: 520px;
+  background: radial-gradient(closest-side, rgba(61, 107, 255, .22), transparent);
+  pointer-events: none;
+}
+.kicker { font: 600 12px/1 "Inter"; letter-spacing: .34em; text-transform: uppercase; color: var(--fire); display: flex; align-items: center; gap: 12px; }
+.kicker::before { content: ""; width: 28px; height: 2px; background: var(--fire-gradient); }
+h1 {
+  font: 800 clamp(64px, 11vw, 132px)/.86 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em;
+  margin: 18px 0 18px;
+  background: linear-gradient(180deg, var(--text) 30%, #d9c9bb); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lede { font-size: 20px; line-height: 1.55; color: var(--text); max-width: 640px; margin: 0; }
+.lede em { font-style: normal; background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; padding: 0; list-style: none; }
+.facts li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+
+figure { margin: 32px 0; }
+figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); }
+figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
+.card img, img.inline { width: 100%; display: block; border-radius: 8px; border: 1px solid var(--line); margin: 10px 0 12px; }
+
+/* Sections */
+section { padding: 56px 0 8px; border-top: 1px solid var(--line); }
+h2 {
+  font: 800 52px/1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em; margin: 0 0 6px;
+}
+h2 + .sub { color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+h3 { font: 600 13px/1.2 "Inter"; letter-spacing: .24em; text-transform: uppercase; color: var(--hot); margin: 36px 0 12px; display: flex; align-items: center; gap: 10px; }
+h3::before { content: ""; width: 14px; height: 2px; background: var(--fire-gradient); }
+h4 { font: 800 24px/1.1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 4px; }
+p { margin: 0 0 14px; }
+strong { font-weight: 600; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* Parameter lists */
+dl.params { display: grid; grid-template-columns: 170px 1fr; gap: 0; margin: 0 0 18px; border-top: 1px solid var(--line); }
+dl.params dt, dl.params dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+dl.params dt { font: 600 12px/1.5 "Inter"; letter-spacing: .16em; text-transform: uppercase; color: var(--text); padding-right: 16px; padding-top: 13px; }
+dl.params dd { color: #e3d8ce; }
+dl.params dd .range { display: inline-block; margin-left: 8px; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+
+/* Cards and grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0 24px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.card p { margin: 6px 0 0; color: #e3d8ce; font-size: 15px; }
+.card .tag { font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--fire); }
+
+.callout { position: relative; background: linear-gradient(135deg, rgba(61,107,255,.10), rgba(169,193,255,.04)); border: 1px solid rgba(61,107,255,.35); border-radius: var(--radius); padding: 16px 20px 16px 52px; margin: 22px 0; }
+.callout::before { content: "✦"; position: absolute; left: 20px; top: 15px; color: var(--hot); font-size: 18px; }
+.callout strong { color: var(--hot); }
+
+kbd {
+  font: 600 12px/1 "Inter"; padding: 4px 7px; border-radius: 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  background: var(--surface-2); color: var(--text); white-space: nowrap;
+}
+table { width: 100%; border-collapse: collapse; margin: 8px 0 22px; font-size: 15px; }
+th { text-align: left; font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line-strong); }
+td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #e3d8ce; }
+td:first-child { color: var(--text); white-space: nowrap; }
+
+/* Signal flow */
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 20px; margin: 24px 0; overflow-x: auto; }
+.flow svg { display: block; min-width: 760px; width: 100%; height: auto; }
+
+/* Effects */
+.fx { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 22px 0 40px; }
+.fx img { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 10px 0 14px; }
+.fx .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.fx .head .what { color: var(--muted); }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 2px; transform: translateY(-1px); }
+
+footer { padding: 60px 0 80px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 40px; }
+footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+
+@media (max-width: 980px) {
+  nav.toc { position: static; width: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav.toc ol { columns: 2; }
+  main { margin-left: 0; }
+  .wrap { padding: 0 20px; }
+  dl.params { grid-template-columns: 1fr; }
+  dl.params dt { border-bottom: 0; padding-bottom: 0; }
+}
+@media print {
+  :root { --bg: #fff; --surface: #f6f2ee; --surface-2: #eee7e0; --text: #1a1410; --muted: #6e6259; --line: #e4dbd2; --line-strong: #cfc3b8; }
+  nav.toc { display: none; }
+  main { margin: 0; }
+  section { break-inside: avoid-page; }
+  h1 { color: #1a1410; background: none; }
+  dl.params dd, td, .card p { color: #2a2018; }
+}
+</style>
+</head>
+<body>
+
+<nav class="toc" aria-label="Contents">
+  <div class="brand">Robotic Audio</div>
+  <div class="product">Event Horizon</div>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#overview">The window</a></li>
+    <li><a href="#flow">Signal flow</a></li>
+    <li><a href="#algorithms">The algorithms</a></li>
+    <li><a href="#decay">The decay landscape</a></li>
+    <li><a href="#space">Space</a></li>
+    <li><a href="#late">Late</a></li>
+    <li><a href="#early">Early + Time</a></li>
+    <li><a href="#fx">Effects in the tail</a></li>
+    <li><a href="#output">Output</a></li>
+    <li><a href="#room">Room</a></li>
+    <li><a href="#mod">Modulation</a></li>
+    <li><a href="#presets">Presets</a></li>
+    <li><a href="#ai">Designing with Claude</a></li>
+    <li><a href="#licence">Licence</a></li>
+    <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#specs">Specifications</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Robotic Audio · User manual</div>
+  <h1>Event Horizon</h1>
+  <p class="lede">An algorithmic reverb with twelve designs behind one set of controls: halls, rooms, plates, springs, an '80s machine, endless clouds, shimmer, gated reverb and a real room you can walk around in. <em>Put effects inside the tail</em> and let it grow, climb and sweep as it rings.</p>
+  <ul class="facts">
+    <li>12 algorithms, one control set</li>
+    <li>13 early reflection patterns</li>
+    <li>Three-band decay</li>
+    <li>3 effect slots: before, inside, around or after the reverb</li>
+    <li>2 LFOs, an envelope follower, 2 drawn envelopes</li>
+    <li>8-slot matrix, 4 macros</li>
+    <li>Freeze, ducking, tempo sync</li>
+    <li>AU · VST3 · Standalone</li>
+  </ul>
+  <figure>
+    <img src="images/event-horizon.jpg" alt="Event Horizon's window">
+    <figcaption>Event Horizon with Lexicon Glow: the algorithm strip on top, the decay landscape and the Space card, and the pages below them, here Late.</figcaption>
+  </figure>
+</header>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">From a dry sound to a space.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">01</span><h4>Insert or send</h4><p>On a send (return) track, set <strong>Mix</strong> to 100 % and lock it with <strong>MIX LOCK</strong>. On a track itself, start around 20–30 %.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Pick an algorithm</h4><p>Click one in the strip along the top: <strong>Hall</strong> for smooth, <strong>Plate</strong> for bright and dense, <strong>Room</strong> for natural, <strong>Cloud</strong> for endless.</p></div>
+    <div class="card"><span class="tag">03</span><h4>Set the length</h4><p>Turn <strong>Decay</strong>, or drag the DECAY handle along the landscape's time axis. <strong>Pre-delay</strong> keeps the dry sound clear in front.</p></div>
+    <div class="card"><span class="tag">04</span><h4>Shape the tone</h4><p>Drag <strong>BASS</strong> and <strong>HIGH</strong> on the landscape: sideways for where they start, up and down for how long they ring.</p></div>
+    <div class="card"><span class="tag">05</span><h4>Clean it up</h4><p>On <strong>OUTPUT</strong>, a Low Cut around 200 Hz keeps the bass clear; <strong>Ducking</strong> lets the reverb bloom only in the gaps.</p></div>
+    <div class="card"><span class="tag">06</span><h4>Try a preset</h4><p><strong>Vocal Plate</strong>, <strong>Big Snare '84</strong>, <strong>Dub Spring</strong>, <strong>Endless Freeze</strong> and <strong>Barberpole Rise</strong> show its range.</p></div>
+  </div>
+  <div class="callout"><strong>Hover over anything.</strong> The strip along the bottom of the window says what the control under the mouse does.</div>
+</section>
+
+<section id="overview">
+  <h2>The window</h2>
+  <p class="sub">The algorithm strip, the decay landscape and Space card, and nine pages.</p>
+  <dl class="params">
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the title for version and credits. With an AI key, a <strong>&gt;_</strong> opens the <a href="#ai">designer</a>. Until Event Horizon is licensed, a <strong>DEMO</strong> or <strong>TRIAL</strong> chip opens the <a href="#licence">licence</a>.</dd>
+    <dt>Colours</dt><dd>Menu &gt; <strong>Colours</strong>: <strong>Cobalt</strong> (the default, drifting towards cyan along the strip) or <strong>By Algorithm Family</strong>: cobalt for the halls and clouds, green for rooms and chambers, amber for Plate, Vintage, Spring and Nonlin, violet for Shimmer. Kept with the session.</dd>
+    <dt>Algorithm strip</dt><dd>The twelve algorithms; click one to switch. The old tail rings out under the new one, so switching while it plays doesn't cut.</dd>
+    <dt>Decay · Space</dt><dd>The landscape of the reverb you've set, with handles, and the main controls.</dd>
+    <dt>Pages</dt><dd><strong>LATE</strong>, <strong>EARLY + TIME</strong>, <strong>FX</strong>, <strong>OUTPUT</strong>, <strong>ROOM</strong>, <strong>LFO</strong>, <strong>MOD 1</strong>, <strong>MOD 2</strong> and <strong>MATRIX</strong>.</dd>
+  </dl>
+  <p>The window can be resized from its bottom-right corner, and keeps its size with the session. Drag a knob up or down to change it (the value shows on it), <kbd>Cmd</kbd>-drag for fine steps, double-click to reset. A knob the matrix moves shows a ring with its range and where it is now; right-click it to route a source to it.</p>
+</section>
+
+<section id="flow">
+  <h2>Signal flow</h2>
+  <p class="sub">Where everything sits.</p>
+  <div class="flow">
+    <svg viewBox="0 0 1000 220" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <defs>
+        <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#1c2f9e"/><stop offset=".45" stop-color="#3d6bff"/><stop offset="1" stop-color="#a9c1ff"/></linearGradient>
+        <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#a99e94"/></marker>
+      </defs>
+      <g font-size="13" fill="#f4ece4" text-anchor="middle" font-weight="600">
+        <rect x="10" y="80" width="100" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="60" y="110">INPUT</text>
+        <rect x="150" y="80" width="110" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="205" y="104">FX · PRE</text><text x="205" y="120" font-size="10" fill="#a99e94" font-weight="500">before the reverb</text>
+        <rect x="300" y="80" width="120" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="360" y="104">PRE-DELAY</text><text x="360" y="120" font-size="10" fill="#a99e94" font-weight="500">up to 1 s, or synced</text>
+        <rect x="460" y="40" width="150" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="535" y="64">EARLY</text><text x="535" y="80" font-size="10" fill="#a99e94" font-weight="500">13 reflection patterns</text>
+        <rect x="460" y="120" width="150" height="50" rx="10" fill="#211a15" stroke="url(#g)"/><text x="535" y="144">LATE</text><text x="535" y="160" font-size="10" fill="#a99e94" font-weight="500">FX · LOOP inside its tail</text>
+        <rect x="650" y="80" width="130" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="715" y="104">OUTPUT</text><text x="715" y="120" font-size="10" fill="#a99e94" font-weight="500">cuts · width · ducking</text>
+        <rect x="820" y="80" width="160" height="50" rx="10" fill="#211a15" stroke="url(#g)"/><text x="900" y="104">FX · POST · MIX</text><text x="900" y="120" font-size="10" fill="#a99e94" font-weight="500">with the dry sound</text>
+      </g>
+      <g stroke="#a99e94" stroke-width="1.5" fill="none" marker-end="url(#a)">
+        <path d="M110 105 H148"/><path d="M260 105 H298"/><path d="M420 100 C440 90 440 70 458 66"/><path d="M420 110 C440 120 440 140 458 144"/>
+        <path d="M610 66 C630 70 630 95 648 100"/><path d="M610 144 C630 140 630 115 648 110"/><path d="M780 105 H818"/>
+        <path d="M715 130 V200 H360 V132" stroke-dasharray="5 5"/>
+      </g>
+      <text x="540" y="214" font-size="11" fill="#a99e94" text-anchor="middle">FX · FEEDBACK: the reverb's output through the effect, back into its input</text>
+    </svg>
+  </div>
+  <p>The input passes the effects set to <strong>Pre</strong>, then the pre-delay, then the early reflections and the late reverb side by side (<strong>Early/Late</strong> balances them). Effects set to <strong>Loop</strong> play inside the late reverb's own loop, so every pass of the tail goes through them. Effects set to <strong>Feedback</strong> sit in a loop round the whole reverb. The output's cuts, width and ducking follow, then the <strong>Post</strong> effects and the equal-power <strong>Mix</strong> with the dry sound. Event Horizon costs nothing once its input and pre-delay are silent and its tail has died away.</p>
+</section>
+
+<section id="algorithms">
+  <h2>The algorithms</h2>
+  <p class="sub">Twelve designs. The controls mean the same in every one; Character A and B are each algorithm's own.</p>
+  <table>
+    <tr><th>Algorithm</th><th>What it is</th><th>Character A · B</th></tr>
+    <tr><td><strong>Hall</strong></td><td>Smooth and neutral, the all-rounder</td><td>Density · Spin</td></tr>
+    <tr><td><strong>Room</strong></td><td>Natural rooms, close and believable</td><td>Damping · Shape</td></tr>
+    <tr><td><strong>Chamber</strong></td><td>Dense and warm, a classic echo chamber</td><td>Liveness · Build</td></tr>
+    <tr><td><strong>Plate</strong></td><td>Bright and instantly dense, for vocals and snares</td><td>Damping · Material</td></tr>
+    <tr><td><strong>Vintage</strong></td><td>'80s digital, grainy and lush</td><td>Era · Grit</td></tr>
+    <tr><td><strong>Cathedral</strong></td><td>Huge and slow to build</td><td>Stone · Bloom</td></tr>
+    <tr><td><strong>Cloud</strong></td><td>An endless ambient wash</td><td>Attack · Drift</td></tr>
+    <tr><td><strong>Shimmer</strong></td><td>Pitch-shifted, rising tails</td><td>Interval · Shimmer</td></tr>
+    <tr><td><strong>Spring</strong></td><td>Dub and surf tanks, with their drip</td><td>Tension · Drip</td></tr>
+    <tr><td><strong>Nonlin</strong></td><td>Gated and reverse reverb</td><td>Envelope · Shape</td></tr>
+    <tr><td><strong>Physical</strong></td><td>A real room, from its size and where you stand</td><td>Absorption · Diffuse</td></tr>
+    <tr><td><strong>Ambience</strong></td><td>Space with almost no tail</td><td>Air · Spread</td></tr>
+  </table>
+  <p>Hover over Character A or B to read what it does in the algorithm you've chosen. Nonlin and Vintage have no loop to put effects into: their Loop effects play before them.</p>
+</section>
+
+<section id="decay">
+  <h2>The decay landscape</h2>
+  <p class="sub">The reverb you've set, drawn before you hear it.</p>
+  <p>Time runs from the back (the moment the sound arrives) to the front, frequency from left to right, level upwards: the pre-delay, the early reflections, how each algorithm builds up and how each band dies away. The wet sound's spectrum runs live along the back. The line above it reads the algorithm, its RT60 and pre-delay.</p>
+  <dl class="params">
+    <dt>PRE · DECAY</dt><dd>Drag along the time axis for the pre-delay and the decay.</dd>
+    <dt>BASS · HIGH</dt><dd>Drag sideways for the crossover (Bass X, High X), up or down for the multiplier (Bass Mult, High Mult).</dd>
+    <dt>Physical</dt><dd>With Physical chosen, the landscape becomes the room from above: drag the <strong>SOURCE</strong> and the <strong>LISTENER</strong> where you want them.</dd>
+  </dl>
+  <p>Double-click a handle to reset it.</p>
+</section>
+
+<section id="space">
+  <h2>Space</h2>
+  <p class="sub">The main controls, beside the landscape.</p>
+  <dl class="params">
+    <dt>Mix</dt><dd>The reverb against the dry sound, equal power. 100 % for a send, 15–35 % on an insert.</dd>
+    <dt>Decay</dt><dd>How long the tail takes to die away by 60 dB, in the mids. In Nonlin, the length of its envelope (up to 2.5 s).</dd>
+    <dt>Size</dt><dd>The space's size, from small to vast: larger spreads the echoes and slows the build-up. In Physical it scales the room.</dd>
+    <dt>Pre-delay</dt><dd>A gap before the reverb starts (20–80 ms keeps vocals clear in front).</dd>
+    <dt>Early/Late</dt><dd>0 % only the early reflections, 50 % both in full, 100 % only the tail.</dd>
+    <dt>Width</dt><dd>From mono through normal (100 %) to extra wide (150 %).</dd>
+    <dt>FREEZE</dt><dd>Holds the tail for ever and shuts the input out: an endless pad of whatever was playing. Not in Nonlin.</dd>
+    <dt>MIX LOCK</dt><dd>Keeps Mix where it is when you load presets: for a send at 100 %, or a mix you've set.</dd>
+  </dl>
+</section>
+
+<section id="late">
+  <h2>Late</h2>
+  <p class="sub">The tail's own controls.</p>
+  <dl class="params">
+    <dt>Diffusion</dt><dd>How quickly the echoes blur into a smooth wash: low leaves distinct echoes and a grainier start.</dd>
+    <dt>Bass Mult · Bass X</dt><dd>How long the lows ring against Decay (2× warm and big, 0.5× tight), and where the lows end.</dd>
+    <dt>High Mult · High X</dt><dd>How long the highs ring (below 1 is natural, 0.2× dark, 1× bright and metallic), and where they start.</dd>
+    <dt>Mod Rate · Mod Depth · MOD MODE</dt><dd>How fast and far the tail's delays drift: a little keeps long tails from ringing metallic, a lot is lush. <strong>Smooth</strong> is a calm detune, <strong>Random</strong> a less regular, chorus-like tail.</dd>
+    <dt>Character A · B</dt><dd>The algorithm's own two controls, named after what they do there (see <a href="#algorithms">the algorithms</a>).</dd>
+  </dl>
+</section>
+
+<section id="early">
+  <h2>Early + Time</h2>
+  <p class="sub">The walls, and the tempo.</p>
+  <figure>
+    <img src="images/early.jpg" alt="The EARLY + TIME page">
+    <figcaption>The early reflections and the tempo settings.</figcaption>
+  </figure>
+  <dl class="params">
+    <dt>PATTERN</dt><dd>The walls' reflections: <strong>Auto</strong> takes the algorithm's own; or Hall, Room, Chamber, Studio, Stage, Cathedral, Club, Slap, Dense, Ambience, Bloom (rising), Corridor (an even flutter), or Off.</dd>
+    <dt>Early Size · Early Cross</dt><dd>How far apart the reflections lie (a small or a big room's walls), and how much of each side reaches the other's (a fuller, more centred image).</dd>
+    <dt>PRE-DELAY · DECAY</dt><dd>Set either to a note value at the song's tempo instead of its knob's time; Off uses the knob.</dd>
+  </dl>
+</section>
+
+<section id="fx">
+  <h2>Effects in the tail</h2>
+  <p class="sub">Three slots, each in one of four places.</p>
+  <figure>
+    <img src="images/fx.jpg" alt="The FX page">
+    <figcaption>Barberpole Rise: a frequency shifter in the Feedback loop, so every pass round the reverb climbs a little higher.</figcaption>
+  </figure>
+  <p>Each slot has an effect menu (<strong>Freq Shift</strong>, <strong>Distortion</strong>, <strong>Drive</strong>, <strong>Crusher</strong>, <strong>Filter</strong> and <strong>Pitch</strong>: the ones that behave inside a loop), a power button, an edit button for its full editor, its <strong>Mix</strong> (how much of the effect) and its main controls. The menu above each slot sets where it plays:</p>
+  <dl class="params">
+    <dt>Pre</dt><dd>Before the reverb: the reverb hears the effect.</dd>
+    <dt>Loop</dt><dd>Inside the tail's own loop: a subtle colour on every pass, growing as the tail rings. (Nonlin and Vintage have none: Pre there.)</dd>
+    <dt>Feedback</dt><dd>In a loop round the whole reverb: its output through the effect back into its input. <strong>FX Feedback</strong> sets how much goes round. This is the strong one: a shifter climbs, a filter sweeps the whole tail, the pre-delay makes diffusing echoes. High settings sustain into an endless wash, softly limited and never louder; anything under 100 % dies away once the input stops.</dd>
+    <dt>Post</dt><dd>After the reverb, on the wet sound.</dd>
+  </dl>
+  <p>Drag a slot by its grip to move it; its place comes with it. The four <strong>Macros</strong> beside the slots move effect settings mapped to them (right-click an effect control to map it), and the matrix can move the macros and each slot's Mix.</p>
+  <div class="callout">Inside other Robotic Audio plugins with an effect rack (Line Runner, CyberPump, Splicer…), Event Horizon is one of the effects: the same reverb and the same controls in the slot's window.</div>
+</section>
+
+<section id="output">
+  <h2>Output</h2>
+  <p class="sub">Keep the reverb in its place.</p>
+  <dl class="params">
+    <dt>Low Cut · High Cut</dt><dd>Takes the lows out of the reverb (150–300 Hz keeps bass and kick clean) and the highs (6–8 kHz sits it further back).</dd>
+    <dt>Ducking · Duck Release</dt><dd>Pushes the reverb down (up to 30 dB) while the dry sound plays and lets it bloom in the gaps; Release sets how quickly it comes back.</dd>
+    <dt>IN · OUT</dt><dd>The input and output levels.</dd>
+  </dl>
+</section>
+
+<section id="room">
+  <h2>Room</h2>
+  <p class="sub">The Physical algorithm's room.</p>
+  <figure>
+    <img src="images/room.jpg" alt="The Physical algorithm's room">
+    <figcaption>Wooden Hall: the room from above, with the source and the listener, and its knobs on the ROOM page.</figcaption>
+  </figure>
+  <p>Physical builds a real room's reflections from its <strong>Room Width</strong>, <strong>Room Depth</strong> and <strong>Room Height</strong> (metres; Size scales them all) and from where the sound and the listener (two microphones) stand: <strong>Source X</strong> and <strong>Y</strong>, <strong>Listener X</strong> and <strong>Y</strong>. Drag them on the landscape, or turn the knobs. Its Character A, <strong>Absorption</strong>, is the walls' material (bare concrete to soft absorbers), and B, <strong>Diffuse</strong>, how much they scatter.</p>
+</section>
+
+<section id="mod">
+  <h2>Modulation</h2>
+  <p class="sub">Two LFOs, an envelope follower and two drawn envelopes, through an 8-slot matrix.</p>
+  <figure>
+    <img src="images/mod.jpg" alt="The MOD 1 page">
+    <figcaption>Mod 1: a drawn envelope following the song.</figcaption>
+  </figure>
+  <dl class="params">
+    <dt>LFO 1 · LFO 2</dt><dd><strong>Rate</strong> in Hz, or a note value at the song's tempo (the menu that says <strong>Free</strong>), and the shape: sine, triangle, saws, square, random steps or a smooth random drift.</dd>
+    <dt>Envelope</dt><dd>Follows the input's level: <strong>Env Attack</strong> and <strong>Env Release</strong> set how quickly, <strong>Env Gain</strong> its sensitivity for quiet sources.</dd>
+    <dt>Mod 1 · Mod 2</dt><dd>Drawn envelopes, each with its power switch. <strong>Trigger</strong>: <strong>Tempo</strong> in time with the song, <strong>Trig</strong> on every hit in the input, <strong>Legato</strong> on a hit after silence; <strong>Threshold</strong> sets how loud a jump counts as a hit. Draw, loop and shape them as in every Robotic Audio plugin (Attack, Release, Rate, Drift, Bipolar, right-click for ready-made shapes).</dd>
+    <dt>MATRIX</dt><dd>Eight rows routing a source (LFO 1, LFO 2, Envelope, Mod 1, Mod 2) to a destination: Mix, Decay, Size, Pre-delay, Early/Late, Width, Early Size, Early Cross, Diffusion, Bass and High Mult, Mod Rate and Depth, Character A and B, the cuts, each effect slot's amount, the macros and FX Feedback.</dd>
+  </dl>
+  <div class="callout">Route Envelope to Decay with a negative amount: the tail stays short while you play and blooms when you stop.</div>
+</section>
+
+<section id="presets">
+  <h2>Presets</h2>
+  <p class="sub">Twenty-two to start from.</p>
+  <p>Use the <strong>arrows</strong> to step through presets or click the name for the list; <strong>SAVE</strong> stores yours, and the menu has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. They range from <strong>Drum Room</strong>, <strong>Vocal Plate</strong> and <strong>Chamber Strings</strong> to <strong>Big Snare '84</strong>, <strong>Reverse Swell</strong>, <strong>Dub Spring</strong>, <strong>Nostromo Drift</strong>, <strong>Shimmer Choir</strong>, <strong>Endless Freeze</strong>, <strong>Barberpole Rise</strong> and <strong>Pulse Hall</strong>. With MIX LOCK on, presets leave your Mix alone.</p>
+  <p>User presets are XML files in <code>~/Library/Audio/Presets/Robotic Audio/Event Horizon</code> (macOS) or <code>Documents/Presets/Robotic Audio/Event Horizon</code> (Windows).</p>
+</section>
+
+<section id="ai">
+  <h2>Designing with Claude</h2>
+  <p class="sub">Describe a space; Claude sets Event Horizon to make it.</p>
+  <p>With your own Anthropic key, the <strong>&gt;_</strong> beside the presets opens a designer: describe what you want, such as <em>"a dark, distant hall for a ballad vocal"</em> or <em>"a spring that drips like dub"</em>, and Claude sets the algorithm and every control, the modulation and the effects. <strong>NEW SOUND</strong> designs from scratch, <strong>EDIT THIS</strong> changes only what you ask for; <strong>REVERT</strong> puts it back, <strong>SAVE AS PRESET</strong> keeps it. The keys are your own (Menu &gt; <strong>AI...</strong>), shared by every Robotic Audio plugin and kept on this computer; without one nothing of this shows. It needs a network connection and is part of the macOS and Windows plugins.</p>
+</section>
+
+<section id="licence">
+  <h2>Licence</h2>
+  <p class="sub">Try it, activate it, move it to another computer.</p>
+  <p>Without a licence, Event Horizon runs as a demo: the sound drops out for 3 seconds every 45 seconds; everything else works, saving included. The header shows <strong>DEMO</strong> (or <strong>TRIAL</strong> with the days left); click it, or choose <strong>Licence...</strong> in the menu.</p>
+  <dl class="params">
+    <dt>ACTIVATE</dt><dd>Opens the shop in your browser; Event Horizon unlocks a few seconds after you choose your licence.</dd>
+    <dt>START TRIAL</dt><dd>Everything, free, for 14 days, once per computer.</dd>
+    <dt>SAVE DEVICE FILE / LOAD LICENCE FILE</dt><dd>For a computer without the internet.</dd>
+    <dt>DEACTIVATE</dt><dd>Frees this computer's seat for another one.</dd>
+  </dl>
+  <div class="callout">One licence covers every format on the computer, and keeps working offline for 30 days after its last check.</div>
+</section>
+
+<section id="recipes">
+  <h2>Recipes</h2>
+  <p class="sub">Starting points.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Vocal plate</span><p>Plate, Decay 1.8 s, Pre-delay 40 ms, Low Cut 250 Hz, Ducking 30 %. Mix 20 % on the vocal, or 100 % on a send.</p></div>
+    <div class="card"><span class="tag">Gated snare</span><p>Nonlin, Decay 400 ms, Envelope (Character A) at its middle for a flat gate, Shape for how long it holds. Early/Late 70 %. Loud, short and very '84.</p></div>
+    <div class="card"><span class="tag">Endless pad</span><p>Cloud, Decay 20 s, Size 90 %. Play a chord, press FREEZE, play over it.</p></div>
+    <div class="card"><span class="tag">Rising tail</span><p>Hall, a Freq Shift of a few Hz in a slot set to Feedback, FX Feedback 75 %. Every pass climbs.</p></div>
+    <div class="card"><span class="tag">Sweeping tail</span><p>A Filter in a Loop slot; LFO 1 at 1/1 → FX 1 amount. The whole tail breathes in time.</p></div>
+    <div class="card"><span class="tag">Dub throw</span><p>Spring, Decay 3 s, Drip up. Automate Mix on single hits; Low Cut 300 Hz.</p></div>
+    <div class="card"><span class="tag">Real room</span><p>Physical, a small room (6 × 8 × 3 m). Move the source close to a wall for a slap, far for a wash.</p></div>
+    <div class="card"><span class="tag">Breathing hall</span><p>Mod 1 Trigger Legato, a slow rise, → Decay +40 %. The tail lengthens each time the music pauses.</p></div>
+  </div>
+</section>
+
+<section id="specs">
+  <h2>Specifications</h2>
+  <p class="sub">The facts.</p>
+  <table>
+    <tr><th>Type</th><td>Algorithmic reverb (effect plugin), stereo</td></tr>
+    <tr><th>Algorithms</th><td>Hall, Room, Chamber, Plate, Vintage, Cathedral, Cloud, Shimmer, Spring, Nonlin, Physical, Ambience</td></tr>
+    <tr><th>Pre-delay</th><td>Up to 1 s, or a note value</td></tr>
+    <tr><th>Early reflections</th><td>13 patterns, Auto per algorithm</td></tr>
+    <tr><th>Effects</th><td>3 slots (Pre, Loop, Feedback, Post), 4 macros</td></tr>
+    <tr><th>Modulation</th><td>2 LFOs, envelope follower, 2 drawn envelopes, 8-slot matrix</td></tr>
+    <tr><th>CPU</th><td>Nothing while silent once its tail has died away</td></tr>
+    <tr><th>Formats</th><td>AU, VST3 and Standalone (macOS); VST3 and Standalone (Windows, Linux)</td></tr>
+  </table>
+</section>
+
+<footer>
+  <div class="sig">Robotic Audio</div>
+  Event Horizon was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
+  Fonts: Big Shoulders Display and Inter, under the SIL Open Font License.
+</footer>
+
+</div>
+</main>
+
+<script>
+// Highlight the section being read in the contents
+const links = [...document.querySelectorAll("nav.toc a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+sections.forEach(s => s && observer.observe(s));
+</script>
+</body>
+</html>

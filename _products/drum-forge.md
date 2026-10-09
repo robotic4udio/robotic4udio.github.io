@@ -40,7 +40,7 @@ features:
   - title: Every hit a little different
     text: Tune, level, pan, filter and more can each pick from a range on every hit, and a pad's Chance decides whether it plays at all. Variation widens all of a pad's ranges at once.
   - title: Draw the movement
-    text: Three drawn envelopes per pad, Volume, Mod 1 and Mod 2, free or synced to the song like Contour's. A six-slot matrix per pad routes them, velocity and the mod wheel; right-click any knob to give it a source.
+    text: Three drawn envelopes per pad, Volume, Mod 1 and Mod 2, free or synced to the song like Line Runner's. A six-slot matrix per pad routes them, velocity and the mod wheel; right-click any knob to give it a source.
   - title: Mix it like a kit
     text: Level, pan, tune, decay, mute and two sends per pad, all automatable. Two effect slots on every pad, a delay and a reverb on the sends, and four slots on the master.
   - title: Generate a kit

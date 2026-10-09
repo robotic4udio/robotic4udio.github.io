@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitstorm Manual</title>
+<style>
+@font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Big Shoulders"; font-weight: 800; src: url("fonts/BigShouldersDisplay-ExtraBold.ttf") format("truetype"); }
+
+:root {
+  --bg: #0d0b0a;
+  --surface: #17120f;
+  --surface-2: #211a15;
+  --line: rgba(255, 236, 220, 0.10);
+  --line-strong: rgba(255, 236, 220, 0.22);
+  --text: #f4ece4;
+  --muted: #a99e94;
+  --ember: #ee4436;
+  --fire: #f7d63c;
+  --hot: #5ce6f2;
+  --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
+  --radius: 14px;
+  --sidebar: 260px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 500 16px/1.65 "Inter", -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--hot); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Sidebar */
+nav.toc {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar);
+  overflow-y: auto; padding: 32px 24px 40px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+}
+nav.toc .brand { font: 600 11px/1 "Inter"; letter-spacing: .32em; color: var(--fire); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+nav.toc .brand::before { content: ""; width: 18px; height: 2px; background: var(--fire-gradient); }
+nav.toc .product { font: 800 34px/1 "Big Shoulders"; letter-spacing: .02em; margin: 10px 0 26px; text-transform: uppercase; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+nav.toc li { counter-increment: s; }
+nav.toc li a {
+  display: flex; gap: 12px; padding: 7px 10px; margin: 0 -10px; border-radius: 8px;
+  color: var(--muted); font-size: 14px;
+}
+nav.toc li a::before { content: counter(s, decimal-leading-zero); color: var(--line-strong); font-variant-numeric: tabular-nums; }
+nav.toc li a:hover, nav.toc li a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
+nav.toc li a.active::before { color: var(--fire); }
+
+main { margin-left: var(--sidebar); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+/* Hero */
+header.hero { position: relative; padding: 72px 0 40px; overflow: hidden; }
+header.hero::before {
+  content: ""; position: absolute; inset: -40% -10% auto; height: 520px;
+  background: radial-gradient(closest-side, rgba(247, 214, 60, .22), transparent);
+  pointer-events: none;
+}
+.kicker { font: 600 12px/1 "Inter"; letter-spacing: .34em; text-transform: uppercase; color: var(--fire); display: flex; align-items: center; gap: 12px; }
+.kicker::before { content: ""; width: 28px; height: 2px; background: var(--fire-gradient); }
+h1 {
+  font: 800 clamp(64px, 11vw, 132px)/.86 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em;
+  margin: 18px 0 18px;
+  background: linear-gradient(180deg, var(--text) 30%, #d9c9bb); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lede { font-size: 20px; line-height: 1.55; color: var(--text); max-width: 640px; margin: 0; }
+.lede em { font-style: normal; background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; padding: 0; list-style: none; }
+.facts li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+
+figure { margin: 32px 0; }
+figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); }
+figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
+.card img, img.inline { width: 100%; display: block; border-radius: 8px; border: 1px solid var(--line); margin: 10px 0 12px; }
+
+/* Sections */
+section { padding: 56px 0 8px; border-top: 1px solid var(--line); }
+h2 {
+  font: 800 52px/1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em; margin: 0 0 6px;
+}
+h2 + .sub { color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+h3 { font: 600 13px/1.2 "Inter"; letter-spacing: .24em; text-transform: uppercase; color: var(--hot); margin: 36px 0 12px; display: flex; align-items: center; gap: 10px; }
+h3::before { content: ""; width: 14px; height: 2px; background: var(--fire-gradient); }
+h4 { font: 800 24px/1.1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 4px; }
+p { margin: 0 0 14px; }
+strong { font-weight: 600; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* Parameter lists */
+dl.params { display: grid; grid-template-columns: 170px 1fr; gap: 0; margin: 0 0 18px; border-top: 1px solid var(--line); }
+dl.params dt, dl.params dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+dl.params dt { font: 600 12px/1.5 "Inter"; letter-spacing: .16em; text-transform: uppercase; color: var(--text); padding-right: 16px; padding-top: 13px; }
+dl.params dd { color: #e3d8ce; }
+dl.params dd .range { display: inline-block; margin-left: 8px; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+
+/* Cards and grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0 24px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.card p { margin: 6px 0 0; color: #e3d8ce; font-size: 15px; }
+.card .tag { font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--fire); }
+
+.callout { position: relative; background: linear-gradient(135deg, rgba(247,214,60,.10), rgba(92,230,242,.04)); border: 1px solid rgba(247,214,60,.35); border-radius: var(--radius); padding: 16px 20px 16px 52px; margin: 22px 0; }
+.callout::before { content: "✦"; position: absolute; left: 20px; top: 15px; color: var(--hot); font-size: 18px; }
+.callout strong { color: var(--hot); }
+
+kbd {
+  font: 600 12px/1 "Inter"; padding: 4px 7px; border-radius: 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  background: var(--surface-2); color: var(--text); white-space: nowrap;
+}
+table { width: 100%; border-collapse: collapse; margin: 8px 0 22px; font-size: 15px; }
+th { text-align: left; font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line-strong); }
+td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #e3d8ce; }
+td:first-child { color: var(--text); white-space: nowrap; }
+
+/* Signal flow */
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 20px; margin: 24px 0; overflow-x: auto; }
+.flow svg { display: block; min-width: 760px; width: 100%; height: auto; }
+
+/* Effects */
+.fx { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 22px 0 40px; }
+.fx img { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 10px 0 14px; }
+.fx .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.fx .head .what { color: var(--muted); }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 2px; transform: translateY(-1px); }
+
+footer { padding: 60px 0 80px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 40px; }
+footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+
+@media (max-width: 980px) {
+  nav.toc { position: static; width: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav.toc ol { columns: 2; }
+  main { margin-left: 0; }
+  .wrap { padding: 0 20px; }
+  dl.params { grid-template-columns: 1fr; }
+  dl.params dt { border-bottom: 0; padding-bottom: 0; }
+}
+@media print {
+  :root { --bg: #fff; --surface: #f6f2ee; --surface-2: #eee7e0; --text: #1a1410; --muted: #6e6259; --line: #e4dbd2; --line-strong: #cfc3b8; }
+  nav.toc { display: none; }
+  main { margin: 0; }
+  section { break-inside: avoid-page; }
+  h1 { color: #1a1410; background: none; }
+  dl.params dd, td, .card p { color: #2a2018; }
+}
+</style>
+</head>
+<body>
+
+<nav class="toc" aria-label="Contents">
+  <div class="brand">Robotic Audio</div>
+  <div class="product">Bitstorm</div>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#overview">The window</a></li>
+    <li><a href="#flow">Signal flow</a></li>
+    <li><a href="#modes">Poly and Chip mode</a></li>
+    <li><a href="#layers">Layers</a></li>
+    <li><a href="#chips">The chips</a></li>
+    <li><a href="#global">Filter, scope and global</a></li>
+    <li><a href="#macros">Macros</a></li>
+    <li><a href="#mod">Modulation</a></li>
+    <li><a href="#fm">FM</a></li>
+    <li><a href="#effects">Effects</a></li>
+    <li><a href="#seq">Arpeggiator and tracker</a></li>
+    <li><a href="#presets">Presets</a></li>
+    <li><a href="#ai">Designing with Claude</a></li>
+    <li><a href="#licence">Licence</a></li>
+    <li><a href="#shortcuts">Shortcuts</a></li>
+    <li><a href="#recipes">Sound recipes</a></li>
+    <li><a href="#specs">Specifications</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Robotic Audio · User manual</div>
+  <h1>Bitstorm</h1>
+  <p class="lede">A chip synth with seven sound chips inside: the C64, the NES, the Game Boy, the Spectrum, the Atari, the Amiga and the Mega Drive, <em>computed the way the hardware did it</em>. Stack four of them on every note, or play one chip channel by channel, with tracker macros, an arpeggiator and a tracker of its own.</p>
+  <ul class="facts">
+    <li>7 chips: SID, NES, Game Boy, AY, POKEY, Paula, YM2612</li>
+    <li>4 layers per note, up to 16 voices</li>
+    <li>Chip mode: a channel per layer</li>
+    <li>Tracker macros per layer</li>
+    <li>3 drawn envelopes, 2 LFOs, 16-slot matrix</li>
+    <li>Arpeggiator and a 16-pattern tracker</li>
+    <li>4 effect slots</li>
+    <li>AU · VST3 · Standalone</li>
+  </ul>
+  <figure>
+    <img src="images/bitstorm.jpg" alt="Bitstorm's window on its CHIP page">
+    <figcaption>The CHIP page with NES Band (Chip Mode): the four layers across the top (two pulses, the triangle and the noise), then the SID filter, the scope with the chip's registers, and the global settings. The window takes the colours of layer 1's machine.</figcaption>
+  </figure>
+</header>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">From install to the first bleep.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">01</span><h4>Load a preset</h4><p>Use the arrows or the list in the header. <strong>C64 Sync Lead</strong>, <strong>NES Triangle Bass</strong>, <strong>Game Boy Wave Pad</strong> and <strong>Mega Drive Slap Bass</strong> show four of the machines.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Pick a chip</h4><p>On the CHIP page, each layer's card starts with its <strong>chip</strong> menu. Change layer 1's and the whole window changes colour with it.</p></div>
+    <div class="card"><span class="tag">03</span><h4>Shape it per frame</h4><p>On MACROS, draw layer 1's <strong>Volume</strong> and <strong>Arp</strong> macros: a looped 0 4 7 on Arp is the classic chip chord.</p></div>
+    <div class="card"><span class="tag">04</span><h4>Play the hardware way</h4><p>Set <strong>Mode</strong> to <strong>Chip</strong>: the four layers become one chip's channels, each playing a note of its own.</p></div>
+    <div class="card"><span class="tag">05</span><h4>Write a tune</h4><p>On SEQ, set the Sequencer to <strong>Song</strong>, fill a pattern and press <strong>PLAY</strong> (or play your DAW).</p></div>
+    <div class="card"><span class="tag">06</span><h4>Save</h4><p>Press <strong>SAVE</strong> in the header. Your preset keeps every setting, macro, wave and song.</p></div>
+  </div>
+  <div class="callout"><strong>Hover over anything.</strong> The strip along the bottom of the window says what the control under the mouse does: the fastest way to learn Bitstorm.</div>
+</section>
+
+<section id="overview">
+  <h2>The window</h2>
+  <p class="sub">A header, a row of settings beside the page tabs, and six pages.</p>
+  <dl class="params">
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the title for version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>. Until Bitstorm is licensed, a <strong>DEMO</strong> or <strong>TRIAL</strong> chip beside the menu opens the <a href="#licence">licence</a>.</dd>
+    <dt>Beside the tabs</dt><dd><strong>Clock</strong>, <strong>Frames</strong>, <strong>Mode</strong> and <strong>Notes</strong>: the machine every page plays on (see <a href="#global">global</a> and <a href="#modes">modes</a>).</dd>
+    <dt>CHIP</dt><dd>The four layers, the SID filter, the scope and the global settings.</dd>
+    <dt>MACROS</dt><dd>Each layer's tracker macros: Volume, Arp, Pitch and the chip's own fourth (and the Game Boy's wave table).</dd>
+    <dt>MOD</dt><dd>Three drawn envelopes, two LFOs, four macro knobs and the matrix.</dd>
+    <dt>FM</dt><dd>The YM2612's four operators for the layer chosen above them.</dd>
+    <dt>FX</dt><dd>Four effect slots after the chips, and the selected effect's editor.</dd>
+    <dt>SEQ</dt><dd>The arpeggiator and the tracker.</dd>
+  </dl>
+  <p>The window can be resized from its bottom-right corner. Its palette follows layer 1's chip: C64 blue for the SID, NES grey, Game Boy green, Spectrum black for the AY, Atari blue for the POKEY, Workbench blue for Paula and an arcade cabinet for the YM2612.</p>
+  <h3>Using the controls</h3>
+  <table>
+    <tr><th>Do this</th><th>To</th></tr>
+    <tr><td>Drag a knob up or down</td><td>change it (the value shows while you touch it)</td></tr>
+    <tr><td><kbd>Cmd</kbd> / <kbd>Ctrl</kbd> / <kbd>Alt</kbd> + drag</td><td>fine adjustment</td></tr>
+    <tr><td>Double-click a knob</td><td>reset it to its default</td></tr>
+    <tr><td>Right-click a knob the matrix can move</td><td>route a modulation source to it</td></tr>
+    <tr><td>Drag across a macro or the wave table</td><td>draw it</td></tr>
+  </table>
+  <p>A knob that something modulates shows a ring around it: the range the modulation can take it over, and a dot where it is right now.</p>
+</section>
+
+<section id="flow">
+  <h2>Signal flow</h2>
+  <p class="sub">What happens to a note.</p>
+  <div class="flow">
+    <svg viewBox="0 0 1000 200" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <defs>
+        <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#ee4436"/><stop offset=".45" stop-color="#f7d63c"/><stop offset="1" stop-color="#5ce6f2"/></linearGradient>
+        <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#a99e94"/></marker>
+      </defs>
+      <g font-size="13" fill="#f4ece4" text-anchor="middle" font-weight="600">
+        <rect x="10" y="70" width="140" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="80" y="94">MIDI · TRACKER</text><text x="80" y="110" font-size="10" fill="#a99e94" font-weight="500">and the arpeggiator</text>
+        <rect x="200" y="70" width="140" height="50" rx="10" fill="#211a15" stroke="url(#g)"/><text x="270" y="94">4 LAYERS</text><text x="270" y="110" font-size="10" fill="#a99e94" font-weight="500">a chip channel each</text>
+        <rect x="390" y="70" width="140" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="460" y="94">MACROS</text><text x="460" y="110" font-size="10" fill="#a99e94" font-weight="500">a step per frame</text>
+        <rect x="580" y="70" width="160" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="660" y="94">MACHINE</text><text x="660" y="110" font-size="10" fill="#a99e94" font-weight="500">SID filter · output stages</text>
+        <rect x="790" y="70" width="140" height="50" rx="10" fill="#211a15" stroke="url(#g)"/><text x="860" y="94">EFFECTS</text><text x="860" y="110" font-size="10" fill="#a99e94" font-weight="500">4 slots · volume</text>
+      </g>
+      <g stroke="#a99e94" stroke-width="1.5" fill="none" marker-end="url(#a)">
+        <path d="M150 95 H198"/><path d="M340 95 H388"/><path d="M530 95 H578"/><path d="M740 95 H788"/>
+      </g>
+      <text x="500" y="40" font-size="11" fill="#a99e94" text-anchor="middle">Mod 1–3, the LFOs, MIDI and the macro knobs reach every layer through the matrix</text>
+      <text x="500" y="160" font-size="11" fill="#a99e94" text-anchor="middle">Layer N syncs to and ring-modulates with layer N−1, as the C64's voices are chained</text>
+    </svg>
+  </div>
+  <p>Each layer is one channel of a chip, run at twice the sample rate with its steps band-limited and brought down cleanly, so the sound is the chip's and not the aliasing of a naive copy. The macros step at the machine's frame rate. The layers then pass through the machine's own output stages (the SID filter for layers routed to it, the NES and Amiga output filters) and the four effect slots.</p>
+</section>
+
+<section id="modes">
+  <h2>Poly and Chip mode</h2>
+  <p class="sub">Four layers on every note, or one chip played channel by channel.</p>
+  <dl class="params">
+    <dt>Mode Poly</dt><dd>Every note stacks the four layers (the ones switched on), as one thick sound. <strong>Voices</strong> sets how many notes play at once, up to 16; at 1 it is mono, with legato and <strong>Glide</strong>.</dd>
+    <dt>Mode Chip</dt><dd>One voice, as the hardware played: each layer is a channel of the chip and takes a note of its own. <strong>Notes</strong> decides how a note finds its channel: <strong>Round Robin</strong> hands each new note to the next free layer; <strong>MIDI Channel</strong> plays MIDI channel 1 on layer 1, 2 on layer 2 and so on, one part per channel, as a tracker does.</dd>
+  </dl>
+  <div class="callout">Chip mode is what the <a href="#seq">tracker</a> is built for: give each layer its own part (bass, lead, arpeggio, drums) and write a column for each.</div>
+</section>
+
+<section id="layers">
+  <h2>Layers</h2>
+  <p class="sub">Four cards on the CHIP page, each a chip channel.</p>
+  <p>Each layer's card has its <strong>power</strong> square (layer 1 starts on, the others off), its <strong>chip</strong> menu, the chip's own controls (see <a href="#chips">the chips</a>), and the controls every layer has:</p>
+  <dl class="params">
+    <dt>Oct · Semi · Fine</dt><dd>The layer's tuning: −3 to +3 octaves, −12 to +12 semitones, ±100 cents.</dd>
+    <dt>Level · Pan</dt><dd>How loud the layer is (0–100 %) and where it sits between the speakers.</dd>
+    <dt>Sync · Ring · Filter</dt><dd>On a SID layer: hard sync to the layer before it, ring modulation by it, and the route through the SID filter (see below).</dd>
+  </dl>
+  <p>Layer 2 syncs to and ring-modulates with layer 1, layer 3 with layer 2, and so on, as the C64's three voices are chained. Turning on <strong>Chip Limits</strong> (on the global card) keeps every value on the chip's real steps.</p>
+</section>
+
+<section id="chips">
+  <h2>The chips</h2>
+  <p class="sub">Seven machines, each computed from how the chip worked.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">SID · C64</span><p><strong>Wave</strong>: triangle, saw, pulse, noise, and the combined waves (the bits of two or three ANDed: thin and metallic). The pulse's <strong>PW</strong> in its 12 bits, <strong>PWM</strong> and <strong>Rate</strong> for the classic moving pulse. The SID's own ADSR (<strong>Attack</strong>, <strong>Decay</strong>, <strong>Sustain</strong>, <strong>Release</strong>, 0–15) with its real rates and steps. <strong>Sync</strong>, <strong>Ring</strong> and <strong>Filter</strong> link it to the other layers.</p></div>
+    <div class="card"><span class="tag">NES · 2A03</span><p><strong>Channel</strong>: a pulse (<strong>Duty</strong> 12.5, 25, 50 or 75 %), the 4-bit triangle (no volume, only on or off) or the noise (<strong>Long</strong> hiss or <strong>Short</strong>, a metallic buzz). The console's <strong>Envelope</strong> (Constant, Decay or Loop) with its <strong>Period</strong>, and the pulse's <strong>Sweep</strong> and <strong>Speed</strong>, which bend the pitch by themselves.</p></div>
+    <div class="card"><span class="tag">Game Boy</span><p><strong>Channel</strong>: a pulse, the wave channel (32 steps you draw on MACROS) or the 15- and 7-bit noise. The volume envelope's <strong>Start</strong>, <strong>Period</strong> and <strong>Rise</strong>; the pulse's <strong>Sweep</strong> and <strong>Speed</strong>; the wave channel's <strong>Volume</strong> (100, 50 or 25 %).</p></div>
+    <div class="card"><span class="tag">AY · Spectrum, CPC, Atari ST</span><p><strong>Mixer</strong>: tone, noise, both ANDed (gritty, broken) or None (the envelope alone). <strong>Noise</strong> sets its period. The hardware <strong>Envelope</strong> in eight shapes, run at the note's own pitch as the famous <strong>Buzzer</strong> bass, or <strong>Free</strong> at <strong>Env Rate</strong>.</p></div>
+    <div class="card"><span class="tag">POKEY · Atari 8-bit</span><p><strong>Distortion</strong>: what the polynomial counters do to the tone: Pure (a square), Buzz, Buzz 5, Square 5 and three noises. <strong>Resolution</strong>: 16-bit plays in tune everywhere; the 8-bit ones are the POKEY's rough, out-of-tune scale (some go silent with the 5-bit poly, as on the chip).</p></div>
+    <div class="card"><span class="tag">Paula · Amiga</span><p>Eight-bit <strong>Sample</strong>s at the Amiga's period rates: Protracker's tiny looped waves (Saw, Square, Pulse 25, Triangle, Sine, Organ, Chip Choir, Hollow), a kick, snare and hat, or <strong>File</strong>: <strong>LOAD</strong> (or drop) a sound of your own, made 8-bit at C-3's rate. <strong>Loop</strong> sustains a file by looping its second half.</p></div>
+    <div class="card"><span class="tag">YM2612 · Mega Drive</span><p>Four FM operators in eight <strong>Algorithm</strong>s, operator 1's <strong>Feedback</strong>, <strong>Vibrato</strong> and <strong>Tremolo</strong> from the chip's LFO, and the 9-bit DAC's grit. Its operators have a page of their own: <a href="#fm">FM</a>.</p></div>
+  </div>
+</section>
+
+<section id="global">
+  <h2>Filter, scope and global</h2>
+  <p class="sub">The bottom row of the CHIP page, and the settings beside the tabs.</p>
+  <h3>SID filter</h3>
+  <dl class="params">
+    <dt>Model</dt><dd>The SID's two versions: the <strong>6581</strong> (the first C64s: dirty and dark, its cutoff curved and its resonance strong) or the <strong>8580</strong> (clean and bright).</dd>
+    <dt>Mode</dt><dd>The filter's outputs, alone or mixed: LP, BP, HP, LP+BP, BP+HP, Notch or All.</dd>
+    <dt>Cutoff · Reso</dt><dd>The 11-bit cutoff register (0–2047; the 6581's curve is uneven, as the chips were) and the resonance, 0–15. Only SID layers with <strong>Filter</strong> lit go through it.</dd>
+  </dl>
+  <h3>Scope</h3>
+  <p>The sound as it plays, with the chip's registers in hexadecimal beside it: what the hardware would have been told, frame by frame.</p>
+  <h3>Global</h3>
+  <dl class="params">
+    <dt>Volume</dt><dd>Bitstorm's output level.</dd>
+    <dt>Voices · Glide</dt><dd>How many notes play at once in Poly (1 is mono, with legato), and in mono how long a legato note slides to its pitch.</dd>
+    <dt>Vel · Bend</dt><dd>How much the keys' velocity sets the volume (the chips had none), and the pitch wheel's range in semitones.</dd>
+    <dt>NES Out</dt><dd>The console's output filters: NES (thin, two high passes), Famicom (fuller) or Clean.</dd>
+    <dt>AY</dt><dd>The AY-3-8910 (16 volume steps) or Yamaha's YM2149 (32 envelope steps, smoother).</dd>
+    <dt>Amiga</dt><dd>Paula's output stage: the A500's fixed low pass, LED (the filter its power light switched, a soft 12 dB low pass), or the A1200's, without either.</dd>
+    <dt>Chip Limits</dt><dd>Keeps every value to the chip's own steps: pitches on its timers (the NES goes out of tune up high), volumes in 16 steps, the pulse width in 12 bits.</dd>
+    <dt>Clock · Frames</dt><dd>PAL (European) or NTSC (American) clock, which tunes the chips' pitch steps, and the rate macros and envelopes step at: 50 or 60 Hz.</dd>
+  </dl>
+</section>
+
+<section id="macros">
+  <h2>Macros</h2>
+  <p class="sub">The tracker's way of shaping a note: a step per frame.</p>
+  <figure>
+    <img src="images/macros.jpg" alt="The MACROS page">
+    <figcaption>Game Boy Wave Pad's layer 1: a Volume macro with its release point, a gentle Pitch wobble and the wave table the wave channel plays.</figcaption>
+  </figure>
+  <p>Choose a layer with the <strong>LAYER</strong> buttons. Each macro is a row of steps the note plays through, one per frame (50 or 60 a second):</p>
+  <dl class="params">
+    <dt>Volume</dt><dd>The level, 0–15 per frame: the note's envelope.</dd>
+    <dt>Arp</dt><dd>Semitones added per frame: a looped 0 4 7 is the chip chord, 0 12 an octave flutter.</dd>
+    <dt>Pitch</dt><dd>A pitch bend per frame: drops for drums, wobbles for vibrato.</dd>
+    <dt>The fourth</dt><dd>Whatever the chip chooses between, named after it: the SID's <strong>Wave</strong>, the NES's and Game Boy's <strong>Duty</strong>, the AY's <strong>Mixer</strong>, the POKEY's <strong>Distortion</strong>, Paula's <strong>Sample</strong> or the YM2612's <strong>Algorithm</strong>. A noise frame then a falling pitch is a chip drum.</dd>
+    <dt>Wave Table</dt><dd>On a Game Boy layer: the wave RAM, 32 steps of 4 bits the wave channel plays over and over.</dd>
+  </dl>
+  <p><strong>Drag</strong> to draw, past the end to make it longer. <strong>Click the strip along the top</strong> to loop from a step; <strong>Shift-click</strong> it for the release point, where the note goes when you let go. <strong>Right-click</strong> for the rest: loop or release from here, no loop, no release. A marker runs along each macro while it plays.</p>
+</section>
+
+<section id="mod">
+  <h2>Modulation</h2>
+  <p class="sub">Drawn envelopes, LFOs and MIDI, routed by a matrix.</p>
+  <figure>
+    <img src="images/mod.jpg" alt="The MOD page">
+    <figcaption>Filter Sweep Bass's MOD page: Mod 1–3 on tabs, the two LFOs, the macro knobs and the matrix, here Mod 3 sweeping the SID cutoff.</figcaption>
+  </figure>
+  <dl class="params">
+    <dt>Mod 1 · 2 · 3</dt><dd>Drawn envelopes, one per note, each with its power switch: draw the shape, loop a part of it, and set <strong>Attack</strong>, <strong>Release</strong>, <strong>Rate</strong> and <strong>Drift</strong>; <strong>BIPOLAR</strong> lets it swing both ways from the middle. <strong>Trigger</strong> restarts it with every note (Trig), only after a gap (Legato) or follows the song (Tempo); <strong>Sync</strong> locks its length to note values. Mod 1 starts bipolar, for pitch-like sweeps.</dd>
+    <dt>LFO 1 · 2</dt><dd><strong>Shape</strong> (sine, triangle, saw, square or random), <strong>Rate</strong> in Hz or, with <strong>SYNC</strong>, a <strong>Note</strong> value at the song's tempo. <strong>RETRIG</strong> starts it afresh with every note; off, every voice shares one free-running LFO.</dd>
+    <dt>Macros</dt><dd>Four knobs to route, automate and play: right-click one to rename it.</dd>
+    <dt>Matrix</dt><dd>Sixteen rows, each a source (Mod 1–3, the LFOs, velocity, note, mod wheel, aftertouch, pitch bend, two learnable CCs, a random value per note, the macros), an optional via, a destination, an <strong>Amt</strong>, an <strong>Offset</strong> (added even without a source) and a <strong>Smooth</strong> glide; <strong>+ ADD ROW</strong> shows another, right-click a row to insert, remove or clear it. <strong>LEARN</strong> beside it teaches CC A and CC B the next controller you move. Destinations are each layer's <strong>Pitch</strong> (up to ±24 semitones), <strong>Level</strong>, <strong>Pan</strong>, <strong>Pulse Width</strong> and <strong>FM Brightness</strong>, the <strong>SID Cutoff</strong> and <strong>Resonance</strong>, and the <strong>Volume</strong>.</dd>
+  </dl>
+  <p>Right-click a knob the matrix reaches (a layer's Level, Pan or PW, the SID filter, the Volume) to route a source to it straight away. Drawing an envelope works as in every Robotic Audio plugin: tools to draw, draw lines and curves, warp, lift and move; Shift-drag for an edit region; right-click for waveforms, windows and ready-made shapes; <kbd>Cmd</kbd> <kbd>Z</kbd> undoes.</p>
+</section>
+
+<section id="fm">
+  <h2>FM</h2>
+  <p class="sub">The YM2612's four operators, for one layer at a time.</p>
+  <figure>
+    <img src="images/fm.jpg" alt="The FM page">
+    <figcaption>Mega Drive Slap Bass: algorithm 1, the four operators in one stack, drawn above them (the lit one is heard).</figcaption>
+  </figure>
+  <p>Pick the layer with the <strong>LAYER</strong> buttons (a layer's <strong>OPERATORS</strong> button on the CHIP page brings you here too). <strong>Algorithm</strong> connects the four operators, from 1 (one long stack) to 8 (four plain sines); <strong>Feedback</strong> lets operator 1 modulate itself, from a pure sine through a buzz to noise. Each operator has:</p>
+  <dl class="params">
+    <dt>Multiple · Detune</dt><dd>Its frequency as a multiple of the note's (0 is a half; whole numbers keep it harmonic), and a few cents up or down to shimmer against the others.</dd>
+    <dt>Level</dt><dd>Its Total Level in 0.75 dB steps: on a modulator how bright, on a carrier how loud.</dd>
+    <dt>Attack · Decay 1 · Sustain · Decay 2 · Release</dt><dd>The operator's four-rate envelope: <strong>Attack</strong> 0 (never) to 31 (at once), <strong>Decay 1</strong> down to the <strong>Sustain</strong> level (in 3 dB steps), <strong>Decay 2</strong> on from there while the key is held, <strong>Release</strong> after it is let go.</dd>
+    <dt>Key Scale · AM</dt><dd>How much faster the envelope runs on higher notes, and whether the LFO's tremolo moves this operator.</dd>
+  </dl>
+  <p><strong>FM LFO</strong> (beside the layer buttons) is the chip's one LFO, shared by its channels: off, or one of its eight rates from 3.98 to 72.2 Hz. Each layer's <strong>Vibrato</strong> (up to 80 cents) and <strong>Tremolo</strong> (up to 11.8 dB) set how far it moves them.</p>
+</section>
+
+<section id="effects">
+  <h2>Effects</h2>
+  <p class="sub">Four slots after the chips, empty to start.</p>
+  <p>The chips played dry, so Bitstorm starts that way. Each slot has a <strong>menu</strong> (which effect, in alphabetical order), a <strong>power button</strong>, a <strong>Mix</strong> or <strong>Send</strong> knob and its most useful controls; the slots run left to right, and you drag a slot by its grip to move it with all its settings. The first effect in use opens its full editor under the rack, with a live display: drag its handles, double-click one to reset it, scroll on it for a second setting. A Crusher, a Delay and a Reverb 2 are a good start for a chip tune that sits in a mix.</p>
+</section>
+
+<section id="seq">
+  <h2>Arpeggiator and tracker</h2>
+  <p class="sub">The SEQ page: chip arpeggios, and songs written row by row.</p>
+  <figure>
+    <img src="images/seq.jpg" alt="The SEQ page">
+    <figcaption>Tracker Demo: the arpeggiator (off) on top, then the tracker with pattern 00, the order list and a column per layer, in Chip mode by MIDI channel.</figcaption>
+  </figure>
+  <h3>Arpeggiator</h3>
+  <dl class="params">
+    <dt>Power · Mode</dt><dd>The card's power square switches the arpeggiator on. Mode: Up, Down, Up-Down, Random, As Played (the order the keys went down) or Chord (the whole chord every step).</dd>
+    <dt>Timing · Rate · Frames</dt><dd><strong>Tempo</strong> steps on note values at the song's tempo (<strong>Rate</strong>); <strong>Frames</strong> steps every few of the chip's frames, as trackers arpeggiate (<strong>Frames</strong> 1 is the fastest).</dd>
+    <dt>Octaves · Gate · LATCH</dt><dd>How many octaves the pattern climbs (1–4), how long each step's note lasts (5–100 %), and whether it plays on after you let go, until a new chord.</dd>
+  </dl>
+  <h3>Tracker</h3>
+  <p>Sixteen patterns of up to 64 rows. Each pattern has a column per layer, and each cell a <strong>note</strong>, a <strong>volume</strong> (one hex digit, 0–F) and an <strong>effect</strong>. The buttons <strong>00</strong>–<strong>0F</strong> pick the pattern to show and edit, <strong>Length</strong> sets its rows, and <strong>Rows/Beat</strong> the speed (4 is 16th notes).</p>
+  <dl class="params">
+    <dt>Sequencer</dt><dd><strong>Song</strong> plays the <strong>Order</strong> list (the patterns in turn, by number: 00 01 00 02 …) with the host's transport; <strong>MIDI</strong> plays a pattern while its note (C1–D#2, pattern 00–0F) is held; <strong>Off</strong>.</dd>
+    <dt>Tempo · BPM · PLAY</dt><dd><strong>Host</strong> follows your DAW's tempo and song position; <strong>Own</strong> plays at <strong>BPM</strong> from the song's start. <strong>PLAY</strong> plays the song without the host's transport (the standalone has none); click again to stop.</dd>
+    <dt>REC</dt><dd>Step entry: MIDI notes you play go in at the cursor, which moves down a row. The computer keys edit and never play notes.</dd>
+    <dt>Effects</dt><dd><strong>0xy</strong> arpeggio (the note, +x, +y semitones in turn), <strong>1xx</strong> slide up, <strong>2xx</strong> slide down, <strong>Cxx</strong> volume. Type the three hex digits in the effect field.</dd>
+  </dl>
+  <p>Click a field to put the cursor there. In a note field, <strong>double-click</strong> to put in (or take out) the last note, drag up or down to change it a semitone at a time, <kbd>+</kbd> and <kbd>-</kbd> step it (with <kbd>Shift</kbd> an octave) and <kbd>.</kbd> writes a note-off. <kbd>Delete</kbd> clears the field. Right-click a cell for Note Off, Clear Cell and inserting or deleting rows.</p>
+  <div class="callout">The columns play on their own MIDI channels, so in <strong>Chip</strong> mode with <strong>Notes: MIDI Channel</strong> each column is one channel of the chip, exactly as a tracker plays.</div>
+</section>
+
+<section id="presets">
+  <h2>Presets</h2>
+  <p class="sub">Everything is saved: knobs, macros, wave tables, samples, the song.</p>
+  <p>Use the <strong>arrows</strong> to step through presets or click the name for the list. <strong>SAVE</strong> stores your sound as a user preset; the menu also has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. A <strong>*</strong> after the name means you've changed something since loading it. Twenty-two presets come with it, from <strong>C64 Sync Lead</strong> and <strong>6581 Growl Bass</strong> to <strong>Paula Choir</strong>, <strong>16-Bit Brass</strong>, <strong>Tracker Demo</strong> and <strong>NES Band (Chip Mode)</strong>.</p>
+  <p>User presets are XML files in <code>~/Library/Audio/Presets/Robotic Audio/Bitstorm</code> (macOS) or <code>Documents/Presets/Robotic Audio/Bitstorm</code> (Windows): easy to back up and share. A Paula layer playing your own file keeps the file's path, so keep the file where it is.</p>
+</section>
+
+<section id="ai">
+  <h2>Designing with Claude</h2>
+  <p class="sub">Describe a sound, or a tune; Claude sets Bitstorm to play it.</p>
+  <p>With your own Anthropic key, the <strong>&gt;_</strong> beside the presets opens a designer: describe what you want in your own words, such as <em>"a Game Boy lead with a fast arpeggio"</em> or <em>"make the Mario theme"</em>, and Claude sets the layers and their chips, the macros and wave tables, the matrix and its envelopes, the effects, and the song in the tracker, note for note. It is told what every part does and how it is set now, so it can design from scratch or change only what you ask for.</p>
+  <dl class="params">
+    <dt>Keys</dt><dd>Menu (three lines) &gt; <strong>AI...</strong>: your own Anthropic key, shared by every Robotic Audio plugin and kept on this computer, never in sessions or presets; each design uses your credits. Without a key nothing of this shows.</dd>
+    <dt>PATCH</dt><dd>A <strong>NEW SOUND</strong> from your words, or <strong>EDIT THIS</strong>: the patch as it is, changed as you ask.</dd>
+    <dt>REVERT · SAVE AS PRESET</dt><dd>Put the patch back as it was before Claude's last design, or keep the design as one of your presets.</dd>
+  </dl>
+  <div class="callout">This is optional: Bitstorm works the same without a key. The designer needs a network connection and is part of the macOS and Windows plugins.</div>
+</section>
+
+<section id="licence">
+  <h2>Licence</h2>
+  <p class="sub">Try it, activate it, move it to another computer.</p>
+  <p>Without a licence, Bitstorm runs as a demo: the sound drops out for 3 seconds every 45 seconds. Everything else works, saving included, so you can try it properly and keep what you made when you buy it. While it isn't licensed, the header shows <strong>DEMO</strong> (or <strong>TRIAL</strong> with the days left); click it, or choose <strong>Licence...</strong> in the menu, for the licence panel. It also opens by itself when the window opens in demo.</p>
+  <dl class="params">
+    <dt>ACTIVATE</dt><dd>Opens the shop in your browser. Sign in, choose your licence for this computer, and Bitstorm unlocks a few seconds later.</dd>
+    <dt>START TRIAL</dt><dd>Everything, free, for 14 days, once per computer. The header counts the days down.</dd>
+    <dt>BUY</dt><dd>The plugin's page on roboticaudio.com, with its Buy button.</dd>
+    <dt>SAVE DEVICE FILE / LOAD LICENCE FILE</dt><dd>For a computer without the internet: save the device file, take it to the shop's activation page on a computer that is online, and load the licence file it gives you back.</dd>
+    <dt>DEACTIVATE</dt><dd>Frees this computer's seat, so you can activate the licence on another one. <strong>CHECK NOW</strong> confirms the licence with the shop straight away.</dd>
+  </dl>
+  <div class="callout">One licence covers every format on the computer (AU, VST3 and the standalone app) in every host. It is confirmed online about once a day and keeps working offline for 30 days after the last check.</div>
+</section>
+
+<section id="shortcuts">
+  <h2>Shortcuts</h2>
+  <p class="sub">On Windows and Linux, read <kbd>Ctrl</kbd> for <kbd>Cmd</kbd>.</p>
+  <table>
+    <tr><th>Keys</th><th>Where</th><th>Does</th></tr>
+    <tr><td><kbd>Cmd</kbd> + drag</td><td>Knobs</td><td>fine adjustment</td></tr>
+    <tr><td>Double-click</td><td>Knobs</td><td>reset to default</td></tr>
+    <tr><td>Click · <kbd>Shift</kbd> + click the top strip</td><td>Macros</td><td>loop point · release point</td></tr>
+    <tr><td>Arrow keys (<kbd>Shift</kbd>: 4 rows)</td><td>Tracker</td><td>move the cursor</td></tr>
+    <tr><td><kbd>Tab</kbd> · <kbd>Shift</kbd> <kbd>Tab</kbd></td><td>Tracker</td><td>next · previous column</td></tr>
+    <tr><td><kbd>+</kbd> <kbd>-</kbd> (<kbd>Shift</kbd>: an octave)</td><td>Tracker note</td><td>change the note</td></tr>
+    <tr><td><kbd>.</kbd></td><td>Tracker note</td><td>note-off</td></tr>
+    <tr><td><kbd>0</kbd>–<kbd>F</kbd></td><td>Tracker volume, effect</td><td>enter a hex digit</td></tr>
+    <tr><td><kbd>Delete</kbd> · <kbd>Backspace</kbd></td><td>Tracker</td><td>clear the field</td></tr>
+    <tr><td><kbd>Shift</kbd> + drag · <kbd>Cmd</kbd> <kbd>Z</kbd></td><td>Envelopes</td><td>edit region · undo</td></tr>
+  </table>
+</section>
+
+<section id="recipes">
+  <h2>Sound recipes</h2>
+  <p class="sub">Starting points; then draw your own.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Chip chord</span><p>One NES pulse, Duty 25 %. Arp macro: 0 4 7, looped from the first step. Volume macro: 15 falling to 10, held. Play single notes: each is a major chord.</p></div>
+    <div class="card"><span class="tag">Sync lead</span><p>Layer 1 a SID saw, layer 2 a SID pulse an octave and a fifth up with Sync on. Mod 1 → L2 Pitch for the sweep, LFO 1 → L1 Pitch at 3 % for vibrato.</p></div>
+    <div class="card"><span class="tag">Buzzer bass</span><p>An AY layer, Mixer None, Envelope Saw Down, Rate Buzzer. The envelope runs at the note's pitch: the Spectrum's growling bass.</p></div>
+    <div class="card"><span class="tag">Chip drum</span><p>A SID layer. Wave macro: Noise for one frame, then Pulse. Pitch macro: a fast fall. Volume macro: 15 down to 0 in eight frames.</p></div>
+    <div class="card"><span class="tag">Filter sweep</span><p>A SID saw with Filter lit, the 6581, Mode LP, Reso 12. Mod 1 → SID Cutoff with a slow rise, Trigger Tempo.</p></div>
+    <div class="card"><span class="tag">FM slap</span><p>A YM2612 layer, Algorithm 1 Stack, Feedback 5. Operator 1 fast decay, Multiple 1; the carrier Multiple 1, Sustain 4. Velocity 80 %.</p></div>
+    <div class="card"><span class="tag">Four-channel tune</span><p>Mode Chip, Notes MIDI Channel; layers: NES pulse lead, NES pulse harmony, NES triangle bass, NES noise drums. Sequencer Song, one column each.</p></div>
+    <div class="card"><span class="tag">Amiga strings</span><p>Paula, Sample Chip Choir, two layers detuned ±8 cents and panned apart, Amiga A500. Volume macro: a slow rise, held. Reverb 2 after.</p></div>
+  </div>
+</section>
+
+<section id="specs">
+  <h2>Specifications</h2>
+  <p class="sub">The facts.</p>
+  <table>
+    <tr><th>Type</th><td>Chip-tune synthesizer (instrument plugin)</td></tr>
+    <tr><th>Chips</th><td>SID (6581, 8580), NES 2A03, Game Boy, AY-3-8910 / YM2149, POKEY, Paula, YM2612</td></tr>
+    <tr><th>Voices</th><td>Poly: up to 16, four layers each; Chip: one voice, a channel per layer</td></tr>
+    <tr><th>Rendering</th><td>Each chip at twice the sample rate, band-limited steps, a half-band filter down</td></tr>
+    <tr><th>Modulation</th><td>3 drawn envelopes, 2 LFOs, MIDI, 4 macros, 16-slot matrix</td></tr>
+    <tr><th>Sequencing</th><td>Arpeggiator; tracker of 16 patterns × 64 rows, order list or MIDI-triggered</td></tr>
+    <tr><th>Effects</th><td>4 slots</td></tr>
+    <tr><th>Latency</th><td>None</td></tr>
+    <tr><th>Formats</th><td>AU, VST3 and Standalone (macOS); VST3 and Standalone (Windows, Linux)</td></tr>
+  </table>
+</section>
+
+<footer>
+  <div class="sig">Robotic Audio</div>
+  Bitstorm was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
+  Fonts: Big Shoulders Display and Inter, under the SIL Open Font License. The chips are emulated from their documented behaviour; no original code or ROMs are used.
+</footer>
+
+</div>
+</main>
+
+<script>
+// Highlight the section being read in the contents
+const links = [...document.querySelectorAll("nav.toc a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+sections.forEach(s => s && observer.observe(s));
+</script>
+</body>
+</html>
