@@ -26,6 +26,7 @@ stats:
   - 23 effects in 4 slots
   - 8 macros
   - XY performance pad
+  - Step arpeggiator, 13 modes
 
 features:
   - title: Draw the movement
@@ -52,12 +53,14 @@ features:
     text: One voice with legato and portamento for basses and leads, or up to 16 for chords, each note with its own envelopes and modulation.
   - title: Effects rack
     text: Four slots in series and twenty-three effects, from Overkill, OTT, distortion and a stacked drive to delays, reverbs, a gate, a frequency shifter, a tape stop, and the whole of Event Horizon and CyberPump, each with its own editor and live display.
+  - title: Step arpeggiator
+    text: Hold a chord and it plays as a pattern before the voices hear it, in thirteen modes over up to four octaves, with sixteen steps of velocity, gate, octave, pitch, ratchets and chance, ties and rests, locked to the song's grid.
   - title: Macros and XY pad
     text: Eight macro knobs and an XY pad for playing a patch with one hand. Right-click any control to route a macro to it.
   - title: Your look
     text: Six themes to dress it in, Cyberpunk, Modern, Alien, Professional, Retro or Vintage, in any colour, with the background and the text a step brighter if you like.
   - title: Presets with everything in them
-    text: Factory presets to start from, and your own saved with every setting and every drawing.
+    text: Over two hundred factory presets in folders, basses, wobbles, Reese and neuro, leads, pads, FX and textures, chip and trance, and your own saved with every setting and every drawing.
 
 # Audio demos: put the files in assets/audio/line-runner/ and list them here.
 #   - title: Wobble
