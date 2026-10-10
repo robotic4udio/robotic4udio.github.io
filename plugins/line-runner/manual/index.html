@@ -173,6 +173,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <li><a href="#aggressor">Aggressor</a></li>
     <li><a href="#filter">Filter</a></li>
     <li><a href="#voice">Voice</a></li>
+    <li><a href="#arp">Arpeggiator</a></li>
     <li><a href="#effects">Effects</a></li>
     <li><a href="#macros">Macros</a></li>
     <li><a href="#presets">Presets</a></li>
@@ -201,6 +202,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <li>23 effects · 4 slots</li>
     <li>8 macros</li>
     <li>XY performance pad</li>
+    <li>Step arpeggiator · 13 modes · ratchets, ties, chance</li>
     <li>AU · VST3 · Standalone</li>
   </ul>
   <figure>
@@ -513,6 +515,36 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <p>In <strong>Mono</strong>, the last note wins and each new note restarts the envelopes (unless their trigger is Legato or Tempo). With more voices each note starts its own envelopes.</p>
 </section>
 
+<section id="arp">
+  <h2>Arpeggiator</h2>
+  <p class="sub">Hold a chord, hear a pattern.</p>
+  <img class="inline" src="images/arp.jpg" alt="The Arp tab: the steps' velocity lane, with accents, a rest and two ties">
+  <p>Switch it on with <strong>ARP</strong> on the Voice card, or the power button on the Modulation card's <strong>Arp</strong> tab. The keys you hold then play one after another as a pattern instead of as a chord, before anything else in Line Runner hears them, so every note still gets its own envelopes, glide and modulation. While the host plays, the steps lock to the song's grid (a key played a moment late still lands on the step it was meant for); stopped, the pattern starts the moment you play.</p>
+  <dl class="params">
+    <dt>Mode</dt><dd>The order the notes play in. <strong>Up</strong>, <strong>Down</strong>; <strong>Up-Down</strong> and <strong>Down-Up</strong> turn round without repeating the top and bottom notes, <strong>Up &amp; Down</strong> repeats them; <strong>Converge</strong> goes from the outside in, <strong>Diverge</strong> from the middle out; <strong>Pinky</strong> climbs with the highest note between every other, <strong>Thumb</strong> with the lowest; <strong>As Played</strong> keeps the order your keys went down; <strong>Random</strong> never plays the same note twice running; <strong>Walk</strong> moves a step up or down at random; <strong>Chord</strong> plays every key at once on every step.</dd>
+    <dt>Rate · Feel</dt><dd>How long each step is, as a note value at the song's tempo (120 BPM without a host), <strong>Even</strong>, <strong>Dotted</strong> or <strong>Triplet</strong>. <span class="range">1/64 – 1/1</span></dd>
+    <dt>Octaves</dt><dd>The pattern runs through the notes, then again an octave up, and so on, before it starts over. <span class="range">1 – 4</span></dd>
+    <dt>Gate</dt><dd>How long each note lasts, as a share of its step (times the step's own Gate). Over 100 % the notes overlap: legato, and in Mono the voice slides from note to note at the Portamento speed. <span class="range">5 – 200 %</span></dd>
+    <dt>Swing</dt><dd>Every second step comes late, up to a hard 3:1 shuffle; about 33 % is a triplet swing. <span class="range">0 – 100 %</span></dd>
+    <dt>Steps</dt><dd>How many of the sixteen steps play before the pattern repeats; or drag the bar after the last step. An odd number of steps against three or four notes makes a pattern that shifts against itself. <span class="range">1 – 16</span></dd>
+    <dt>Key Vel</dt><dd>How much your playing counts. 100 %: as hard as you play, shaped by the steps' Velocity; 0 %: the steps' Velocity alone. <span class="range">0 – 100 %</span></dd>
+    <dt>Humanize</dt><dd>Each step a little late (up to 12 ms) and a little softer or louder, at random. <span class="range">0 – 100 %</span></dd>
+    <dt>Latch</dt><dd>The pattern keeps playing after you let go, until you play a new chord; keys added while others are held join it.</dd>
+    <dt>Restart</dt><dd>Where the steps count from. <strong>Song</strong>: the song's bars, so step 1 always falls on the bar while the host plays. <strong>New Chord</strong> (default): a chord played after every key was let go starts the steps and the notes from the beginning. <strong>Every Key</strong>: every key does.</dd>
+  </dl>
+  <h3>The steps</h3>
+  <p>Each step has a value in six lanes; the list on the left picks the lane shown (a dot marks the lanes you've changed). Drag across the lane to draw it, double-click a step for its default.</p>
+  <dl class="params">
+    <dt>VEL</dt><dd>How hard the step plays: accents and ghost notes.</dd>
+    <dt>GATE</dt><dd>How much of the step its note lasts (times the Gate knob): short for plucks and stabs.</dd>
+    <dt>OCT · PITCH</dt><dd>Move the step's note up or down by octaves (±2) or semitones (±12; the faint lines mark fifths and octaves).</dd>
+    <dt>RATCH</dt><dd>The step plays 1 to 4 times, evenly across it: rolls and stutters.</dd>
+    <dt>CHANCE</dt><dd>The probability the step plays at all. Under 100 % it skips now and then, so no two bars are alike.</dd>
+  </dl>
+  <p>Above the lane, click a step's number to make it rest (or play again), or drag along the numbers to do several; while the pattern plays each step shows the note it played. Under the lane, click below a step to <strong>tie</strong> it into the next: the next note starts before this one ends, so a mono voice slides into it, and a tie onto the same note simply holds it. <strong>PATTERNS</strong> loads a ready-made set of steps (Accents, Gallop, Trance Gate, Acid Slides, Ratchet Roll, Euclid 5 and more), <strong>RANDOM</strong> rolls new ones, and <strong>…</strong> or a right-click resets, shifts, reverses or rolls a single lane or the whole pattern. <kbd>Cmd</kbd> <kbd>Z</kbd> undoes. The steps are saved with presets and sessions.</p>
+  <div class="callout"><strong>Acid in one move:</strong> Voices Mono, Portamento 60 ms, Arp on with PATTERNS → Acid Slides, Rate 1/16, Octaves 2, and a resonant Diode filter. Hold a single note.</div>
+</section>
+
 <section id="effects">
   <h2>Effects</h2>
   <p class="sub">Four slots in series, twenty-three effects (Event Horizon and CyberPump among them), each with its own editor.</p>
@@ -629,6 +661,8 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <tr><td><kbd>Cmd</kbd> on a line's ring</td><td>Envelope</td><td>S-curve</td></tr>
     <tr><td>Scroll wheel</td><td>Display handles</td><td>a second setting (Q, ratio, morph…)</td></tr>
     <tr><td>Double-click</td><td>XY pad</td><td>centre the dot</td></tr>
+    <tr><td>Double-click</td><td>Arp steps</td><td>the step back to its default</td></tr>
+    <tr><td><kbd>Cmd</kbd> <kbd>Z</kbd> · <kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>Z</kbd></td><td>Arp steps</td><td>undo · redo</td></tr>
   </table>
 </section>
 

@@ -21,7 +21,7 @@ stats:
   - 4 effect slots
   - 22 effects
   - Every setting can pump
-  - 74 factory presets
+  - 173 factory presets
 
 features:
   - title: The pump
@@ -38,8 +38,8 @@ features:
     text: Filter, Drive (four stacked stages, oversampled), Distortion, Crusher, Ring Mod, Freq Shift, Tape Stop, Pan, Delay, two reverbs, Chorus, Flanger, Phaser, Pitch, Width, EQ, Compressor, Overkill, OTT, Gate and the whole of Event Horizon, each with its own live display.
   - title: Drag to reorder
     text: Drag a slot's tab onto another to change the order; its settings and lanes go with it.
-  - title: Seventy-four presets
-    text: From Four On The Floor and Deep House Pump to Wub Machine, Vinyl Brake Beat, Laser Ping Pong and Breathing Cathedral, in groups for house, EDM, bass, techno, ambient, lo-fi, glitch, guitars and vocals.
+  - title: 173 presets
+    text: From Four On The Floor and Deep House Pump to Wub Machine, Vinyl Brake Beat, Laser Ping Pong and Breathing Cathedral, in eighteen banks for classic pumps, gates, filters, drive, echoes, motion, house, EDM, bass music, techno, ambient, lo-fi, glitch, guitars and keys, vocals, triggered pumps and the sidechain.
 
 # Audio demos: put the files in assets/audio/cyberpump/ and list them here.
 demos: []

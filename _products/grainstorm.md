@@ -18,7 +18,7 @@ trial_url:
 stats:
   - Up to 16 voices
   - Up to 64 grains per voice
-  - 5 built-in sources, or your own samples
+  - 5 built-in sources, 20 factory samples, or your own samples
   - Drawn grain window
   - 4 drawn envelopes, 8-slot matrix
   - 14 filter types

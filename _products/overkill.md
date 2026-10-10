@@ -21,7 +21,7 @@ stats:
   - Live spectrum, in and out
   - Drag thresholds and splits
   - 4× oversampled drive
-  - 11 factory presets
+  - 23 factory presets
 
 features:
   - title: Down and up at once
@@ -37,7 +37,7 @@ features:
   - title: Drive on top
     text: Saturation after the bands are added up, at four times the sample rate so it doesn't alias, to round off and thicken what they push out.
   - title: Presets to start from
-    text: Eleven factory presets, from Gentle Lift and Vocal Presence to Drum Bus Smash, Fairy Dust and Total Overkill.
+    text: Twenty-three factory presets, from Gentle Lift and Vocal Presence to Drum Bus Smash, Fairy Dust and Total Overkill, with folders made for drums, bass, vocals, synths, effects and the mix bus.
 
 # Audio demos: put the files in assets/audio/overkill/ and list them here.
 demos: []
