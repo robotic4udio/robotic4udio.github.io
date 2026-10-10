@@ -174,6 +174,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <li><a href="#fm">FM</a></li>
     <li><a href="#effects">Effects</a></li>
     <li><a href="#seq">Arpeggiator and tracker</a></li>
+    <li><a href="#instruments">Instruments</a></li>
     <li><a href="#presets">Presets</a></li>
     <li><a href="#ai">Designing with Claude</a></li>
     <li><a href="#licence">Licence</a></li>
@@ -196,7 +197,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <li>Chip mode: a channel per layer</li>
     <li>Tracker macros per layer</li>
     <li>3 drawn envelopes, 2 LFOs, 16-slot matrix</li>
-    <li>Arpeggiator and a 16-pattern tracker</li>
+    <li>Arpeggiator and a 64-pattern tracker with 32 instruments</li>
     <li>4 effect slots</li>
     <li>AU · VST3 · Standalone</li>
   </ul>
@@ -222,7 +223,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
 
 <section id="overview">
   <h2>The window</h2>
-  <p class="sub">A header, a row of settings beside the page tabs, and six pages.</p>
+  <p class="sub">A header, a row of settings beside the page tabs, and seven pages.</p>
   <dl class="params">
     <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the title for version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>. Until Bitstorm is licensed, a <strong>DEMO</strong> or <strong>TRIAL</strong> chip beside the menu opens the <a href="#licence">licence</a>.</dd>
     <dt>Beside the tabs</dt><dd><strong>Clock</strong>, <strong>Frames</strong>, <strong>Mode</strong> and <strong>Notes</strong>: the machine every page plays on (see <a href="#global">global</a> and <a href="#modes">modes</a>).</dd>
@@ -232,6 +233,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <dt>FM</dt><dd>The YM2612's four operators for the layer chosen above them.</dd>
     <dt>FX</dt><dd>Four effect slots after the chips, and the selected effect's editor.</dd>
     <dt>SEQ</dt><dd>The arpeggiator and the tracker.</dd>
+    <dt>INSTR</dt><dd>The tracker's 32 <a href="#instruments">instruments</a>: sounds a song can switch between note by note.</dd>
   </dl>
   <p>The window can be resized from its bottom-right corner. Its palette follows layer 1's chip: C64 blue for the SID, NES grey, Game Boy green, Spectrum black for the AY, Atari blue for the POKEY, Workbench blue for Paula and an arcade cabinet for the YM2612.</p>
   <h3>Using the controls</h3>
@@ -394,7 +396,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <p class="sub">The SEQ page: chip arpeggios, and songs written row by row.</p>
   <figure>
     <img src="images/seq.jpg" alt="The SEQ page">
-    <figcaption>Tracker Demo: the arpeggiator (off) on top, then the tracker with pattern 00, the order list and a column per layer, in Chip mode by MIDI channel.</figcaption>
+    <figcaption>A C64 tune playing in Chip mode by MIDI channel: the arpeggiator (off) on top, then the tracker with the pattern banks and pattern 00, the order list and a column per layer. In layer 3's column the bass (instrument 05) and the hats (08) take turns; the playing row is lit.</figcaption>
   </figure>
   <h3>Arpeggiator</h3>
   <dl class="params">
@@ -403,28 +405,47 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <dt>Octaves · Gate · LATCH</dt><dd>How many octaves the pattern climbs (1–4), how long each step's note lasts (5–100 %), and whether it plays on after you let go, until a new chord.</dd>
   </dl>
   <h3>Tracker</h3>
-  <p>Sixteen patterns of up to 64 rows. Each pattern has a column per layer, and each cell a <strong>note</strong>, a <strong>volume</strong> (one hex digit, 0–F) and an <strong>effect</strong>. The buttons <strong>00</strong>–<strong>0F</strong> pick the pattern to show and edit, <strong>Length</strong> sets its rows, and <strong>Rows/Beat</strong> the speed (4 is 16th notes).</p>
+  <p>Sixty-four patterns of up to 64 rows. Each pattern has a column per layer, and each cell a <strong>note</strong>, an <strong>instrument</strong> (two digits, see <a href="#instruments">instruments</a>), a <strong>volume</strong> (one hex digit, 0–F) and an <strong>effect</strong>: <code>C-4 01 F 037</code>. <strong>00+</strong>, <strong>10+</strong>, <strong>20+</strong> and <strong>30+</strong> pick a bank of sixteen patterns and the buttons beside them the pattern to show and edit; <strong>Length</strong> sets its rows, and <strong>Rows/Beat</strong> the speed (4 is 16th notes).</p>
   <dl class="params">
-    <dt>Sequencer</dt><dd><strong>Song</strong> plays the <strong>Order</strong> list (the patterns in turn, by number: 00 01 00 02 …) with the host's transport; <strong>MIDI</strong> plays a pattern while its note (C1–D#2, pattern 00–0F) is held; <strong>Off</strong>.</dd>
+    <dt>Sequencer</dt><dd><strong>Song</strong> plays the <strong>Order</strong> list (the patterns in turn, by number: 00 01 00 02 …, up to 256 of them) with the host's transport; <strong>MIDI</strong> plays a pattern while its note (C1–D#2, pattern 00–0F) is held; <strong>Off</strong>.</dd>
     <dt>Tempo · BPM · PLAY</dt><dd><strong>Host</strong> follows your DAW's tempo and song position; <strong>Own</strong> plays at <strong>BPM</strong> from the song's start. <strong>PLAY</strong> plays the song without the host's transport (the standalone has none); click again to stop.</dd>
     <dt>REC</dt><dd>Step entry: MIDI notes you play go in at the cursor, which moves down a row. The computer keys edit and never play notes.</dd>
     <dt>Effects</dt><dd><strong>0xy</strong> arpeggio (the note, +x, +y semitones in turn), <strong>1xx</strong> slide up, <strong>2xx</strong> slide down, <strong>Cxx</strong> volume. Type the three hex digits in the effect field.</dd>
   </dl>
-  <p>Click a field to put the cursor there. In a note field, <strong>double-click</strong> to put in (or take out) the last note, drag up or down to change it a semitone at a time, <kbd>+</kbd> and <kbd>-</kbd> step it (with <kbd>Shift</kbd> an octave) and <kbd>.</kbd> writes a note-off. <kbd>Delete</kbd> clears the field. Right-click a cell for Note Off, Clear Cell and inserting or deleting rows.</p>
+  <p>Click a field to put the cursor there. In a note field, <strong>double-click</strong> to put in (or take out) the last note, drag up or down to change it a semitone at a time, <kbd>+</kbd> and <kbd>-</kbd> step it (with <kbd>Shift</kbd> an octave) and <kbd>.</kbd> writes a note-off. In an instrument field type two digits (<kbd>0</kbd><kbd>5</kbd> for instrument 05); notes you put in afterwards take that instrument. <kbd>Delete</kbd> clears the field. Right-click a cell for Note Off, Clear Cell, an Instrument menu and inserting or deleting rows.</p>
   <div class="callout">The columns play on their own MIDI channels, so in <strong>Chip</strong> mode with <strong>Notes: MIDI Channel</strong> each column is one channel of the chip, exactly as a tracker plays.</div>
+</section>
+
+<section id="instruments">
+  <h2>Instruments</h2>
+  <p class="sub">The INSTR page: up to 32 sounds a song switches between, note by note.</p>
+  <figure>
+    <img src="images/instruments.jpg" alt="The INSTR page">
+    <figcaption>A C64 tune's eight instruments, all SID: the list on the left, the selected Kick's chip channel in the middle, and its macros on the right (a pitch drop, and a noise frame then a pulse in Wave: the classic chip drum).</figcaption>
+  </figure>
+  <p>Without instruments every column of the tracker plays its layer's sound for the whole song. An instrument is one chip channel's sound, set exactly as a layer is (its chip and that chip's controls, tuning, level and pan) with its own four macros and Game Boy wave. A cell that names an instrument plays it, and its column keeps playing it for the notes after, until another cell names a different one; <strong>00</strong> goes back to the layer's own sound, which is also what every column plays from the song's start. So one column can play the bass with the kick, snare and hats between its notes, as the C64's composers did to fit a whole band into three voices, and a lead can change for the chorus.</p>
+  <dl class="params">
+    <dt>The list</dt><dd>The 32 instruments by number, name and chip. Click one to edit it; an empty one becomes an instrument as soon as you turn one of its controls or draw a macro.</dd>
+    <dt>NEW · FROM LAYER</dt><dd>A new instrument at the defaults, or made from one of the four layers as it is set now (its macros too), in the selected slot if it's empty, otherwise in the first empty one.</dd>
+    <dt>COPY TO · CLEAR</dt><dd>Copy the selected instrument into another slot, or empty it (cells that name it then play the layer's own sound).</dd>
+    <dt>NAME · PLAY C-4</dt><dd>The instrument's name, and a button to hold to hear it.</dd>
+    <dt>Instrument</dt><dd>Its chip channel, as a layer's controls. A YM2612 instrument shows <strong>MACROS</strong> and <strong>OPERATORS</strong> tabs above the macros for its four operators.</dd>
+    <dt>Macros</dt><dd>Its Volume, Arp, Pitch and fourth macro (and the Game Boy wave table), as on the MACROS page.</dd>
+  </dl>
+  <p>In <strong>Chip</strong> mode an instrument plays on the channel its note takes, even a layer that is switched off. In <strong>Poly</strong> mode it plays on its own, in place of the stacked layers. Instruments reach the chips as MIDI program changes on each column's channel (program 1–32, 0 for the layer's sound), so you can also play them from a keyboard: send program 5 on channel 1 and the notes on channel 1 play instrument 05. Paula instruments play the built-in samples; a file of your own plays only on a layer.</p>
 </section>
 
 <section id="presets">
   <h2>Presets</h2>
   <p class="sub">Everything is saved: knobs, macros, wave tables, samples, the song.</p>
-  <p>Use the <strong>arrows</strong> to step through presets or click the name for the list. <strong>SAVE</strong> stores your sound as a user preset; the menu also has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. A <strong>*</strong> after the name means you've changed something since loading it. Twenty-two presets come with it, from <strong>C64 Sync Lead</strong> and <strong>6581 Growl Bass</strong> to <strong>Paula Choir</strong>, <strong>16-Bit Brass</strong>, <strong>Tracker Demo</strong> and <strong>NES Band (Chip Mode)</strong>.</p>
+  <p>Use the <strong>arrows</strong> to step through presets or click the name for the list. <strong>SAVE</strong> stores your sound as a user preset; the menu also has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. A <strong>*</strong> after the name means you've changed something since loading it. Over three hundred presets come with it, in the list's folders <strong>Lead</strong>, <strong>Bass</strong>, <strong>Arp</strong>, <strong>Drums</strong>, <strong>FX</strong> and <strong>Game</strong> (forty each) and <strong>Tracker</strong> (forty-five tunes that play from the tracker), and more at the top of the list, from <strong>C64 Sync Lead</strong> and <strong>6581 Growl Bass</strong> to <strong>Paula Choir</strong>, <strong>16-Bit Brass</strong>, <strong>Tracker Demo</strong> and <strong>NES Band (Chip Mode)</strong>.</p>
   <p>User presets are XML files in <code>~/Library/Audio/Presets/Robotic Audio/Bitstorm</code> (macOS) or <code>Documents/Presets/Robotic Audio/Bitstorm</code> (Windows): easy to back up and share. A Paula layer playing your own file keeps the file's path, so keep the file where it is.</p>
 </section>
 
 <section id="ai">
   <h2>Designing with Claude</h2>
   <p class="sub">Describe a sound, or a tune; Claude sets Bitstorm to play it.</p>
-  <p>With your own Anthropic key, the <strong>&gt;_</strong> beside the presets opens a designer: describe what you want in your own words, such as <em>"a Game Boy lead with a fast arpeggio"</em> or <em>"make the Mario theme"</em>, and Claude sets the layers and their chips, the macros and wave tables, the matrix and its envelopes, the effects, and the song in the tracker, note for note. It is told what every part does and how it is set now, so it can design from scratch or change only what you ask for.</p>
+  <p>With your own Anthropic key, the <strong>&gt;_</strong> beside the presets opens a designer: describe what you want in your own words, such as <em>"a Game Boy lead with a fast arpeggio"</em> or <em>"make the Mario theme"</em>, and Claude sets the layers and their chips, the macros and wave tables, the matrix and its envelopes, the effects, and the song in the tracker, note for note, with a set of instruments for it (a lead, a bass, arpeggio chords, a drum kit) that the song switches between. It is told what every part does and how it is set now, so it can design from scratch or change only what you ask for.</p>
   <dl class="params">
     <dt>Keys</dt><dd>Menu (three lines) &gt; <strong>AI...</strong>: your own Anthropic key, shared by every Robotic Audio plugin and kept on this computer, never in sessions or presets; each design uses your credits. Without a key nothing of this shows.</dd>
     <dt>PATCH</dt><dd>A <strong>NEW SOUND</strong> from your words, or <strong>EDIT THIS</strong>: the patch as it is, changed as you ask.</dd>
@@ -459,6 +480,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <tr><td><kbd>Tab</kbd> · <kbd>Shift</kbd> <kbd>Tab</kbd></td><td>Tracker</td><td>next · previous column</td></tr>
     <tr><td><kbd>+</kbd> <kbd>-</kbd> (<kbd>Shift</kbd>: an octave)</td><td>Tracker note</td><td>change the note</td></tr>
     <tr><td><kbd>.</kbd></td><td>Tracker note</td><td>note-off</td></tr>
+    <tr><td><kbd>0</kbd>–<kbd>9</kbd></td><td>Tracker instrument</td><td>two digits pick an instrument (00 the layer's own sound)</td></tr>
     <tr><td><kbd>0</kbd>–<kbd>F</kbd></td><td>Tracker volume, effect</td><td>enter a hex digit</td></tr>
     <tr><td><kbd>Delete</kbd> · <kbd>Backspace</kbd></td><td>Tracker</td><td>clear the field</td></tr>
     <tr><td><kbd>Shift</kbd> + drag · <kbd>Cmd</kbd> <kbd>Z</kbd></td><td>Envelopes</td><td>edit region · undo</td></tr>
@@ -489,7 +511,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <tr><th>Voices</th><td>Poly: up to 16, four layers each; Chip: one voice, a channel per layer</td></tr>
     <tr><th>Rendering</th><td>Each chip at twice the sample rate, band-limited steps, a half-band filter down</td></tr>
     <tr><th>Modulation</th><td>3 drawn envelopes, 2 LFOs, MIDI, 4 macros, 16-slot matrix</td></tr>
-    <tr><th>Sequencing</th><td>Arpeggiator; tracker of 16 patterns × 64 rows, order list or MIDI-triggered</td></tr>
+    <tr><th>Sequencing</th><td>Arpeggiator; tracker of 64 patterns × 64 rows with 32 instruments, an order list of up to 256 patterns or MIDI-triggered</td></tr>
     <tr><th>Effects</th><td>4 slots</td></tr>
     <tr><th>Latency</th><td>None</td></tr>
     <tr><th>Formats</th><td>AU, VST3 and Standalone (macOS); VST3 and Standalone (Windows, Linux)</td></tr>

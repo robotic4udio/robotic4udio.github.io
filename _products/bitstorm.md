@@ -21,7 +21,7 @@ stats:
   - Chip mode, a channel per layer
   - Tracker macros per layer
   - 3 drawn envelopes, 2 LFOs, 16-slot matrix
-  - Arpeggiator and a 16-pattern tracker
+  - Arpeggiator and a 64-pattern tracker with 32 instruments
   - 4 effect slots
 
 features:
@@ -36,11 +36,13 @@ features:
   - title: Modulation
     text: Three drawn envelopes, two LFOs, MIDI and four macro knobs through a 16-slot matrix, into each layer's pitch, level, pan, pulse width and FM brightness and the SID filter.
   - title: A tracker inside
-    text: Sixteen patterns with a column per layer, notes, volumes and effects (arpeggio, slides, volume), played as a song with your DAW or a pattern per MIDI note, and an arpeggiator that steps in tempo or in the chip's frames.
+    text: Sixty-four patterns with a column per layer, notes, instruments, volumes and effects (arpeggio, slides, volume), chained into a song of up to 256 patterns that plays with your DAW, or a pattern per MIDI note, and an arpeggiator that steps in tempo or in the chip's frames.
+  - title: Instruments
+    text: Up to 32 sounds a song switches between note by note, each a chip channel with its own macros, so one column plays the bass with the drums between its notes, as the C64's composers fitted a band into three voices.
   - title: Dressed for each machine
     text: The window takes the colours of layer 1's machine, the C64's blue, the Game Boy's greens, the NES's grey, the arcade's black.
   - title: Presets from every machine
-    text: From C64 Sync Lead, 6581 Growl Bass and Overworld Square to Paula Choir, Mega Drive Slap Bass, Tracker Demo and NES Band.
+    text: Over three hundred, in Lead, Bass, Arp, Drums, FX, Game and Tracker folders, from C64 Sync Lead, 6581 Growl Bass and Overworld Square to Paula Choir, Mega Drive Slap Bass, Tracker Demo and NES Band.
 
 demos: []
 
@@ -50,8 +52,9 @@ screenshots:
   - file: /plugins/bitstorm/manual/images/macros.jpg
     caption: Tracker macros and the Game Boy's wave table
   - file: /plugins/bitstorm/manual/images/seq.jpg
-    caption: The tracker, a column per layer
+    caption: The tracker, a column per layer, the bass and hats taking turns on one
 thumbnails:
+  - { file: /plugins/bitstorm/manual/images/instruments.jpg, caption: Instruments }
   - { file: /plugins/bitstorm/manual/images/fm.jpg, caption: FM operators }
   - { file: /plugins/bitstorm/manual/images/mod.jpg, caption: Modulation }
 
@@ -67,7 +70,7 @@ specs:
   - name: Windows and Linux
     value: VST3 and Standalone
   - name: Sound design with Claude
-    value: "Optional, with your own Anthropic key: describe a sound or a tune and Claude sets Bitstorm to play it, the song in the tracker included (macOS and Windows)"
+    value: "Optional, with your own Anthropic key: describe a sound or a tune and Claude sets Bitstorm to play it, the song in the tracker and its instruments included (macOS and Windows)"
   - name: Status
     value: In development, version 0.1
   - name: Price

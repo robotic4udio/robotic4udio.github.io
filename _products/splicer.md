@@ -37,7 +37,7 @@ features:
   - title: Play it live
     text: Trigger gestures from buttons or MIDI notes, and switch patterns from MIDI at the next bar line.
   - title: Presets to start from
-    text: Jungle Roller, SQ Fill Frenzy, Tape Ghost, Bus Throws, Lo-Fi Stutter, Melodic Smear, Hands On, Total Chaos and a demo song.
+    text: Jungle Roller, SQ Fill Frenzy, Tape Ghost, Bus Throws, Lo-Fi Stutter, Melodic Smear, Hands On, Total Chaos and a demo song, and fifty whole song arrangements in eight banks, from breaks and jungle to dub throws and ambient.
 
 # Audio demos: put the files in assets/audio/splicer/ and list them here.
 demos: []

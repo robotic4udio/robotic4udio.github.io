@@ -229,7 +229,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <ul class="facts">
     <li>Up to 16 voices</li>
     <li>Up to 64 grains per voice</li>
-    <li>5 built-in sources, or your own samples</li>
+    <li>5 built-in sources, 20 factory samples, or your own samples</li>
     <li>Drawn grain window</li>
     <li>4 drawn envelopes · 8-slot matrix</li>
     <li>14 filter types</li>
@@ -303,7 +303,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
 <section id="source">
   <h2>Source</h2>
   <p class="sub">The sound the grains are made of.</p>
-  <p>The menu lists the <strong>Built-in</strong> sources, made by Grainstorm and tuned to C4: <strong>Glass Choir</strong>, <strong>Metal Bells</strong>, <strong>Breath</strong>, <strong>Pluck Arp</strong> and <strong>Drone Sweep</strong>. Under <strong>Your Samples</strong> are the files in your Samples folder (next to Grainstorm's presets), and at the end <strong>Show Samples Folder</strong>.</p>
+  <p>The menu lists the <strong>Built-in</strong> sources, made by Grainstorm and tuned to C4: <strong>Glass Choir</strong>, <strong>Metal Bells</strong>, <strong>Breath</strong>, <strong>Pluck Arp</strong> and <strong>Drone Sweep</strong>. Under <strong>Factory</strong> are the samples that come with Grainstorm, in a submenu each: <strong>Pads</strong> (cello, choir, flute, glass harmonica, string machine, horns, electric piano, harmonium, bowed vibraphone, handpan) and <strong>Textures</strong> (bowed metal, waves, rain, whispers, ice, an engine room, insects, wind in wires, servos, singing bowls); the installer puts them next to the plugin. Under <strong>Your Samples</strong> are the files in your Samples folder (next to Grainstorm's presets), and at the end <strong>Show Samples Folder</strong>.</p>
   <p><strong>LOAD</strong> (or dropping a file on the waveform) takes a WAV, AIFF, FLAC, OGG or MP3, up to two minutes, and copies it into your Samples folder, so sessions and presets find it again.</p>
   <p>With an AI key, the <strong>&gt;_</strong> beside <strong>LOAD</strong> opens the <a href="#ai">designer</a>: it can make a new source from a description, and set the patch to match.</p>
   <dl class="params">
@@ -439,7 +439,28 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <tr><td>Drone Scanner</td><td>Long grains riding along the drone at its own speed, an octave down, smeared wide.</td></tr>
     <tr><td>Reverse Rain</td><td>Every grain backwards, long and sparse, with a window that swells and cuts off.</td></tr>
     <tr><td>XY Explorer</td><td>The XY pad plays the cloud: X moves through the choir, Y scatters the pitch and shortens the grains.</td></tr>
+    <tr><td>Ahh Choir</td><td>Pads: Soft female voices smoothed into a wide, gently detuned choir pad; the mod wheel scatters the voices.</td></tr>
+    <tr><td>Bowed Vibes</td><td>Pads: A bowed vibraphone in long octave grains with a slow motor tremolo and a deep hall.</td></tr>
+    <tr><td>Cello Haze</td><td>Pads: A bowed cello note frozen into a warm, breathing string pad; the mod wheel blurs it into a haze.</td></tr>
+    <tr><td>Flute Mist</td><td>Pads: A breathy flute spread into airy octave grains with dotted echoes.</td></tr>
+    <tr><td>Glass Organ</td><td>Pads: A glass harmonica turned into a crystalline organ, octave grains and a shimmer above.</td></tr>
+    <tr><td>Handpan Halo</td><td>Pads: A handpan's ring smeared into a warm halo with backwards grains and echoes; the mod wheel lets it travel.</td></tr>
+    <tr><td>Horn Swell</td><td>Pads: French horns swelling from dark to round as each note opens its filter; play harder for brighter brass.</td></tr>
+    <tr><td>Reed Drift</td><td>Pads: An old harmonium smoothed into a warm, gently drifting reed pad.</td></tr>
+    <tr><td>Rhodes Bloom</td><td>Pads: An electric piano's bell frozen into a soft, trembling pad; the mod wheel deepens the tremolo.</td></tr>
+    <tr><td>String Machine</td><td>Pads: A vintage string machine granulated into a lush, phasing ensemble.</td></tr>
+    <tr><td>Bowl Tides</td><td>Textures: Singing bowls blurred into slow tides of beating metal in octaves, under an eighteen-second hall.</td></tr>
+    <tr><td>Cicada Field</td><td>Textures: Night insects pitched down and spiralled through a frequency shifter: an alien swarm.</td></tr>
+    <tr><td>Engine Room</td><td>Textures: A ship's engine room throbbing through a breathing resonant low-pass and a dark flanger.</td></tr>
+    <tr><td>Ice Song</td><td>Textures: Singing lake ice as sparse, percussive grains in octaves, thrown into echoes and a cold hall.</td></tr>
+    <tr><td>Rust Choir</td><td>Textures: Bowed rusty steel stretched into a groaning, shimmering choir; the mod wheel opens it into a cloud.</td></tr>
+    <tr><td>Servo Stutter</td><td>Textures: Servos and relays chopped into stutters in time with the song, ring-modulated and echoed.</td></tr>
+    <tr><td>Tide Glass</td><td>Textures: Waves on glass pebbles scattered into a fizzing, rolling wash; the mod wheel sweeps the filter.</td></tr>
+    <tr><td>Tin Rain</td><td>Textures: Rain on a tin roof cut into tiny grains and rung through a tuned comb.</td></tr>
+    <tr><td>Whisper Nave</td><td>Textures: Cathedral whispers played backwards through moving vowels, an octave shimmer above.</td></tr>
+    <tr><td>Wire Harp</td><td>Textures: Wind singing in steel wires, stretched into long grains in fifths and an endless hall.</td></tr>
   </table>
+  <p>The presets in the <strong>Pads</strong> and <strong>Textures</strong> submenus play Grainstorm's factory samples. Pads follow the keys; textures play the same sound on every key (Key Track off), so hold one note and let it evolve. Every one of them gives the mod wheel something to do.</p>
   <p><strong>SAVE</strong> stores your sound as a user preset; the menu also has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. A <strong>*</strong> after the name means you've changed something since loading it. If a preset's sample is missing on another computer, the rest of the preset still loads.</p>
 </section>
 
@@ -493,7 +514,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <table>
     <tr><th>Property</th><th>Value</th></tr>
     <tr><td>Polyphony</td><td>1–16 voices; up to 64 grains per voice</td></tr>
-    <tr><td>Samples</td><td>5 built-in sources; WAV, AIFF, FLAC, OGG, MP3 up to two minutes</td></tr>
+    <tr><td>Samples</td><td>5 built-in sources, 20 factory samples; your own WAV, AIFF, FLAC, OGG, MP3 up to two minutes</td></tr>
     <tr><td>Grains</td><td>Size 5 ms – 2 s, Density 0.5–200 /s, Spray up to 2 s, Pitch ±24 st plus Pitch Spray up to 24 st</td></tr>
     <tr><td>Modulation</td><td>4 drawn envelopes and an 8-slot matrix per voice; 8 macros; XY pad</td></tr>
     <tr><td>Filter</td><td>14 types, per voice</td></tr>

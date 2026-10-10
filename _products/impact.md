@@ -22,7 +22,7 @@ stats:
   - 8-slot matrix per pad
   - Drive and 14 filter types
   - 4 effects, chain and sends
-  - 31 factory kits
+  - 47 factory kits
 
 features:
   - title: Build every drum
@@ -35,8 +35,8 @@ features:
     text: Level, pan, tune, decay, velocity, mute and choke groups per pad, all automatable. Each pad plays through the effect chain or straight out, with four sends for reverbs and delays used as send effects.
   - title: Roll the dice
     text: RANDOM builds a new drum from the engines a pad has, and every pad's sound can be copied, pasted and saved for any pad and any kit.
-  - title: Thirty kits
-    text: Six kits each for drum and bass, dubstep, glitch, IDM and techno, plus the default kit.
+  - title: Forty-seven kits
+    text: Six kits each for drum and bass, dubstep, glitch, IDM and techno, sixteen more from house, trap and garage to synthwave, chiptune and hardstyle, plus the default kit.
 
 # Audio demos: put the files in assets/audio/impact/ and list them here.
 demos: []
@@ -57,4 +57,4 @@ specs:
   - name: Price
     value: To be announced
 ---
-Impact is a drum machine where every pad is a small synth. Start from one of the thirty genre kits, or build a kick, a snare or a glitch from nothing, draw how it hits, and play the sixteen pads from your controller or the screen.
+Impact is a drum machine where every pad is a small synth. Start from one of the forty-six genre kits, or build a kick, a snare or a glitch from nothing, draw how it hits, and play the sixteen pads from your controller or the screen.
