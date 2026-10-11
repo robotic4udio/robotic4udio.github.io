@@ -9,11 +9,10 @@ image: /assets/images/bitstorm/bitstorm.jpg
 image_alt: "Bitstorm's window on its CHIP page: four NES channels as layers across the top, then the SID filter, the scope with the chip's registers and the global settings"
 manual: /plugins/bitstorm/manual/
 
-# On sale on Moonbase. trial_url (https://roboticaudio.moonbase.sh/download/bitstorm) would add
-# "Try it free" once the product has a trial.
+# On sale on Moonbase: buy_url is its checkout ("Buy" with the price), trial_url its download page ("Try it free").
 buy_url: https://roboticaudio.moonbase.sh/buy/bitstorm
 price: €129
-trial_url:
+trial_url: https://roboticaudio.moonbase.sh/download/bitstorm
 
 stats:
   - 7 sound chips
@@ -72,8 +71,8 @@ specs:
   - name: Sound design with Claude
     value: "Optional, with your own Anthropic key: describe a sound or a tune and Claude sets Bitstorm to play it, the song in the tracker and its instruments included (macOS and Windows)"
   - name: Status
-    value: In development, version 0.1
+    value: Released, version 1.0
   - name: Price
-    value: To be announced
+    value: €129
 ---
 Seven sound chips from the machines that made game music, each computed from how the hardware worked. Stack four of them on every note for big, modern chip sounds, or play one chip channel by channel as the composers did, with tracker macros shaping every note, an arpeggiator and a tracker to write the tune in.

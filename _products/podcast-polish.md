@@ -2,16 +2,17 @@
 title: Podcast Polish
 order: 15
 kind: Voice chain
-status_label: Free
+status_label: Out now
 tagline: A voice's whole finishing chain, for podcasts and speech.
 description: Podcast Polish cleans a voice up, removes plosives and sibilance, shapes its tone, compresses it gently and rides it onto your loudness target under a true-peak ceiling. AU, VST3 and standalone.
 image: /assets/images/podcast-polish/podcast-polish.jpg
 manual: /plugins/podcast-polish/manual/
 image_alt: "Podcast Polish's window: loudness readouts along the top, the EQ curve over the spectrum and the waveform before and after, and the cards in signal order: Clean, Pops, De-ess, Tone, Compressor, Loudness and Output"
 
-# Free, out on Moonbase: its free checkout gives the "Get Podcast Polish free" button.
-free: true
+# On sale on Moonbase: buy_url is its checkout ("Buy" with the price), trial_url its download page ("Try it free").
 buy_url: https://roboticaudio.moonbase.sh/buy/podcast-polish
+price: €39
+trial_url: https://roboticaudio.moonbase.sh/download/podcast-polish
 
 stats:
   - Clean-up EQ
@@ -58,8 +59,8 @@ specs:
   - name: Sound design with Claude
     value: "Optional, with your own Anthropic key: describe a sound and Claude sets Podcast Polish to make it (macOS and Windows)"
   - name: Status
-    value: In development, version 0.1
+    value: Released, version 1.0
   - name: Price
-    value: Free
+    value: €39
 ---
 Podcast Polish is everything a spoken voice goes through before it is published, in one window and in the right order. It takes out what the room and the microphone added, keeps plosives and esses in check, gives the voice its tone and evenness, and delivers it at the loudness the platform asks for, measured the way they measure it.
