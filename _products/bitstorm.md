@@ -2,17 +2,17 @@
 title: Bitstorm
 order: 17
 kind: Synth
-status_label: Coming soon
+status_label: Out now
 tagline: Seven classic sound chips, computed the way the hardware did it.
 description: Bitstorm is a chip-tune synth with the sound chips of the C64, the NES, the Game Boy, the Spectrum, the Atari, the Amiga and the Mega Drive, four layers per note or one chip channel by channel, tracker macros, an arpeggiator and a tracker. AU, VST3 and standalone.
 image: /assets/images/bitstorm/bitstorm.jpg
 image_alt: "Bitstorm's window on its CHIP page: four NES channels as layers across the top, then the SID filter, the scope with the chip's registers and the global settings"
 manual: /plugins/bitstorm/manual/
 
-# Set these when Bitstorm is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/bitstorm)
-# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/bitstorm) adds "Try it free".
-buy_url:
-price:
+# On sale on Moonbase. trial_url (https://roboticaudio.moonbase.sh/download/bitstorm) would add
+# "Try it free" once the product has a trial.
+buy_url: https://roboticaudio.moonbase.sh/buy/bitstorm
+price: €129
 trial_url:
 
 stats:

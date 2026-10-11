@@ -120,8 +120,10 @@ layout: default
   </div>
 </section>
 
+{%- unless page.buy_url %}
 <div id="notify">
 {%- capture signup_title %}{{ page.title }} is {{ page.status_label | downcase }}{% endcapture %}
 {%- capture signup_subject %}Notify me about {{ page.title }}{% endcapture %}
 {% include signup.html title=signup_title text="Leave your address and get a note the day it is released." subject=signup_subject %}
 </div>
+{%- endunless %}
