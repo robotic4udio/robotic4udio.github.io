@@ -1,16 +1,22 @@
 ---
 ---
-<section class="hero hero--picture">
-  <div class="hero__picture">
-    <img src="{{ '/assets/images/home/hero-plugins.jpg' | relative_url }}"
-         srcset="{{ '/assets/images/home/hero-plugins-960.jpg' | relative_url }} 960w, {{ '/assets/images/home/hero-plugins.jpg' | relative_url }} 1280w"
-         sizes="(max-width: 1440px) 100vw, 1440px" width="1280" height="720" fetchpriority="high"
-         alt="Splicer, Bitstorm, Line Runner, Event Horizon and Drum Forge, side by side, each glowing in its own colour">
-  </div>
-  <div class="container">
-    <p class="kicker">{{ site.tagline }}</p>
-    <h1 class="hero__title">Robotic<br>Audio</h1>
-    <p class="lead">Robotic Audio makes audio plugins and builds sound for installations, stages and stories. It is the studio of Hjalte Bested Hjorth: musician, sound designer and creative technologist.</p>
+{%- assign hero = nil %}
+{%- for p in site.products %}{% assign slug = p.url | split: '/' | last %}{% if slug == site.hero_plugin %}{% assign hero = p %}{% endif %}{% endfor %}
+{%- if hero == nil %}{% assign hero = site.products | first %}{% endif %}
+<section class="hero hero--product">
+  <div class="container hero-product">
+    <div class="hero-product__text">
+      <p class="kicker">{{ hero.status_label }} · {{ hero.kind }}</p>
+      <h1 class="hero-product__title">{% if hero.hero_headline %}{{ hero.hero_headline }} <span class="fire">with {{ hero.title }}<span class="dot">.</span></span>{% else %}<span class="fire">{{ hero.title }}<span class="dot">.</span></span>{% endif %}</h1>
+      <p class="lead">{{ hero.hero_text | default: hero.description }}</p>
+      <div class="buy-row">
+        {% include buy.html plugin=hero variant="large" %}
+        <a class="btn btn--ghost" href="{{ hero.url | relative_url }}">See {{ hero.title }}</a>
+      </div>
+    </div>
+    <a class="hero-product__shot" href="{{ hero.url | relative_url }}">
+      <img src="{{ hero.image | relative_url }}" alt="{{ hero.image_alt }}" fetchpriority="high">
+    </a>
   </div>
 </section>
 
@@ -26,6 +32,7 @@
   <div class="container">
     <p class="kicker">Studio</p>
     <h2 class="display">Sound, built to order<span class="dot">.</span></h2>
+    <p class="lead">Robotic Audio makes audio plugins and builds sound for installations, stages and stories. It is the studio of Hjalte Bested Hjorth: musician, sound designer and creative technologist.</p>
     <div class="grid grid--4">
       {%- for service in site.data.studio %}
       <a class="card card--link" href="{{ '/studio/' | relative_url }}#{{ service.id }}">

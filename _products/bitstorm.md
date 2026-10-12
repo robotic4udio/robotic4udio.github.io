@@ -4,6 +4,8 @@ order: 17
 kind: Synth
 status_label: Out now
 tagline: Seven classic sound chips, computed the way the hardware did it.
+hero_headline: Play the sound chips of the eighties
+hero_text: The C64, the NES, the Game Boy, the Spectrum, the Atari, the Amiga and the Mega Drive, computed the way the hardware did it, with four layers per note, tracker macros, an arpeggiator and a tracker.
 description: Bitstorm is a chip-tune synth with the sound chips of the C64, the NES, the Game Boy, the Spectrum, the Atari, the Amiga and the Mega Drive, four layers per note or one chip channel by channel, tracker macros, an arpeggiator and a tracker. AU, VST3 and standalone.
 image: /assets/images/bitstorm/bitstorm.jpg
 image_alt: "Bitstorm's window on its CHIP page: four NES channels as layers across the top, then the SID filter, the scope with the chip's registers and the global settings"
