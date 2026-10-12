@@ -12,20 +12,6 @@
     <h1 class="hero__title">Robotic<br>Audio</h1>
     <p class="lead">Robotic Audio makes audio plugins and builds sound for installations, stages and stories. It is the studio of Hjalte Bested Hjorth: musician, sound designer and creative technologist.</p>
   </div>
-  <div class="container doors">
-    <a class="door" href="{{ '/plugins/' | relative_url }}">
-      <span class="kicker">01</span>
-      <h2>Plugins</h2>
-      <p>Instruments and effects for AU, VST3 and standalone: {% for plugin in site.products %}{% if forloop.last %} and {% elsif forloop.first == false %}, {% endif %}{{ plugin.title }}{% endfor %}.</p>
-      <span class="door__go">See the plugins</span>
-    </a>
-    <a class="door" href="{{ '/studio/' | relative_url }}">
-      <span class="kicker">02</span>
-      <h2>Studio</h2>
-      <p>Sound installations, custom audio software, sound design and music, teaching and workshops.</p>
-      <span class="door__go">See the studio</span>
-    </a>
-  </div>
 </section>
 
 {%- assign featured = site.products | first %}

@@ -178,11 +178,6 @@ p { margin: 0 0 1.1em; }
   background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
-.doors { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: clamp(40px, 6vw, 72px); }
-.door { display: block; padding: clamp(24px, 3.5vw, 40px); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); color: inherit; text-decoration: none; transition: border-color 0.2s, transform 0.2s var(--ease); }
-.door:hover { color: inherit; border-color: var(--fire); transform: translateY(-3px); }
-.door h2 { font-size: clamp(2.4rem, 5vw, 3.6rem); margin-bottom: 0.35em; }
-.door p { color: var(--muted); max-width: 30rem; }
 .door__go { display: inline-flex; align-items: center; gap: 0.6em; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fire-hot); }
 .door__go::after { content: "→"; transition: translate 0.2s var(--ease); }
 a:hover .door__go::after { translate: 5px 0; }
@@ -258,7 +253,7 @@ a:hover .door__go::after { translate: 5px 0; }
 
 @media (max-width: 760px) {
   .grid--3 { grid-template-columns: 1fr; }
-  .doors, .feature, .plugin-card, .specs, .service__head { grid-template-columns: 1fr; }
+  .feature, .plugin-card, .specs, .service__head { grid-template-columns: 1fr; }
   .feature__shot { order: -1; }
   .spec-list > div { grid-template-columns: 1fr; gap: 2px; }
   .site-nav a { letter-spacing: 0.08em; font-size: 0.72rem; }
