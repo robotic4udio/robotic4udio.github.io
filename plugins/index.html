@@ -13,12 +13,9 @@ permalink: /plugins/
 
 <section class="section section--tight">
   <div class="container">
-    <h2 class="display">Instruments</h2>
-    {% include shop-grid.html category="instrument" %}
-    <h2 class="display shop-heading">Effects</h2>
-    {% include shop-grid.html category="effect" %}
-    <h2 class="display shop-heading">Tools</h2>
-    {% include shop-grid.html category="tool" %}
+    {% include shop-grid.html category="instrument" title="Instruments" %}
+    {% include shop-grid.html category="effect" title="Effects" %}
+    {% include shop-grid.html category="tool" title="Tools" %}
     {%- include bundles.html %}
   </div>
   <div class="container"><p class="note">More plugins are in the workshop.</p></div>

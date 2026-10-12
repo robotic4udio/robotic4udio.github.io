@@ -24,13 +24,11 @@
 <section class="section section--shop" id="plugins">
   <div class="container">
     <p class="kicker">Our plugins</p>
-    <h2 class="display">Instruments</h2>
-    {% include shop-grid.html category="instrument" %}
-    <h2 class="display shop-heading">Effects</h2>
-    {% include shop-grid.html category="effect" %}
-    <h2 class="display shop-heading">Tools</h2>
-    {% include shop-grid.html category="tool" %}
+    {% include shop-grid.html category="instrument" title="Instruments" soon=site.homepage_coming_soon %}
+    {% include shop-grid.html category="effect" title="Effects" soon=site.homepage_coming_soon %}
+    {% include shop-grid.html category="tool" title="Tools" soon=site.homepage_coming_soon %}
     {%- include bundles.html %}
+    <p class="note"><a href="{{ '/plugins/' | relative_url }}">All our plugins</a>, the ones on their way too.</p>
   </div>
 </section>
 
