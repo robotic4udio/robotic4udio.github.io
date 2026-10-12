@@ -25,9 +25,11 @@
 
 <section class="section section--shop" id="plugins">
   <div class="container">
-    <p class="kicker">Instruments and effects</p>
-    <h2 class="display">Our plugins<span class="dot">.</span></h2>
-    {% include shop-grid.html %}
+    <p class="kicker">Our plugins</p>
+    <h2 class="display">Instruments<span class="dot">.</span></h2>
+    {% include shop-grid.html category="instrument" %}
+    <h2 class="display shop-heading">Effects<span class="dot">.</span></h2>
+    {% include shop-grid.html category="effect" %}
   </div>
 </section>
 

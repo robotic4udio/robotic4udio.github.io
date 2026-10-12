@@ -1,6 +1,7 @@
 ---
 title: Tektonic
 order: 1
+category: instrument  # instrument or effect: which group the shop lists it in
 kind: Synth
 status_label: Coming soon
 tagline: A gnarly wobble-bass synth where you draw the movement.

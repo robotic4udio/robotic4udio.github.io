@@ -1,6 +1,7 @@
 ---
 title: Grainstorm
 order: 7
+category: instrument  # instrument or effect: which group the shop lists it in
 kind: Synth
 status_label: Coming soon
 tagline: A polyphonic granular synth that turns any sound into a storm of grains.

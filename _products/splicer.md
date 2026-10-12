@@ -1,6 +1,7 @@
 ---
 title: Splicer
 order: 9
+category: effect  # instrument or effect: which group the shop lists it in
 kind: Effect
 status_label: Coming soon
 tagline: A probabilistic cut-and-effects machine for beats and breaks.

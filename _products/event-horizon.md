@@ -1,6 +1,7 @@
 ---
 title: Event Horizon
 order: 18
+category: effect  # instrument or effect: which group the shop lists it in
 kind: Reverb
 status_label: Coming soon
 tagline: Twelve reverbs behind one set of controls, with effects inside the tail.
