@@ -6,16 +6,10 @@ layout: default
     <p class="kicker">{{ page.kind }} · {{ page.status_label }}</p>
     <h1 class="display display--xl">{{ page.title }}</h1>
     <p class="lead">{{ page.tagline }}</p>
-    <div class="actions">
-      {%- if page.buy_url and page.free %}
-      <a class="btn btn--fire" href="{{ page.buy_url }}">Get {{ page.title }} free</a>
-      {%- elsif page.buy_url %}
-      <a class="btn btn--fire" href="{{ page.buy_url }}">Buy {{ page.title }}{% if page.price %} · {{ page.price }}{% endif %}</a>
-      {%- if page.trial_url %}
-      <a class="btn btn--ghost" href="{{ page.trial_url }}">Try it free for {{ site.shop.trial_days }} days</a>
-      {%- endif %}
-      {%- else %}
-      <a class="btn btn--fire" href="#notify">Notify me at release</a>
+    <div class="buy-row">
+      {% include buy.html plugin=page variant="large" %}
+      {%- if page.buy_url and page.trial_url %}
+      <a class="trial" href="{{ page.trial_url }}">Try it free for {{ site.shop.trial_days }} days</a>
       {%- endif %}
       {%- if page.manual %}
       <a class="btn btn--ghost" href="{{ page.manual | relative_url }}">Read the manual</a>
@@ -119,6 +113,22 @@ layout: default
     </dl>
   </div>
 </section>
+
+{%- if page.buy_url %}
+<section class="section section--line" id="buy">
+  <div class="container">
+    <p class="kicker">{{ page.status_label }}</p>
+    <h2 class="display">Get {{ page.title }}<span class="dot">.</span></h2>
+    <p class="lead">{{ page.tagline }}</p>
+    <div class="buy-row">
+      {% include buy.html plugin=page variant="large" %}
+      {%- if page.trial_url %}
+      <a class="trial" href="{{ page.trial_url }}">Try it free for {{ site.shop.trial_days }} days</a>
+      {%- endif %}
+    </div>
+  </div>
+</section>
+{%- endif %}
 
 {%- unless page.buy_url %}
 <div id="notify">
