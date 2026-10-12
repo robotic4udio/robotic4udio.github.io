@@ -185,7 +185,11 @@ p { margin: 0 0 1.1em; }
 .site-nav { display: flex; gap: clamp(14px, 3vw, 32px); }
 .site-nav a { color: var(--muted); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: var(--text); }
-.site-nav__count { color: var(--fire-hot); }
+/* The basket: Moonbase's cart, a wicker basket with a lit count once something is in it */
+.site-nav { align-items: center; }
+.site-nav a.basket { position: relative; display: inline-flex; padding: 2px; border: 0; color: var(--text); }
+.site-nav a.basket:hover { color: var(--fire-hot); }
+.basket__count { position: absolute; top: -6px; right: -9px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: var(--fire-gradient); color: var(--on-fire); font: 800 0.72rem/18px var(--font-body); letter-spacing: 0; text-align: center; box-shadow: 0 0 12px rgba(255, 106, 26, 0.7); }
 .site-nav a[aria-current="page"] { color: var(--text); border-image: var(--fire-gradient) 1; }
 
 .site-footer { border-top: 1px solid var(--line); padding: 48px 0 32px; color: var(--muted); font-size: 0.9rem; }
