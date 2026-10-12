@@ -130,6 +130,7 @@ p { margin: 0 0 1.1em; }
 
 .brand { display: flex; align-items: center; gap: 12px; color: var(--text); text-decoration: none; font-family: var(--font-display); font-weight: 800; font-size: 1.45rem; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
 .brand:hover { color: var(--text); }
+.brand__mark { display: block; height: 1.3em; width: auto; filter: drop-shadow(0 0 8px rgba(255, 90, 31, 0.45)); }
 .brand__fire { background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 .site-nav { display: flex; gap: clamp(14px, 3vw, 32px); }
