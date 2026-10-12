@@ -17,9 +17,9 @@
   --line-strong: rgba(255, 236, 220, 0.22);
   --text: #f4ece4;
   --muted: #a99e94;
-  --ember: #fa4f0f;
-  --fire: #ff8022;
-  --hot: #ffc258;
+  --ember: #c25e00;
+  --fire: #ffb000;
+  --hot: #ffd27a;
   --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
   --radius: 14px;
   --sidebar: 260px;
@@ -194,7 +194,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
 </head>
 <body>
 
-<svg class="defs" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#fa4f0f"/><stop offset=".45" stop-color="#ff8022"/><stop offset="1" stop-color="#ffc258"/></linearGradient><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z" fill="#a99e94"/></marker></defs></svg>
+<svg class="defs" aria-hidden="true"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#c25e00"/><stop offset=".45" stop-color="#ffb000"/><stop offset="1" stop-color="#ffd27a"/></linearGradient><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0 0L10 5L0 10z" fill="#a99e94"/></marker></defs></svg>
 
 <nav class="toc" aria-label="Contents">
   <div class="brand">Robotic Audio</div>
@@ -216,6 +216,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <li><a href="#perform">Perform</a></li>
     <li><a href="#midi">MIDI</a></li>
     <li><a href="#display">The display</a></li>
+    <li><a href="#look">Looks &amp; colours</a></li>
     <li><a href="#presets">Presets &amp; bypass</a></li>
     <li><a href="#ai">Designing with Claude</a></li>
     <li><a href="#ideas">Ideas</a></li>
@@ -238,13 +239,14 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <li>6 effect lanes, any of the suite's effects in each, with drawn lines</li>
     <li>Repeatable randomness</li>
     <li>16 editable patterns and a song chain</li>
+    <li>Every cut and lane in its own colour</li>
     <li>Hand-played gestures and MIDI</li>
     <li>Tempo synced</li>
     <li>AU · VST3 · Standalone</li>
   </ul>
   <figure>
-    <img src="images/splicer.jpg" alt="Splicer's window">
-    <figcaption>Splicer's PATTERN page: the history on top, then the tabs, the sixteen patterns and the mode; the selected pattern's editor, the whole width, and the Generator panel with its recipe below.</figcaption>
+    <img src="images/splicer.jpg" alt="Splicer's window in its Prism look: the history displays, the page tabs and patterns, the toolbar, the pattern editor with coloured cuts, and the Generator panel">
+    <figcaption>Splicer's PATTERN page with Cassette Warble: the history on top (a repeat reading back, marked RPT), then the tabs, the sixteen patterns and the mode; the toolbar, the selected pattern's editor with its cuts named and coloured (orange tape starts, a blue repeat, a pink reversed roll), and the Generator panel with its recipe below.</figcaption>
   </figure>
 </header>
 
@@ -253,7 +255,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <p class="sub">From install to mangled breaks in a minute.</p>
   <div class="grid">
     <div class="card"><span class="tag">01</span><h4>Insert it</h4><p>Put Splicer on a drum loop, a bus or a whole mix and press play in your DAW. Splicer follows the song's tempo and position.</p></div>
-    <div class="card"><span class="tag">02</span><h4>Watch the pattern</h4><p>The pattern editor shows the pattern with a playhead running through it: pink for repeats, blue for reversed ones, amber ramps for tape stops and starts.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Watch the pattern</h4><p>The pattern editor shows the pattern with a playhead running through it. Every kind of cut has its own colour and is named in its block: blue repeats, pink reversed ones, orange ramps for tape stops and starts.</p></div>
     <div class="card"><span class="tag">03</span><h4>Generate</h4><p>On the PATTERN page, choose a <strong>Procedure</strong> and set the Generator panel's knobs, then press <strong>GENERATE</strong>: the generator writes a new pattern into the selected slot. Press again for another.</p></div>
     <div class="card"><span class="tag">04</span><h4>Edit it</h4><p>On the <strong>PATTERN</strong> page, <kbd>Shift</kbd>-drag to mark a region and add or clear gestures, or randomize just that part.</p></div>
     <div class="card"><span class="tag">05</span><h4>Make a song</h4><p>Fill more slots, then chain them on the <strong>SONG</strong> page and set Mode to Song.</p></div>
@@ -266,10 +268,10 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>The window</h2>
   <p class="sub">What's where.</p>
   <dl class="params">
-    <dt>Header</dt><dd>The preset bar, the power button (bypass) and the menu (three lines) with this manual, About and the website. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>. Until Splicer is licensed, a <strong>DEMO</strong> or <strong>TRIAL</strong> chip beside the menu opens the <a href="#licence">licence</a>.</dd>
+    <dt>Header</dt><dd>The preset bar, the power button (bypass) and the menu (three lines) with this manual, About, the website, and <strong>Look</strong> and <strong>Colours</strong> (see <a href="#look">Looks &amp; colours</a>). Along the header's edge, a beam of light runs into a prism and splits into the colours of the cuts. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>. Until Splicer is licensed, a <strong>DEMO</strong> or <strong>TRIAL</strong> chip beside the menu opens the <a href="#licence">licence</a>.</dd>
     <dt>Displays</dt><dd>The last 10 seconds in (with markers where a cut reads from: <strong>RPT</strong> repeats, <strong>REV</strong> reversed, <strong>TAPE</strong> tape stops and starts, <strong>FRZ</strong> freeze, <strong>STR</strong> stretched) and out. They stay on every page.</dd>
     <dt>Pages, patterns, mode</dt><dd>On every page, one row: the page tabs, the sixteen patterns <strong>A</strong> to <strong>P</strong> (click one to select it) and the <strong>MODE</strong> menu, Pattern or Song (see <a href="#modes">Modes</a>).</dd>
-    <dt>PATTERN page</dt><dd>The selected pattern's editor, with the <strong>Generator</strong> panel below it: the pattern's recipe (how it's cut, which gestures, how often blocks are stretched and each effect is used), <strong>GENERATE</strong> and <strong>RANDOMIZE REGION</strong>. Click an effect's name in the editor and its lines take the panel's place. See <a href="#patterns">Patterns</a>, <a href="#cuts">The generator</a> and <a href="#lines">Drawing the lines</a>.</dd>
+    <dt>PATTERN page</dt><dd>The toolbar and the selected pattern's editor, with the <strong>Generator</strong> panel below it: the pattern's recipe (how it's cut, which gestures, how often blocks are stretched and each effect is used), <strong>GENERATE</strong> and <strong>RANDOMIZE REGION</strong>. Click an effect's name in the editor and its lines take the panel's place. See <a href="#patterns">Patterns</a>, <a href="#cuts">The generator</a> and <a href="#lines">Drawing the lines</a>.</dd>
     <dt>EFFECTS page</dt><dd>The same pattern editor as on the PATTERN page (it edits the same pattern, toolbar and all), then the lanes' effect rack (each slot's effect, its window, power and Mix, in the chain's order, with its two line ranges under it) and <strong>Perform</strong>: Chaos, the seed, Mix and the gestures played by hand. Click a lane's name in the editor and its lines take the place of the rack and Perform; <strong>EFFECTS</strong> brings them back. See <a href="#lanes">Effect lanes</a>.</dd>
     <dt>SONG page</dt><dd>The chain of patterns Song mode plays.</dd>
     <dt>Tooltip bar</dt><dd>Along the bottom: point at any control to see what it does.</dd>
@@ -387,15 +389,16 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>Effect lanes</h2>
   <p class="sub">Six lanes, any of the suite's effects in each, switched on block by block, each following its lines.</p>
   <figure>
-    <img src="images/effects.jpg" alt="The effects page">
-    <figcaption>The EFFECTS page with Total Chaos: the pattern editor (as on the PATTERN page) with a row per lane, named after its effect, the lanes' rack with each lane's two line ranges under its slot, and Perform.</figcaption>
+    <img src="images/effects.jpg" alt="The effects page: the pattern editor, the six lanes' rack with their numbers in the lanes' colours, and Perform">
+    <figcaption>The EFFECTS page with Cassette Warble: the pattern editor (as on the PATTERN page) with a row per lane, named after its effect and marked in its colour, the lanes' rack with each slot's number in the same colour and its two line ranges under it, and Perform.</figcaption>
   </figure>
   <p>The lanes are the slots of an <strong>effect rack</strong>, the same as in the suite's other plugins: each plays whichever effect you choose from its menu (Filter, Ring Mod, Drive, Delay, Reverb 2 and Crusher at first; any of the suite's effects, Event Horizon and Pump included). <em>Where</em> a lane plays is in the pattern: switch it on or off per block by clicking its row in the editor, or let the generator do it (the Generator panel's <strong>Effects: how often, and what it draws</strong>). <em>How</em> it moves is its two <strong>lines</strong>, drawn across the pattern, each moving one setting of its effect (see <a href="#lines">Drawing the lines</a>). The <strong>EFFECTS</strong> page sets the rest:</p>
   <dl class="params">
     <dt>Effect menu</dt><dd>The lane's effect, alphabetically. Another effect gives the lane's lines that effect's own starting settings to move (e.g. a delay's Send and Feedback); every effect keeps its own settings, so switching back finds them again.</dd>
-    <dt>Edit</dt><dd>The button beside the menu opens the effect's whole window over the page: its display and every control. What the lines don't move stays where you set it here. The square in front of its name switches the lane on and off (click it or the name), its own effect menu swaps the effect in place, <strong>EXPAND</strong> grows the window over the whole page for a big effect (Event Horizon; <strong>SHRINK</strong> back), and <strong>LINES</strong> shows the lane's lines in its place; <strong>EFFECT</strong> there comes back.</dd>
+    <dt>Edit</dt><dd>The button beside the menu opens the effect's whole window over the page: its display and every control. What the lines don't move stays where you set it here. The square in front of its name switches the lane on and off (click it or the name), its own effect menu swaps the effect in place, the <strong>expand</strong> button (four corners) grows the window over the whole page for a big effect (Event Horizon; <strong>SHRINK</strong> back), and <strong>LINES</strong> shows the lane's lines in its place; <strong>EFFECT</strong> there comes back.</dd>
     <dt>Power</dt><dd>Switches the lane on and off: on, it plays where the pattern switches it on; off, it's left out everywhere: its row in the pattern editor turns faint grey, the rings round its range knobs and the playhead over its lines stop, and it changes nothing in the sound. Every lane starts on; the switches (Lane 1 On … in your host) are saved with presets and sessions.</dd>
     <dt>Mix</dt><dd>How much of the effect replaces the sound where the lane is on; for a delay or reverb (a <strong>throw</strong>, below), how much is sent into it. A line can move it too.</dd>
+    <dt>Colour</dt><dd>Each lane has a colour of its own: behind the slot's number, beside the lane's name in the pattern editor, in its row and in its lines, so a row is easy to find in the rack. The colours belong to the places, first to sixth.</dd>
     <dt>Order</dt><dd>Drag a slot by its grip (its number and dots) to another place: the sound runs through the lanes left to right, and the lane's cells, lines, ranges and what they move go with it in every pattern. See <a href="#flow">Signal flow</a>.</dd>
     <dt>Range knobs</dt><dd>Under each slot, one per line, named after what it moves: where the line takes it. The bottom of a line is the bottom of the range, its top the top; hovered, the knob shows the range in the setting's own units. Drag to move the range, <kbd>Shift</kbd>-drag (or <kbd>Shift</kbd>-scroll) to make it wider or narrower, double-click to reset. While a pattern plays, a thin ring round the knob shows the range its line takes it over, with a dot where the line has it right now; it only reaches the sound where the lane is on.</dd>
   </dl>
@@ -425,15 +428,15 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>Drawing the lines</h2>
   <p class="sub">Every effect's movement, drawn across the pattern.</p>
   <figure>
-    <img src="images/lines.jpg" alt="The filter's lines">
-    <figcaption>The PATTERN page with the filter lane selected: its Cutoff line under the pattern, lined up with the blocks, with the tabs, both ranges, what the line moves and the Grid above it.</figcaption>
+    <img src="images/lines.jpg" alt="The chorus lane's lines, drawn in the lane's teal under the pattern">
+    <figcaption>The PATTERN page with Cassette Warble's chorus lane selected: its Depth line in the lane's teal under the pattern, lined up with the blocks, its Rate line faintly behind it, with the tabs, both ranges, what the line moves and the Grid above it.</figcaption>
   </figure>
   <p>Each lane has two lines, running across the whole pattern under the blocks, each moving one setting of its effect. Where the lane is on, the line sets that setting inside its range; where it's off, the line does nothing. The generator draws the lines as it writes a pattern (each block's motion), and you can redraw any of it.</p>
-  <p><strong>Click a lane's name</strong> in the pattern editor (FILTER, RING MOD …) and its lines open under it, lined up with the pattern above: on the PATTERN page in the Generator panel's place, on the EFFECTS page in place of the rack and Perform. Click the name again, CUTS, or the button at the top right (<strong>GENERATOR</strong> or <strong>EFFECTS</strong>) to go back.</p>
-  <p><strong><kbd>Cmd</kbd>-click an effect's cell</strong> to edit its lines over that block only: the block is selected, the lines zoom to it, and drawing, ready-made shapes and RANDOM change only that part (the note above the drawing says where, e.g. ONLY 2.3.1 – 2.4.4). Click the effect's name for the whole lines again.</p>
+  <p><strong>Click a lane's name</strong> in the pattern editor (FILTER, RING MOD …) and its lines open under it, lined up with the pattern above and drawn in the lane's colour (its name lights up in it too): on the PATTERN page in the Generator panel's place, on the EFFECTS page in place of the rack and Perform. Click the name again, CUTS, or the button at the top right (<strong>GENERATOR</strong> or <strong>EFFECTS</strong>) to go back.</p>
+  <p><strong><kbd>Cmd</kbd>-click an effect's cell</strong> to edit its lines over that block only: the block is selected, the lines zoom to it, and drawing, ready-made shapes and GENERATE change only that part (the note above the drawing says where, e.g. ONLY 2.3.1 – 2.4.4). Click the effect's name for the whole lines again.</p>
   <dl class="params">
-    <dt>Tabs</dt><dd>The lane's two lines, named after what they move (e.g. <strong>CUTOFF</strong> and <strong>RESONANCE</strong>): which line to draw. The other line shows faintly behind it, see-through, so you can draw one against the other.</dd>
-    <dt>Drawing</dt><dd>The suite's envelope editor: draw freehand, in lines, or warp, lift and move the shape with the tools; <strong>RANDOM</strong>, <strong>SMOOTH</strong> and <strong>NORMALIZE</strong>; right-click (or the menu button) for ready-made shapes, waveforms and windows; <kbd>Shift</kbd>-drag to edit only part of it. A playhead runs through it while the pattern plays.</dd>
+    <dt>Tabs</dt><dd>The lane's two lines, named after what they move (e.g. <strong>CUTOFF</strong> and <strong>RESONANCE</strong>), in the lane's colour: which line to draw. The other line shows faintly behind it, see-through, so you can draw one against the other.</dd>
+    <dt>Drawing</dt><dd>The suite's envelope editor: draw freehand, in lines, or warp, lift and move the shape with the tools; <strong>GENERATE</strong>, <strong>SMOOTH</strong> and <strong>NORMALIZE</strong> (right-click GENERATE to choose what it makes: a rhythm, a melody, an organic curve, a wobble, a growl, or <strong>Random</strong>, which picks one of them afresh each press); right-click (or the menu button) for ready-made shapes, waveforms and windows; drag the ruler along the top down to zoom in, up to zoom out, and double-click it to see everything; <kbd>Shift</kbd>-drag to edit only part of it. A playhead runs through it while the pattern plays.</dd>
     <dt>Grid</dt><dd>The note value the drawing snaps to and shows: 1/4, 1/8, 1/16 (the pattern's steps, the default), 1/32, or the triplets 1/4T to 1/32T.</dd>
     <dt>Effect menu</dt><dd>At the left, under the title: the lane's effect, swapped in place; the lines stay, moving the new effect's settings (its own starting ones where it lacks theirs).</dd>
     <dt>Effect</dt><dd>At the top right, beside GENERATOR or EFFECTS: the lane's effect window in place of its lines (on the PATTERN page it switches to the EFFECTS page); <strong>LINES</strong> there comes back.</dd>
@@ -460,7 +463,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <p class="sub">Cuts you design, keep and play.</p>
   <figure>
     <img src="images/splicer.jpg" alt="The pattern page">
-    <figcaption>The PATTERN page with Total Chaos's pattern A, written by the generator from the recipe below it.</figcaption>
+    <figcaption>The PATTERN page with Cassette Warble's pattern A, written by the generator from the recipe below it.</figcaption>
   </figure>
   <p>The <strong>PATTERN</strong> page edits sixteen patterns, <strong>A</strong> to <strong>P</strong>. A pattern is 1, 2 or 4 bars of blocks on a grid of 16th notes: each block plays live or is cut, may be stretched, may switch effects on, and has a chance of happening. Each pattern also has its own lines for the effects. Click a slot to edit it (in Pattern mode it also starts playing at the next bar line); slots holding something show a dot per bar.</p>
   <h3>Selecting</h3>
@@ -484,7 +487,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <tr><td>Copy / Paste</td><td><kbd>Cmd</kbd>+<kbd>C</kbd> and <kbd>Cmd</kbd>+<kbd>V</kbd> (pastes at the selection's start, between patterns too).</td></tr>
     <tr><td>Undo / Redo</td><td><kbd>Cmd</kbd>+<kbd>Z</kbd> and <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd>, 100 steps, patterns and chain alike.</td></tr>
   </table>
-  <p>Every edit is in the toolbar and in the right-click menu. <strong>Click a cell in an effect's row</strong> to switch that effect on or off for the block under it (or for the whole selection, if you click inside it); <strong>Lanes</strong> in the right-click menu does it for the selection or a whole row. Each row shows the effect's first line through the blocks it's on for, and its second as a faint line over it. <strong>Click an effect's name</strong> to draw its lines. Editing one region never changes anything anywhere else; only the blocks' chances fall anew on each pass.</p>
+  <p>Every edit is in the toolbar and in the right-click menu. The toolbar is in three groups: the cuts (<strong>REPEAT</strong>, <strong>ROLL</strong>, <strong>REVERSE</strong>, <strong>TAPE</strong>, <strong>FREEZE</strong>, <strong>GATE</strong>, <strong>STRETCH</strong>), each underlined in the colour the editor draws it in; what changes them (<strong>PITCH</strong>, <strong>REACH</strong>, <strong>CHANCE</strong>); and the blocks (<strong>CLEAR</strong>, <strong>SPLIT</strong>, <strong>MERGE</strong>). <strong>Click a cell in an effect's row</strong> to switch that effect on or off for the block under it (or for the whole selection, if you click inside it); <strong>Lanes</strong> in the right-click menu does it for the selection or a whole row. Each row shows the effect's first line through the blocks it's on for, and its second as a faint line over it. <strong>Click an effect's name</strong> to draw its lines. Editing one region never changes anything anywhere else; only the blocks' chances fall anew on each pass.</p>
   <h3>Generate, length and files</h3>
   <dl class="params">
     <dt>Generate</dt><dd>The generator writes a whole new pattern into the slot (as long as it is), from the Generator panel's settings (the pattern's recipe), with a fresh seed each press: the cutting rules (strict grid, a clean first beat, fills at the end) all apply. It draws the effects' lines anew. Not what you wanted? Press again, or undo.</dd>
@@ -506,8 +509,8 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <dt>Add Step</dt><dd>Puts the pattern being edited at the end.</dd>
   </dl>
   <figure>
-    <img src="images/song.jpg" alt="The song page">
-    <figcaption>The SONG page: the demo chain (A three times ending in fill B, A twice ending in fill C, then D) and its timeline.</figcaption>
+    <img src="images/song.jpg" alt="The song page: four steps and the timeline">
+    <figcaption>The SONG page with Data Corruption: four steps (A twice, then B, A and B, three of them ending in fill C) and the timeline under them, every pass in proportion with its fill at the end.</figcaption>
   </figure>
   <p>Underneath, the <strong>timeline</strong> shows the whole song in proportion, every pass of every step with the fills at their ends, and a playhead. The chain follows the song position from bar 1 and loops at its end, so a 12-bar chain plays bars 1-12, then again from bar 13.</p>
 </section>
@@ -524,7 +527,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <dt>Freeze</dt><dd>While held, loops the last 1/32 note (at least 30 ms) with long crossfades: a sustained, frozen tone.</dd>
     <dt>Mix</dt><dd>The dry input against Splicer's output. <span class="range">0 – 100 %</span></dd>
   </dl>
-  <p>Hand-played gestures take over from the plan while held (the newest press wins) and crossfade back on release; the effect lanes keep following the plan. The buttons are host parameters: automate them to place gestures exactly. Like all momentary buttons in the suite, they're never stored in presets or sessions.</p>
+  <p>Each button is underlined in its cut's colour: Stutter as the repeats, Reverse as the reversed ones, Tape Stop as the tape ramps, Freeze as the freezes. Hand-played gestures take over from the plan while held (the newest press wins) and crossfade back on release; the effect lanes keep following the plan. The buttons are host parameters: automate them to place gestures exactly. Like all momentary buttons in the suite, they're never stored in presets or sessions.</p>
 </section>
 
 <section id="midi">
@@ -545,9 +548,32 @@ svg.defs { position: absolute; width: 0; height: 0; }
 <section id="display">
   <h2>The display</h2>
   <p class="sub">Seeing the chaos.</p>
-  <p>The <strong>pattern editor</strong>, on the PATTERN and EFFECTS pages alike, shows the selected pattern numbered by bar, with a line per beat and a playhead running through it while it plays. In the <strong>CUTS</strong> row, outlined blocks play live; filled ones are cut: pink for repeats (with a line between repeats), blue with a back arrow for reversed repeats, amber ramps for tape stops and starts, a gold line along the bottom (and the speed at the top right) for stretched blocks. A small staircase shows pitched repeats, and a line running left from under a block shows how far back its repeats are taken from.</p>
-  <p>Below, a row per <strong>effect lane</strong> shows the blocks the effect is on for, with its first control's line (cutoff, bits, drive, send) filled in and its second as a faint line over it.</p>
+  <p>The <strong>pattern editor</strong>, on the PATTERN and EFFECTS pages alike, shows the selected pattern numbered by bar, with a line per beat and a white playhead running through it while it plays; the edit region is marked in the accent. In the <strong>CUTS</strong> row, blocks that play live are a faint band; cut ones are filled in their gesture's colour, glow along their edges and say what they are where there's room (<strong>5x</strong>, <strong>REV 4x</strong>, <strong>STOP</strong>, <strong>START</strong>, <strong>GATE</strong>, <strong>FREEZE</strong>):</p>
+  <table>
+    <tr><th>Colour</th><th>Cut</th></tr>
+    <tr><td>Blue</td><td>Repeats and rolls, with a line between repeats; a small staircase for pitched ones.</td></tr>
+    <tr><td>Pink</td><td>Reversed repeats, with a back arrow.</td></tr>
+    <tr><td>Orange</td><td>Tape stops and starts, drawn as their speed ramps.</td></tr>
+    <tr><td>Cyan</td><td>Freezes, with ripples.</td></tr>
+    <tr><td>Lime</td><td>Gates: the open slices, with the silences between.</td></tr>
+    <tr><td>Violet</td><td>Stretched blocks: a line along the bottom and the speed at the top right.</td></tr>
+  </table>
+  <p>The same colours mark the toolbar's keys, the Perform buttons and the markers in the input display. A line running left from under a block shows how far back its repeats are taken from.</p>
+  <p>Below, a row per <strong>effect lane</strong>, in the lane's colour, shows the blocks the effect is on for, with its first control's line (cutoff, bits, drive, send) filled in and its second as a faint line over it.</p>
   <p>The map always shows exactly what plays this time round (blocks whose chance didn't come up show as live), and it updates the moment you edit or change a setting.</p>
+</section>
+
+<section id="look">
+  <h2>Looks &amp; colours</h2>
+  <p class="sub">The same Splicer, dressed four ways.</p>
+  <p>The menu (three lines) has <strong>Look</strong> and <strong>Colours</strong>. They change only how Splicer looks, never the sound, and they are kept with your session, not in presets.</p>
+  <dl class="params">
+    <dt>Prism</dt><dd>The default: warm glass on near-black, a beam of light under the header split by a prism into the cuts' colours, capsule keys and knobs that glow, in amber.</dd>
+    <dt>Laser</dt><dd>A laser-cutting deck: blue-black glass, a cyan beam sliced apart under the header, cut corners.</dd>
+    <dt>Splice</dt><dd>A tape editor's bench: neutral graphite, live blocks drawn as tape, card titles on splicing tape.</dd>
+    <dt>Alien</dt><dd>The starship panel Splicer first wore, in fire. Its cuts keep the colours it always had, mostly shades of its fire, and aren't named in their blocks.</dd>
+    <dt>Colours</dt><dd>The look's own colours, or any of the suite's colour schemes: the keys, knobs, lights and (in Prism) the light behind the window take them on. The cuts and lanes keep their own colours whatever you choose, so a pattern always reads the same.</dd>
+  </dl>
 </section>
 
 <section id="presets">
