@@ -34,7 +34,7 @@
         {%- endfor %}
       </p>
       <div class="buy-row">
-        <a class="buy" href="{{ site.shop.account_url }}" data-shop="add_to_cart" data-bundle="{{ bundle.id }}"><span class="buy__price"><s class="buy__was" hidden data-moonbase-if="bundle.{{ bundle.id }}.has_discount" data-moonbase-render="bundle.{{ bundle.id }}.original_price">{{ bundle.original_price_text }}</s><span data-moonbase-render="bundle.{{ bundle.id }}.price">{{ bundle.price_text }}</span></span><span class="buy__go">Buy the bundle</span></a>
+        <a class="buy" href="{{ site.shop.account_url }}/buy/bundle/{{ bundle.id }}" data-shop="add_to_cart" data-bundle="{{ bundle.id }}"><span class="buy__price"><s class="buy__was" hidden data-moonbase-if="bundle.{{ bundle.id }}.has_discount" data-moonbase-render="bundle.{{ bundle.id }}.original_price">{{ bundle.original_price_text }}</s><span data-moonbase-render="bundle.{{ bundle.id }}.price">{{ bundle.price_text }}</span></span><span class="buy__go">Buy the bundle</span></a>
         {%- if bundle.saving_text %}
         <span class="bundle__saving" data-bundle-saving="{{ bundle.id }}" data-bundle-products="{{ bundle.products | join: ',' }}">Save <strong>{{ bundle.saving_text }}</strong></span>
         {%- endif %}

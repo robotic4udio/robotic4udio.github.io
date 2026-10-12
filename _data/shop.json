@@ -72,5 +72,23 @@
       "free": true
     }
   },
-  "bundles": []
+  "bundles": [
+    {
+      "id": "podcast-bundle",
+      "name": "Podcast Bundle",
+      "tagline": "A voice's finishing chain and a loudness meter that acts on what it measures.",
+      "description": "Everything a spoken-word show needs after the microphone. Podcast Polish cleans a voice up, removes plosives and sibilance, shapes its tone and compresses it gently. Loudness Pilot measures the finished episode the way streaming services and broadcasters do, trims it to the target in one click and keeps the true peaks under the ceiling. AU, VST3 and standalone.",
+      "products": [
+        "loudness-pilot",
+        "podcast-polish"
+      ],
+      "price": 59,
+      "price_text": "€59",
+      "original_price": 59,
+      "original_price_text": "€59",
+      "free": false,
+      "separate_price_text": "€78",
+      "saving_text": "€19"
+    }
+  ]
 }
