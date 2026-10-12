@@ -1,0 +1,16 @@
+{%- comment -%}
+  A plugin's split buy button: the price in a lit block, the action beside it.
+  include.plugin: the product. include.variant: "large" for a product page's own button.
+  On sale (buy_url): "€129 | Buy now"; free (free: true, or a buy_url with no price): "Free | Get it";
+  otherwise "Soon | Notify me", unlit, to the page's sign-up form.
+{%- endcomment -%}
+{%- assign p = include.plugin -%}
+{%- if p.buy_url and p.buy_url != "" -%}
+  {%- if p.free or p.price == nil or p.price == "" -%}
+<a class="buy{% if include.variant %} buy--{{ include.variant }}{% endif %}" href="{{ p.buy_url }}"><span class="buy__price">Free</span><span class="buy__go">Get it</span></a>
+  {%- else -%}
+<a class="buy{% if include.variant %} buy--{{ include.variant }}{% endif %}" href="{{ p.buy_url }}"><span class="buy__price">{{ p.price }}</span><span class="buy__go">Buy now</span></a>
+  {%- endif -%}
+{%- else -%}
+<a class="buy buy--soon{% if include.variant %} buy--{{ include.variant }}{% endif %}" href="{{ p.url | relative_url }}#notify"><span class="buy__price">Soon</span><span class="buy__go">Notify me</span></a>
+{%- endif -%}

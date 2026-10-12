@@ -6,24 +6,14 @@ permalink: /plugins/
 <section class="page-head">
   <div class="container">
     <p class="kicker">Plugins</p>
-    <h1 class="display">Machines that make noise</h1>
-    <p class="lead">Instruments and effects for AU, VST3 and standalone. They are all in development: have a look, and leave your address to hear when one is released.</p>
+    <h1 class="display">Machines that make noise<span class="dot">.</span></h1>
+    <p class="lead">Instruments and effects for AU, VST3 and standalone. The ones out now are first; leave your address to hear when the others are released.</p>
   </div>
 </section>
 
 <section class="section section--tight">
-  <div class="container plugin-list">
-    {%- for plugin in site.products %}
-    <a class="plugin-card" href="{{ plugin.url | relative_url }}">
-      <div class="plugin-card__shot"><img src="{{ plugin.image | relative_url }}" alt="{{ plugin.image_alt }}" loading="lazy"></div>
-      <div class="plugin-card__text">
-        <p class="kicker">{{ plugin.kind }} · {{ plugin.status_label }}</p>
-        <h2>{{ plugin.title }}</h2>
-        <p>{{ plugin.tagline }}</p>
-        <span class="door__go">{% if plugin.manual %}Details, manual and demos{% else %}Details and demos{% endif %}</span>
-      </div>
-    </a>
-    {%- endfor %}
+  <div class="container">
+    {% include shop-grid.html %}
   </div>
   <div class="container"><p class="note">More plugins are in the workshop.</p></div>
 </section>

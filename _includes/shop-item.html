@@ -1,0 +1,10 @@
+{%- assign plugin = include.plugin -%}
+<article class="shop-item">
+  <a class="shop-item__shot" href="{{ plugin.url | relative_url }}"><img src="{{ plugin.image | relative_url }}" alt="{{ plugin.image_alt }}" loading="lazy"></a>
+  <div>
+    <p class="kicker">{{ plugin.kind }} · {{ plugin.status_label }}</p>
+    <h3><a href="{{ plugin.url | relative_url }}">{{ plugin.title }}</a></h3>
+    <p>{{ plugin.tagline }}</p>
+    {% include buy.html plugin=plugin %}
+  </div>
+</article>

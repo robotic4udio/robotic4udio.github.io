@@ -14,44 +14,18 @@
   </div>
 </section>
 
-{%- assign featured = site.products | first %}
-<section class="section">
-  <div class="container feature">
-    <div class="feature__text">
-      <p class="kicker">Plugin · {{ featured.status_label }}</p>
-      <h2 class="display">{{ featured.title }}</h2>
-      <p class="lead">{{ featured.tagline }}</p>
-      <ul class="chips">
-        {%- for stat in featured.stats limit: 5 %}
-        <li>{{ stat }}</li>
-        {%- endfor %}
-      </ul>
-      <a class="btn btn--fire" href="{{ featured.url | relative_url }}">Meet {{ featured.title }}</a>
-    </div>
-    <a class="feature__shot" href="{{ featured.url | relative_url }}">
-      <img src="{{ featured.image | relative_url }}" alt="{{ featured.image_alt }}" loading="lazy">
-    </a>
-  </div>
-  {%- if site.products.size > 1 %}
+<section class="section section--shop" id="plugins">
   <div class="container">
-    <div class="grid grid--3 more-plugins">
-      {%- for plugin in site.products offset: 1 %}
-      <a class="work" href="{{ plugin.url | relative_url }}">
-        <div class="work__image work__image--shot"><img src="{{ plugin.image | relative_url }}" alt="{{ plugin.image_alt }}" loading="lazy"></div>
-        <p class="kicker">{{ plugin.kind }} · {{ plugin.status_label }}</p>
-        <h3>{{ plugin.title }}</h3>
-        <p>{{ plugin.tagline }}</p>
-      </a>
-      {%- endfor %}
-    </div>
+    <p class="kicker">Instruments and effects</p>
+    <h2 class="display">Our plugins<span class="dot">.</span></h2>
+    {% include shop-grid.html %}
   </div>
-  {%- endif %}
 </section>
 
 <section class="section section--line">
   <div class="container">
     <p class="kicker">Studio</p>
-    <h2 class="display">Sound, built to order</h2>
+    <h2 class="display">Sound, built to order<span class="dot">.</span></h2>
     <div class="grid grid--4">
       {%- for service in site.data.studio %}
       <a class="card card--link" href="{{ '/studio/' | relative_url }}#{{ service.id }}">
