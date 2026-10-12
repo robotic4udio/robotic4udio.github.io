@@ -10,11 +10,9 @@ image: /assets/images/event-horizon/event-horizon.jpg
 image_alt: "Event Horizon's window: the algorithm strip on top, the 3D decay landscape with its handles beside the Space controls, and the Late Reverb page below"
 manual: /plugins/event-horizon/manual/
 
-# Set these when Event Horizon is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/event-horizon)
-# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/event-horizon) adds "Try it free".
-buy_url:
-price:
-trial_url:
+# Price and sale come from Moonbase (_data/shop.json, scripts/sync-shop.py): it is on sale once its
+# Moonbase product (moonbase_id, else this file's name) is in the storefront with a release;
+# on_sale: false keeps it "Coming soon" even then.
 
 stats:
   - 12 algorithms

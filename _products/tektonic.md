@@ -10,11 +10,9 @@ image: /assets/images/tektonic/tektonic.jpg
 image_alt: "Tektonic's window in its Magma look: the RA logo and the preset bar in the header, the instruments A to H, the four generators and the pitch drop, the drawn Volume envelope, then the Aggressor, the voice and the effects rack with its macros"
 manual: /plugins/tektonic/manual/
 
-# Set these when Tektonic is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/tektonic)
-# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/tektonic) adds "Try it free".
-buy_url:
-price:
-trial_url:
+# Price and sale come from Moonbase (_data/shop.json, scripts/sync-shop.py): it is on sale once its
+# Moonbase product (moonbase_id, else this file's name) is in the storefront with a release;
+# on_sale: false keeps it "Coming soon" even then.
 
 stats:
   - Mono, or up to 16 voices

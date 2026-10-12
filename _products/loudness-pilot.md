@@ -10,10 +10,9 @@ image: /assets/images/loudness-pilot/loudness-pilot.jpg
 image_alt: "Loudness Pilot's window: six loudness readouts along the top, the last minute of loudness with the leveller's gain and the limiter under it, and the Target, Auto Level and Output cards below"
 manual: /plugins/loudness-pilot/manual/
 
-# On sale on Moonbase: buy_url is its checkout ("Buy" with the price), trial_url its download page ("Try it free").
-buy_url: https://roboticaudio.moonbase.sh/buy/loudness-pilot
-price: €39
-trial_url: https://roboticaudio.moonbase.sh/download/loudness-pilot
+# Price and sale come from Moonbase (_data/shop.json, scripts/sync-shop.py): it is on sale once its
+# Moonbase product (moonbase_id, else this file's name) is in the storefront with a release;
+# on_sale: false keeps it "Coming soon" even then.
 
 stats:
   - EBU R128 / BS.1770 metering

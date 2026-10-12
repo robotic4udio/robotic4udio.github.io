@@ -1,0 +1,76 @@
+{
+  "currency": "EUR",
+  "products": {
+    "bitstorm": {
+      "name": "BITSTORM",
+      "released": true,
+      "version": "1.0.0",
+      "price": 129,
+      "price_text": "€129",
+      "original_price": 129,
+      "original_price_text": "€129",
+      "free": false
+    },
+    "gatekeeper": {
+      "name": "Gatekeeper",
+      "released": false,
+      "version": null,
+      "price": 0,
+      "price_text": "€0",
+      "original_price": 0,
+      "original_price_text": "€0",
+      "free": true
+    },
+    "graphic-eq": {
+      "name": "Graphic EQ",
+      "released": false,
+      "version": null,
+      "price": 0,
+      "price_text": "€0",
+      "original_price": 0,
+      "original_price_text": "€0",
+      "free": true
+    },
+    "loudness-pilot": {
+      "name": "LOUDNESS PILOT",
+      "released": true,
+      "version": "1.0.0",
+      "price": 39,
+      "price_text": "€39",
+      "original_price": 39,
+      "original_price_text": "€39",
+      "free": false
+    },
+    "parametric-eq": {
+      "name": "Parametric EQ",
+      "released": false,
+      "version": null,
+      "price": 0,
+      "price_text": "€0",
+      "original_price": 0,
+      "original_price_text": "€0",
+      "free": true
+    },
+    "podcast-polish": {
+      "name": "PODCAST POLISH",
+      "released": true,
+      "version": "1.0.0",
+      "price": 39,
+      "price_text": "€39",
+      "original_price": 39,
+      "original_price_text": "€39",
+      "free": false
+    },
+    "reverser": {
+      "name": "Reverser",
+      "released": false,
+      "version": null,
+      "price": 0,
+      "price_text": "€0",
+      "original_price": 0,
+      "original_price_text": "€0",
+      "free": true
+    }
+  },
+  "bundles": []
+}

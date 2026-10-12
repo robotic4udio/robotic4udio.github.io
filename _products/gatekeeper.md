@@ -10,10 +10,9 @@ image: /assets/images/gatekeeper/gatekeeper.jpg
 image_alt: "Gatekeeper's window: the drawn volume shape with its tools on top, starting as four pumps a bar, and Length, Feel, Depth and Smooth below"
 manual: /plugins/gatekeeper/manual/
 
-# Free. When Gatekeeper is out, set buy_url to its Moonbase checkout,
-# https://roboticaudio.moonbase.sh/buy/gatekeeper: the button changes from "Notify me" to "Get Gatekeeper free".
-free: true
-buy_url:
+# Price and sale come from Moonbase (_data/shop.json, scripts/sync-shop.py): it is on sale once its
+# Moonbase product (moonbase_id, else this file's name) is in the storefront with a release;
+# on_sale: false keeps it "Coming soon" even then.
 
 stats:
   - Drawn volume shape

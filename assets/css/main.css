@@ -117,6 +117,10 @@ p { margin: 0 0 1.1em; }
 .buy--soon .buy__price { background: var(--surface-2); color: var(--muted); font-size: 1.2rem; }
 .buy--soon:hover { border-color: var(--line-strong); color: var(--text); box-shadow: none; }
 .buy--soon:hover .buy__go { background: var(--surface-2); color: var(--text); }
+[hidden] { display: none !important; }
+.buy__was { display: block; font-size: 0.55em; font-weight: 800; opacity: 0.7; text-decoration-thickness: 2px; margin-bottom: 0.15em; }
+.buy__price:has(.buy__was:not([hidden])) { flex-direction: column; justify-content: center; align-items: flex-start; }
+.buy--owned .buy__price { background: var(--surface-2); color: var(--text); font-size: 1.2rem; }
 .buy-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: 22px; }
 .buy-row .trial { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
 
@@ -136,6 +140,19 @@ p { margin: 0 0 1.1em; }
 .shop-item .kicker { margin-bottom: 0.6em; }
 .shop-item .buy__price { font-size: 1.35rem; }
 .shop-item .buy__go { font-size: 0.95rem; }
+
+/* Bundles: a card each, the plugins' pictures side by side above the name, contents and price */
+.bundle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(24px, 4vw, 40px); margin-top: clamp(24px, 4vw, 40px); }
+.bundle { padding: clamp(20px, 3vw, 28px); border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface); }
+.bundle__shots { display: flex; gap: 10px; margin-bottom: 20px; }
+.bundle__shots a { flex: 1 1 0; min-width: 0; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 6px; border: 1px solid var(--line); }
+.bundle__shots img { width: 100%; height: 100%; object-fit: cover; object-position: left top; display: block; }
+.bundle h3 { font-family: var(--font-display); font-weight: 800; font-size: 1.9rem; text-transform: uppercase; letter-spacing: 0.02em; margin: 0 0 0.3em; }
+.bundle p { color: var(--muted); margin: 0 0 0.6em; }
+.bundle .buy-row { margin-top: 18px; }
+.bundle__saving, .bundle-note { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.bundle__saving strong, .bundle-note strong { color: var(--fire-hot); }
+.bundle-note { margin: 18px 0 0; }
 
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1.8rem; }
 
@@ -168,6 +185,7 @@ p { margin: 0 0 1.1em; }
 .site-nav { display: flex; gap: clamp(14px, 3vw, 32px); }
 .site-nav a { color: var(--muted); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: var(--text); }
+.site-nav__count { color: var(--fire-hot); }
 .site-nav a[aria-current="page"] { color: var(--text); border-image: var(--fire-gradient) 1; }
 
 .site-footer { border-top: 1px solid var(--line); padding: 48px 0 32px; color: var(--muted); font-size: 0.9rem; }

@@ -10,11 +10,9 @@ image: /assets/images/overpressure/overpressure.jpg
 manual: /plugins/overpressure/manual/
 image_alt: "Overpressure's window: input and output meters, a gain-reduction VU meter, the compressor controls and the FX Aggression section"
 
-# Set these when Overpressure is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/overpressure)
-# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/overpressure) adds "Try it free".
-buy_url:
-price:
-trial_url:
+# Price and sale come from Moonbase (_data/shop.json, scripts/sync-shop.py): it is on sale once its
+# Moonbase product (moonbase_id, else this file's name) is in the storefront with a release;
+# on_sale: false keeps it "Coming soon" even then.
 
 stats:
   - Soft-knee compressor

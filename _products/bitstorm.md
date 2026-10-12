@@ -12,10 +12,9 @@ image: /assets/images/bitstorm/bitstorm.jpg
 image_alt: "Bitstorm's window on its CHIP page: four NES channels as layers across the top, then the SID filter, the scope with the chip's registers and the global settings"
 manual: /plugins/bitstorm/manual/
 
-# On sale on Moonbase: buy_url is its checkout ("Buy" with the price), trial_url its download page ("Try it free").
-buy_url: https://roboticaudio.moonbase.sh/buy/bitstorm
-price: €129
-trial_url: https://roboticaudio.moonbase.sh/download/bitstorm
+# Price and sale come from Moonbase (_data/shop.json, scripts/sync-shop.py): it is on sale once its
+# Moonbase product (moonbase_id, else this file's name) is in the storefront with a release;
+# on_sale: false keeps it "Coming soon" even then.
 
 stats:
   - 7 sound chips

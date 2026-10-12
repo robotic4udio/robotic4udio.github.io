@@ -10,10 +10,9 @@ image: /assets/images/parametric-eq/parametric-eq.jpg
 image_alt: "Parametric EQ on its Vocal Polish preset: the graph with the numbered band dots over the output's spectrum, the eight bands' switches and types, the selected band's knobs and the output"
 manual: /plugins/parametric-eq/manual/
 
-# Free. When Parametric EQ is out, set buy_url to its Moonbase checkout,
-# https://roboticaudio.moonbase.sh/buy/parametric-eq: the button changes from "Notify me" to "Get Parametric EQ free".
-free: true
-buy_url:
+# Price and sale come from Moonbase (_data/shop.json, scripts/sync-shop.py): it is on sale once its
+# Moonbase product (moonbase_id, else this file's name) is in the storefront with a release;
+# on_sale: false keeps it "Coming soon" even then.
 
 stats:
   - 8 bands

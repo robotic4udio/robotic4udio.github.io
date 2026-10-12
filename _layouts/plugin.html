@@ -3,14 +3,12 @@ layout: default
 ---
 <section class="page-head page-head--plugin">
   <div class="container">
-    <p class="kicker">{{ page.kind }} · {{ page.status_label }}</p>
+    <p class="kicker">{{ page.kind }} · {% include status.html plugin=page %}</p>
     <h1 class="display display--xl">{{ page.title }}</h1>
     <p class="lead">{{ page.tagline }}</p>
     <div class="buy-row">
       {% include buy.html plugin=page variant="large" %}
-      {%- if page.buy_url and page.trial_url %}
-      <a class="trial" href="{{ page.trial_url }}">Try it free for {{ site.shop.trial_days }} days</a>
-      {%- endif %}
+      {%- include trial.html plugin=page %}
       {%- if page.manual %}
       <a class="btn btn--ghost" href="{{ page.manual | relative_url }}">Read the manual</a>
       {%- endif %}
@@ -107,30 +105,35 @@ layout: default
       {%- endif %}
     </div>
     <dl class="spec-list">
+      {%- include shop-lookup.html plugin=page %}
       {%- for spec in page.specs %}
+      {%- if spec.name == "Price" and on_sale %}
+      <div><dt>Price</dt><dd>{% if shop_free %}Free{% else %}<span data-moonbase-render="product.{{ shop_id }}.price">{{ shop_item.price_text }}</span>{% endif %}</dd></div>
+      {%- else %}
       <div><dt>{{ spec.name }}</dt><dd>{{ spec.value }}</dd></div>
+      {%- endif %}
       {%- endfor %}
     </dl>
   </div>
 </section>
 
-{%- if page.buy_url %}
+{%- if on_sale %}
 <section class="section section--line" id="buy">
   <div class="container">
-    <p class="kicker">{{ page.status_label }}</p>
+    <p class="kicker">{% include status.html plugin=page %}</p>
     <h2 class="display">Get {{ page.title }}</h2>
     <p class="lead">{{ page.tagline }}</p>
     <div class="buy-row">
       {% include buy.html plugin=page variant="large" %}
-      {%- if page.trial_url %}
-      <a class="trial" href="{{ page.trial_url }}">Try it free for {{ site.shop.trial_days }} days</a>
-      {%- endif %}
+      {%- include trial.html plugin=page %}
     </div>
+    {%- include bundle-note.html plugin=page %}
   </div>
 </section>
 {%- endif %}
 
-{%- unless page.buy_url %}
+{%- include shop-lookup.html plugin=page %}
+{%- unless on_sale %}
 <div id="notify">
 {%- capture signup_title %}{{ page.title }} is {{ page.status_label | downcase }}{% endcapture %}
 {%- capture signup_subject %}Notify me about {{ page.title }}{% endcapture %}

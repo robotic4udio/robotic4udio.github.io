@@ -1,0 +1,15 @@
+{%- comment -%}
+  Looks a plugin up in the shop (_data/shop.json, the Moonbase snapshot scripts/sync-shop.py writes).
+  include.plugin: the product. Sets shop_id (its Moonbase product id: moonbase_id, else the page's
+  slug), shop_item (its snapshot entry or nil), on_sale (in the storefront with a release, unless
+  the page says on_sale: false to keep it "Coming soon") and shop_free (on sale at no cost).
+{%- endcomment -%}
+{%- assign shop_slug = include.plugin.url | split: '/' | last -%}
+{%- assign shop_id = include.plugin.moonbase_id | default: shop_slug -%}
+{%- assign shop_item = site.data.shop.products[shop_id] -%}
+{%- assign on_sale = false -%}
+{%- assign shop_free = false -%}
+{%- if shop_item and shop_item.released and include.plugin.on_sale != false -%}
+  {%- assign on_sale = true -%}
+  {%- if shop_item.free %}{% assign shop_free = true %}{% endif -%}
+{%- endif -%}

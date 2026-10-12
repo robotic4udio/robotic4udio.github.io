@@ -1,0 +1,46 @@
+{%- comment -%}
+  The bundles in Moonbase (site.data.shop.bundles), one card each: what is in it, its price (live, in
+  the visitor's currency, the old price struck through during a sale), what it saves on buying the
+  plugins one by one (worked out live by assets/js/shop.js; the euro figure is the fallback) and a
+  button that puts the whole bundle in the cart. Nothing is shown while there are no bundles.
+  include.title: the heading (default "Bundles").
+{%- endcomment -%}
+{%- assign bundles = site.data.shop.bundles -%}
+{%- if bundles and bundles.size > 0 %}
+<div class="bundles" id="bundles">
+  <h2 class="display shop-heading">{{ include.title | default: "Bundles" }}</h2>
+  <div class="bundle-grid">
+    {%- for bundle in bundles %}
+    <article class="bundle">
+      <div class="bundle__shots">
+        {%- for pid in bundle.products %}
+        {%- for p in site.products %}
+        {%- include shop-lookup.html plugin=p %}
+        {%- if shop_id == pid %}
+        <a href="{{ p.url | relative_url }}"><img src="{{ p.image | relative_url }}" alt="{{ p.title }}" loading="lazy"></a>
+        {%- endif %}
+        {%- endfor %}
+        {%- endfor %}
+      </div>
+      <p class="kicker">Bundle · {{ bundle.products.size }} plugins</p>
+      <h3>{{ bundle.name }}</h3>
+      {%- if bundle.tagline != "" %}<p>{{ bundle.tagline }}</p>{% endif %}
+      <p class="bundle__contents">
+        {%- for pid in bundle.products %}
+        {%- assign item = site.data.shop.products[pid] %}
+        {%- for p in site.products %}{% include shop-lookup.html plugin=p %}{% if shop_id == pid %}{% assign item_title = p.title %}{% endif %}{% endfor %}
+        {%- if forloop.last and forloop.length > 1 %} and {% elsif forloop.first == false %}, {% endif %}{{ item_title | default: item.name }}
+        {%- assign item_title = nil %}
+        {%- endfor %}
+      </p>
+      <div class="buy-row">
+        <a class="buy" href="{{ site.shop.account_url }}" data-shop="add_to_cart" data-bundle="{{ bundle.id }}"><span class="buy__price"><s class="buy__was" hidden data-moonbase-if="bundle.{{ bundle.id }}.has_discount" data-moonbase-render="bundle.{{ bundle.id }}.original_price">{{ bundle.original_price_text }}</s><span data-moonbase-render="bundle.{{ bundle.id }}.price">{{ bundle.price_text }}</span></span><span class="buy__go">Buy the bundle</span></a>
+        {%- if bundle.saving_text %}
+        <span class="bundle__saving" data-bundle-saving="{{ bundle.id }}" data-bundle-products="{{ bundle.products | join: ',' }}">Save <strong>{{ bundle.saving_text }}</strong></span>
+        {%- endif %}
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
+</div>
+{%- endif %}

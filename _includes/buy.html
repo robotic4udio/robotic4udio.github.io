@@ -1,16 +1,23 @@
 {%- comment -%}
   A plugin's split buy button: the price in a lit block, the action beside it.
   include.plugin: the product. include.variant: "large" for a product page's own button.
-  On sale (buy_url): "€129 | Buy now"; free (free: true, or a buy_url with no price): "Free | Get it";
-  otherwise "Soon | Notify me", unlit, to the page's sign-up form.
+  On sale (in the Moonbase snapshot with a release): "€129 | Buy now", the price filled in live by the
+  storefront script in the visitor's currency, the old price struck through above it during a sale;
+  free: "Free | Get it"; already owned (signed in): "Owned | Download". Otherwise "Soon | Notify me",
+  unlit, to the page's sign-up form. The links are Moonbase's hosted pages, for when the script can't run.
 {%- endcomment -%}
-{%- assign p = include.plugin -%}
-{%- if p.buy_url and p.buy_url != "" -%}
-  {%- if p.free or p.price == nil or p.price == "" -%}
-<a class="buy{% if include.variant %} buy--{{ include.variant }}{% endif %}" href="{{ p.buy_url }}"><span class="buy__price">Free</span><span class="buy__go">Get it</span></a>
+{%- include shop-lookup.html plugin=include.plugin -%}
+{%- assign variant_class = "" -%}
+{%- if include.variant %}{% capture variant_class %} buy--{{ include.variant }}{% endcapture %}{% endif -%}
+{%- if on_sale -%}
+<a class="buy{{ variant_class }}" href="{{ site.shop.account_url }}/buy/{{ shop_id }}" data-shop="{% if shop_free %}purchase{% else %}add_to_cart{% endif %}" data-product="{{ shop_id }}" data-moonbase-if="!product.{{ shop_id }}.owned">
+  {%- if shop_free -%}
+  <span class="buy__price">Free</span><span class="buy__go">Get it</span>
   {%- else -%}
-<a class="buy{% if include.variant %} buy--{{ include.variant }}{% endif %}" href="{{ p.buy_url }}"><span class="buy__price">{{ p.price }}</span><span class="buy__go">Buy now</span></a>
+  <span class="buy__price"><s class="buy__was" hidden data-moonbase-if="product.{{ shop_id }}.has_discount" data-moonbase-render="product.{{ shop_id }}.original_price">{{ shop_item.original_price_text }}</s><span data-moonbase-render="product.{{ shop_id }}.price">{{ shop_item.price_text }}</span></span><span class="buy__go">Buy now</span>
   {%- endif -%}
+</a>
+<a class="buy buy--owned{{ variant_class }}" href="{{ site.shop.account_url }}/download/{{ shop_id }}" data-shop="download_product" data-product="{{ shop_id }}" hidden data-moonbase-if="product.{{ shop_id }}.owned"><span class="buy__price">Owned</span><span class="buy__go">Download</span></a>
 {%- else -%}
-<a class="buy buy--soon{% if include.variant %} buy--{{ include.variant }}{% endif %}" href="{{ p.url | relative_url }}#notify"><span class="buy__price">Soon</span><span class="buy__go">Notify me</span></a>
+<a class="buy buy--soon{{ variant_class }}" href="{{ include.plugin.url | relative_url }}#notify"><span class="buy__price">Soon</span><span class="buy__go">Notify me</span></a>
 {%- endif -%}

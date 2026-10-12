@@ -1,0 +1,8 @@
+{%- comment -%}
+  "Try it free for 14 days", beside a paid plugin's buy button, while the visitor doesn't own it.
+  include.plugin: the product. Opens Moonbase's download in the page; the link is the hosted download page.
+{%- endcomment -%}
+{%- include shop-lookup.html plugin=include.plugin -%}
+{%- if on_sale and shop_free == false %}
+<a class="trial" href="{{ site.shop.account_url }}/download/{{ shop_id }}" data-shop="download_product" data-product="{{ shop_id }}" data-moonbase-if="!product.{{ shop_id }}.owned">Try it free for {{ site.shop.trial_days }} days</a>
+{%- endif -%}
