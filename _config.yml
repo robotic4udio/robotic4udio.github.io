@@ -10,6 +10,10 @@ email: hjalte.bested.hjorth@gmail.com
 # hero_headline (the words before "with <name>") and hero_text; else its title and description.
 hero_plugin: bitstorm
 
+# The homepage's shop shows the plugins on sale and, of those still to come, only these (product
+# file names); /plugins/ shows every plugin.
+homepage_coming_soon: [tektonic]
+
 # Newsletter: the address a sign-up form posts to (the field is called "email"),
 # e.g. https://buttondown.com/api/emails/embed-subscribe/<name>.
 # While empty, sign-ups are a "notify me" email link instead of a form.

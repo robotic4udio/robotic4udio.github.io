@@ -1,11 +1,23 @@
 {%- comment -%}
-  Every plugin, two to a row: picture, name, pitch and its split buy button. The ones on sale
-  (in the Moonbase snapshot with a release) come first, then the rest, each group in the products'
-  own order. include.category (instrument, effect or tool) shows only that group.
+  One group of the shop under its heading: picture, name, pitch and split buy button, two to a row.
+  The ones on sale (in the Moonbase snapshot with a release) come first, then the rest, each in the
+  products' own order. include.category (instrument, effect or tool) shows only that group;
+  include.title is its heading. include.soon, a list of product slugs (e.g. site.homepage_coming_soon),
+  keeps only those of the plugins not on sale yet; without it every plugin is shown. A group with
+  nothing to show leaves out its heading too.
 {%- endcomment -%}
 {%- comment -%} Sorted here: GitHub Pages' Jekyll 3 ignores the collection's sort_by {%- endcomment -%}
 {%- assign shown = site.products | sort: "order" -%}
 {%- if include.category %}{% assign shown = shown | where: "category", include.category %}{% endif -%}
+{%- assign grid_count = 0 -%}
+{%- for plugin in shown -%}
+  {%- include shop-lookup.html plugin=plugin -%}
+  {%- if on_sale or include.soon == nil or include.soon contains shop_slug %}{% assign grid_count = grid_count | plus: 1 %}{% endif -%}
+{%- endfor -%}
+{%- if grid_count > 0 %}
+{%- if include.title %}
+<h2 class="display shop-heading">{{ include.title }}</h2>
+{%- endif %}
 <div class="shop-grid">
   {%- for plugin in shown %}
   {%- include shop-lookup.html plugin=plugin %}
@@ -16,7 +28,10 @@
   {%- for plugin in shown %}
   {%- include shop-lookup.html plugin=plugin %}
   {%- unless on_sale %}
+  {%- if include.soon == nil or include.soon contains shop_slug %}
   {% include shop-item.html plugin=plugin %}
+  {%- endif %}
   {%- endunless %}
   {%- endfor %}
 </div>
+{%- endif %}
