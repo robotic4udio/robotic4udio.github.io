@@ -121,7 +121,6 @@ p { margin: 0 0 1.1em; }
 .buy-row .trial { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
 
 /* Headlines end on a lit full stop */
-.dot { color: var(--fire); }
 
 /* The shop: plugins two to a row, picture beside name, pitch and buy button */
 .shop-heading { margin-top: clamp(56px, 8vw, 96px); }
