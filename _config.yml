@@ -6,6 +6,10 @@ url: "https://roboticaudio.com"
 baseurl: ""
 email: hjalte.bested.hjorth@gmail.com
 
+# The plugin the homepage leads with (its slug: the file name in _products). Its page can give
+# hero_headline (the words before "with <name>") and hero_text; else its title and description.
+hero_plugin: bitstorm
+
 # Newsletter: the address a sign-up form posts to (the field is called "email"),
 # e.g. https://buttondown.com/api/emails/embed-subscribe/<name>.
 # While empty, sign-ups are a "notify me" email link instead of a form.
