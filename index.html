@@ -2,7 +2,7 @@
 ---
 {%- assign hero = nil %}
 {%- for p in site.products %}{% assign slug = p.url | split: '/' | last %}{% if slug == site.hero_plugin %}{% assign hero = p %}{% endif %}{% endfor %}
-{%- if hero == nil %}{% assign hero = site.products | first %}{% endif %}
+{%- if hero == nil %}{% assign sorted = site.products | sort: "order" %}{% assign hero = sorted | first %}{% endif %}
 <section class="hero hero--product">
   <div class="container hero-product">
     <div class="hero-product__text">

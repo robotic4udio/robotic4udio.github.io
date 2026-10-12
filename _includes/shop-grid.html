@@ -3,10 +3,12 @@
   (a buy_url) come first, then the rest, each group in the products' own order. include.category
   (instrument or effect) shows only that group.
 {%- endcomment -%}
-{%- assign shown = site.products -%}
-{%- if include.category %}{% assign shown = site.products | where: "category", include.category %}{% endif -%}
-{%- assign on_sale = shown | where_exp: "p", "p.buy_url and p.buy_url != ''" -%}
-{%- assign coming = shown | where_exp: "p", "p.buy_url == nil or p.buy_url == ''" -%}
+{%- comment -%} Sorted here: GitHub Pages' Jekyll 3 ignores the collection's sort_by {%- endcomment -%}
+{%- assign shown = site.products | sort: "order" -%}
+{%- if include.category %}{% assign shown = shown | where: "category", include.category %}{% endif -%}
+{%- comment -%} One condition each: GitHub Pages' Jekyll 3 where_exp knows no "and" / "or" (an empty buy_url: is nil) {%- endcomment -%}
+{%- assign on_sale = shown | where_exp: "p", "p.buy_url" -%}
+{%- assign coming = shown | where_exp: "p", "p.buy_url == nil" -%}
 <div class="shop-grid">
   {%- for plugin in on_sale %}
   {% include shop-item.html plugin=plugin %}
