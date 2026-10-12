@@ -7,17 +7,19 @@ permalink: /plugins/
   <div class="container">
     <p class="kicker">Plugins</p>
     <h1 class="display">Machines that make noise</h1>
-    <p class="lead">Instruments and effects for AU, VST3 and standalone. The ones out now are first; leave your address to hear when the others are released.</p>
+    <p class="lead">Instruments, effects and tools for AU, VST3 and standalone. The ones out now are first; leave your address to hear when the others are released.</p>
   </div>
 </section>
 
 <section class="section section--tight">
   <div class="container">
-    {%- include bundles.html %}
     <h2 class="display">Instruments</h2>
     {% include shop-grid.html category="instrument" %}
     <h2 class="display shop-heading">Effects</h2>
     {% include shop-grid.html category="effect" %}
+    <h2 class="display shop-heading">Tools</h2>
+    {% include shop-grid.html category="tool" %}
+    {%- include bundles.html %}
   </div>
   <div class="container"><p class="note">More plugins are in the workshop.</p></div>
 </section>

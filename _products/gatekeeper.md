@@ -1,7 +1,7 @@
 ---
 title: Gatekeeper
 order: 13
-category: effect  # instrument or effect: which group the shop lists it in
+category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: Free
 status_label: Coming soon
 tagline: Draw a volume shape and it plays in time with your song.

@@ -1,7 +1,7 @@
 ---
 title: Graphic EQ
 order: 10
-category: effect  # instrument or effect: which group the shop lists it in
+category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: EQ
 status_label: Coming soon
 tagline: Ten sliders and a curve that really goes through every one of them.

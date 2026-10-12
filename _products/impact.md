@@ -1,7 +1,7 @@
 ---
 title: Impact
 order: 8
-category: instrument  # instrument or effect: which group the shop lists it in
+category: instrument  # instrument, effect or tool: which group the shop lists it in
 kind: Drums
 status_label: Coming soon
 tagline: Sixteen pads, each a drum you build from scratch.
