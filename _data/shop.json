@@ -13,8 +13,8 @@
     },
     "event-horizon": {
       "name": "Event Horizon",
-      "released": false,
-      "version": null,
+      "released": true,
+      "version": "1.0.0",
       "price": 99,
       "price_text": "€99",
       "original_price": 99,
@@ -93,8 +93,8 @@
     },
     "splicer": {
       "name": "Splicer",
-      "released": false,
-      "version": null,
+      "released": true,
+      "version": "1.0.0",
       "price": 59,
       "price_text": "€59",
       "original_price": 59,
