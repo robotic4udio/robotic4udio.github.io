@@ -51,6 +51,15 @@
     });
   }
 
+  // The site calls Moonbase's cart a basket: its drawer's title (fixed in Moonbase's script) is renamed as it opens
+  var renames = { 'My cart': 'Basket' };
+  new MutationObserver(function () {
+    document.querySelectorAll('[class~="moonbase:drawer-scaler"] > h2').forEach(function (el) {
+      var to = renames[el.textContent.trim()];
+      if (to && el.children.length === 0) el.textContent = to;
+    });
+  }).observe(document.body, { childList: true, subtree: true, characterData: true });
+
   if (window.Moonbase && typeof window.Moonbase.on === 'function') {
     window.Moonbase.on('storefront-updated', function (event) { updateSavings(event && event.storefront); });
   }

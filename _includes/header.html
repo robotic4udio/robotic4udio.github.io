@@ -10,7 +10,15 @@
       {%- endfor %}
       {%- if site.shop.open %}
       <a href="{{ site.shop.account_url }}" data-shop="view_account">Account</a>
-      <a class="site-nav__cart" href="{{ site.shop.account_url }}" data-shop="view_cart" hidden data-moonbase-if="cart.has_items">Cart <span class="site-nav__count" data-moonbase-render="cart.item_count"></span></a>
+      <a class="basket" href="{{ site.shop.account_url }}" data-shop="view_cart" aria-label="Basket" title="Basket">
+        <svg class="basket__icon" viewBox="0 0 32 32" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 13 C9 6.5 12 4 16 4 S23 6.5 23 13"/>
+          <path d="M3.5 13 H28.5 L25.5 27 H6.5 Z"/>
+          <path d="M5.2 18.5 H26.8 M6 23 H26"/>
+          <path d="M11.5 13 L12.5 27 M16 13 V27 M20.5 13 L19.5 27"/>
+        </svg>
+        <span class="basket__count" hidden data-moonbase-if="cart.has_items" data-moonbase-render="cart.item_count"></span>
+      </a>
       {%- endif %}
     </nav>
   </div>
