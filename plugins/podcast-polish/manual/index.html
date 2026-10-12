@@ -215,6 +215,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <li><a href="#presets">Presets</a></li>
     <li><a href="#ai">Designing with Claude</a></li>
     <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#licence">Licence</a></li>
     <li><a href="#specs">Specifications</a></li>
   </ol>
 </nav>
@@ -263,7 +264,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>The window</h2>
   <p class="sub">Numbers on top, pictures in the middle, the chain below.</p>
   <dl class="params">
-    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>.</dd>
+    <dt>Header</dt><dd>The Robotic Audio mark and the name, the preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the title for the version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>. Until Podcast Polish is licensed, a <strong>DEMO</strong> or <strong>TRIAL</strong> chip beside the menu opens the <a href="#licence">licence</a>.</dd>
     <dt>Readouts</dt><dd>Integrated (wide), Short-term, Momentary, Range and True peak, all measuring the output. See <a href="#metering">The readouts &amp; graph</a>.</dd>
     <dt>EQ display</dt><dd>The clean-up and tone curve over the output's spectrum, with handles you can drag. See <a href="#eq">The EQ display</a>.</dd>
     <dt>WAVEFORM · LOUDNESS</dt><dd>Two tabs over the right-hand panel. <strong>WAVEFORM</strong> shows the last 10 seconds coming in and going out on top of each other (see <a href="#waveform">The waveform</a>); <strong>LOUDNESS</strong> shows the last 60 seconds of loudness round the target, with Auto Level's gain and the limiter's reduction in a strip under it. Podcast Polish remembers the tab while its window is closed.</dd>
@@ -445,7 +446,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <tr><td>Gentle Touch</td><td>Less of everything: Pops 30 %, De-ess 25 %, ratio 1.5:1, a slow Auto Level (6 s, ±6 dB)</td></tr>
     <tr><td>Meter Only</td><td>All processing and the limiter off: Podcast Polish only measures (and delays by its lookahead)</td></tr>
   </table>
-  <p>Press <strong>SAVE</strong> in the header to keep your own. The preset menu has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. An asterisk after the preset's name means you've changed something since loading it. Every control is a host parameter and can be automated.</p>
+  <p><kbd>Up</kbd> and <kbd>Down</kbd> step through the presets, like the arrows; <kbd>Cmd</kbd>+<kbd>Z</kbd> takes a preset load back and <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd> brings it again. Press <strong>SAVE</strong> in the header to keep your own. The preset menu has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. An asterisk after the preset's name means you've changed something since loading it. Every control is a host parameter and can be automated.</p>
 </section>
 
 <section id="ai">
@@ -475,6 +476,20 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <div class="card"><span class="tag">Narration</span><p><strong>Audiobook -20 LUFS</strong> or <strong>Gentle Touch</strong>: they even out the slow drift of a long read without flattening its expression.</p></div>
     <div class="card"><span class="tag">Already processed</span><p><strong>Meter Only</strong>, then turn on just what's missing, such as Auto Level and the limiter for the final loudness.</p></div>
   </div>
+</section>
+
+<section id="licence">
+  <h2>Licence</h2>
+  <p class="sub">Try it, activate it, move it to another computer.</p>
+  <p>Without a licence, Podcast Polish runs as a demo: the sound drops out for 3 seconds every 45 seconds. Everything else works, saving included, so you can try it properly and keep what you made when you buy it. While it isn't licensed, the header shows <strong>DEMO</strong> (or <strong>TRIAL</strong> with the days left); click it, or choose <strong>Licence...</strong> in the menu, for the licence panel. It also opens by itself when the window opens in demo.</p>
+  <dl class="params">
+    <dt>ACTIVATE</dt><dd>Opens the shop in your browser. Sign in, choose your licence for this computer, and Podcast Polish unlocks a few seconds later.</dd>
+    <dt>START TRIAL</dt><dd>Everything, free, for 14 days, once per computer. The header counts the days down. Activate a licence at any time; your settings and sessions stay as they are.</dd>
+    <dt>BUY</dt><dd>The plugin's page on roboticaudio.com, with its Buy button.</dd>
+    <dt>SAVE DEVICE FILE / LOAD LICENCE FILE</dt><dd>For a computer without the internet. Save the device file, take it to the shop's activation page on a computer that is online, and load the licence file it gives you back.</dd>
+    <dt>DEACTIVATE</dt><dd>Frees this computer's seat, so you can activate the licence on another one. <strong>CHECK NOW</strong> confirms the licence with the shop straight away.</dd>
+  </dl>
+  <div class="callout">One licence covers every format on the computer (AU, VST3 and the standalone app) in every host: activate once and they all unlock. It is confirmed online about once a day and keeps working offline for 30 days after the last check.</div>
 </section>
 
 <section id="specs">
