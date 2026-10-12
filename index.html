@@ -6,14 +6,12 @@
 <section class="hero hero--product">
   <div class="container hero-product">
     <div class="hero-product__text">
-      <p class="kicker">{{ hero.status_label }} · {{ hero.kind }}</p>
+      <p class="kicker">{% include status.html plugin=hero %} · {{ hero.kind }}</p>
       <h1 class="hero-product__title">{% if hero.hero_headline %}{{ hero.hero_headline }} <span class="fire">with {{ hero.title }}</span>{% else %}<span class="fire">{{ hero.title }}</span>{% endif %}</h1>
       <p class="lead">{{ hero.hero_text | default: hero.description }}</p>
       <div class="buy-row">
         {% include buy.html plugin=hero variant="large" %}
-        {%- if hero.buy_url and hero.trial_url %}
-        <a class="trial" href="{{ hero.trial_url }}">Try it free for {{ site.shop.trial_days }} days</a>
-        {%- endif %}
+        {%- include trial.html plugin=hero %}
         <a class="btn btn--ghost" href="{{ hero.url | relative_url }}">See {{ hero.title }}</a>
       </div>
     </div>
@@ -26,6 +24,7 @@
 <section class="section section--shop" id="plugins">
   <div class="container">
     <p class="kicker">Our plugins</p>
+    {%- include bundles.html %}
     <h2 class="display">Instruments</h2>
     {% include shop-grid.html category="instrument" %}
     <h2 class="display shop-heading">Effects</h2>

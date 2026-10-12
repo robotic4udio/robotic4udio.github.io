@@ -1,0 +1,10 @@
+{%- comment -%}
+  Under a product page's buy button: the bundles the plugin is also in, linking to them.
+  include.plugin: the product.
+{%- endcomment -%}
+{%- include shop-lookup.html plugin=include.plugin -%}
+{%- for bundle in site.data.shop.bundles %}
+{%- if bundle.products contains shop_id %}
+<p class="bundle-note">Also in the <a href="{{ '/plugins/' | relative_url }}#bundles">{{ bundle.name }}</a>{% assign bundle_name = bundle.name | downcase %}{% unless bundle_name contains "bundle" %} bundle{% endunless %}{% if bundle.saving_text %}, <span data-bundle-saving="{{ bundle.id }}" data-bundle-products="{{ bundle.products | join: ',' }}">save <strong>{{ bundle.saving_text }}</strong></span>{% endif %}.</p>
+{%- endif %}
+{%- endfor %}

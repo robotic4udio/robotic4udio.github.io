@@ -25,5 +25,29 @@
     {{ content }}
   </main>
   {% include footer.html %}
+  {%- if site.shop.open %}
+  {%- comment -%} The shop: Moonbase's embedded storefront (cart, checkout, account, live prices), in the site's colours and fonts {%- endcomment -%}
+  <script src="https://assets.moonbase.sh/storefront/moonbase.js"></script>
+  <script>
+    Moonbase.setup('{{ site.shop.account_url }}', {
+      toolbar: { enabled: false },
+      theme: {
+        dark: true,
+        colors: { primary: '#ff6a1a', background: 'gray' },
+        fonts: {
+          heading: { family: 'Big Shoulders Display', stylesheet: '{{ "/assets/css/fonts.css" | absolute_url }}' },
+          body: { family: 'Inter', stylesheet: '{{ "/assets/css/fonts.css" | absolute_url }}' }
+        },
+        corners: 'soft',
+        buttons: 'outlined',
+        cards: 'outlined'
+      },
+      pricing: { trailingZeros: 'auto', currencyDisplay: 'narrowSymbol' },
+      cart: { quantity: 'single', bundles: { onAdd: 'replace', showProducts: true } },
+      promotions: { enabled: true, location: 'top' }
+    });
+  </script>
+  <script src="{{ '/assets/js/shop.js' | relative_url }}"></script>
+  {%- endif %}
 </body>
 </html>

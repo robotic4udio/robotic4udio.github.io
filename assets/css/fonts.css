@@ -1,0 +1,4 @@
+/* The site's fonts on their own, for Moonbase's checkout and account windows (given in _layouts/default.html) */
+@font-face { font-family: "Big Shoulders Display"; font-weight: 800; font-display: swap; src: url("../fonts/BigShouldersDisplay-ExtraBold.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 500; font-display: swap; src: url("../fonts/Inter-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 600; font-display: swap; src: url("../fonts/Inter-SemiBold.ttf") format("truetype"); }

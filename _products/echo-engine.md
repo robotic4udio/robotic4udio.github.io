@@ -10,11 +10,9 @@ image: /assets/images/echo-engine/echo-engine.jpg
 manual: /plugins/echo-engine/manual/
 image_alt: "Echo Engine's window: setup, delay times, repeats, LFO, pitch, diffusion, EQ and output sections side by side"
 
-# Set these when Echo Engine is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/echo-engine)
-# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/echo-engine) adds "Try it free".
-buy_url:
-price:
-trial_url:
+# Price and sale come from Moonbase (_data/shop.json, scripts/sync-shop.py): it is on sale once its
+# Moonbase product (moonbase_id, else this file's name) is in the storefront with a release;
+# on_sale: false keeps it "Coming soon" even then.
 
 stats:
   - Stereo delay

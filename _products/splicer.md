@@ -10,11 +10,9 @@ image: /assets/images/splicer/splicer.jpg
 image_alt: "Splicer's pattern page: the input and output history on top, the sixteen patterns, the selected pattern's editor and the generator below"
 manual: /plugins/splicer/manual/
 
-# Set these when Splicer is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/splicer)
-# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/splicer) adds "Try it free".
-buy_url:
-price:
-trial_url:
+# Price and sale come from Moonbase (_data/shop.json, scripts/sync-shop.py): it is on sale once its
+# Moonbase product (moonbase_id, else this file's name) is in the storefront with a release;
+# on_sale: false keeps it "Coming soon" even then.
 
 stats:
   - BBCut-style cut engine

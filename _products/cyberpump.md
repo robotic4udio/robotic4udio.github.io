@@ -10,11 +10,9 @@ image: /assets/images/cyberpump/cyberpump.jpg
 manual: /plugins/cyberpump/manual/
 image_alt: "CyberPump's window: the pump's curve beside Motion, four effect slot tabs, the shown effect's live display with a lane under each knob, and Output"
 
-# Set these when CyberPump is on sale: buy_url (its Moonbase checkout, https://roboticaudio.moonbase.sh/buy/cyberpump)
-# turns "Notify me" into "Buy", and trial_url (https://roboticaudio.moonbase.sh/download/cyberpump) adds "Try it free".
-buy_url:
-price:
-trial_url:
+# Price and sale come from Moonbase (_data/shop.json, scripts/sync-shop.py): it is on sale once its
+# Moonbase product (moonbase_id, else this file's name) is in the storefront with a release;
+# on_sale: false keeps it "Coming soon" even then.
 
 stats:
   - 21 pump shapes

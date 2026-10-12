@@ -1,0 +1,5 @@
+{%- comment -%}
+  A plugin's status for its kicker: "Out now" (or "Free") once it is on sale in Moonbase, else its own status_label.
+{%- endcomment -%}
+{%- include shop-lookup.html plugin=include.plugin -%}
+{%- if on_sale and shop_free %}Free{% elsif on_sale %}Out now{% else %}{{ include.plugin.status_label }}{% endif -%}

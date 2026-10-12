@@ -10,10 +10,9 @@ image: /assets/images/podcast-polish/podcast-polish.jpg
 manual: /plugins/podcast-polish/manual/
 image_alt: "Podcast Polish's window: loudness readouts along the top, the EQ curve over the spectrum and the waveform before and after, and the cards in signal order: Clean, Pops, De-ess, Tone, Compressor, Loudness and Output"
 
-# On sale on Moonbase: buy_url is its checkout ("Buy" with the price), trial_url its download page ("Try it free").
-buy_url: https://roboticaudio.moonbase.sh/buy/podcast-polish
-price: €39
-trial_url: https://roboticaudio.moonbase.sh/download/podcast-polish
+# Price and sale come from Moonbase (_data/shop.json, scripts/sync-shop.py): it is on sale once its
+# Moonbase product (moonbase_id, else this file's name) is in the storefront with a release;
+# on_sale: false keeps it "Coming soon" even then.
 
 stats:
   - Clean-up EQ

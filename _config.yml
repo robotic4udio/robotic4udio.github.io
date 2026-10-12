@@ -15,8 +15,9 @@ hero_plugin: bitstorm
 # While empty, sign-ups are a "notify me" email link instead of a form.
 newsletter_action: ""
 
-# The shop (Moonbase): checkout, downloads and the customer's account. Each plugin's page gets its
-# buttons from its own buy_url (and trial_url); open: true adds the Account link to the menu.
+# The shop (Moonbase): cart, checkout, downloads and the customer's account, run on every page by
+# Moonbase's embedded storefront (_layouts/default.html). Prices, what is on sale and the bundles come
+# from Moonbase (_data/shop.json, refreshed by scripts/sync-shop.py); open: false leaves the shop out.
 shop:
   open: true
   account_url: "https://roboticaudio.moonbase.sh"
