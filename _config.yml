@@ -30,10 +30,16 @@ collections:
     output: true
     permalink: /plugins/:name/
     sort_by: order
+  # The studio's work (copied from the portfolio), each at /studio/<name>/
+  projects:
+    output: true
+    permalink: /studio/:name/
 
 defaults:
   - scope: { path: "", type: products }
     values: { layout: plugin }
+  - scope: { path: "", type: projects }
+    values: { layout: project }
   - scope: { path: "" }
     values: { layout: default }
 

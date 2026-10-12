@@ -1,0 +1,55 @@
+---
+layout: default
+---
+{%- comment -%} A piece of the studio's work (copied from the portfolio). Previous / next follow the projects, newest first. {%- endcomment -%}
+{%- assign projects = site.projects | sort: "date" | reverse %}
+{%- for item in projects %}{% if item.url == page.url %}{% assign idx = forloop.index0 %}{% endif %}{% endfor %}
+{%- assign count = projects.size %}
+{%- assign prev_idx = idx | minus: 1 | plus: count | modulo: count %}
+{%- assign next_idx = idx | plus: 1 | modulo: count %}
+{%- assign prev = projects[prev_idx] %}
+{%- assign next = projects[next_idx] %}
+
+<section class="project-hero">
+  {%- if page.image %}
+  <div class="project-hero__media"><img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" fetchpriority="high"></div>
+  {%- endif %}
+  <div class="container project-hero__content">
+    <a class="back-link" href="{{ '/studio/' | relative_url }}">← Studio</a>
+    <p class="kicker">Studio work</p>
+    <h1 class="display">{{ page.title }}<span class="dot">.</span></h1>
+    {%- if page.description %}<p class="lead">{{ page.description }}</p>{% endif %}
+    {%- if page.tags.size > 0 %}
+    <ul class="chips">
+      {%- for tag in page.tags %}<li>{{ tag | replace: "-", " " }}</li>{% endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+</section>
+
+<article class="project-body">
+  {{ content }}
+</article>
+
+<nav class="pager" aria-label="More work">
+  <a class="pager__link" href="{{ prev.url | relative_url }}">
+    {%- if prev.image %}<img src="{{ prev.image | relative_url }}" alt="" loading="lazy">{% endif %}
+    <span class="pager__label">← Previous</span>
+    <span class="pager__title">{{ prev.title }}</span>
+  </a>
+  <a class="pager__link pager__link--next" href="{{ next.url | relative_url }}">
+    {%- if next.image %}<img src="{{ next.image | relative_url }}" alt="" loading="lazy">{% endif %}
+    <span class="pager__label">Next →</span>
+    <span class="pager__title">{{ next.title }}</span>
+  </a>
+</nav>
+
+<section class="signup" id="contact">
+  <div class="container signup__inner">
+    <div>
+      <h2>Have a project in mind?</h2>
+      <p>Tell me what you are building, where it will live and when you need it.</p>
+    </div>
+    <a class="btn btn--fire" href="mailto:{{ site.email }}">{{ site.email }}</a>
+  </div>
+</section>
