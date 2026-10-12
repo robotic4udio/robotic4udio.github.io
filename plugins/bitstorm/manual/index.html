@@ -225,7 +225,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <h2>The window</h2>
   <p class="sub">A header, a row of settings beside the page tabs, and seven pages.</p>
   <dl class="params">
-    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the title for version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>. Until Bitstorm is licensed, a <strong>DEMO</strong> or <strong>TRIAL</strong> chip beside the menu opens the <a href="#licence">licence</a>.</dd>
+    <dt>Header</dt><dd>The Robotic Audio mark and the name, the preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the title for version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>. Until Bitstorm is licensed, a <strong>DEMO</strong> or <strong>TRIAL</strong> chip beside the menu opens the <a href="#licence">licence</a>.</dd>
     <dt>Beside the tabs</dt><dd><strong>Clock</strong>, <strong>Frames</strong>, <strong>Mode</strong> and <strong>Notes</strong>: the machine every page plays on (see <a href="#global">global</a> and <a href="#modes">modes</a>).</dd>
     <dt>CHIP</dt><dd>The four layers, the SID filter, the scope and the global settings.</dd>
     <dt>MACROS</dt><dd>Each layer's tracker macros: Volume, Arp, Pitch and the chip's own fourth (and the Game Boy's wave table).</dd>
@@ -357,10 +357,10 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <p class="sub">Drawn envelopes, LFOs and MIDI, routed by a matrix.</p>
   <figure>
     <img src="images/mod.jpg" alt="The MOD page">
-    <figcaption>Filter Sweep Bass's MOD page: Mod 1–3 on tabs, the two LFOs, the macro knobs and the matrix, here Mod 3 sweeping the SID cutoff.</figcaption>
+    <figcaption>Filter Sweep Bass's MOD page: Mod 1–3 on tabs (Mod 3 shown), the two LFOs, the macro knobs and the matrix, here Mod 3 sweeping the SID cutoff.</figcaption>
   </figure>
   <dl class="params">
-    <dt>Mod 1 · 2 · 3</dt><dd>Drawn envelopes, one per note, each with its power switch: draw the shape, loop a part of it, and set <strong>Attack</strong>, <strong>Release</strong>, <strong>Rate</strong> and <strong>Drift</strong>; <strong>BIPOLAR</strong> lets it swing both ways from the middle. <strong>Trigger</strong> restarts it with every note (Trig), only after a gap (Legato) or follows the song (Tempo); <strong>Sync</strong> locks its length to note values. Mod 1 starts bipolar, for pitch-like sweeps.</dd>
+    <dt>Mod 1 · 2 · 3</dt><dd>Drawn envelopes, one per note, each with its power switch: draw the shape, loop a part of it, and set <strong>Attack</strong>, <strong>Release</strong>, <strong>Rate</strong> and <strong>Drift</strong>; <strong>BIPOLAR</strong> lets it swing both ways from the middle. <strong>Trigger</strong> restarts it with every note (Trig), only after a gap (Legato) or follows the song (Tempo); <strong>Sync</strong> locks its length to note values. Mod 1 starts bipolar, for pitch-like sweeps. An envelope runs, and its playhead moves, only while a matrix row uses it.</dd>
     <dt>LFO 1 · 2</dt><dd><strong>Shape</strong> (sine, triangle, saw, square or random), <strong>Rate</strong> in Hz or, with <strong>SYNC</strong>, a <strong>Note</strong> value at the song's tempo. <strong>RETRIG</strong> starts it afresh with every note; off, every voice shares one free-running LFO.</dd>
     <dt>Macros</dt><dd>Four knobs to route, automate and play: right-click one to rename it.</dd>
     <dt>Matrix</dt><dd>Sixteen rows, each a source (Mod 1–3, the LFOs, velocity, note, mod wheel, aftertouch, pitch bend, two learnable CCs, a random value per note, the macros), an optional via, a destination, an <strong>Amt</strong>, an <strong>Offset</strong> (added even without a source) and a <strong>Smooth</strong> glide; <strong>+ ADD ROW</strong> shows another, right-click a row to insert, remove or clear it. <strong>LEARN</strong> beside it teaches CC A and CC B the next controller you move. Destinations are each layer's <strong>Pitch</strong> (up to ±24 semitones), <strong>Level</strong>, <strong>Pan</strong>, <strong>Pulse Width</strong> and <strong>FM Brightness</strong>, the <strong>SID Cutoff</strong> and <strong>Resonance</strong>, and the <strong>Volume</strong>.</dd>
@@ -396,7 +396,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <p class="sub">The SEQ page: chip arpeggios, and songs written row by row.</p>
   <figure>
     <img src="images/seq.jpg" alt="The SEQ page">
-    <figcaption>A C64 tune playing in Chip mode by MIDI channel: the arpeggiator (off) on top, then the tracker with the pattern banks and pattern 00, the order list and a column per layer. In layer 3's column the bass (instrument 05) and the hats (08) take turns; the playing row is lit.</figcaption>
+    <figcaption>Tracker Demo: the arpeggiator (off) on top, then the tracker with pattern 00, the order list and a column per layer, in Chip mode by MIDI channel.</figcaption>
   </figure>
   <h3>Arpeggiator</h3>
   <dl class="params">
@@ -420,8 +420,8 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <h2>Instruments</h2>
   <p class="sub">The INSTR page: up to 32 sounds a song switches between, note by note.</p>
   <figure>
-    <img src="images/instruments.jpg" alt="The INSTR page">
-    <figcaption>A C64 tune's eight instruments, all SID: the list on the left, the selected Kick's chip channel in the middle, and its macros on the right (a pitch drop, and a noise frame then a pulse in Wave: the classic chip drum).</figcaption>
+    <img src="images/instruments.jpg" alt="The INSTR page with eight instruments">
+    <figcaption>Eight instruments on six chips, the list on the left with each one's chip; the selected one, an NES pulse lead, set in the middle and its macros on the right.</figcaption>
   </figure>
   <p>Without instruments every column of the tracker plays its layer's sound for the whole song. An instrument is one chip channel's sound, set exactly as a layer is (its chip and that chip's controls, tuning, level and pan) with its own four macros and Game Boy wave. A cell that names an instrument plays it, and its column keeps playing it for the notes after, until another cell names a different one; <strong>00</strong> goes back to the layer's own sound, which is also what every column plays from the song's start. So one column can play the bass with the kick, snare and hats between its notes, as the C64's composers did to fit a whole band into three voices, and a lead can change for the chorus.</p>
   <dl class="params">
@@ -438,7 +438,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
 <section id="presets">
   <h2>Presets</h2>
   <p class="sub">Everything is saved: knobs, macros, wave tables, samples, the song.</p>
-  <p>Use the <strong>arrows</strong> to step through presets or click the name for the list. <strong>SAVE</strong> stores your sound as a user preset; the menu also has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. A <strong>*</strong> after the name means you've changed something since loading it. Over three hundred presets come with it, in the list's folders <strong>Lead</strong>, <strong>Bass</strong>, <strong>Arp</strong>, <strong>Drums</strong>, <strong>FX</strong> and <strong>Game</strong> (forty each) and <strong>Tracker</strong> (forty-five tunes that play from the tracker), and more at the top of the list, from <strong>C64 Sync Lead</strong> and <strong>6581 Growl Bass</strong> to <strong>Paula Choir</strong>, <strong>16-Bit Brass</strong>, <strong>Tracker Demo</strong> and <strong>NES Band (Chip Mode)</strong>.</p>
+  <p>Use the <strong>arrows</strong> (or <kbd>Up</kbd> and <kbd>Down</kbd> on the keyboard, when the tracker isn't taking them) to step through presets or click the name for the list; <kbd>Cmd</kbd>+<kbd>Z</kbd> takes a preset load back, <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd> brings it again. <strong>SAVE</strong> stores your sound as a user preset; the menu also has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. A <strong>*</strong> after the name means you've changed something since loading it. Over three hundred presets come with it. The list opens with seven folders: <strong>Arp</strong>, <strong>Bass</strong>, <strong>Drums</strong>, <strong>FX</strong>, <strong>Game</strong> and <strong>Lead</strong>, forty sounds each, and <strong>Tracker</strong>, forty-five tunes the tracker plays for you. After them come the first sounds, from <strong>C64 Sync Lead</strong> and <strong>6581 Growl Bass</strong> to <strong>Paula Choir</strong>, <strong>16-Bit Brass</strong>, <strong>Tracker Demo</strong> and <strong>NES Band (Chip Mode)</strong>.</p>
   <p>User presets are XML files in <code>~/Library/Audio/Presets/Robotic Audio/Bitstorm</code> (macOS) or <code>Documents/Presets/Robotic Audio/Bitstorm</code> (Windows): easy to back up and share. A Paula layer playing your own file keeps the file's path, so keep the file where it is.</p>
 </section>
 
@@ -475,12 +475,13 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <tr><th>Keys</th><th>Where</th><th>Does</th></tr>
     <tr><td><kbd>Cmd</kbd> + drag</td><td>Knobs</td><td>fine adjustment</td></tr>
     <tr><td>Double-click</td><td>Knobs</td><td>reset to default</td></tr>
+    <tr><td><kbd>Up</kbd> · <kbd>Down</kbd></td><td>Anywhere but the tracker</td><td>previous · next preset</td></tr>
+    <tr><td><kbd>Cmd</kbd> <kbd>Z</kbd> · <kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>Z</kbd></td><td>After loading a preset</td><td>back to the sound before · load it again</td></tr>
     <tr><td>Click · <kbd>Shift</kbd> + click the top strip</td><td>Macros</td><td>loop point · release point</td></tr>
     <tr><td>Arrow keys (<kbd>Shift</kbd>: 4 rows)</td><td>Tracker</td><td>move the cursor</td></tr>
     <tr><td><kbd>Tab</kbd> · <kbd>Shift</kbd> <kbd>Tab</kbd></td><td>Tracker</td><td>next · previous column</td></tr>
     <tr><td><kbd>+</kbd> <kbd>-</kbd> (<kbd>Shift</kbd>: an octave)</td><td>Tracker note</td><td>change the note</td></tr>
     <tr><td><kbd>.</kbd></td><td>Tracker note</td><td>note-off</td></tr>
-    <tr><td><kbd>0</kbd>–<kbd>9</kbd></td><td>Tracker instrument</td><td>two digits pick an instrument (00 the layer's own sound)</td></tr>
     <tr><td><kbd>0</kbd>–<kbd>F</kbd></td><td>Tracker volume, effect</td><td>enter a hex digit</td></tr>
     <tr><td><kbd>Delete</kbd> · <kbd>Backspace</kbd></td><td>Tracker</td><td>clear the field</td></tr>
     <tr><td><kbd>Shift</kbd> + drag · <kbd>Cmd</kbd> <kbd>Z</kbd></td><td>Envelopes</td><td>edit region · undo</td></tr>
