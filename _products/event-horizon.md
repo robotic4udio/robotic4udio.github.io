@@ -38,7 +38,7 @@ features:
   - title: Made for the mix
     text: Ducking that lets the tail bloom in the gaps, low and high cuts, tempo-synced pre-delay and decay, Freeze for endless pads, and Mix Lock for send tracks.
   - title: Inside the other plugins
-    text: Event Horizon is also an effect in the racks of Line Runner, CyberPump and the other Robotic Audio plugins, with the same controls in the slot's window.
+    text: Event Horizon is also an effect in the racks of Tektonic, CyberPump and the other Robotic Audio plugins, with the same controls in the slot's window.
 
 demos: []
 
