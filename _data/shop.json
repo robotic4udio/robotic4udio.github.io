@@ -11,6 +11,16 @@
       "original_price_text": "€129",
       "free": false
     },
+    "event-horizon": {
+      "name": "Event Horizon",
+      "released": false,
+      "version": null,
+      "price": 99,
+      "price_text": "€99",
+      "original_price": 99,
+      "original_price_text": "€99",
+      "free": false
+    },
     "gatekeeper": {
       "name": "Gatekeeper",
       "released": false,
@@ -39,6 +49,16 @@
       "price_text": "€39",
       "original_price": 39,
       "original_price_text": "€39",
+      "free": false
+    },
+    "overkill": {
+      "name": "Overkill",
+      "released": true,
+      "version": "1.0.0",
+      "price": 49,
+      "price_text": "€49",
+      "original_price": 49,
+      "original_price_text": "€49",
       "free": false
     },
     "parametric-eq": {
@@ -70,6 +90,16 @@
       "original_price": 0,
       "original_price_text": "€0",
       "free": true
+    },
+    "splicer": {
+      "name": "Splicer",
+      "released": false,
+      "version": null,
+      "price": 59,
+      "price_text": "€59",
+      "original_price": 59,
+      "original_price_text": "€59",
+      "free": false
     }
   },
   "bundles": [
