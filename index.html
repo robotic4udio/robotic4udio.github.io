@@ -11,6 +11,9 @@
       <p class="lead">{{ hero.hero_text | default: hero.description }}</p>
       <div class="buy-row">
         {% include buy.html plugin=hero variant="large" %}
+        {%- if hero.buy_url and hero.trial_url %}
+        <a class="trial" href="{{ hero.trial_url }}">Try it free for {{ site.shop.trial_days }} days</a>
+        {%- endif %}
         <a class="btn btn--ghost" href="{{ hero.url | relative_url }}">See {{ hero.title }}</a>
       </div>
     </div>

@@ -9,11 +9,10 @@ image: /assets/images/loudness-pilot/loudness-pilot.jpg
 image_alt: "Loudness Pilot's window: six loudness readouts along the top, the last minute of loudness with the leveller's gain and the limiter under it, and the Target, Auto Level and Output cards below"
 manual: /plugins/loudness-pilot/manual/
 
-# On sale on Moonbase. trial_url (https://roboticaudio.moonbase.sh/download/loudness-pilot) would add
-# "Try it free" once the product has a trial.
+# On sale on Moonbase: buy_url is its checkout ("Buy" with the price), trial_url its download page ("Try it free").
 buy_url: https://roboticaudio.moonbase.sh/buy/loudness-pilot
 price: €39
-trial_url:
+trial_url: https://roboticaudio.moonbase.sh/download/loudness-pilot
 
 stats:
   - EBU R128 / BS.1770 metering
@@ -52,8 +51,8 @@ specs:
   - name: Sound design with Claude
     value: "Optional, with your own Anthropic key: describe a sound and Claude sets Loudness Pilot to make it (macOS and Windows)"
   - name: Status
-    value: In development, version 0.1
+    value: Released, version 1.0
   - name: Price
-    value: To be announced
+    value: €39
 ---
 Loudness Pilot sits last on your master or voice bus. It tells you how loud the programme is in the units delivery specs use, sets the gain that lands it on the target, levels voices that come and go, and makes sure no peak goes over the ceiling.
