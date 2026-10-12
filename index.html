@@ -7,7 +7,7 @@
   <div class="container hero-product">
     <div class="hero-product__text">
       <p class="kicker">{{ hero.status_label }} · {{ hero.kind }}</p>
-      <h1 class="hero-product__title">{% if hero.hero_headline %}{{ hero.hero_headline }} <span class="fire">with {{ hero.title }}<span class="dot">.</span></span>{% else %}<span class="fire">{{ hero.title }}<span class="dot">.</span></span>{% endif %}</h1>
+      <h1 class="hero-product__title">{% if hero.hero_headline %}{{ hero.hero_headline }} <span class="fire">with {{ hero.title }}</span>{% else %}<span class="fire">{{ hero.title }}</span>{% endif %}</h1>
       <p class="lead">{{ hero.hero_text | default: hero.description }}</p>
       <div class="buy-row">
         {% include buy.html plugin=hero variant="large" %}
@@ -26,9 +26,9 @@
 <section class="section section--shop" id="plugins">
   <div class="container">
     <p class="kicker">Our plugins</p>
-    <h2 class="display">Instruments<span class="dot">.</span></h2>
+    <h2 class="display">Instruments</h2>
     {% include shop-grid.html category="instrument" %}
-    <h2 class="display shop-heading">Effects<span class="dot">.</span></h2>
+    <h2 class="display shop-heading">Effects</h2>
     {% include shop-grid.html category="effect" %}
   </div>
 </section>
@@ -36,7 +36,7 @@
 <section class="section section--line">
   <div class="container">
     <p class="kicker">Studio</p>
-    <h2 class="display">Sound, built to order<span class="dot">.</span></h2>
+    <h2 class="display">Sound, built to order</h2>
     <p class="lead">Robotic Audio makes audio plugins and builds sound for installations, stages and stories. It is the studio of Hjalte Bested Hjorth: musician, sound designer and creative technologist.</p>
     <div class="grid grid--4">
       {%- for service in site.data.studio %}
