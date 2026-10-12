@@ -1,7 +1,7 @@
 ---
 title: Reverser
 order: 4
-category: effect  # instrument or effect: which group the shop lists it in
+category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: Effect
 status_label: Coming soon
 tagline: Hold a button and hear the last moments backwards.

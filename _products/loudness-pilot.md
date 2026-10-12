@@ -1,7 +1,7 @@
 ---
 title: Loudness Pilot
 order: 6
-category: effect  # instrument or effect: which group the shop lists it in
+category: tool  # instrument, effect or tool: which group the shop lists it in
 kind: Loudness
 status_label: Out now
 tagline: A loudness meter that also does something about it.

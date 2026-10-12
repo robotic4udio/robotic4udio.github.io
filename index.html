@@ -24,11 +24,13 @@
 <section class="section section--shop" id="plugins">
   <div class="container">
     <p class="kicker">Our plugins</p>
-    {%- include bundles.html %}
     <h2 class="display">Instruments</h2>
     {% include shop-grid.html category="instrument" %}
     <h2 class="display shop-heading">Effects</h2>
     {% include shop-grid.html category="effect" %}
+    <h2 class="display shop-heading">Tools</h2>
+    {% include shop-grid.html category="tool" %}
+    {%- include bundles.html %}
   </div>
 </section>
 

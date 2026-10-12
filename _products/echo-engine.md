@@ -1,7 +1,7 @@
 ---
 title: Echo Engine
 order: 2
-category: effect  # instrument or effect: which group the shop lists it in
+category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: Delay
 status_label: Coming soon
 tagline: A stereo delay with three characters and repeats that climb in pitch.
