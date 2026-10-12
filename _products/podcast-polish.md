@@ -1,6 +1,7 @@
 ---
 title: Podcast Polish
 order: 15
+category: effect  # instrument or effect: which group the shop lists it in
 kind: Voice chain
 status_label: Out now
 tagline: A voice's whole finishing chain, for podcasts and speech.

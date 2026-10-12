@@ -1,6 +1,7 @@
 ---
 title: Bitstorm
 order: 17
+category: instrument  # instrument or effect: which group the shop lists it in
 kind: Synth
 status_label: Out now
 tagline: Seven classic sound chips, computed the way the hardware did it.

@@ -1,6 +1,7 @@
 ---
 title: Drum Forge
 order: 16
+category: instrument  # instrument or effect: which group the shop lists it in
 kind: Drums
 status_label: Coming soon
 tagline: A drum sampler that can make its own kits.

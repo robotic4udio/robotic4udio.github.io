@@ -1,6 +1,7 @@
 ---
 title: Parametric EQ
 order: 11
+category: effect  # instrument or effect: which group the shop lists it in
 kind: EQ
 status_label: Coming soon
 tagline: Eight bands, each any filter you need, dragged straight on the graph.

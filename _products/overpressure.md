@@ -1,6 +1,7 @@
 ---
 title: Overpressure
 order: 3
+category: effect  # instrument or effect: which group the shop lists it in
 kind: Compressor
 status_label: Coming soon
 tagline: A hardware-style compressor with three stages of dirt behind it.

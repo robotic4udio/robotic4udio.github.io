@@ -1,6 +1,7 @@
 ---
 title: Overkill
 order: 5
+category: effect  # instrument or effect: which group the shop lists it in
 kind: Multiband
 status_label: Coming soon
 tagline: Multiband compression taken over the top.

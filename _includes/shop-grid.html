@@ -1,9 +1,12 @@
 {%- comment -%}
   Every plugin, two to a row: picture, name, pitch and its split buy button. The ones on sale
-  (a buy_url) come first, then the rest, each group in the products' own order.
+  (a buy_url) come first, then the rest, each group in the products' own order. include.category
+  (instrument or effect) shows only that group.
 {%- endcomment -%}
-{%- assign on_sale = site.products | where_exp: "p", "p.buy_url and p.buy_url != ''" -%}
-{%- assign coming = site.products | where_exp: "p", "p.buy_url == nil or p.buy_url == ''" -%}
+{%- assign shown = site.products -%}
+{%- if include.category %}{% assign shown = site.products | where: "category", include.category %}{% endif -%}
+{%- assign on_sale = shown | where_exp: "p", "p.buy_url and p.buy_url != ''" -%}
+{%- assign coming = shown | where_exp: "p", "p.buy_url == nil or p.buy_url == ''" -%}
 <div class="shop-grid">
   {%- for plugin in on_sale %}
   {% include shop-item.html plugin=plugin %}

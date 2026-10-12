@@ -1,6 +1,7 @@
 ---
 title: CyberPump
 order: 14
+category: effect  # instrument or effect: which group the shop lists it in
 kind: Pump & effects
 status_label: Coming soon
 tagline: A sidechain pump that makes your effects pump along with it.
