@@ -3,7 +3,7 @@ title: Reverser
 order: 4
 category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: Effect
-status_label: Coming soon
+status_label: Out now
 tagline: Hold a button and hear the last moments backwards.
 description: Reverser keeps the last 30 seconds of audio and plays them backwards while you hold a button, at normal or double speed. AU, VST3 and standalone.
 image: /assets/images/reverser/reverser.jpg
@@ -49,7 +49,7 @@ specs:
   - name: Sound design with Claude
     value: "Optional, with your own Anthropic key: describe a sound and Claude sets Reverser to make it (macOS and Windows)"
   - name: Status
-    value: In development, version 0.1
+    value: Released, version 1.0
   - name: Price
     value: Free
 ---

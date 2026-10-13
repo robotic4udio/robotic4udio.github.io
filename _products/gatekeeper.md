@@ -2,8 +2,8 @@
 title: Gatekeeper
 order: 13
 category: effect  # instrument, effect or tool: which group the shop lists it in
-kind: Free
-status_label: Coming soon
+kind: Gate
+status_label: Out now
 tagline: Draw a volume shape and it plays in time with your song.
 description: Gatekeeper is a free volume shaper. Draw a shape and it plays in time with the song, over and over, for sidechain-style pumping, trance gates, stutters and swells. AU, VST3 and standalone.
 image: /assets/images/gatekeeper/gatekeeper.jpg
@@ -26,7 +26,7 @@ features:
   - title: Pump without a sidechain
     text: It starts as four ducks a bar, like a kick's sidechain. Move them off the beat, deepen them or soften them.
   - title: Draw any rhythm
-    text: Draw freehand, lay down lines and curves, press RANDOM for a new rhythm, or pick a waveform, a window or a percussion shape from the menu.
+    text: Draw freehand, lay down lines and curves, press GENERATE for a new rhythm, or pick a waveform, a window or a percussion shape from the menu.
   - title: Locked to the song
     text: The shape follows the host's song position from eight bars down to a 64th, straight, dotted or triplet, so it is always where it should be.
   - title: Smooth or sharp
@@ -47,7 +47,7 @@ specs:
   - name: Sound design with Claude
     value: "Optional, with your own Anthropic key: describe a sound and Claude sets Gatekeeper to make it (macOS and Windows)"
   - name: Status
-    value: In development, version 0.1
+    value: Released, version 1.0
   - name: Price
     value: Free
 ---
