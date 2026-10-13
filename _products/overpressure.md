@@ -8,7 +8,7 @@ tagline: A hardware-style compressor with three stages of dirt behind it.
 description: Overpressure is a compressor with saturation, overdrive, distortion and fuzz stages, a low-pass filter and a gain-reduction meter. AU, VST3 and standalone.
 image: /assets/images/overpressure/overpressure.jpg
 manual: /plugins/overpressure/manual/
-image_alt: "Overpressure's window: input and output meters, a gain-reduction VU meter, the compressor controls and the FX Aggression section"
+image_alt: "Overpressure's window playing the Drum Smash preset: the gain-reduction VU meter deep in compression, the compressor controls, Overdrive switched on in the FX Aggression section and level meters down the sides"
 
 # Price and sale come from Moonbase (_data/shop.json, scripts/sync-shop.py): it is on sale once its
 # Moonbase product (moonbase_id, else this file's name) is in the storefront with a release;
@@ -53,7 +53,7 @@ specs:
   - name: Sound design with Claude
     value: "Optional, with your own Anthropic key: describe a sound and Claude sets Overpressure to make it (macOS and Windows)"
   - name: Status
-    value: In development, version 0.1
+    value: Released, version 1.0
   - name: Price
     value: To be announced
 ---
