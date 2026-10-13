@@ -61,6 +61,16 @@
       "original_price_text": "€49",
       "free": false
     },
+    "overpressure": {
+      "name": "Overpressure",
+      "released": true,
+      "version": "1.0.0",
+      "price": 49,
+      "price_text": "€49",
+      "original_price": 49,
+      "original_price_text": "€49",
+      "free": false
+    },
     "parametric-eq": {
       "name": "Parametric EQ",
       "released": false,
