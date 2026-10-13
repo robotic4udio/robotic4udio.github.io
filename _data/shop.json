@@ -23,8 +23,8 @@
     },
     "gatekeeper": {
       "name": "Gatekeeper",
-      "released": false,
-      "version": null,
+      "released": true,
+      "version": "1.0.0",
       "price": 0,
       "price_text": "€0",
       "original_price": 0,
@@ -93,8 +93,8 @@
     },
     "reverser": {
       "name": "Reverser",
-      "released": false,
-      "version": null,
+      "released": true,
+      "version": "1.0.0",
       "price": 0,
       "price_text": "€0",
       "original_price": 0,

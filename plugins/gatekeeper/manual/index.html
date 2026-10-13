@@ -217,7 +217,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
 <header class="hero">
   <div class="kicker">Robotic Audio · User manual</div>
   <h1>Gatekeeper</h1>
-  <p class="lede">Draw a volume shape and Gatekeeper plays it <em>in time with your song</em>, over and over: sidechain-style pumping without a sidechain, trance gates, stutters, swells and chops, from one bar down to a 64th. A small, free plugin built round the envelope editor of Line Runner.</p>
+  <p class="lede">Draw a volume shape and Gatekeeper plays it <em>in time with your song</em>, over and over: sidechain-style pumping without a sidechain, trance gates, stutters, swells and chops, from one bar down to a 64th. A small, free plugin built round the envelope editor of Tektonic.</p>
   <ul class="facts">
     <li>Drawn volume shape</li>
     <li>Locked to the song</li>
@@ -229,7 +229,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   </ul>
   <figure>
     <img src="images/gatekeeper.jpg" alt="Gatekeeper's window">
-    <figcaption>Gatekeeper: the drawn volume shape with its tools on top (it starts as four pumps a bar), and Length, Feel, Depth and Smooth below.</figcaption>
+    <figcaption>Gatekeeper: the drawn volume shape with its tools and ruler on top (it starts as four pumps a bar), and Length, Feel, Depth and Smooth below.</figcaption>
   </figure>
 </header>
 
@@ -238,7 +238,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <p class="sub">From a steady pad to a pumping one in a minute.</p>
   <div class="grid">
     <div class="card"><span class="tag">01</span><h4>Insert it</h4><p>On a pad, a bass, a bus. Press play: the default shape ducks the sound on every beat, like a kick's sidechain.</p></div>
-    <div class="card"><span class="tag">02</span><h4>Draw</h4><p>Drag across the shape to draw your own: top is full volume, bottom is silence. Or press <strong>RANDOM</strong> for a new rhythm.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Draw</h4><p>Drag across the shape to draw your own: top is full volume, bottom is silence. Or press <strong>GENERATE</strong> for a new rhythm.</p></div>
     <div class="card"><span class="tag">03</span><h4>Set the length</h4><p><strong>Length</strong> is how long the whole drawing takes, from 8 bars (8/1) down to 1/64. 1/1 is one bar.</p></div>
     <div class="card"><span class="tag">04</span><h4>Set the depth</h4><p>Turn <strong>Depth</strong> down to keep some of the sound in the dips; at 0 % it passes untouched.</p></div>
   </div>
@@ -250,7 +250,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <p class="sub">The shape on top, four controls below.</p>
   <dl class="params">
     <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>.</dd>
-    <dt>Shape</dt><dd>The drawn volume over one Length, with the tools, the menu, RANDOM, SMOOTH and NORMALIZE in the card's title. A line shows where it plays and a dot what really comes out. See <a href="#drawing">Drawing &amp; editing</a>.</dd>
+    <dt>Shape</dt><dd>The drawn volume over one Length, with the tools, the menu, the eraser (clear), GENERATE, SMOOTH, NORMALIZE and GRID in the card's title, and a ruler along its top. A line shows where it plays and a dot what really comes out. See <a href="#drawing">Drawing &amp; editing</a>.</dd>
     <dt>Gate</dt><dd>Length, Feel, Depth and Smooth. See <a href="#gate">Gate controls</a>.</dd>
     <dt>Tooltip strip</dt><dd>Along the bottom: what the control under the mouse does.</dd>
   </dl>
@@ -276,24 +276,24 @@ svg.defs { position: absolute; width: 0; height: 0; }
 
 <section id="drawing">
   <h2>Drawing &amp; editing</h2>
-  <p class="sub">Five tools, edit regions, undo, copy and paste.</p>
+  <p class="sub">Five tools, edit regions, zoom and grid, undo, copy and paste.</p>
   <h3>Tools</h3>
   <dl class="params">
     <dt>Draw</dt><dd>Freehand: drag across the shape.</dd>
-    <dt>Line</dt><dd>Drag a straight line (its ends snap to the grid; hold <kbd>Cmd</kbd> for free). Then drag its end dots to move them, or the ring to curve it: up or down for how much, sideways for where the bend sits. Hold <kbd>Cmd</kbd> on the ring for an S-curve.</dd>
+    <dt>Line</dt><dd><strong>Click</strong> to put down points joined by straight lines, one click per point, like a pen; <strong>double-click</strong>, <kbd>Esc</kbd> or <kbd>Return</kbd> to finish (or right-click, or pick another tool). Cmd+Z takes the whole run of lines back at once. A click beyond the drawing puts the point on its edge, so the edges and corners are easy to hit. Hold <kbd>Option</kbd> to add a point to a line: dashed lines run from the mouse to the points either side, and a click puts it there. Once you finish (or add a point), every point gets a dot: drag it and its two lines follow, drag the ring on a line to curve it, <kbd>Option</kbd>-click a dot to remove it, or click it and press <kbd>Backspace</kbd>. While you draw, <kbd>Backspace</kbd> takes back the last point. Or <strong>drag</strong> one straight line (points and ends snap to the grid; hold <kbd>Cmd</kbd> for free). Then drag its end dots to move them, or the ring to curve it: up or down for how much, sideways for where the bend sits. Hold <kbd>Cmd</kbd> on the ring for an S-curve.</dd>
     <dt>Warp</dt><dd>Grab the shape and drag. Sideways moves that moment earlier or later, stretching the rest; up and down bends the shape smoothly around it.</dd>
     <dt>Lift</dt><dd>Drag up or down to raise or lower the edit region (or the whole shape).</dd>
     <dt>Move</dt><dd>Drag sideways to slide the edit region along, in grid steps. Without a region it shifts the whole shape round, like a phase shift: move the dips off the beat.</dd>
   </dl>
   <h3>Buttons</h3>
   <dl class="params">
-    <dt>Random</dt><dd>A new random rhythm on the grid. Click again for another. The menu has more generators: Rhythm, Melody, Organic and Wobble.</dd>
+    <dt>Generate</dt><dd>A new random rhythm on the grid. Click again for another. Right-click it to choose what it makes from then on: Rhythm, Melody, Organic, Wobble, Wobble Pattern, Neuro Growl, Shaper Curve, or <strong>Random</strong>, which picks one of the generators afresh each press.</dd>
     <dt>Smooth</dt><dd>Softens corners and steps in the drawing. Click again to smooth more.</dd>
     <dt>Normalize</dt><dd>Stretches the shape to the full range.</dd>
     <dt>Menu (≡)</dt><dd>Undo and redo, copy and paste, zoom, edits (Smooth, Normalize, Flip, Reverse), random generators, <strong>Waveforms</strong> (sine, triangle, saws, square, exponentials: 1–8 cycles or one per grid step), <strong>Windows</strong> (the smooth bumps of grain and analysis windows: Hann, Gauss, Tukey, Expodec and more) and ready-made shapes by category, <strong>Percussion</strong> first: single drum hits, rolls, gates and reverses. Right-click the drawing for the same menu.</dd>
   </dl>
   <h3>Edit regions</h3>
-  <p><kbd>Shift</kbd>-drag across the drawing to mark a region. Drawing, edits, Random and shapes then only change that part.</p>
+  <p><kbd>Shift</kbd>-drag across the drawing to mark a region. Drawing, edits, GENERATE and shapes then only change that part.</p>
   <table>
     <tr><th>Handle</th><th>Does</th></tr>
     <tr><td>Upper edge handle</td><td>stretches what's inside</td></tr>
@@ -303,9 +303,11 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <tr><td>Dots on the curve at the edges</td><td>move the start or end value, tilting the content between</td></tr>
     <tr><td>Edges with <kbd>Shift</kbd> held</td><td>resize the region itself</td></tr>
   </table>
-  <p><kbd>Cmd</kbd>+<kbd>C</kbd> / <kbd>Cmd</kbd>+<kbd>V</kbd> copy and paste a region or the whole shape, also to and from Line Runner's envelopes. <kbd>Shift</kbd>-click or <kbd>Esc</kbd> clears the region. <kbd>Cmd</kbd>+<kbd>Z</kbd> and <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd> undo and redo (100 steps).</p>
+  <p><kbd>Cmd</kbd>+<kbd>C</kbd> / <kbd>Cmd</kbd>+<kbd>V</kbd> copy and paste a region or the whole shape, also to and from Tektonic's envelopes. <kbd>Shift</kbd>-click or <kbd>Esc</kbd> clears the region. <kbd>Cmd</kbd>+<kbd>Z</kbd> and <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd> undo and redo (100 steps).</p>
   <h3>Zoom</h3>
-  <p><kbd>Cmd</kbd>+scroll or pinch to zoom around the mouse, scroll to pan, <kbd>Cmd</kbd>+<kbd>=</kbd> / <kbd>Cmd</kbd>+<kbd>-</kbd> to zoom and <kbd>Cmd</kbd>+<kbd>0</kbd> to see it all. The bar along the top shows (and drags) the view.</p>
+  <p>Drag down in the <strong>ruler</strong> along the top of the drawing (the bar's beats numbered) to zoom in, up to zoom out, round where you grabbed it, and sideways to move along; double-click it to see it all. <kbd>Cmd</kbd>+scroll or pinch zooms around the mouse, scroll pans, <kbd>Cmd</kbd>+<kbd>=</kbd> / <kbd>Cmd</kbd>+<kbd>-</kbd> zoom and <kbd>Cmd</kbd>+<kbd>0</kbd> shows it all.</p>
+  <h3>Grid</h3>
+  <p>The <strong>GRID</strong> button sets what Line points, the edit region and Move snap to: <strong>Adaptive</strong> (the default: the note value follows the zoom, so zooming in gives a finer grid; Widest to Narrowest, and the button shows the value in use, ADAPT 1/32), <strong>Triplet Grid</strong>, <strong>Fixed</strong> (one note value) or <strong>Off</strong>; <kbd>Cmd</kbd> <kbd>1</kbd> narrower, <kbd>Cmd</kbd> <kbd>2</kbd> wider, <kbd>Cmd</kbd> <kbd>3</kbd> triplets, <kbd>Cmd</kbd> <kbd>4</kbd> off, <kbd>Cmd</kbd> <kbd>5</kbd> fixed or adaptive. Hold <kbd>Cmd</kbd> to place anything anywhere. The drawing counts as one bar, whatever its Length.</p>
 </section>
 
 <section id="presets">
@@ -325,7 +327,6 @@ svg.defs { position: absolute; width: 0; height: 0; }
     <dt>REVERT</dt><dd>Puts the patch back as it was before Claude's last design.</dd>
     <dt>SAVE AS PRESET</dt><dd>Keeps the design as one of your presets, named after your words.</dd>
     <dt>The log</dt><dd>What Claude made, and what it changed, part by part.</dd>
-    <dt>&gt;_ and AI...</dt><dd>The designer and its keys: see <a href="#ai">Designing with Claude</a>.</dd>
   </dl>
   <div class="callout">This is optional: Gatekeeper works the same without a key. The designer needs a network connection and is part of the macOS and Windows plugins.</div>
 </section>
@@ -335,7 +336,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <p class="sub">Starting points; then draw your own.</p>
   <div class="grid">
     <div class="card"><span class="tag">Sidechain pump</span><p>The Default shape, Length 1/1, Depth 70 %. Shift the dips with Move until they sit right on the kick.</p></div>
-    <div class="card"><span class="tag">Trance gate</span><p>Menu → Volume Rhythms, or RANDOM; Length 1/1, Smooth 2 ms, Depth 100 % on a sustained pad.</p></div>
+    <div class="card"><span class="tag">Trance gate</span><p>Menu → Volume Rhythms, or GENERATE; Length 1/1, Smooth 2 ms, Depth 100 % on a sustained pad.</p></div>
     <div class="card"><span class="tag">Triplet chop</span><p>A square wave (Menu → Waveforms) with one cycle per grid step, Length 1/4, Feel Triplet.</p></div>
     <div class="card"><span class="tag">Slow swell</span><p>Draw one rise with the Line tool and curve it, Length 4/1, Depth 60 %: a four-bar swell on a loop.</p></div>
     <div class="card"><span class="tag">Stutter</span><p>Length 1/16, a sharp Percussion hit like Snap, Smooth 0 ms: a machine-gun repeat. Automate Depth to bring it in.</p></div>
@@ -347,7 +348,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <p class="sub">The numbers.</p>
   <table>
     <tr><th>Property</th><th>Value</th></tr>
-    <tr><td>Shape</td><td>257 points, drawn; grid of one step per 16th of the Length (up to 128)</td></tr>
+    <tr><td>Shape</td><td>2049 points, drawn; grid of one step per 16th of the Length (up to 128)</td></tr>
     <tr><td>Length</td><td>8/1 to 1/64, straight, dotted or triplet, locked to the host's song position</td></tr>
     <tr><td>Smoothing</td><td>One-pole, 0–50 ms</td></tr>
     <tr><td>Latency</td><td>None</td></tr>
