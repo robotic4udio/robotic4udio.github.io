@@ -361,7 +361,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   </figure>
   <p><strong>VOLUME</strong> shapes the pad's level over time while its power button is on. <strong>MOD 1</strong> and <strong>MOD 2</strong> do nothing on their own: route them to something in the <a href="#matrix">matrix</a>. Each restarts with a hit; the drawing shows where it is.</p>
   <dl class="params">
-    <dt>Drawing</dt><dd>Draw the shape with the tools along the top (draw, line, warp, lift, move), or start from the menu's shapes, waveforms and windows. <strong>RANDOM</strong>, <strong>SMOOTH</strong> and <strong>NORMALIZE</strong> work on the whole shape, or on a region you mark with Shift-drag. <kbd>Cmd</kbd>+<kbd>Z</kbd> undoes.</dd>
+    <dt>Drawing</dt><dd>Draw the shape with the tools along the top (draw, line, warp, lift, move), or start from the menu's shapes, waveforms and windows. <strong>GENERATE</strong>, <strong>SMOOTH</strong> and <strong>NORMALIZE</strong> work on the whole shape, or on a region you mark with Shift-drag. <kbd>Cmd</kbd>+<kbd>Z</kbd> undoes.</dd>
     <dt>Loop</dt><dd>The loop button picks Off (play once and hold the end), Forward, Backward or Palindrome; drag the handles under the drawing to set the loop.</dd>
     <dt>Trigger</dt><dd><strong>Trig</strong> restarts with every hit; <strong>Legato</strong> only when the pad isn't still sounding; <strong>Tempo</strong> follows the song position, like a tempo-synced LFO.</dd>
     <dt>Sync</dt><dd><strong>Free</strong>: <strong>Rate</strong> sets the speed (at 1x the whole shape takes 2 s). <strong>Note</strong>, <strong>Dotted</strong> or <strong>Triplet</strong>: the shape lasts a note value at the host's tempo, chosen in place of Rate. While the host is stopped, it keeps time at the tempo.</dd>
@@ -383,7 +383,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <dl class="params">
     <dt>Sources</dt><dd><strong>Vol Env</strong>, <strong>Mod 1</strong>, <strong>Mod 2</strong>, <strong>Velocity</strong>, <strong>Random</strong> (a new value per hit, both ways), <strong>Mod Wheel</strong> and <strong>Aftertouch</strong>.</dd>
     <dt>Destinations</dt><dd><strong>Tune</strong>, <strong>Level</strong>, <strong>Pan</strong>, <strong>Cutoff</strong>, <strong>Resonance</strong>, <strong>Drive</strong>, <strong>Send A</strong> and <strong>Send B</strong>, which move while the pad sounds; and <strong>Decay</strong>, <strong>Start</strong> and <strong>Attack</strong>, which are taken at each hit.</dd>
-    <dt>Right-click a knob</dt><dd>Any knob the matrix can move: <strong>Modulate ... by</strong> lists the sources, the ones already routed to it ticked with their amount. Choose one to route it in a free slot at 25 %, a ticked one to remove it; <strong>Remove All Modulation</strong>, and <strong>Edit in the Matrix...</strong> to set the amount.</dd>
+    <dt>Right-click a knob</dt><dd>Any knob the matrix can move: <strong>Modulate ... by</strong> lists the sources, the ones already routed to it ticked with their amount. Choose one to route it in a free slot at 25 %, a ticked one to remove it; a new route opens a handle beside the knob with its <strong>Amount</strong>, <strong>Offset</strong> and <strong>Smooth</strong> (and REMOVE), and <strong>Adjust ...</strong> opens it again; <strong>Remove All Modulation</strong>, and <strong>Edit in the Matrix...</strong>.</dd>
   </dl>
 </section>
 
