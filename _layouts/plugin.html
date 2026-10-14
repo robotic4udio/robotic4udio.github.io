@@ -47,7 +47,7 @@ layout: default
 </section>
 
 {%- if page.web_demo %}
-{% include web-demo.html demo=page.web_demo %}
+{% include web-demo.html demo=page.web_demo plugin=page %}
 {%- endif %}
 
 {%- comment %} With a demo to play, "Listen" shows only once there are recordings too {% endcomment %}

@@ -1,8 +1,11 @@
-// Bitstorm on its web demo page: a menu of its presets, the plugin's scope with the newest note's
-// chip registers (in the palette of the preset's chip, as the plugin's retro theme shows it), an
-// on-screen keyboard and any MIDI keyboard. No notes from the computer's keys: the plugins never
-// play from them. Its engine is BitstormWeb.cpp; the player round it tools/WebDemo/web/robotic-demo.js.
-// Settings: 0 the preset (its place in bitstorm-presets.bin), 1 all notes off.
+// Bitstorm on its web demo page, a taste that leads to its trial: a menu of songs and sounds, the
+// plugin's scope with the newest note's chip registers (in the palette of the preset's chip, as the
+// plugin's retro theme shows it), a song's tracker as the plugin draws it with PLAY, an on-screen
+// keyboard and any MIDI keyboard for the sounds, and the site's trial link (the include puts it in
+// the demo's .web-demo__cta; it glows after a while of playing). No notes from the computer's keys:
+// the plugins never play from them. Its engine is BitstormWeb.cpp; the player round it
+// tools/WebDemo/web/robotic-demo.js. Settings: 0 the preset (its place in bitstorm-presets.bin),
+// 1 all notes off, 2 the song playing (1) or stopped (0).
 
 (() =>
 {
@@ -62,7 +65,14 @@ RoboticDemo.interfaces.bitstorm = (stage, demo, root) =>
         menu.value = String (current);
         releaseAll();
         demo.set (0, current);
+        setPlaying (false);
         setPalette (presets[current].chip);
+        const song = presets[current].song || null;
+        songRow.hidden = song === null;
+        keyboardRow.hidden = song !== null;
+        hint.textContent = song !== null ? "Press PLAY to hear the song, as its tracker plays it"
+                                         : "Play the keys (lower on a key plays louder), or connect a MIDI keyboard";
+        drawTracker();
     };
 
     menu.addEventListener ("change", () => choose (Number (menu.value)));
@@ -171,7 +181,7 @@ RoboticDemo.interfaces.bitstorm = (stage, demo, root) =>
 
         if (display !== null && display[7] > 1e-4)
         {
-            const scope = display.subarray (8);
+            const scope = display.subarray (11);
             const left = pad, columns = Math.floor ((width - 2 * pad) / pixel);
             const yOf = (v) => Math.round ((centre - Math.max (-1, Math.min (1, v * 1.6)) * half) / pixel) * pixel;
             let previous = -1;
@@ -207,10 +217,10 @@ RoboticDemo.interfaces.bitstorm = (stage, demo, root) =>
     {
         display = data;
         if (frame === 0)
-            frame = requestAnimationFrame (() => { frame = 0; draw(); });
+            frame = requestAnimationFrame (() => { frame = 0; draw(); drawTracker(); });
     };
     new ResizeObserver (draw).observe (canvas);
-    document.fonts && document.fonts.ready.then (draw);
+    document.fonts && document.fonts.ready.then (() => { draw(); drawTracker(); });
 
     //==========================================================================
     // The keyboard: two octaves (one on a phone), shifted by octave; a key plays louder the lower
@@ -282,6 +292,7 @@ RoboticDemo.interfaces.bitstorm = (stage, demo, root) =>
     const noteOn = (note, velocity) =>
     {
         demo.start();
+        noteActivity();
         sounding.set (note, (sounding.get (note) || 0) + 1);
         if (sounding.get (note) === 1)
             demo.note (note, velocity);
@@ -361,7 +372,7 @@ RoboticDemo.interfaces.bitstorm = (stage, demo, root) =>
 
     down.addEventListener ("click", () => { lowest = Math.max (24, lowest - 12); layout(); });
     up.addEventListener ("click", () => { lowest = Math.min (96 - octaves * 12, lowest + 12); layout(); });
-    root.addEventListener ("roboticdemo:hidden", () => releaseAll());
+    root.addEventListener ("roboticdemo:hidden", () => { releaseAll(); setPlaying (false); });
     window.addEventListener ("blur", () => { if (pointers.size > 0) releaseAll(); });
 
     //==========================================================================
@@ -401,8 +412,134 @@ RoboticDemo.interfaces.bitstorm = (stage, demo, root) =>
         }
     });
 
+    //==========================================================================
+    // A song: its tracker as the plugin's SEQ page draws it (hex rows, the note in the accent's
+    // cyan, the instrument and effect lighter, the playing row lit), following the song as it plays
+    const songRow = make ("div", "bitstorm-demo__song");
+    songRow.hidden = true;
+    const play = make ("button", "web-demo__play", "Play");
+    play.type = "button";
+    const tracker = make ("canvas", "bitstorm-demo__tracker");
+    tracker.setAttribute ("role", "img");
+    tracker.setAttribute ("aria-label", "The song's tracker: its four channels row by row, the playing row lit");
+    songRow.append (play, tracker);
+    let songPlaying = false;
+
+    function setPlaying (on)
+    {
+        songPlaying = on;
+        demo.set (2, on ? 1 : 0);
+        play.classList.toggle ("is-playing", on);
+        play.textContent = on ? "Stop" : "Play";
+        if (on)
+            noteActivity();
+    }
+    play.addEventListener ("click", async () =>
+    {
+        await demo.start();
+        setPlaying (! songPlaying);
+    });
+
+    function drawTracker()
+    {
+        const song = presets[current] && presets[current].song;
+        if (! song || songRow.hidden)
+            return;
+        const ratio = window.devicePixelRatio || 1;
+        const width = tracker.clientWidth, height = tracker.clientHeight;
+        if (width === 0)
+            return;
+        if (tracker.width !== Math.round (width * ratio) || tracker.height !== Math.round (height * ratio))
+        {
+            tracker.width = Math.round (width * ratio);
+            tracker.height = Math.round (height * ratio);
+        }
+        const g = tracker.getContext ("2d");
+        g.setTransform (ratio, 0, 0, ratio, 0, 0);
+        g.fillStyle = palette.screen;
+        g.fillRect (0, 0, width, height);
+
+        // Which pattern and row: the song's as it plays, else the start of its first pattern
+        const playingNow = display !== null && display[10] > 0.5 && display[8] >= 0;
+        const patternNumber = playingNow ? display[8] | 0 : song.order[0];
+        const playingRow = playingNow ? display[9] | 0 : -1;
+        const rows = song.patterns[String (patternNumber)] || [];
+
+        const pad = 10, header = 36, rowHeight = 14, charWidth = 8;
+        const visible = Math.max (1, Math.floor ((height - header - pad) / rowHeight));
+        const first = playingRow < 0 ? 0 : Math.max (0, Math.min (rows.length - visible, playingRow - Math.floor (visible / 2)));
+        const numberWidth = 3 * charWidth + 6;
+        const columnWidth = (width - 2 * pad - numberWidth) / 4;
+        const compact = columnWidth < 12.5 * charWidth; // note and instrument only
+
+        g.font = "8px 'Press Start 2P', monospace";
+        g.textBaseline = "middle";
+        const hex2 = (v) => v.toString (16).toUpperCase().padStart (2, "0");
+        g.fillStyle = palette.muted;
+        g.fillText (`PATTERN ${hex2 (patternNumber)}` + (playingRow >= 0 ? `   ROW ${hex2 (playingRow)}` : ""), pad, pad + 4);
+        for (let c = 0; c < 4; ++c)
+            g.fillText (`CH${c + 1}`, pad + numberWidth + c * columnWidth, pad + 22);
+
+        for (let i = 0; i < visible && first + i < rows.length; ++i)
+        {
+            const r = first + i, y = header + pad + i * rowHeight;
+            if (r === playingRow)
+            {
+                g.fillStyle = "rgba(247, 214, 60, 0.55)";
+                g.fillRect (pad - 4, y - 2, width - 2 * pad + 8, rowHeight);
+            }
+            else if (r % (song.rowsPerBeat * 4) === 0)
+            {
+                g.fillStyle = "rgba(255, 255, 255, 0.07)";
+                g.fillRect (pad - 4, y - 2, width - 2 * pad + 8, rowHeight);
+            }
+            g.fillStyle = r % song.rowsPerBeat === 0 ? palette.text : palette.muted;
+            g.fillText (hex2 (r), pad, y + rowHeight / 2 - 1);
+            rows[r].slice (0, 4).forEach ((cell, c) => // the four channels these songs use (of the tracker's eight)
+            {
+                const [ note, instrument, volume, effect ] = (cell || "--- .. . ...").split (" ");
+                const fields = [ [ note, note === "---" ? "faint" : note === "OFF" ? palette.muted : "rgb(92, 230, 242)" ],
+                                 [ instrument, instrument === ".." ? "faint" : "rgb(250, 230, 150)" ] ];
+                if (! compact)
+                    fields.push ([ volume, volume === "." ? "faint" : palette.text ],
+                                 [ effect, effect === "..." ? "faint" : "rgb(245, 140, 130)" ]);
+                let x = pad + numberWidth + c * columnWidth;
+                for (const [ text, colour ] of fields)
+                {
+                    g.globalAlpha = colour === "faint" ? 0.3 : 1;
+                    g.fillStyle = colour === "faint" ? palette.text : colour;
+                    g.fillText (text, x, y + rowHeight / 2 - 1);
+                    x += (text.length + 1) * charWidth;
+                }
+                g.globalAlpha = 1;
+            });
+        }
+    }
+    new ResizeObserver (drawTracker).observe (tracker);
+
+    //==========================================================================
+    // The trial: the site's own link (in .web-demo__cta, where the include put it; none while the
+    // plugin isn't on sale or the visitor owns it), lit up after a while of playing
+    const cta = root.querySelector (".web-demo__cta");
+    let activeSeconds = 0, lastActivity = 0;
+    function noteActivity()
+    {
+        const now = performance.now() / 1000;
+        if (lastActivity > 0 && now - lastActivity < 5)
+            activeSeconds += now - lastActivity;
+        lastActivity = now;
+        if (cta && activeSeconds > 45)
+            cta.classList.add ("is-lit");
+    }
+    setInterval (() => { if (songPlaying) noteActivity(); }, 1000);
+
     const hint = make ("p", "web-demo__hint", "Play the keys (lower on a key plays louder), or connect a MIDI keyboard");
-    stage.append (bar, screen, keyboardRow, hint);
+    stage.append (bar, screen, songRow, keyboardRow, hint);
+    if (cta)
+    {
+        cta.hidden = false;
+        stage.append (cta);
+    }
     layout();
     new ResizeObserver (fit).observe (keyboard);
 };

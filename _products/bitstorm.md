@@ -55,7 +55,8 @@ demos: []
 web_demo:
   name: bitstorm
   data: bitstorm-presets.bin
-  text: "Bitstorm's own chips, running right here. Pick a preset and play the keys, or connect a MIDI keyboard."
+  text: "Bitstorm's own chips, running right here. Play a song on its tracker, or pick a sound and play the keys (or a MIDI keyboard)."
+  cta: "Like it? The full Bitstorm has over 300 presets, every control, and the tracker to write your own songs."
 
 screenshots:
   - file: /assets/images/bitstorm/bitstorm.jpg

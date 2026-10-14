@@ -75,3 +75,16 @@
 @media (prefers-reduced-motion: reduce) {
   .bitstorm-demo__screen { transition: none; }
 }
+
+/* A song: PLAY beside its tracker, in the chip's screen colours (drawn on the canvas) */
+.bitstorm-demo__song { display: flex; gap: 16px; align-items: flex-start; margin-top: 16px; }
+.bitstorm-demo__song[hidden], .bitstorm-demo__keyboard-row[hidden] { display: none; }
+.bitstorm-demo__song .web-demo__play { flex: 0 0 auto; }
+.bitstorm-demo__tracker {
+  flex: 1 1 auto; min-width: 0; height: clamp(200px, 30vw, 250px); border-radius: 8px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+@media (max-width: 560px) {
+  .bitstorm-demo__song { flex-direction: column; align-items: stretch; }
+  .bitstorm-demo__tracker { width: 100%; }
+}
