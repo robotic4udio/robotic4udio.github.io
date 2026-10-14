@@ -46,6 +46,12 @@ layout: default
   </div>
 </section>
 
+{%- if page.web_demo %}
+{% include web-demo.html demo=page.web_demo %}
+{%- endif %}
+
+{%- comment %} With a demo to play, "Listen" shows only once there are recordings too {% endcomment %}
+{%- unless page.web_demo and page.demos.size == 0 %}
 <section class="section section--line" id="demos">
   <div class="container">
     <p class="kicker">Listen</p>
@@ -67,6 +73,7 @@ layout: default
     {%- endif %}
   </div>
 </section>
+{%- endunless %}
 
 {%- if page.screenshots %}
 <section class="section section--line" id="screenshots">
