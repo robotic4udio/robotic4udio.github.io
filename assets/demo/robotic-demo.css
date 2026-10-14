@@ -92,3 +92,6 @@
   .web-demo__play, .web-demo__hold, .web-demo__loop { transition: none; }
   .web-demo__play:hover { transform: none; }
 }
+
+/* An instrument has no loop bar above its stage */
+.web-demo__stage:first-child { margin-top: 0; }

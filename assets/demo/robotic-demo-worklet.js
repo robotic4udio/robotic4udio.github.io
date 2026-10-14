@@ -7,11 +7,13 @@ class RoboticDemoProcessor extends AudioWorkletProcessor
     constructor (options)
     {
         super();
-        const { wasm, displayHz } = options.processorOptions;
-        const instance = new WebAssembly.Instance (new WebAssembly.Module (wasm),
-                                                   { env: { emscripten_notify_memory_growth () {} } });
+        const { wasm, displayHz, data } = options.processorOptions;
+        const module = new WebAssembly.Module (wasm);
+        const instance = new WebAssembly.Instance (module, RoboticDemoProcessor.importsFor (module, () => this.engine.memory));
         this.engine = instance.exports;
         this.engine._initialize();
+        if (data)
+            this.load (data);
         this.channels = this.engine.demo_prepare (sampleRate, 128);
         this.pointers = Array.from ({ length: this.channels }, (_, c) => this.engine.demo_buffer (c));
         this.loop = null;      // one Float32Array per channel
@@ -20,6 +22,35 @@ class RoboticDemoProcessor extends AudioWorkletProcessor
         this.blocksPerDisplay = Math.max (1, Math.round (sampleRate / 128 / (displayHz || 30)));
         this.blocksToDisplay = 0;
         this.port.onmessage = (event) => this.receive (event.data);
+    }
+
+    /** What the module imports: the system calls a standalone wasm may make, answered in the
+        simplest way (the clock; nothing to print, no files), and anything else a no-op. */
+    static importsFor (module, memory)
+    {
+        const known = {
+            clock_time_get (id, precision, out)
+            {
+                new DataView (memory().buffer).setBigUint64 (out, BigInt (Math.round ((currentTime + 1) * 1e9)), true);
+                return 0;
+            },
+            fd_write (fd, iovs, count, written) { new DataView (memory().buffer).setUint32 (written, 0, true); return 0; },
+            proc_exit (code) { throw new Error ("the demo's engine exited (" + code + ")"); },
+        };
+        const imports = {};
+        for (const { module: name, name: field, kind } of WebAssembly.Module.imports (module))
+            if (kind === "function")
+                (imports[name] = imports[name] || {})[field] = known[field] || (() => 0);
+        return imports;
+    }
+
+    /** Hands the engine data of its own (a demo's presets...) through demo_alloc / demo_load. */
+    load (data)
+    {
+        const bytes = new Uint8Array (data);
+        const pointer = this.engine.demo_alloc (bytes.length);
+        new Uint8Array (this.engine.memory.buffer, pointer, bytes.length).set (bytes);
+        this.engine.demo_load (pointer, bytes.length);
     }
 
     receive (message)

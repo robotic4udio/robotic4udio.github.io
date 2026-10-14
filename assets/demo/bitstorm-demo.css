@@ -1,0 +1,77 @@
+/* Bitstorm's demo controls (bitstorm-demo.js loads this), on top of robotic-demo.css: its retro
+   screen framed in the preset's chip colours (the plugin's retro palettes), and the keyboard. */
+
+.bitstorm-demo__presets { display: flex; gap: 8px; align-items: stretch; flex-wrap: wrap; }
+
+.bitstorm-demo__step, .bitstorm-demo__octave {
+  flex: 0 0 auto; width: 2.75rem; min-height: 2.75rem;
+  border: 1px solid var(--wd-line-strong); border-radius: 12px; background: transparent;
+  color: var(--wd-text); font: inherit; font-size: 1.3rem; line-height: 1; cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.bitstorm-demo__step:hover, .bitstorm-demo__octave:hover:not(:disabled) { border-color: var(--wd-fire); background: rgba(255, 106, 26, 0.12); }
+.bitstorm-demo__octave:disabled { opacity: 0.35; cursor: default; }
+
+.bitstorm-demo__menu {
+  flex: 1 1 14rem; min-width: 0; min-height: 2.75rem; padding: 0 2.25rem 0 1rem;
+  border: 1px solid var(--wd-line-strong); border-radius: 12px;
+  background: var(--wd-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a99e94' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 1rem center;
+  color: var(--wd-text); font: inherit; font-weight: 700; appearance: none; -webkit-appearance: none; cursor: pointer;
+}
+.bitstorm-demo__menu:focus-visible { outline: 2px solid var(--wd-fire); outline-offset: 2px; }
+.bitstorm-demo__menu optgroup, .bitstorm-demo__menu option { background: var(--wd-surface); color: var(--wd-text); }
+
+.bitstorm-demo__midi {
+  flex: 0 1 auto; min-height: 2.75rem; padding: 0 1.1rem; max-width: 100%;
+  border: 1px solid var(--wd-line-strong); border-radius: 999px; background: transparent;
+  color: var(--wd-muted); font: inherit; font-size: 0.85rem; cursor: pointer;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.bitstorm-demo__midi:hover { color: var(--wd-text); border-color: var(--wd-fire); }
+.bitstorm-demo__midi.is-on { color: var(--wd-text); border-color: var(--wd-fire); background: rgba(255, 106, 26, 0.12); }
+
+/* The screen in its chip's border, as a C64 frames its screen */
+.bitstorm-demo__screen {
+  --bitstorm-border: #7869c4; --bitstorm-screen: #40318d;
+  margin-top: 16px; padding: clamp(10px, 2.5vw, 18px);
+  background: var(--bitstorm-border); border-radius: 10px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35), 0 12px 30px -16px rgba(0, 0, 0, 0.9);
+  transition: background 0.3s;
+}
+.bitstorm-demo__screen canvas {
+  display: block; width: 100%; height: clamp(150px, 26vw, 210px);
+  background: var(--bitstorm-screen); image-rendering: pixelated;
+  box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.45);
+}
+
+.bitstorm-demo__keyboard-row { display: flex; gap: 10px; align-items: stretch; margin-top: 16px; }
+.bitstorm-demo__octave { align-self: center; }
+.bitstorm-demo__keyboard {
+  position: relative; flex: 1 1 auto; height: clamp(120px, 22vw, 170px);
+  touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; cursor: pointer;
+}
+.bitstorm-demo__key {
+  position: absolute; top: 0; bottom: 0; box-sizing: border-box;
+  border: 1px solid #1b1612; border-radius: 0 0 7px 7px;
+  background: linear-gradient(180deg, #e9e2d8 0%, #f8f3ec 70%, #ddd4c8 100%);
+  box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.12);
+  display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px;
+}
+.bitstorm-demo__key span { font: 7px 'Press Start 2P', monospace; color: #8f857a; pointer-events: none; }
+.bitstorm-demo__key.is-black {
+  z-index: 1; bottom: 38%; border-color: #000; border-radius: 0 0 5px 5px;
+  background: linear-gradient(180deg, #2a2420 0%, #15110e 100%);
+  box-shadow: inset 0 -4px 0 rgba(255, 255, 255, 0.06), 0 3px 6px rgba(0, 0, 0, 0.5);
+}
+.bitstorm-demo__key.is-down {
+  background: linear-gradient(180deg, #ee4436 0%, #f7d63c 60%, #5ce6f2 100%);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35), 0 0 22px -4px rgba(247, 214, 60, 0.7);
+}
+.bitstorm-demo__key.is-down span { color: #1a0b03; }
+.bitstorm-demo__key.is-black.is-down {
+  background: linear-gradient(180deg, #ee4436 0%, #f7d63c 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bitstorm-demo__screen { transition: none; }
+}

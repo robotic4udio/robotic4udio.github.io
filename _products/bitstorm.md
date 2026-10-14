@@ -50,6 +50,13 @@ features:
 
 demos: []
 
+# Playable on the page: Bitstorm's own chips in the browser, with presets taken from the plugin
+# (_includes/web-demo.html; assets/demo/ from the plugin repo's tools/WebDemo/build.sh)
+web_demo:
+  name: bitstorm
+  data: bitstorm-presets.bin
+  text: "Bitstorm's own chips, running right here. Pick a preset and play the keys, or connect a MIDI keyboard."
+
 screenshots:
   - file: /assets/images/bitstorm/bitstorm.jpg
     caption: The CHIP page, four NES channels playing together

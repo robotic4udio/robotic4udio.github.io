@@ -2,7 +2,7 @@
 // HistoryDisplay draws it, and the two hold buttons. Its engine is ReverserWeb.cpp; the
 // player round it is tools/WebDemo/web/robotic-demo.js. Settings: 0 Reverse, 1 Reverse 2x.
 
-RoboticDemo.interfaces.reverser = (stage, demo) =>
+RoboticDemo.interfaces.reverser = (stage, demo, root) =>
 {
     const make = RoboticDemo.element;
     const historySeconds = 30;
@@ -67,6 +67,7 @@ RoboticDemo.interfaces.reverser = (stage, demo) =>
             hold (index, false);
     });
     window.addEventListener ("blur", () => { hold (0, false); hold (1, false); });
+    root.addEventListener ("roboticdemo:hidden", () => { hold (0, false); hold (1, false); });
 
     stage.append (screen, buttonRow, hint);
 
