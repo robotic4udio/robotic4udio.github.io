@@ -175,6 +175,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <li><a href="#effects">Effects</a></li>
     <li><a href="#seq">Arpeggiator and tracker</a></li>
     <li><a href="#instruments">Instruments</a></li>
+    <li><a href="#import">Importing music</a></li>
     <li><a href="#presets">Presets</a></li>
     <li><a href="#ai">Designing with Claude</a></li>
     <li><a href="#licence">Licence</a></li>
@@ -197,7 +198,8 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <li>Chip mode: a channel per layer</li>
     <li>Tracker macros per layer</li>
     <li>3 drawn envelopes, 2 LFOs, 16-slot matrix</li>
-    <li>Arpeggiator and a 64-pattern tracker with 32 instruments</li>
+    <li>Arpeggiator and a 256-pattern, 8-column tracker with 32 instruments</li>
+    <li>Imports SID, NSF, VGM, MOD, FamiTracker and more</li>
     <li>4 effect slots</li>
     <li>AU · VST3 · Standalone</li>
   </ul>
@@ -225,7 +227,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <h2>The window</h2>
   <p class="sub">A header, a row of settings beside the page tabs, and seven pages.</p>
   <dl class="params">
-    <dt>Header</dt><dd>The Robotic Audio mark and the name, the preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the title for version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>. Until Bitstorm is licensed, a <strong>DEMO</strong> or <strong>TRIAL</strong> chip beside the menu opens the <a href="#licence">licence</a>.</dd>
+    <dt>Header</dt><dd>The Robotic Audio mark and the name, the preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual and <strong>Import Song</strong> (see <a href="#import">importing music</a>). Click the title for version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>. Until Bitstorm is licensed, a <strong>DEMO</strong> or <strong>TRIAL</strong> chip beside the menu opens the <a href="#licence">licence</a>.</dd>
     <dt>Beside the tabs</dt><dd><strong>Clock</strong>, <strong>Frames</strong>, <strong>Mode</strong> and <strong>Notes</strong>: the machine every page plays on (see <a href="#global">global</a> and <a href="#modes">modes</a>).</dd>
     <dt>CHIP</dt><dd>The four layers, the SID filter, the scope and the global settings.</dd>
     <dt>MACROS</dt><dd>Each layer's tracker macros: Volume, Arp, Pitch and the chip's own fourth (and the Game Boy's wave table).</dd>
@@ -279,7 +281,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <p class="sub">Four layers on every note, or one chip played channel by channel.</p>
   <dl class="params">
     <dt>Mode Poly</dt><dd>Every note stacks the four layers (the ones switched on), as one thick sound. <strong>Voices</strong> sets how many notes play at once, up to 16; at 1 it is mono, with legato and <strong>Glide</strong>.</dd>
-    <dt>Mode Chip</dt><dd>One voice, as the hardware played: each layer is a channel of the chip and takes a note of its own. <strong>Notes</strong> decides how a note finds its channel: <strong>Round Robin</strong> hands each new note to the next free layer; <strong>MIDI Channel</strong> plays MIDI channel 1 on layer 1, 2 on layer 2 and so on, one part per channel, as a tracker does.</dd>
+    <dt>Mode Chip</dt><dd>One voice, as the hardware played: each layer is a channel of the chip and takes a note of its own. <strong>Notes</strong> decides how a note finds its channel: <strong>Round Robin</strong> hands each new note to the next free layer; <strong>MIDI Channel</strong> plays MIDI channel 1 on layer 1, 2 on layer 2 and so on, one part per channel, as a tracker does. Channels 5–8 are four more channels of the chip: they play <a href="#instruments">instruments</a> (with none, layer 1–4's sound again), so music written for more than four channels, such as the Mega Drive's, has room.</dd>
   </dl>
   <div class="callout">Chip mode is what the <a href="#seq">tracker</a> is built for: give each layer its own part (bass, lead, arpeggio, drums) and write a column for each.</div>
 </section>
@@ -365,7 +367,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <dt>Macros</dt><dd>Four knobs to route, automate and play: right-click one to rename it.</dd>
     <dt>Matrix</dt><dd>Sixteen rows, each a source (Mod 1–3, the LFOs, velocity, note, mod wheel, aftertouch, pitch bend, two learnable CCs, a random value per note, the macros), an optional via, a destination, an <strong>Amt</strong>, an <strong>Offset</strong> (added even without a source) and a <strong>Smooth</strong> glide; <strong>+ ADD ROW</strong> shows another, right-click a row to insert, remove or clear it. <strong>LEARN</strong> beside it teaches CC A and CC B the next controller you move. Destinations are each layer's <strong>Pitch</strong> (up to ±24 semitones), <strong>Level</strong>, <strong>Pan</strong>, <strong>Pulse Width</strong> and <strong>FM Brightness</strong>, the <strong>SID Cutoff</strong> and <strong>Resonance</strong>, and the <strong>Volume</strong>.</dd>
   </dl>
-  <p>Right-click a knob the matrix reaches (a layer's Level, Pan or PW, the SID filter, the Volume) to route a source to it straight away. Drawing an envelope works as in every Robotic Audio plugin: tools to draw, draw lines and curves, warp, lift and move; Shift-drag for an edit region; right-click for waveforms, windows and ready-made shapes; <kbd>Cmd</kbd> <kbd>Z</kbd> undoes.</p>
+  <p>Right-click a knob the matrix reaches (a layer's Level, Pan or PW, the SID filter, the Volume) to route a source to it straight away: a handle opens beside it with the route's <strong>Amount</strong>, <strong>Offset</strong> and <strong>Smooth</strong> (and REMOVE), and <strong>Adjust ...</strong> in the menu opens it again. Drawing an envelope works as in every Robotic Audio plugin: tools to draw, draw lines and curves, warp, lift and move; Shift-drag for an edit region; right-click for waveforms, windows and ready-made shapes; <kbd>Cmd</kbd> <kbd>Z</kbd> undoes.</p>
 </section>
 
 <section id="fm">
@@ -396,7 +398,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <p class="sub">The SEQ page: chip arpeggios, and songs written row by row.</p>
   <figure>
     <img src="images/seq.jpg" alt="The SEQ page">
-    <figcaption>Tracker Demo: the arpeggiator (off) on top, then the tracker with pattern 00, the order list and a column per layer, in Chip mode by MIDI channel.</figcaption>
+    <figcaption>Tracker Demo: the arpeggiator (off) on top, then the tracker: the bank menu and pattern 00, IMPORT and REC, the order list, and the columns (the four layers, then Chip mode's channels 5–8, the eighth a scroll away), in Chip mode by MIDI channel.</figcaption>
   </figure>
   <h3>Arpeggiator</h3>
   <dl class="params">
@@ -405,7 +407,7 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <dt>Octaves · Gate · LATCH</dt><dd>How many octaves the pattern climbs (1–4), how long each step's note lasts (5–100 %), and whether it plays on after you let go, until a new chord.</dd>
   </dl>
   <h3>Tracker</h3>
-  <p>Sixty-four patterns of up to 64 rows. Each pattern has a column per layer, and each cell a <strong>note</strong>, an <strong>instrument</strong> (two digits, see <a href="#instruments">instruments</a>), a <strong>volume</strong> (one hex digit, 0–F) and an <strong>effect</strong>: <code>C-4 01 F 037</code>. <strong>00+</strong>, <strong>10+</strong>, <strong>20+</strong> and <strong>30+</strong> pick a bank of sixteen patterns and the buttons beside them the pattern to show and edit; <strong>Length</strong> sets its rows, and <strong>Rows/Beat</strong> the speed (4 is 16th notes).</p>
+  <p>256 patterns of up to 64 rows. Each pattern has eight columns: <strong>LAYER 1</strong>–<strong>LAYER 4</strong>, then <strong>CHAN 5</strong>–<strong>CHAN 8</strong>, which play in Chip mode (see <a href="#modes">modes</a>); where the grid is too narrow for all eight, scroll sideways (a sideways swipe, or <kbd>Shift</kbd> with the wheel; the cursor brings its column into view, and arrows at the top show more columns either side). Each cell has a <strong>note</strong>, an <strong>instrument</strong> (two digits, see <a href="#instruments">instruments</a>), a <strong>volume</strong> (one hex digit, 0–F) and an <strong>effect</strong>: <code>C-4 01 F 037</code>. The bank menu (00-0F … F0-FF) picks sixteen patterns and the buttons beside it the pattern to show and edit; <strong>Length</strong> sets its rows, and <strong>Rows/Beat</strong> the speed (4 is 16th notes). <strong>IMPORT</strong> reads a music file into the tracker (see <a href="#import">importing music</a>).</p>
   <dl class="params">
     <dt>Sequencer</dt><dd><strong>Song</strong> plays the <strong>Order</strong> list (the patterns in turn, by number: 00 01 00 02 …, up to 256 of them) with the host's transport; <strong>MIDI</strong> plays a pattern while its note (C1–D#2, pattern 00–0F) is held; <strong>Off</strong>.</dd>
     <dt>Tempo · BPM · PLAY</dt><dd><strong>Host</strong> follows your DAW's tempo and song position; <strong>Own</strong> plays at <strong>BPM</strong> from the song's start. <strong>PLAY</strong> plays the song without the host's transport (the standalone has none); click again to stop.</dd>
@@ -432,7 +434,23 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
     <dt>Instrument</dt><dd>Its chip channel, as a layer's controls. A YM2612 instrument shows <strong>MACROS</strong> and <strong>OPERATORS</strong> tabs above the macros for its four operators.</dd>
     <dt>Macros</dt><dd>Its Volume, Arp, Pitch and fourth macro (and the Game Boy wave table), as on the MACROS page.</dd>
   </dl>
-  <p>In <strong>Chip</strong> mode an instrument plays on the channel its note takes, even a layer that is switched off. In <strong>Poly</strong> mode it plays on its own, in place of the stacked layers. Instruments reach the chips as MIDI program changes on each column's channel (program 1–32, 0 for the layer's sound), so you can also play them from a keyboard: send program 5 on channel 1 and the notes on channel 1 play instrument 05. Paula instruments play the built-in samples; a file of your own plays only on a layer.</p>
+  <p>In <strong>Chip</strong> mode an instrument plays on the channel its note takes, even a layer that is switched off. In <strong>Poly</strong> mode it plays on its own, in place of the stacked layers. Instruments reach the chips as MIDI program changes on each column's channel (program 1–32, 0 for the layer's sound), so you can also play them from a keyboard: send program 5 on channel 1 and the notes on channel 1 play instrument 05. Paula instruments play the built-in samples; a file of your own plays only on a layer. An imported module's instruments carry their own samples (and loops) inside them, kept with the preset or session.</p>
+</section>
+
+<section id="import">
+  <h2>Importing music</h2>
+  <p class="sub">Chip music from files, into the tracker and its instruments.</p>
+  <p>Press <strong>IMPORT</strong> on the SEQ page, choose <strong>Import Song</strong> from the menu, or drop a file on the window. A file with several songs (a SID's or NSF's subtunes) asks which one. The import replaces the song and all 32 instruments, and sets what plays them: <strong>Chip</strong> mode by MIDI channel, the Sequencer on <strong>Song</strong> at the music's own tempo, the clock and frame rate of its machine. <strong>Undo</strong> (<kbd>Cmd</kbd>+<kbd>Z</kbd>) brings back what was there. A line under the order list says what came in; hover over it to see what was changed or left out.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Played</span><h4>Recorded and transcribed</h4><p><strong>VGM/VGZ</strong> (NES, Game Boy, AY, SN76489, YM2612, YM2151, POKEY), <strong>SID</strong> (PSID and RSID), <strong>NSF/NSFe</strong> (with VRC6, MMC5, N163, FDS and Sunsoft 5B), <strong>SAP</strong>, <strong>GBS</strong>, ZX <strong>.ay</strong>, <strong>YM</strong> and <strong>VTX</strong>. The music's own player runs in a machine of Bitstorm's own; each channel is recorded a frame at a time and turned into notes, a row grid and a tempo, and its notes' shapes into up to 32 instruments with macros.</p></div>
+    <div class="card"><span class="tag">Read</span><h4>Read as written</h4><p><strong>MOD</strong> (4 to 8 channels: its samples become Paula instruments), <strong>FamiTracker</strong> (.ftm, 0CC and Dn modules, and its text export: sequences become macros), <strong>GoatTracker</strong> .sng and <strong>ProTracker 3</strong> .pt3. Patterns and instruments come in as the composer wrote them.</p></div>
+  </div>
+  <dl class="params">
+    <dt>What fits</dt><dd>Eight columns: music with more channels keeps its eight busiest. 32 instruments: the nearest sounds are joined. 256 patterns of 64 rows: a longer song's end is left out. A tune that loops for ever is kept to one time through its loop.</dd>
+    <dt>Effects</dt><dd>Arpeggios, slides, portamento and volume changes become Bitstorm's effects; vibrato, tremolo and the chips' sample channels (DPCM, digidrums, the YM2612's drums) are left out.</dd>
+    <dt>Furnace, DefleMask</dt><dd>Not read directly: export the song as VGM from the tracker and import that.</dd>
+  </dl>
+  <div class="callout">The files are yours: Bitstorm reads the music in them and plays it on its own chips. No original code or ROMs are part of Bitstorm.</div>
 </section>
 
 <section id="presets">
@@ -509,10 +527,11 @@ footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color
   <table>
     <tr><th>Type</th><td>Chip-tune synthesizer (instrument plugin)</td></tr>
     <tr><th>Chips</th><td>SID (6581, 8580), NES 2A03, Game Boy, AY-3-8910 / YM2149, POKEY, Paula, YM2612</td></tr>
-    <tr><th>Voices</th><td>Poly: up to 16, four layers each; Chip: one voice, a channel per layer</td></tr>
+    <tr><th>Voices</th><td>Poly: up to 16, four layers each; Chip: one voice of eight channels (the four layers, four more for instruments)</td></tr>
     <tr><th>Rendering</th><td>Each chip at twice the sample rate, band-limited steps, a half-band filter down</td></tr>
     <tr><th>Modulation</th><td>3 drawn envelopes, 2 LFOs, MIDI, 4 macros, 16-slot matrix</td></tr>
-    <tr><th>Sequencing</th><td>Arpeggiator; tracker of 64 patterns × 64 rows with 32 instruments, an order list of up to 256 patterns or MIDI-triggered</td></tr>
+    <tr><th>Sequencing</th><td>Arpeggiator; tracker of 256 patterns × 64 rows × 8 columns with 32 instruments, an order list of up to 256 patterns or MIDI-triggered</td></tr>
+    <tr><th>Import</th><td>VGM/VGZ, SID, NSF/NSFe, SAP, GBS, ZX .ay, YM, VTX, MOD, FamiTracker (.ftm, .0cc, .dnm, text), GoatTracker .sng, ProTracker 3 .pt3</td></tr>
     <tr><th>Effects</th><td>4 slots</td></tr>
     <tr><th>Latency</th><td>None</td></tr>
     <tr><th>Formats</th><td>AU, VST3 and Standalone (macOS); VST3 and Standalone (Windows, Linux)</td></tr>

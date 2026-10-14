@@ -221,19 +221,19 @@ svg.defs { position: absolute; width: 0; height: 0; }
 <header class="hero">
   <div class="kicker">Robotic Audio · User manual</div>
   <h1>CyberPump</h1>
-  <p class="lede">CyberPump ducks your sound <em>in time with the song</em>, the way a kick's sidechain does, with or without a sidechain. Pick one of 21 shapes and a rate, set how deep it goes, then put up to four effects after it and let any of their settings pump along: a filter that breathes, echoes cut on the beat, a reverb that blooms in the gaps, a tape that brakes on every kick.</p>
+  <p class="lede">CyberPump ducks your sound <em>in time with the song</em>, the way a kick's sidechain does, with or without a sidechain. Draw up to six shapes, pick a rate, and let any knob follow one of them: the Volume for the pump itself, and every setting of up to four effects after it: a filter that breathes, echoes cut on the beat, a reverb that blooms in the gaps, a tape that brakes on every kick.</p>
   <ul class="facts">
-    <li>21 pump shapes</li>
+    <li>Six drawn shapes, 21 ready-made ones to start from</li>
     <li>Locked to the song, notes or a sidechain</li>
     <li>Four effect slots, 22 effects</li>
-    <li>Every effect setting can pump</li>
-    <li>Each lane its own depth, phase and shape</li>
+    <li>The Volume and every effect setting can pump</li>
+    <li>Each lane its own shape, depth, phase and speed</li>
     <li>Rests in silence</li>
     <li>AU · VST3 · Standalone</li>
   </ul>
   <figure>
     <img src="images/pump.jpg" alt="CyberPump's window">
-    <figcaption>CyberPump: the display on top (here the Filter's Cutoff lane at a quarter of the pump's speed, one sweep over four beats) beside Motion, the four effect slots as tabs, the shown slot's effect with a lane under every knob, and Output along the bottom.</figcaption>
+    <figcaption>CyberPump: the six shapes on top (Shape 1 drawn, the tabs 1 to 6 down its left edge) beside Motion with the Volume and its lane, the four effect slots as tabs, the shown slot's effect with a lane under every knob, and Output along the bottom.</figcaption>
   </figure>
 </header>
 
@@ -241,10 +241,10 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>Quick start</h2>
   <p class="sub">From a steady pad to a pumping one in a minute.</p>
   <div class="grid">
-    <div class="card"><span class="tag">01</span><h4>Insert it</h4><p>On a pad, a bass, a bus. Press play: the Default preset ducks the sound on every beat and swells back up.</p></div>
-    <div class="card"><span class="tag">02</span><h4>Shape the pump</h4><p>Pick a <strong>Shape</strong> above the display (or scroll over it) and set <strong>AMOUNT</strong>, or drag the display up and down.</p></div>
+    <div class="card"><span class="tag">01</span><h4>Insert it</h4><p>On a pad, a bass, a bus. Press play: the Default preset ducks the sound on every beat and swells back up: the Volume's lane follows Shape 1.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Shape the pump</h4><p>Draw Shape 1 in the display, or pick a ready-made one from <strong>PUMPS</strong>. Drag the lane under <strong>VOLUME</strong> down or up to pump deeper or lighter.</p></div>
     <div class="card"><span class="tag">03</span><h4>Add an effect</h4><p>Switch on a slot in the tabs (the power button) and choose its effect. Its own view appears below, with a small lane under every knob.</p></div>
-    <div class="card"><span class="tag">04</span><h4>Pump a setting</h4><p>Drag a lane up or down: that setting now moves with the pump. Click the lane to see it in the big display and set its phase and shape.</p></div>
+    <div class="card"><span class="tag">04</span><h4>Pump a setting</h4><p>Drag a lane down: that setting now dips with the shape. Click the lane to see it in the big display and pick which of the six shapes it follows, its phase and speed.</p></div>
   </div>
   <div class="callout"><strong>Hover to learn.</strong> Hover over any control and the strip along the bottom of the window says what it does.</div>
 </section>
@@ -254,8 +254,8 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <p class="sub">The display and Motion on top, the effects below, Output along the bottom.</p>
   <dl class="params">
     <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the logo for the version and credits. With an AI key, a <strong>&gt;_</strong> beside the preset bar opens the <a href="#ai">designer</a>. Until CyberPump is licensed, a <strong>DEMO</strong> or <strong>TRIAL</strong> chip beside the menu opens the <a href="#licence">licence</a>.</dd>
-    <dt>Display</dt><dd>One cycle of the volume, or of the lane you last clicked, with a line where the cycle is now and a dot at the value it really gives. With the volume, <strong>GAIN</strong> reads the gain now; drag up or down for Amount (down pumps harder), double-click to reset it, scroll to change the shape. <strong>/2</strong> and <strong>X2</strong>, just after the card's title, halve or double the tempo (the Rate), or a lane's speed while a lane is shown. With a lane, the header names it (<strong>FX 1 FILTER / CUTOFF 10.9 KHZ</strong>) and the title row shows <strong>VOLUME</strong> (back to the volume), the lane's Depth and Phase, and its Shape, with its speed in the header (<strong>1/4X</strong>); see <a href="#lanes">Lanes</a>. On the right: the rate, and the mode (and <strong>WAITING FOR TRIGGER</strong> while a Trig mode waits), or with a sidechain source the source and the key's level (<strong>KEY −14 DB</strong>, <strong>(OWN INPUT)</strong> when nothing is connected to the sidechain).</dd>
-    <dt>Motion</dt><dd>Source, Mode, Rate, Feel, Amount, Threshold, and the TRIGGER, LOOP and SONG POS buttons. See <a href="#motion">Motion</a>.</dd>
+    <dt>Display</dt><dd>The six shapes, or the lane you last clicked. With the shapes, the tabs <strong>1</strong> to <strong>6</strong> down its left edge pick the one to draw (see <a href="#shapes">Shapes</a>), with a line where the cycle is now; its tools sit in the title row (draw, line, warp, lift, move, the menu, clear, <strong>GENERATE</strong>) with <strong>PUMPS</strong>, the ready-made shapes, at the right, and <strong>GAIN</strong> reads the Volume's gain now. With a lane, it shows that knob over a cycle with a dot at the value it really gives; the header names it (<strong>FX 1 FILTER / CUTOFF 10.9 KHZ</strong>, <strong>PUMP / VOLUME −6.0 DB</strong>) and the title row shows <strong>EDIT SHAPE</strong> (the shapes again, the one this lane follows picked), the lane's Depth and Phase, and the shape it follows, with its speed in the header (<strong>1/4X</strong>); see <a href="#lanes">Lanes</a>. <strong>/2</strong> and <strong>X2</strong>, just after the card's title, halve or double a lane's speed, or the tempo (the Rate) while the shapes are shown. On the right: the rate, and the mode (and <strong>WAITING FOR TRIGGER</strong> while a Trig mode waits), or with a sidechain source the source and the key's level (<strong>KEY −14 DB</strong>, <strong>(OWN INPUT)</strong> when nothing is connected to the sidechain).</dd>
+    <dt>Motion</dt><dd>Source, Mode, Rate, Feel, Volume (with its lane), Threshold, and the TRIGGER, LOOP and SONG POS buttons. See <a href="#motion">Motion</a>.</dd>
     <dt>Slot tabs</dt><dd>FX 1 to FX 4: each its grip, power button and effect menu, and a dot while any of its lanes pump. Click a tab to show that slot below; drag it by its grip (or its background) onto another tab to move the slot there, its settings and lanes with it, the slots between shifting along.</dd>
     <dt>Effect</dt><dd>The shown slot's effect: its live display (which moves as its lanes move it), its controls in groups, a lane under each one that can pump, and the slot's <strong>MIX</strong> with its own lane. See <a href="#effects">Effects</a>.</dd>
     <dt>Output</dt><dd>Color, Compress, Intensity, Output and Mix. See <a href="#output">Output</a>.</dd>
@@ -266,12 +266,12 @@ svg.defs { position: absolute; width: 0; height: 0; }
 
 <section id="flow">
   <h2>Signal flow</h2>
-  <p class="sub">One pump moves everything.</p>
+  <p class="sub">Six shapes move everything.</p>
   <div class="flow">
     <svg viewBox="0 0 860 250" role="img" aria-label="CyberPump's signal flow">
       <rect class="pill" x="10" y="50" width="60" height="44" rx="22"/><text x="40" y="77">In</text>
       <rect class="box" x="88" y="40" width="102" height="64" rx="10"/><text x="139" y="68">Compress</text><text class="sub" x="139" y="87">2 ms ahead</text>
-      <rect class="box hot" x="205" y="40" width="110" height="64" rx="10"/><text x="260" y="68">Color + duck</text><text class="sub" x="260" y="87">the volume</text>
+      <rect class="box hot" x="205" y="40" width="110" height="64" rx="10"/><text x="260" y="68">Color + duck</text><text class="sub" x="260" y="87">Volume's lane</text>
       <rect class="box hot" x="330" y="40" width="80" height="64" rx="10"/><text x="370" y="68">FX 1</text><text class="sub" x="370" y="87">lanes</text>
       <rect class="box hot" x="425" y="40" width="80" height="64" rx="10"/><text x="465" y="68">FX 2</text><text class="sub" x="465" y="87">lanes</text>
       <rect class="box hot" x="520" y="40" width="80" height="64" rx="10"/><text x="560" y="68">FX 3</text><text class="sub" x="560" y="87">lanes</text>
@@ -287,7 +287,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
       <path class="wire" d="M695 72H708" marker-end="url(#a)"/>
       <path class="wire" d="M770 72H783" marker-end="url(#a)"/>
       <path class="wire dash" d="M40 50V22H740V38" marker-end="url(#a)"/><text class="sub" x="390" y="16">dry, delayed to match</text>
-      <rect class="box hot" x="230" y="190" width="400" height="48" rx="10"/><text x="430" y="212">The pump</text><text class="sub" x="430" y="229">Shape at Rate, or the sidechain; each lane its own phase and shape</text>
+      <rect class="box hot" x="230" y="190" width="400" height="48" rx="10"/><text x="430" y="212">Six shapes</text><text class="sub" x="430" y="229">at Rate, or the sidechain; each lane its own shape, phase and speed</text>
       <path class="wire dash" d="M260 190V106" marker-end="url(#a)"/>
       <path class="wire dash" d="M370 190V106" marker-end="url(#a)"/>
       <path class="wire dash" d="M465 190V106" marker-end="url(#a)"/>
@@ -295,22 +295,22 @@ svg.defs { position: absolute; width: 0; height: 0; }
       <path class="wire dash" d="M655 190V106" marker-end="url(#a)"/>
     </svg>
   </div>
-  <p>The pump is a value for every sample: how far the sound is ducked right now. It sets the volume (through Color), and every lane reads the same cycle, each at its own phase and shape, to move its effect setting. Lanes move their settings every 32 samples, smoothed so nothing steps or clicks; the volume's drops are softened over 1.5 ms.</p>
-  <p>The effects come after the volume's duck, in slot order, so a delay or reverb rings on into the gaps the pump leaves. Everything runs 2 ms behind the input, so Compress can see peaks coming; the plugin reports this to the host, which lines the track up again. While silence comes in and every echo and tail has died away, Pump rests and costs nothing.</p>
+  <p>The six shapes all play on one clock, the cycle at Rate (or a sidechain hit). Every lane reads its shape at its own phase and speed to move its knob. The Volume's lane is worked out for every sample, so hard gates stay sharp, softened over 1.5 ms so its drops don't click; it sets the level going into the effects (through Color). The effects' lanes move their settings every 32 samples, smoothed so nothing steps or clicks.</p>
+  <p>The effects come after the Volume, in slot order, so a delay or reverb rings on into the gaps the pump leaves. Everything runs 2 ms behind the input, so Compress can see peaks coming; the plugin reports this to the host, which lines the track up again. While silence comes in and every echo and tail has died away, Pump rests and costs nothing.</p>
 </section>
 
 <section id="motion">
   <h2>Motion</h2>
   <p class="sub">When it pumps, how fast and how deep.</p>
   <dl class="params">
-    <dt>Source</dt><dd>What drives the pump. <strong>Tempo</strong> plays the shape in time with the song, by Mode, Rate, MIDI notes and TRIGGER. <strong>Sidechain</strong> plays one cycle of the shape (at Rate) on each hit on the sidechain input that rises over Threshold, then rests open until the next. <strong>Follow</strong> has no shape: it ducks by how far the sidechain goes over Threshold (24 dB over ducks all the way), letting go over half a cycle of Rate. With nothing connected to the sidechain, CyberPump keys from its own input. Mode, TRIGGER, LOOP and SONG POS only play the Tempo source and are greyed out for the others.</dd>
-    <dt>Mode</dt><dd><strong>Auto</strong> pumps all the time. <strong>Trig</strong> rests low (ducked) and swells up while it's triggered, then drops back when you let go. <strong>Trig Inv</strong> rests open and ducks while it's triggered. Trigger with the TRIGGER button or any MIDI note.</dd>
-    <dt>Rate</dt><dd>How long one cycle of the shape takes, as a note value. 1/4 is one beat, 1/1 one bar. In Follow, how fast the duck lets go. <span class="range">8/1 … 1/64</span></dd>
+    <dt>Source</dt><dd>What plays the shapes. <strong>Tempo</strong> plays them in time with the song, by Mode, Rate, MIDI notes and TRIGGER. <strong>Sidechain</strong> plays one cycle (at Rate) on each hit on the sidechain input that rises over Threshold, then rests at the shapes' start until the next. <strong>Follow</strong> plays no shapes: every lane follows how far the sidechain goes over Threshold instead (24 dB over is the top), letting go over half a cycle of Rate. With nothing connected to the sidechain, CyberPump keys from its own input. Mode, TRIGGER, LOOP and SONG POS only play the Tempo source and are greyed out for the others.</dd>
+    <dt>Mode</dt><dd><strong>Auto</strong> pumps all the time. <strong>Trig</strong> rests at the bottom of the shapes (a Volume lane ducked) and plays them while it's triggered, then goes back when you let go. <strong>Trig Inv</strong> rests at the top (open) and plays the shapes upside down while it's triggered. Trigger with the TRIGGER button or any MIDI note.</dd>
+    <dt>Rate</dt><dd>How long one cycle of the shapes takes, as a note value. 1/4 is one beat, 1/1 one bar. In Follow, how fast the duck lets go. <span class="range">8/1 … 1/64</span></dd>
     <dt>Feel</dt><dd><strong>Straight</strong>, <strong>Dotted</strong> (one and a half times as long) or <strong>Triplet</strong> (two thirds).</dd>
-    <dt>Amount</dt><dd>How deep the volume pumps. A touch adds movement; 50 % ducks to −12 dB at the deepest point; 100 % reaches silence. Turn it to 0 to pump only the effects. <span class="range">0 … 100 %</span></dd>
+    <dt>Volume</dt><dd>The level going into the effects, a knob like any other: its lane, under it, makes the pump. The level follows the lane's shape: at the knob's own value where the shape is at the top, down by the lane's depth where it dips (+50 % ducks to −12 dB at the shape's bottom, +100 % to silence). Double-click the lane to stop pumping and only the effects move. A ring round the knob shows where its lane takes it. <span class="range">−inf … 0 dB</span></dd>
     <dt>Threshold</dt><dd>How loud the sidechain has to get, for Sidechain and Follow. A hit counts when the key rises over it, and the next one only once it has fallen 6 dB below it and 40 ms have passed, so a flam or a ringing kick isn't two hits. Watch <strong>KEY</strong> in the display to set it. <span class="range">−60 … 0 dB</span></dd>
     <dt>Trigger</dt><dd>Hold it to play the pump in the Trig modes. In Auto it starts the cycle again (with Song Pos or Loop off; following the song, it has nothing to restart). It isn't saved with presets or sessions.</dd>
-    <dt>Loop</dt><dd>On, the shape repeats. Off, it plays once from each start (a trigger, a note, or pressing play) and then stays where the shape ends.</dd>
+    <dt>Loop</dt><dd>On, the shapes repeat. Off, they play once from each start (a trigger, a note, or pressing play) and then stay where they end.</dd>
     <dt>Song Pos</dt><dd>On, the cycle follows the song's position: start playback anywhere and the pump is where it would have been from the start, and notes don't move it. Off, CyberPump keeps its own time, and the first note after silence (or pressing play) starts the cycle again. With Loop off it has no effect and is greyed out.</dd>
   </dl>
   <h3>Using the sidechain</h3>
@@ -320,61 +320,63 @@ svg.defs { position: absolute; width: 0; height: 0; }
 
 <section id="shapes">
   <h2>Shapes</h2>
-  <p class="sub">21 ways to move over one cycle.</p>
-  <p>Each shape says how far the sound ducks over one cycle; Amount sets how deep that is. Most drop on the beat and come back up, like a sidechained kick.</p>
+  <p class="sub">Six drawings that move everything.</p>
+  <p>CyberPump has six shapes, each one cycle long (one Rate). They don't do anything by themselves: every knob that can move has a lane that follows one of them (see <a href="#lanes">Lanes</a>): the knob sits at its own value where the shape is at the top and is pulled by the lane's depth where the shape dips, so it traces the drawing. Shape 1 drives the Volume in Default; the others start as Offbeat, Sine, Triangle, Chop and Fall, ready for the effects.</p>
+  <p>Pick a shape with the tabs <strong>1</strong> to <strong>6</strong> down the display's left edge and draw it: freehand, in straight lines you can curve, or warp, lift and move what's there; Shift-drag marks part of it to edit alone; right-click for undo, copy and paste (between shapes too), smoothing and every ready-made shape of the suite. The grid falls on the note values of one cycle at Rate. Cmd+Z undoes a change in the shape last clicked. Presets keep all six.</p>
+  <p><strong>PUMPS</strong> (or <strong>Pump</strong> in the right-click menu) draws one of 21 ready-made pump shapes into the shown one, over the whole cycle or into the part marked. Most dip on the beat and grow back: on the Volume, a sidechained kick. Every Robotic Audio plugin's envelope editors have the same Pump menu; <strong>Flip Upside Down</strong> in their Edit menu turns a pump over.</p>
   <table>
     <tr><th>Shape</th><th>Moves</th></tr>
     <tr><td>Classic</td><td>Drops on the beat and swells back over about two thirds of the cycle: the sidechain pump.</td></tr>
     <tr><td>Deep</td><td>The same, but slower to recover, almost to the end of the cycle.</td></tr>
-    <tr><td>Ramp</td><td>Rises in a straight line from the bottom to full.</td></tr>
+    <tr><td>Ramp</td><td>Rises in a straight line from the bottom to the top.</td></tr>
     <tr><td>Snap</td><td>A short, sharp dip right on the beat.</td></tr>
     <tr><td>Offbeat</td><td>Dips halfway through the cycle instead of on the beat.</td></tr>
     <tr><td>Swell</td><td>A smooth S-curve from the bottom up.</td></tr>
     <tr><td>Hold</td><td>Stays down for almost a third of the cycle, then comes up quickly.</td></tr>
-    <tr><td>Sine</td><td>A smooth wave: down at the start and end, full in the middle.</td></tr>
-    <tr><td>Triangle</td><td>Straight lines down to full in the middle and back.</td></tr>
+    <tr><td>Sine</td><td>A smooth wave: down at the start and end, at the top in the middle.</td></tr>
+    <tr><td>Triangle</td><td>Straight lines up to the top in the middle and back down.</td></tr>
     <tr><td>Kick</td><td>A dip with a small second bump, like a kick's bounce.</td></tr>
     <tr><td>Steps</td><td>Climbs back up in steps.</td></tr>
     <tr><td>Flutter</td><td>Four fast dips that fade away over the cycle.</td></tr>
-    <tr><td>Fall</td><td>The reverse of Ramp: from full down to the bottom.</td></tr>
-    <tr><td>Gate</td><td>Off for the first half, on for the second.</td></tr>
+    <tr><td>Fall</td><td>The reverse of Ramp: from the top down to the bottom.</td></tr>
+    <tr><td>Gate</td><td>Down for the first half, up for the second.</td></tr>
     <tr><td>Bounce</td><td>Dips that come back again and again, smaller each time.</td></tr>
     <tr><td>Stutter</td><td>Two quick chops in the first half, then open.</td></tr>
     <tr><td>Wave</td><td>A rounded wave with a second ripple.</td></tr>
     <tr><td>Chop</td><td>Four hard gates per cycle.</td></tr>
     <tr><td>Seethe</td><td>A restless, uneven wobble that repeats every cycle.</td></tr>
-    <tr><td>Quake</td><td>A long, deep duck with a fast tremor through it.</td></tr>
+    <tr><td>Quake</td><td>A long, deep dip with a fast tremor through it.</td></tr>
     <tr><td>Shuffle</td><td>A dip on the beat and a smaller, swung one two thirds of the way through.</td></tr>
   </table>
 </section>
 
 <section id="lanes">
   <h2>Lanes</h2>
-  <p class="sub">Any effect setting, pumping.</p>
-  <p>Under every effect knob that can move (and under each slot's MIX) sits a small lane: a picture of how the pump moves that setting over one cycle, flat while it doesn't. A lane rests at the knob's own value and moves away from it with the pump: most at the top of the shape (where the volume ducks deepest), not at all at the bottom.</p>
+  <p class="sub">Any knob, following any shape.</p>
+  <p>Under every knob that can move sits a small lane: the Volume, every effect knob that can move, and each slot's MIX. It is a picture of how its shape moves that knob over one cycle, flat while it doesn't. A lane follows its shape: where the shape is at the top the knob sits at its own value, and where it dips the knob is pulled down by the lane's depth (up for a negative depth), all of it at the shape's bottom. The Volume is no different from the rest: its lane is the pump.</p>
   <dl class="params">
-    <dt>In a plugin</dt><dd>A plugin in a slot (Event Horizon) pumps too: open it and right-click any of its knobs: <strong>Pump it</strong> sets that setting's lane to a depth, <strong>Stop pumping it</strong> clears it, and <strong>Edit its lane in the display</strong> closes the plugin's window and shows the lane in the display for finer depth, phase, speed and shape. The knob rings while its lane moves it.</dd>
-    <dt>On the knob</dt><dd>While a lane moves a setting, a thin ring round its knob (and round the slot's MIX for its Mix lane) shows the range the lane takes it over, from the knob's own value by the depth (Intensity applied), with a dot where it is right now, as on the suite's other modulated knobs.</dd>
-    <dt>On a lane</dt><dd>Drag up or down to set its depth (up moves the setting up). Click it to show it in the big display, where it lights up. Double-click it to stop it moving.</dd>
-    <dt>In the display</dt><dd>The lane's setting over a cycle on its own scale (its values down the side), the knob's value dashed. Drag up or down for the depth, Shift-drag sideways for the phase, scroll for the shape, /2 and X2 for the speed, double-click to stop it. <strong>VOLUME</strong> takes the display back to the volume.</dd>
-    <dt>Depth</dt><dd>How far the lane moves its setting at the top of the shape, up (positive) or down (negative), as a share of the setting's whole range: +50 % moves a cutoff half of its way from 20 Hz to 20 kHz. Moves stop at the ends of the range. <span class="range">−100 … +100 %</span></dd>
-    <dt>Phase</dt><dd>Moves the lane earlier (positive) or later than the volume's pump, in parts of a cycle. At ±50 % it moves on the offbeat. <span class="range">−50 … +50 %</span></dd>
-    <dt>Speed</dt><dd>How fast the lane runs against the pump, from an eighth of its speed to eight times: <strong>/2</strong> and <strong>X2</strong> at the start of the display's title row halve or double it (the header shows it, e.g. <strong>1/4X</strong>). A slower lane takes several of the pump's cycles for one of its own, and the display then shows its whole cycle, a stronger line where each of the pump's starts: a filter can sweep once a bar while the volume pumps every beat. With the volume shown, the same buttons halve or double the Rate. <span class="range">1/8x … 8x</span></dd>
-    <dt>Shape</dt><dd><strong>Pump Shape</strong> follows the pump's shape (the one above the display); any other is this lane's own, so a filter can sweep a slow Sine while the volume pumps Classic.</dd>
+    <dt>In a plugin</dt><dd>A plugin in a slot (Event Horizon) pumps too: open it and right-click any of its knobs: <strong>Pump it with</strong> lists the six shapes, the one its lane follows ticked while it moves (another starts it on that shape, the ticked one again stops it), <strong>Depth</strong> sets how far, and <strong>Edit its lane in the display</strong> closes the plugin's window and shows the lane in the display for finer depth, phase, speed and shape. The knob rings while its lane moves it.</dd>
+    <dt>On the knob</dt><dd>While a lane moves a knob, a thin ring round it shows the range the lane takes it over, from the knob's own value by the depth (Intensity applied), with a dot where it is right now, as on the suite's other modulated knobs.</dd>
+    <dt>On a lane</dt><dd>Drag down to pump it deeper (the knob pulled down where the shape dips), up past zero for the other way. Click it to show it in the big display, where it lights up. Double-click it to stop it moving. Right-click it for the six shapes, the one it follows ticked while it moves (its number is also written at the lane's right): choose another to start it on that shape (with the depth it last had, else +50 %), the ticked one again to stop it; or show it in the display.</dd>
+    <dt>In the display</dt><dd>The lane's knob over a cycle on its own scale (its values down the side), the knob's value dashed. Drag down or up for the depth, Shift-drag sideways for the phase, scroll for the shape, /2 and X2 for the speed, double-click to stop it. <strong>EDIT SHAPE</strong> shows the shape the lane follows, ready to draw.</dd>
+    <dt>Shape</dt><dd>Which of the six shapes the lane follows (the menu in the title row). Lanes on the same shape move together; give a filter its own slow shape and the Volume another.</dd>
+    <dt>Depth</dt><dd>How far the lane pulls its knob where the shape is at its bottom, down (positive) or up (negative), as a share of the knob's whole range: +50 % takes a cutoff half of its way down towards 20 Hz. Moves stop at the ends of the range. <span class="range">−100 … +100 %</span></dd>
+    <dt>Phase</dt><dd>Moves the lane earlier (positive) or later than the cycle, in parts of a cycle. At ±50 % it moves on the offbeat. <span class="range">−50 … +50 %</span></dd>
+    <dt>Speed</dt><dd>How fast the lane runs against the cycle, from an eighth of its speed to eight times: <strong>/2</strong> and <strong>X2</strong> at the start of the display's title row halve or double it (the header shows it, e.g. <strong>1/4X</strong>). A slower lane takes several cycles for one of its own, and the display then shows its whole cycle, a stronger line where each cycle starts: a filter can sweep once a bar while the Volume pumps every beat. With the shapes shown, the same buttons halve or double the Rate. <span class="range">1/8x … 8x</span></dd>
   </dl>
-  <p>Each effect keeps its own lanes, as it keeps its settings: switch a slot to another effect and back and they are still there. Choices and switches (a filter's type, a delay's sync) don't have lanes. <strong>INTENSITY</strong> scales every lane's depth and Amount at once.</p>
+  <p>Each effect keeps its own lanes, as it keeps its settings: switch a slot to another effect and back and they are still there. Choices and switches (a filter's type, a delay's sync) don't have lanes. A slot that's switched off doesn't move (nor do its view and rings), so starting a lane in one switches it on. <strong>INTENSITY</strong> scales every lane's depth at once, the Volume's included.</p>
   <div class="callout"><strong>Ideas.</strong> A delay's <strong>Feedback</strong> pumped down cuts the repeats that come round on the beat and keeps the ones in the gaps. A reverb's <strong>Decay</strong> pumped down gates its tail on every beat. A <strong>MIX</strong> pumped down lets an effect sound only in the gaps; pumped up, only on the beat.</div>
 </section>
 
 <section id="effects">
   <h2>Effects</h2>
   <p class="sub">Four slots, twenty-two effects.</p>
-  <p>The slots run in order, FX 1 first, after the volume's duck; drag a tab onto another to change the order. Each tab has a power button and the effect menu; click a tab to see that slot. Each effect has its own view: a live display (drag its handles; it moves as its lanes move it) over its controls in groups, drawn in the effect's own colours. <strong>MIX</strong>, beside it, blends the effect in; delays and reverbs keep the sound at full level and add themselves on top.</p>
+  <p>The slots run in order, FX 1 first, after the Volume; drag a tab onto another to change the order. Each tab has a power button and the effect menu; click a tab to see that slot. Each effect has its own view: a live display (drag its handles; it moves as its lanes move it) over its controls in groups, drawn in the effect's own colours. <strong>MIX</strong>, beside it, blends the effect in; delays and reverbs keep the sound at full level and add themselves on top.</p>
   <table>
     <tr><th>Effect</th><th>What it does, and what pumps well</th></tr>
     <tr><td>Filter</td><td>Fourteen filter characters. Pump the <strong>Cutoff</strong> down for the classic breathing filter.</td></tr>
     <tr><td>Distortion</td><td>Tube, fold, rectify, crush, downsample, hard clip. Pump the <strong>Drive</strong> for grit that hits with the beat.</td></tr>
-    <tr><td>Drive</td><td>Line Runner's four drive stages stacked: <strong>Saturation</strong>, <strong>Overdrive</strong>, <strong>Distortion</strong> and <strong>Fuzz</strong>, each with its own amount (0 % is off), at four times the sample rate so it stays clean of aliasing, then Tone and Output. Pump each stage on its own: a fuzz that grows in the gaps under an overdrive that hits on the beat.</td></tr>
+    <tr><td>Drive</td><td>Tektonic's four drive stages stacked: <strong>Saturation</strong>, <strong>Overdrive</strong>, <strong>Distortion</strong> and <strong>Fuzz</strong>, each with its own amount (0 % is off), at four times the sample rate so it stays clean of aliasing, then Tone and Output. Pump each stage on its own: a fuzz that grows in the gaps under an overdrive that hits on the beat.</td></tr>
     <tr><td>Crusher</td><td>Fewer bits and a lower sample rate, both gliding smoothly. Pump them down for a bit drop on every beat.</td></tr>
     <tr><td>Ring Mod</td><td>The sound times a carrier, from a tremolo to clangy bells. Pump the <strong>Amount</strong> or the <strong>Frequency</strong>.</td></tr>
     <tr><td>Freq Shift</td><td>Every frequency moved by the same number of Hz, with a feedback spiral. Pump the <strong>Shift</strong> for laser drops.</td></tr>
@@ -393,7 +395,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>Output</h2>
   <p class="sub">Colour, density, level and blend.</p>
   <dl class="params">
-    <dt>Color</dt><dd>How the volume's pump changes the tone besides the level:
+    <dt>Color</dt><dd>How the Volume's pump changes the tone besides the level:
       <br><strong>Clean</strong>: volume only.
       <br><strong>Low Pump</strong>: below about 180 Hz ducks all the way; the rest ducks only a little. The classic kick-and-bass sidechain.
       <br><strong>Air Pump</strong>: above about 1.8 kHz ducks all the way; the lows only a little.
@@ -403,7 +405,7 @@ svg.defs { position: absolute; width: 0; height: 0; }
       <br><strong>Resonant</strong>: a resonant low-pass sweeps down to 380 Hz, a wah on every pump.
       <br><strong>Wide</strong>: the middle ducks and the sides much less, so the sound opens out on each duck.</dd>
     <dt>Compress</dt><dd>Squeezes the sound before the pump, so the pump stands out more. As it goes up the threshold falls to −30 dB and the ratio rises to 10:1, with part of the reduction made up. It looks 2 ms ahead, so even sharp attacks are caught. <span class="range">0 … 100 %</span></dd>
-    <dt>Intensity</dt><dd>Every depth at once: Amount and each lane's depth. Ride it to bring the whole pump in and out without losing the balance between them. <span class="range">0 … 100 %</span></dd>
+    <dt>Intensity</dt><dd>Every lane's depth at once, the Volume's included. Ride it to bring the whole pump in and out without losing the balance between them. <span class="range">0 … 100 %</span></dd>
     <dt>Output</dt><dd>The level after everything. The bottom of the range is silence. <span class="range">−inf … +9.5 dB</span></dd>
     <dt>Mix</dt><dd>How much of the pumped sound, effects included, against the untouched one. <span class="range">0 … 100 %</span></dd>
   </dl>
@@ -412,36 +414,14 @@ svg.defs { position: absolute; width: 0; height: 0; }
 <section id="presets">
   <h2>Presets</h2>
   <p class="sub">Starting points, and your own.</p>
-  <p>CyberPump comes with 173 presets: <strong>Default</strong> (the volume alone, ducking on every beat), then 172 in the preset list's folders, called banks, by what they do or the music they're made for:</p>
-  <table>
-    <tr><th>Bank</th><th>Presets</th></tr>
-    <tr><td>Classic Pumps</td><td>Air Duck, Big Room Duck, Dotted Lope, Eighth Note Pump, Four On The Floor, Gentle Breathing, Kick Bounce, Long Breath Duck, New York Pump, Offbeat Lift, Sub Clearance, Triplet Pulse, Wide Swell</td></tr>
-    <tr><td>Gates &amp; Chops</td><td>Chopped Eighths, Gated Wash, Morse Code, Sixteenth Slicer, Stutter Build, Trance Gate, Triplet Trance Gate</td></tr>
-    <tr><td>Filters</td><td>Acid Pump, Band Wah Pump, Comb Tunnel, Filter Breath, Half Time Sweep, Highpass Ducker, Lowpass Lungs, MS-20 Scream, Notch Sweeper, Offbeat Sweep, Vowel Pump</td></tr>
-    <tr><td>Drive &amp; Crush</td><td>Bit Drop, Crunch On The Beat, Crusher Breath, Downsample Duck, Fold Pulse, Fuzz In The Gaps, Rectifier Throb, Saturated Glue, Tube Breather</td></tr>
-    <tr><td>Echoes &amp; Space</td><td>Dotted Echo Pump, Dub Echo Chop, Echoes In The Gaps, Gated Verb, Infinite Gaps, Octave Bloom, Ping Pong Breath, Plate Pump, Reverse Room Swell, Swelling Room, Tape Echo Throb</td></tr>
-    <tr><td>Motion</td><td>Auto Pan Eighths, Chorus Pulse, Haas Bounce, Jet Flanger Pump, Phase Drift, Phaser Pump, Side To Side, Width Breather</td></tr>
-    <tr><td>Machines</td><td>Alien Transmission, Barberpole Shift, Everything Pumps, Fifth Ghost, Laser Drops, Octave Dive, Ring Throb, Robot Ring, Spiral Riser, Tape Brake, Turntable Scratch</td></tr>
-    <tr><td>House &amp; Disco</td><td>Afro Groove, Deep House Pump, Disco Filter House, Filter Disco Loop, French Touch, Garage Skip, Lo-Fi House Wash, Nu Disco Strut, Piano House Bounce, Tech House Shuffle</td></tr>
-    <tr><td>EDM &amp; Big Room</td><td>Drop Pressure, Festival Drop, Future Bass Wobble, Future Pluck Bounce, Melbourne Bounce, Progressive Swell, Riser Builder, Snare Roll Riser, Supersaw Breath</td></tr>
-    <tr><td>Bass Music</td><td>Comb Rattle, DnB Roller, Growl Gate, Halftime Stomp, Halftime Sub Duck, Neuro Shredder, Reese Pressure, Riddim Chop, Triplet Wobble, Wub Machine</td></tr>
-    <tr><td>Techno &amp; Industrial</td><td>Acid Rail, Berlin Rumble Duck, Dub Techno Chords, Hypnotic Loop, Industrial Clang, Metal Hammer, Minimal Click Groove, Peak Time Pump, Rumble Generator, Warehouse Pressure</td></tr>
-    <tr><td>Ambient &amp; Pads</td><td>Breathing Cathedral, Distant Pulse, Dream Flutter, Fifth Shimmer, Frozen Lake, Glacier Breath, Shimmer Swell, Slow Tide, Tidal Pad, Underwater</td></tr>
-    <tr><td>Lo-Fi &amp; Hip-Hop</td><td>Boom Bap Glue, Cassette Wobble, Chillhop Breather, Dusty Sidechain, Lazy Swing Duck, Memphis Crunch, Old Sampler, Vinyl Brake Beat, Warped Record</td></tr>
-    <tr><td>Glitch &amp; IDM</td><td>Bit Rain, Broken Radio, Buffer Error, Circuit Bend, Data Rain, Granular Grit, Laser Ping Pong, Microcut, Quake Ripple, Stutter Crush, Tape Chop</td></tr>
-    <tr><td>Guitars &amp; Keys</td><td>Clav Funk Wah, Harmonic Tremolo, Rhodes Pan Trem, Shoegaze Swell, Slapback Pump, Spring Bounce, Swirl Pedal, Tremolo Amp, Vibe Pump</td></tr>
-    <tr><td>Vocals</td><td>Breathy Doubler, Dub Vocal Spin, Formant Talker, Megaphone Pump, Radio Ducker, Robot Voice Pump, Vocal Chop Gate, Vocal Throw</td></tr>
-    <tr><td>Triggered</td><td>Duck On Note, Hold To Brake, Hold To Close, Hold To Stutter In, Hold To Wash Out, Stutter Out, Swell On Note (the Trig modes: play notes or hold Trigger to hear them)</td></tr>
-    <tr><td>Sidechain &amp; Follow</td><td>Envelope Wah, Follow Crush, Follow Filter, Follow The Kick, Keyed Echo Duck, Keyed Filter Duck, Keyed Tape Drag, Keyed Verb Bloom, Kick Keyed (they want a kick on the sidechain input; without one they key from the sound itself)</td></tr>
-  </table>
-  <p>They are starting points: each one's lanes show what moves, so open a slot, click a lane and change its depth, phase, speed or shape.</p>
-  <p>Press <strong>SAVE</strong> in the header to keep your own: presets keep the effects, their settings and every lane. The preset menu has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>; an asterisk after the name means you've changed something since loading it. The pump's controls and each slot's effect, power and mix are host parameters and can be automated; ride <strong>INTENSITY</strong> to automate every lane at once. The power button bypasses CyberPump without clicks, with its latency kept so the track stays in time.</p>
+  <p><strong>Default</strong> pumps the Volume on Shape 1 (Classic) at +50 %, a duck to −12 dB on every beat, with the effect slots off. A new set of factory presets for the six shapes is on its way.</p>
+  <p>Press <strong>SAVE</strong> in the header to keep your own: presets keep the six shapes, the effects, their settings and every lane. The preset menu has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>; an asterisk after the name means you've changed something since loading it. The Motion and Output controls and each slot's effect, power and mix are host parameters and can be automated; ride <strong>INTENSITY</strong> to automate every lane at once. The power button bypasses CyberPump without clicks, with its latency kept so the track stays in time.</p>
 </section>
 
 <section id="ai">
   <h2>Designing with Claude</h2>
   <p class="sub">Describe a sound; Claude sets CyberPump to make it.</p>
-  <p>With your own Anthropic key, the <strong>&gt;_</strong> beside the presets opens a designer: describe what you want in your own words, such as <em>"a heavy quarter-note pump with a bit of crunch"</em>, and Claude sets every control you could automate (the effect slots' own settings and lanes stay yours). It is told what every part does and how it is set now, so it can design from scratch or change only what you ask for.</p>
+  <p>With your own Anthropic key, the <strong>&gt;_</strong> beside the presets opens a designer: describe what you want in your own words, such as <em>"a heavy quarter-note pump with a bit of crunch"</em>, and Claude sets every control you could automate and draws the six shapes (the effect slots' own settings and the lanes stay yours). It is told what every part does and how it is set now, so it can design from scratch or change only what you ask for.</p>
   <dl class="params">
     <dt>Keys</dt><dd>Menu (three lines) &gt; <strong>AI...</strong>: an Anthropic key for Claude. They are your own, shared by every Robotic Audio plugin and kept on this computer, never in sessions or presets; each design uses your credits with the service. Without a key nothing of this shows.</dd>
     <dt>&gt;_</dt><dd>Left of the preset bar, while a key works: opens the designer over the window. Type a description and press Return (or <strong>EXECUTE</strong>); <strong>ESC</strong> closes it, and what is running carries on.</dd>
@@ -458,14 +438,14 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <h2>Recipes</h2>
   <p class="sub">Starting points; then make them yours.</p>
   <div class="grid">
-    <div class="card"><span class="tag">Sidechain bass</span><p>Classic, 1/4, Amount 70 %, Color Low Pump: the lows get out of the kick's way and the top keeps going.</p></div>
-    <div class="card"><span class="tag">Breathing filter</span><p>Amount 35 %, FX 1 Filter at 9 kHz, its Cutoff lane at −45 %: the sound darkens on every beat and opens as it swells back.</p></div>
-    <div class="card"><span class="tag">Dub chop</span><p>FX 3 Delay at 40 % Mix, Feedback 70 %, its Feedback lane at −65 %: the echoes on the beat are cut, the offbeat ones ring on.</p></div>
-    <div class="card"><span class="tag">Gated reverb</span><p>FX 4 Reverb 2, Decay 6 s, its Decay lane at −70 %: a big tail slammed shut on every beat.</p></div>
-    <div class="card"><span class="tag">Tape brake</span><p>FX 1 Tape Stop, its Speed lane at −85 % with the Snap shape: the tape stumbles on every beat and catches up.</p></div>
-    <div class="card"><span class="tag">Bar-long sweep</span><p>A Filter's Cutoff lane at −50 % with the Sine shape, /2 twice (1/4x): one slow sweep a bar under a pump on every beat.</p></div>
-    <div class="card"><span class="tag">Offbeat sweep</span><p>Amount 0 %, a high-pass Filter whose Cutoff lane has Phase 50 %: no volume pump, just a filter that thins the sound on the offbeats.</p></div>
-    <div class="card"><span class="tag">Real kick</span><p>Source Sidechain, the kick on the sidechain input, Classic, 1/4, Amount 70 %: the pump lands on every real kick, fills and drops included.</p></div>
+    <div class="card"><span class="tag">Sidechain bass</span><p>Shape 1 Classic, 1/4, the Volume's lane at +70 %, Color Low Pump: the lows get out of the kick's way and the top keeps going.</p></div>
+    <div class="card"><span class="tag">Breathing filter</span><p>The Volume's lane at +30 %, FX 1 Filter at 9 kHz, its Cutoff lane at +45 % on Shape 1: the sound darkens on every beat and opens as it swells back.</p></div>
+    <div class="card"><span class="tag">Dub chop</span><p>FX 3 Delay at 40 % Mix, Feedback 70 %, its Feedback lane at +65 %: the echoes on the beat are cut, the offbeat ones ring on.</p></div>
+    <div class="card"><span class="tag">Gated reverb</span><p>FX 4 Reverb 2, Decay 6 s, its Decay lane at +70 %: a big tail slammed shut on every beat.</p></div>
+    <div class="card"><span class="tag">Tape brake</span><p>Draw Snap into Shape 5, FX 1 Tape Stop with its Speed lane at +85 % on Shape 5: the tape stumbles on every beat and catches up.</p></div>
+    <div class="card"><span class="tag">Bar-long sweep</span><p>A Filter's Cutoff lane at +50 % on Shape 3 (Sine), /2 twice (1/4x): one slow sweep a bar under a pump on every beat.</p></div>
+    <div class="card"><span class="tag">Offbeat sweep</span><p>Stop the Volume's lane (double-click it), a high-pass Filter whose Cutoff lane follows Shape 2 (Offbeat): no volume pump, just a filter that thins the sound on the offbeats.</p></div>
+    <div class="card"><span class="tag">Real kick</span><p>Source Sidechain, the kick on the sidechain input, Shape 1 Classic, 1/4, the Volume's lane at +70 %: the pump lands on every real kick, fills and drops included.</p></div>
   </div>
 </section>
 
@@ -488,17 +468,17 @@ svg.defs { position: absolute; width: 0; height: 0; }
   <p class="sub">The numbers.</p>
   <table>
     <tr><th>Property</th><th>Value</th></tr>
-    <tr><td>Shapes</td><td>21, plus Amount, Mode and Feel; each lane the pump's shape or its own</td></tr>
+    <tr><td>Shapes</td><td>Six, drawn (2049 points a cycle each), 21 ready-made ones to draw from; played by Mode, Rate and Feel</td></tr>
     <tr><td>Rate</td><td>8/1 to 1/64, straight, dotted or triplet, following the song's position or its own clock</td></tr>
     <tr><td>Triggers</td><td>TRIGGER button and MIDI notes (any note, any channel), or hits on the sidechain input (or its level, in Follow)</td></tr>
     <tr><td>Sidechain</td><td>A second stereo or mono input; without it, the plugin's own input keys the sidechain sources. Threshold −60 to 0 dB</td></tr>
-    <tr><td>In other plugins</td><td>CyberPump plays whole in the effect slots of the suite's other plugins (Line Runner, Grainstorm, Drum Forge...): choose CyberPump in a slot's menu, then edit it there, with its presets. In a slot it keys from its own input (no sidechain).</td></tr>
+    <tr><td>In other plugins</td><td>CyberPump plays whole in the effect slots of the suite's other plugins (Tektonic, Grainstorm, Drum Forge...): choose CyberPump in a slot's menu, then edit it there, with its presets. In a slot it keys from its own input (no sidechain).</td></tr>
     <tr><td>Effects</td><td>Four slots in series after the volume: Filter, Drive, Distortion, Crusher, Ring Mod, Freq Shift, Tape Stop, Pan, Delay, Reverb, Reverb 2, Event Horizon, Chorus, Flanger, Phaser, Pitch, Width, EQ, Compressor, Overkill, OTT, Gate (the menu lists them alphabetically)</td></tr>
-    <tr><td>Lanes</td><td>Every continuous effect setting and each slot's Mix: depth ±100 % of the range, phase ±half a cycle, a speed (1/8x to 8x the pump's), a shape; updated every 32 samples, smoothed over 3 ms</td></tr>
-    <tr><td>Smoothing</td><td>1.5 ms on the volume's pump, so drops don't click</td></tr>
+    <tr><td>Lanes</td><td>The Volume, every continuous effect setting and each slot's Mix: one of the six shapes, depth ±100 % of the range, phase ±half a cycle, a speed (1/8x to 8x the cycle); the Volume's every sample, the effects' every 32 samples, smoothed over 3 ms</td></tr>
+    <tr><td>Smoothing</td><td>1.5 ms on the Volume, so drops don't click</td></tr>
     <tr><td>Compressor</td><td>Threshold to −30 dB, ratio to 10:1, 1 ms attack, 90 ms release, 2 ms lookahead</td></tr>
     <tr><td>Latency</td><td>2 ms, reported to the host</td></tr>
-    <tr><td>CPU</td><td>Very low for the volume alone, more with reverbs; nothing while silent</td></tr>
+    <tr><td>CPU</td><td>Very low for the Volume alone, more with reverbs; nothing while silent</td></tr>
     <tr><td>Channels</td><td>Stereo (mono tracks work too)</td></tr>
     <tr><td>Formats</td><td>AU, VST3, Standalone</td></tr>
     <tr><td>Licence</td><td>Activation in the browser or with a licence file; 14-day trial; a demo without either</td></tr>

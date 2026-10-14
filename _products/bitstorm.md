@@ -22,7 +22,8 @@ stats:
   - Chip mode, a channel per layer
   - Tracker macros per layer
   - 3 drawn envelopes, 2 LFOs, 16-slot matrix
-  - Arpeggiator and a 64-pattern tracker with 32 instruments
+  - Arpeggiator and a 256-pattern tracker with 32 instruments
+  - Imports SID, NSF, VGM, MOD, FamiTracker and more
   - 4 effect slots
 
 features:
@@ -37,9 +38,11 @@ features:
   - title: Modulation
     text: Three drawn envelopes, two LFOs, MIDI and four macro knobs through a 16-slot matrix, into each layer's pitch, level, pan, pulse width and FM brightness and the SID filter.
   - title: A tracker inside
-    text: Sixty-four patterns with a column per layer, notes, instruments, volumes and effects (arpeggio, slides, volume), chained into a song of up to 256 patterns that plays with your DAW, or a pattern per MIDI note, and an arpeggiator that steps in tempo or in the chip's frames.
+    text: 256 patterns of up to 64 rows with eight columns (the four layers, then four more channels in Chip mode), notes, instruments, volumes and effects (arpeggio, slides, volume), chained into a song of up to 256 patterns that plays with your DAW, or a pattern per MIDI note, and an arpeggiator that steps in tempo or in the chip's frames.
   - title: Instruments
     text: Up to 32 sounds a song switches between note by note, each a chip channel with its own macros, so one column plays the bass with the drums between its notes, as the C64's composers fitted a band into three voices.
+  - title: Import the music
+    text: Drop in a C64 SID, an NES NSF, a VGM from the Mega Drive or the arcades, an Amiga MOD, a FamiTracker, GoatTracker or ProTracker 3 module, an Atari SAP or a Spectrum .ay, and Bitstorm writes it into its tracker with its instruments, ready to play, change and make your own.
   - title: Dressed for each machine
     text: The window takes the colours of layer 1's machine, the C64's blue, the Game Boy's greens, the NES's grey, the arcade's black.
   - title: Presets from every machine
@@ -64,6 +67,8 @@ specs:
     value: Chip-tune synthesizer, up to 16 voices (instrument plugin)
   - name: Chips
     value: SID (6581, 8580), NES 2A03, Game Boy, AY-3-8910 / YM2149, POKEY, Paula, YM2612
+  - name: Import
+    value: VGM/VGZ, SID, NSF/NSFe, SAP, GBS, ZX .ay, YM, VTX, MOD, FamiTracker (.ftm, .0cc, .dnm, text), GoatTracker .sng, ProTracker 3 .pt3
   - name: Formats
     value: AU, VST3 and Standalone
   - name: macOS
