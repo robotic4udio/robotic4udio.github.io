@@ -88,3 +88,16 @@
   .bitstorm-demo__song { flex-direction: column; align-items: stretch; }
   .bitstorm-demo__tracker { width: 100%; }
 }
+
+/* Import: the button beside MIDI, a file over the demo, a file's songs */
+.bitstorm-demo__import { position: relative; display: inline-flex; align-items: center; cursor: pointer; }
+.bitstorm-demo__import input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.bitstorm-demo__import:focus-within { outline: 2px solid var(--wd-fire); outline-offset: 2px; }
+.web-demo.is-dropping { border-color: var(--wd-fire); box-shadow: 0 0 0 2px var(--wd-fire), 0 0 50px -10px rgba(255, 106, 26, 0.7); }
+.bitstorm-demo__songs {
+  flex: 0 0 auto; align-self: flex-start; max-width: 14rem; min-height: 2.5rem; padding: 0 0.8rem;
+  border: 1px solid var(--wd-line-strong); border-radius: 10px; background: var(--wd-bg); color: var(--wd-text); font: inherit; font-size: 0.85rem;
+}
+.bitstorm-demo__songs[hidden] { display: none; }
+.bitstorm-demo__import-status { text-align: left; }
+@media (max-width: 560px) { .bitstorm-demo__songs { max-width: none; width: 100%; } }

@@ -52,7 +52,12 @@ RoboticDemo.interfaces.bitstorm = (stage, demo, root) =>
     const midiButton = make ("button", "bitstorm-demo__midi", "MIDI keyboard");
     midiButton.type = "button";
     midiButton.title = "Play Bitstorm from a MIDI keyboard connected to this computer";
-    bar.append (previous, menu, next, midiButton);
+    const importButton = make ("label", "bitstorm-demo__midi bitstorm-demo__import", "Import a song");
+    importButton.title = "Play a chip tune file (SID, NSF, GBS, VGM, SAP, AY, YM, MOD, FamiTracker, GoatTracker, PT3) on Bitstorm. It stays on your computer.";
+    const importInput = make ("input");
+    importInput.type = "file";
+    importButton.append (importInput);
+    bar.append (previous, menu, next, importButton, midiButton);
 
     let presets = [];
     let current = 0;
@@ -67,6 +72,7 @@ RoboticDemo.interfaces.bitstorm = (stage, demo, root) =>
         demo.set (0, current);
         setPlaying (false);
         setPalette (presets[current].chip);
+        songPicker.hidden = current !== importedIndex || songPicker.options.length < 2;
         const song = presets[current].song || null;
         songRow.hidden = song === null;
         keyboardRow.hidden = song !== null;
@@ -533,8 +539,125 @@ RoboticDemo.interfaces.bitstorm = (stage, demo, root) =>
     }
     setInterval (() => { if (songPlaying) noteActivity(); }, 1000);
 
+    //==========================================================================
+    // Import: a chip tune file the visitor drops or picks, read by the plugin's own importer in a worker
+    // (bitstorm-import-worker.js, bitstorm-import.wasm: loaded the first time), added to the menu under
+    // "Your songs" and played on the tracker. The file never leaves the visitor's computer.
+    const importStatus = make ("p", "web-demo__status bitstorm-demo__import-status");
+    importStatus.setAttribute ("aria-live", "polite");
+    const songPicker = make ("select", "bitstorm-demo__songs");
+    songPicker.setAttribute ("aria-label", "Song in the file");
+    songPicker.hidden = true;
+    let worker = null, workerReady = null, requests = 0, lastFile = null, yourSongs = null, importedIndex = -1;
+
+    const askWorker = (message, transfer) => new Promise ((resolve, reject) =>
+    {
+        const id = ++requests;
+        const listen = ({ data }) =>
+        {
+            if (data.id !== id && data.type !== "error")
+                return;
+            worker.removeEventListener ("message", listen);
+            data.type === "error" ? reject (new Error (data.error)) : resolve (data);
+        };
+        worker.addEventListener ("message", listen);
+        worker.postMessage ({ ...message, id }, transfer || []);
+    });
+
+    const startWorker = () =>
+    {
+        if (workerReady === null)
+        {
+            worker = new Worker (new URL ("bitstorm-import-worker.js", script).href);
+            const bytes = (url) => fetch (url).then ((r) => { if (! r.ok) throw new Error (url + ": " + r.status); return r.arrayBuffer(); });
+            workerReady = Promise.all ([ bytes (new URL ("bitstorm-import.wasm", script).href),
+                                         bytes (new URL (root.dataset.data || "bitstorm-presets.bin", location.href).href) ])
+                .then (([ wasm, presets ]) => new Promise ((resolve, reject) =>
+                {
+                    worker.onmessage = ({ data }) => data.type === "ready" ? resolve() : data.type === "error" ? reject (new Error (data.error)) : null;
+                    worker.onerror = (event) => reject (new Error (event.message || "the importer couldn't start"));
+                    worker.postMessage ({ type: "init", wasm, presets }, [ wasm, presets ]); // fetched here: the worker needs no network
+                }))
+                .finally (() => { worker.onmessage = null; });
+            workerReady.catch (() => { workerReady = null; }); // a failed start can be tried again
+        }
+        return workerReady;
+    };
+
+    const importFile = async (file, song) =>
+    {
+        demo.start(); // within the click or drop, so the browser lets the sound start
+        lastFile = file;
+        importStatus.textContent = `Reading ${file.name}…`;
+        try
+        {
+            await startWorker();
+            const bytes = await file.arrayBuffer();
+            if (song === undefined)
+            {
+                const probe = await askWorker ({ type: "probe", name: file.name, bytes: bytes.slice (0) });
+                if (! probe.info.ok)
+                    throw new Error (probe.info.error);
+                song = probe.info.defaultSong;
+                songPicker.textContent = "";
+                probe.info.songs.forEach ((name, i) => songPicker.append (Object.assign (make ("option", "", name || `Song ${i + 1}`), { value: String (i) })));
+                songPicker.value = String (song);
+                songPicker.hidden = probe.info.songs.length < 2;
+                importStatus.textContent = `Playing ${file.name} through its chips to find the notes…`;
+            }
+            const answer = await askWorker ({ type: "import", name: file.name, bytes, song }, [ bytes ]);
+            if (! answer.info.ok)
+                throw new Error (answer.info.error);
+            await demo.start();
+            demo.load (answer.preset); // the engine adds it and switches to it
+            const index = presets.length;
+            presets.push ({ name: answer.info.title, group: "Your songs", chip: answer.info.chip, song: answer.info.song });
+            if (yourSongs === null)
+            {
+                yourSongs = make ("optgroup");
+                yourSongs.label = "Your songs";
+                menu.append (yourSongs);
+            }
+            const option = make ("option", "", answer.info.title);
+            option.value = String (index);
+            yourSongs.append (option);
+            importedIndex = index; // its song menu shows while it's chosen
+            choose (index);
+            setPlaying (true);
+            const author = answer.info.author ? ` by ${answer.info.author}` : "";
+            const notes = (answer.info.notes || []).slice (0, 2).join (" ");
+            importStatus.textContent = `${answer.info.title}${author} (${answer.info.format}), on Bitstorm's tracker. ${notes}`.trim();
+        }
+        catch (error)
+        {
+            importStatus.textContent = `Couldn't import ${file.name}: ${error.message}`;
+        }
+    };
+
+    importInput.addEventListener ("change", () => { if (importInput.files.length > 0) importFile (importInput.files[0]); importInput.value = ""; });
+    songPicker.addEventListener ("change", () => { if (lastFile !== null) importFile (lastFile, Number (songPicker.value)); });
+
+    // Drop a file anywhere on the demo
+    root.addEventListener ("dragover", (event) =>
+    {
+        if (! event.dataTransfer || ! [ ...event.dataTransfer.types ].includes ("Files"))
+            return;
+        event.preventDefault();
+        root.classList.add ("is-dropping");
+    });
+    root.addEventListener ("dragleave", (event) => { if (! root.contains (event.relatedTarget)) root.classList.remove ("is-dropping"); });
+    root.addEventListener ("drop", (event) =>
+    {
+        root.classList.remove ("is-dropping");
+        if (! event.dataTransfer || event.dataTransfer.files.length === 0)
+            return;
+        event.preventDefault();
+        importFile (event.dataTransfer.files[0]);
+    });
+
     const hint = make ("p", "web-demo__hint", "Play the keys (lower on a key plays louder), or connect a MIDI keyboard");
-    stage.append (bar, screen, songRow, keyboardRow, hint);
+    songRow.append (songPicker);
+    stage.append (bar, screen, songRow, keyboardRow, hint, importStatus);
     if (cta)
     {
         cta.hidden = false;

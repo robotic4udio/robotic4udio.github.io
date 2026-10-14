@@ -61,6 +61,7 @@ class RoboticDemoProcessor extends AudioWorkletProcessor
             case "play":  this.playing = message.on; if (message.restart) this.position = 0; break;
             case "set":   this.engine.demo_set (message.id, message.value); break;
             case "note":  this.engine.demo_note (message.note, message.velocity); break;
+            case "data":  this.load (message.data); break; // more of the engine's data (Bitstorm: an imported song)
         }
     }
 
