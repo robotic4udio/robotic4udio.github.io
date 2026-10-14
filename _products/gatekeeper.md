@@ -47,7 +47,7 @@ specs:
   - name: Sound design with Claude
     value: "Optional, with your own Anthropic key: describe a sound and Claude sets Gatekeeper to make it (macOS and Windows)"
   - name: Status
-    value: Released, version 1.0
+    value: Released, version 1.0.1
   - name: Price
     value: Free
 ---
