@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leviathan Manual</title>
+<style>
+@font-face { font-family: "Inter"; font-weight: 500; src: url("fonts/Inter-Medium.ttf") format("truetype"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fonts/Inter-SemiBold.ttf") format("truetype"); }
+@font-face { font-family: "Big Shoulders"; font-weight: 800; src: url("fonts/BigShouldersDisplay-ExtraBold.ttf") format("truetype"); }
+
+:root {
+  --bg: #0d0b0a;
+  --surface: #17120f;
+  --surface-2: #211a15;
+  --line: rgba(255, 236, 220, 0.10);
+  --line-strong: rgba(255, 236, 220, 0.22);
+  --text: #f4ece4;
+  --muted: #a99e94;
+  --ember: #7a1410;
+  --fire: #c8211b;
+  --hot: #e8452f;
+  --fire-gradient: linear-gradient(90deg, var(--ember), var(--fire) 45%, var(--hot));
+  --radius: 14px;
+  --sidebar: 260px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 500 16px/1.65 "Inter", -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--hot); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Sidebar */
+nav.toc {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar);
+  overflow-y: auto; padding: 32px 24px 40px;
+  border-right: 1px solid var(--line);
+  background: var(--surface);
+}
+nav.toc .brand { font: 600 11px/1 "Inter"; letter-spacing: .32em; color: var(--fire); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+nav.toc .brand::before { content: ""; width: 18px; height: 2px; background: var(--fire-gradient); }
+nav.toc .product { font: 800 34px/1 "Big Shoulders"; letter-spacing: .02em; margin: 10px 0 26px; text-transform: uppercase; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+nav.toc li { counter-increment: s; }
+nav.toc li a {
+  display: flex; gap: 12px; padding: 7px 10px; margin: 0 -10px; border-radius: 8px;
+  color: var(--muted); font-size: 14px;
+}
+nav.toc li a::before { content: counter(s, decimal-leading-zero); color: var(--line-strong); font-variant-numeric: tabular-nums; }
+nav.toc li a:hover, nav.toc li a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
+nav.toc li a.active::before { color: var(--fire); }
+
+main { margin-left: var(--sidebar); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+/* Hero */
+header.hero { position: relative; padding: 72px 0 40px; overflow: hidden; }
+header.hero::before {
+  content: ""; position: absolute; inset: -40% -10% auto; height: 520px;
+  background: radial-gradient(closest-side, rgba(200, 33, 27, .22), transparent);
+  pointer-events: none;
+}
+.kicker { font: 600 12px/1 "Inter"; letter-spacing: .34em; text-transform: uppercase; color: var(--fire); display: flex; align-items: center; gap: 12px; }
+.kicker::before { content: ""; width: 28px; height: 2px; background: var(--fire-gradient); }
+h1 {
+  font: 800 clamp(64px, 11vw, 132px)/.86 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em;
+  margin: 18px 0 18px;
+  background: linear-gradient(180deg, var(--text) 30%, #d9c9bb); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.lede { font-size: 20px; line-height: 1.55; color: var(--text); max-width: 640px; margin: 0; }
+.lede em { font-style: normal; background: var(--fire-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; padding: 0; list-style: none; }
+.facts li { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+
+figure { margin: 32px 0; }
+figure img { width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); }
+figcaption { color: var(--muted); font-size: 13px; margin-top: 10px; }
+.card img, img.inline { width: 100%; display: block; border-radius: 8px; border: 1px solid var(--line); margin: 10px 0 12px; }
+
+/* Sections */
+section { padding: 56px 0 8px; border-top: 1px solid var(--line); }
+h2 {
+  font: 800 52px/1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .01em; margin: 0 0 6px;
+}
+h2 + .sub { color: var(--muted); margin: 0 0 28px; font-size: 17px; }
+h3 { font: 600 13px/1.2 "Inter"; letter-spacing: .24em; text-transform: uppercase; color: var(--hot); margin: 36px 0 12px; display: flex; align-items: center; gap: 10px; }
+h3::before { content: ""; width: 14px; height: 2px; background: var(--fire-gradient); }
+h4 { font: 800 24px/1.1 "Big Shoulders"; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 4px; }
+p { margin: 0 0 14px; }
+strong { font-weight: 600; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* Parameter lists */
+dl.params { display: grid; grid-template-columns: 170px 1fr; gap: 0; margin: 0 0 18px; border-top: 1px solid var(--line); }
+dl.params dt, dl.params dd { padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0; }
+dl.params dt { font: 600 12px/1.5 "Inter"; letter-spacing: .16em; text-transform: uppercase; color: var(--text); padding-right: 16px; padding-top: 13px; }
+dl.params dd { color: #e3d8ce; }
+dl.params dd .range { display: inline-block; margin-left: 8px; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+
+/* Cards and grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 18px 0 24px; }
+.grid.four { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.card p { margin: 6px 0 0; color: #e3d8ce; font-size: 15px; }
+.card .tag { font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--fire); }
+
+.callout { position: relative; background: linear-gradient(135deg, rgba(200,33,27,.10), rgba(232,69,47,.04)); border: 1px solid rgba(200,33,27,.35); border-radius: var(--radius); padding: 16px 20px 16px 52px; margin: 22px 0; }
+.callout::before { content: "✦"; position: absolute; left: 20px; top: 15px; color: var(--hot); font-size: 18px; }
+.callout strong { color: var(--hot); }
+
+kbd {
+  font: 600 12px/1 "Inter"; padding: 4px 7px; border-radius: 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  background: var(--surface-2); color: var(--text); white-space: nowrap;
+}
+table { width: 100%; border-collapse: collapse; margin: 8px 0 22px; font-size: 15px; }
+th { text-align: left; font: 600 11px/1 "Inter"; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line-strong); }
+td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #e3d8ce; }
+td:first-child { color: var(--text); white-space: nowrap; }
+
+/* Signal flow */
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 20px; margin: 24px 0; overflow-x: auto; }
+.flow svg { display: block; min-width: 760px; width: 100%; height: auto; }
+
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 2px; transform: translateY(-1px); }
+
+footer { padding: 60px 0 80px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 40px; }
+footer .sig { font: 800 28px/1 "Big Shoulders"; text-transform: uppercase; color: var(--text); margin-bottom: 8px; }
+
+@media (max-width: 980px) {
+  nav.toc { position: static; width: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav.toc ol { columns: 2; }
+  main { margin-left: 0; }
+  .wrap { padding: 0 20px; }
+  dl.params { grid-template-columns: 1fr; }
+  dl.params dt { border-bottom: 0; padding-bottom: 0; }
+}
+@media print {
+  :root { --bg: #fff; --surface: #f6f2ee; --surface-2: #eee7e0; --text: #1a1410; --muted: #6e6259; --line: #e4dbd2; --line-strong: #cfc3b8; }
+  nav.toc { display: none; }
+  main { margin: 0; }
+  section { break-inside: avoid-page; }
+  h1 { color: #1a1410; background: none; }
+  dl.params dd, td, .card p { color: #2a2018; }
+}
+</style>
+</head>
+<body>
+
+<nav class="toc" aria-label="Contents">
+  <div class="brand">Robotic Audio</div>
+  <div class="product">Leviathan</div>
+  <ol>
+    <li><a href="#start">Quick start</a></li>
+    <li><a href="#overview">The window</a></li>
+    <li><a href="#flow">Signal flow</a></li>
+    <li><a href="#seismogram">The seismogram</a></li>
+    <li><a href="#tracker">The tracker</a></li>
+    <li><a href="#sub">Sub</a></li>
+    <li><a href="#harmonics">Harmonics</a></li>
+    <li><a href="#resonance">Resonance</a></li>
+    <li><a href="#root">Root Boost</a></li>
+    <li><a href="#shaping">Saturation, compressor, duck</a></li>
+    <li><a href="#output">Output</a></li>
+    <li><a href="#presets">Presets</a></li>
+    <li><a href="#ai">Designing with Claude</a></li>
+    <li><a href="#licence">Licence</a></li>
+    <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#specs">Specifications</a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Robotic Audio · User manual</div>
+  <h1>Leviathan</h1>
+  <p class="lede">A bass processor that follows the note. It hears what your bass plays and builds a low end under it, <em>always in tune</em>: a sub an octave or two down, harmonics that small speakers can play, a resonant peak and an EQ band that move with every note. Then it shapes and pushes the result.</p>
+  <ul class="facts">
+    <li>Real-time pitch tracking, or MIDI</li>
+    <li>3 sub engines: Shift, Synth, Octaver</li>
+    <li>Tracked harmonics, resonance and EQ</li>
+    <li>8 saturation types, 4 compressor modes</li>
+    <li>Sidechain or MIDI duck</li>
+    <li>Mono below, true-peak limiter, auto gain</li>
+    <li>AU · VST3 · Standalone</li>
+  </ul>
+  <figure>
+    <img src="images/leviathan.jpg" alt="Leviathan's window">
+    <figcaption>Leviathan with DI Weight: the seismogram and the tracker on top, the four engines below them, saturation, the compressor and the duck along the bottom, the output down the right.</figcaption>
+  </figure>
+</header>
+
+<section id="start">
+  <h2>Quick start</h2>
+  <p class="sub">From a thin bass to a foundation.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">01</span><h4>First insert</h4><p>Put Leviathan first on a bass track: a DI, a synth, an 808. It wants one note at a time.</p></div>
+    <div class="card"><span class="tag">02</span><h4>Watch the note</h4><p>Play the bass. The <strong>TRACKER</strong> card shows the note it hears, and the seismogram draws it as a line. If it jumps around, see <a href="#tracker">the tracker</a>.</p></div>
+    <div class="card"><span class="tag">03</span><h4>Blend in the sub</h4><p>Drag up in the <strong>SUB</strong> pad for more, sideways for how much of the bass's character it keeps. The arrows under it set the interval: −12 st is an octave down.</p></div>
+    <div class="card"><span class="tag">04</span><h4>Pick an engine</h4><p><strong>Shift</strong> for real basses, <strong>Synth</strong> for the purest, heaviest sub, <strong>Octaver</strong> for grit.</p></div>
+    <div class="card"><span class="tag">05</span><h4>Make it heard</h4><p>Turn up <strong>Harmonics</strong> so the low end still reads on phones and laptops, and set <strong>HPF</strong> to keep the very bottom in check.</p></div>
+    <div class="card"><span class="tag">06</span><h4>Try a preset</h4><p><strong>Deep Octave</strong>, <strong>808 Glue</strong>, <strong>Phone Speaker</strong>, <strong>Reese Rumble</strong> and <strong>Replace the Bass</strong> show its range.</p></div>
+  </div>
+  <div class="callout"><strong>Hover over anything.</strong> The strip along the bottom of the window says what the control under the mouse does.</div>
+</section>
+
+<section id="overview">
+  <h2>The window</h2>
+  <p class="sub">Two pages under one header.</p>
+  <dl class="params">
+    <dt>Header</dt><dd>The preset bar (previous, next, the list, SAVE), the power button (bypass) and the menu (three lines) with this manual. Click the title for version and credits. With an AI key, a <strong>&gt;_</strong> opens the <a href="#ai">designer</a>. Until Leviathan is licensed, a <strong>DEMO</strong> or <strong>TRIAL</strong> chip opens the <a href="#licence">licence</a>.</dd>
+    <dt>MAIN</dt><dd>The <a href="#seismogram">seismogram</a> and the <a href="#tracker">tracker</a> on top; the engines <a href="#sub">Sub</a>, <a href="#harmonics">Harmonics</a>, <a href="#resonance">Resonance</a> and <a href="#root">Root Boost</a>; <a href="#shaping">Saturation, Compressor and Duck</a>; the <a href="#output">Output</a> down the right.</dd>
+    <dt>TRACKER</dt><dd>Everything about how the note is found, each engine's pitch, and the sub's and duck's timing.</dd>
+  </dl>
+  <p>The window can be resized from its bottom-right corner. Drag a knob up or down to change it (the value shows on it), <kbd>Cmd</kbd>-drag for fine steps, double-click to reset. The square in front of a card's title switches that card on and off.</p>
+</section>
+
+<section id="flow">
+  <h2>Signal flow</h2>
+  <p class="sub">The dry bass and what Leviathan adds, side by side.</p>
+  <div class="flow">
+    <svg viewBox="0 0 1000 250" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <defs>
+        <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#7a1410"/><stop offset=".45" stop-color="#c8211b"/><stop offset="1" stop-color="#e8452f"/></linearGradient>
+        <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#a99e94"/></marker>
+      </defs>
+      <g font-size="13" fill="#f4ece4" text-anchor="middle" font-weight="600">
+        <rect x="10" y="100" width="90" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="55" y="130">INPUT</text>
+        <rect x="140" y="10" width="140" height="50" rx="10" fill="#211a15" stroke="url(#g)"/><text x="210" y="34">TRACKER</text><text x="210" y="50" font-size="10" fill="#a99e94" font-weight="500">or MIDI: the note</text>
+        <rect x="140" y="100" width="140" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="210" y="124">LOOKAHEAD</text><text x="210" y="140" font-size="10" fill="#a99e94" font-weight="500">0–40 ms</text>
+        <rect x="330" y="60" width="170" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="415" y="84">DRY · ROOT BOOST</text><text x="415" y="100" font-size="10" fill="#a99e94" font-weight="500">an EQ band at the note</text>
+        <rect x="330" y="150" width="170" height="60" rx="10" fill="#211a15" stroke="url(#g)"/><text x="415" y="174">GEN</text><text x="415" y="190" font-size="10" fill="#a99e94" font-weight="500">sub · harmonics · resonance</text><text x="415" y="203" font-size="10" fill="#a99e94" font-weight="500">→ duck</text>
+        <rect x="540" y="100" width="130" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="605" y="124">SATURATION</text><text x="605" y="140" font-size="10" fill="#a99e94" font-weight="500">dry, gen or both</text>
+        <rect x="710" y="100" width="130" height="50" rx="10" fill="#211a15" stroke="rgba(255,236,220,.22)"/><text x="775" y="124">COMPRESSOR</text><text x="775" y="140" font-size="10" fill="#a99e94" font-weight="500">then EQ · HPF</text>
+        <rect x="870" y="100" width="120" height="50" rx="10" fill="#211a15" stroke="url(#g)"/><text x="930" y="124">OUTPUT</text><text x="930" y="140" font-size="10" fill="#a99e94" font-weight="500">mono · mix · limiter</text>
+      </g>
+      <g stroke="#a99e94" stroke-width="1.5" fill="none" marker-end="url(#a)">
+        <path d="M100 115 C120 100 120 40 138 36"/><path d="M100 125 H138"/>
+        <path d="M280 120 C305 115 305 90 328 86"/><path d="M280 130 C305 135 305 175 328 178"/>
+        <path d="M280 35 C440 35 430 40 430 58" stroke-dasharray="4 4"/><path d="M280 30 C520 30 520 120 500 150" stroke-dasharray="4 4"/>
+        <path d="M500 86 C520 90 520 115 538 120"/><path d="M500 180 C520 175 520 135 538 130"/>
+        <path d="M670 125 H708"/><path d="M840 125 H868"/>
+      </g>
+    </svg>
+  </div>
+  <p>The tracker hears the input as it arrives; the dry bass and the engines play <strong>Lookahead</strong> later, so they know each note's pitch as it starts. The dry bass passes <strong>Root Boost</strong>. Beside it, the generated bus (<strong>GEN</strong>) adds the sub, the harmonics and the resonance and ducks under the kick if you ask it to. <strong>Saturation</strong> drives the dry bass, the generated bus or both; then the two are summed and pass the compressor, the EQ, the HPF, Mono Below, the Mix with the untouched input, Output and the limiter. Leviathan costs nothing once its input is silent and everything has died away.</p>
+</section>
+
+<section id="seismogram">
+  <h2>The seismogram</h2>
+  <p class="sub">What Leviathan hears and adds, as it plays.</p>
+  <p>The upper chart scrolls the last two and a half seconds from right to left: the dry bass in faint grey, what Leviathan adds in red, and the tracked note as a black line against the scale of notes on the right (E0 to E3). Gaps in the line are moments with no clear note.</p>
+  <p>The strip below (<strong>AT THE NOTE</strong>) draws each engine on a frequency axis where it plays now: the sub's band in red, Root Boost's curve, the resonant peak, and ticks for the harmonics, over the output's spectrum. Three handles move with them:</p>
+  <dl class="params">
+    <dt>SUB</dt><dd>Up and down for the sub's level, sideways for its bandwidth.</dd>
+    <dt>ROOT</dt><dd>Up and down for Root Boost's gain, sideways for its Q.</dd>
+    <dt>RES</dt><dd>Up and down for the resonance's intensity.</dd>
+  </dl>
+  <p>Double-click a handle to reset it.</p>
+</section>
+
+<section id="tracker">
+  <h2>The tracker</h2>
+  <p class="sub">Finding the note, and what to do when it can't.</p>
+  <figure>
+    <img src="images/tracker.jpg" alt="The TRACKER page">
+    <figcaption>The TRACKER page: the note, how it's detected, how it behaves, each engine's pitch and the timing.</figcaption>
+  </figure>
+  <p>The tracker follows one note at a time: bass, 808s, kicks, mono synths, vocals. The <strong>TRACKER</strong> card on MAIN shows the note, its frequency, how far it is from the nearest semitone and a <strong>CONFIDENCE</strong> bar; the page of the same name holds the rest.</p>
+  <dl class="params">
+    <dt>Source</dt><dd><strong>Auto</strong> follows the audio. <strong>MIDI</strong> takes the note from MIDI notes instead (the newest key held): for chords, a bus, or a source the detector can't follow.</dd>
+    <dt>Lookahead</dt><dd>Off, 5, 10, 20 or 40 ms. The tracker needs a moment to hear a new note (about two cycles of it: a low E takes nearly 50 ms); lookahead gives it that moment before the note plays, at the cost of that much latency, which your host compensates. Off for live playing, 20–40 ms for fast lines and the lowest notes.</dd>
+    <dt>Low · High</dt><dd>The range of notes it looks for (20–200 Hz and 60–1000 Hz; 30 Hz and 400 Hz to start). Raise Low if it jumps down an octave, lower High if it mistakes harmonics for the note.</dd>
+    <dt>Confidence</dt><dd>How sure it must be before it follows. Higher falls back to the static notes more often; lower follows even unclear notes.</dd>
+    <dt>Detector Gate</dt><dd>Anything quieter than this is no note, so noise and bleed aren't tracked.</dd>
+    <dt>Transient</dt><dd>What the detector hears: left emphasises the attack, right the sustain, the middle leaves it alone.</dd>
+    <dt>Detector LPF</dt><dd>The detector hears the bass low-passed here, so it stays on the fundamental. Lower it for bright, distorted or FM basses.</dd>
+    <dt>Stability</dt><dd>How many estimates in a row must agree before a new note is taken (1–8): higher is steadier, slower.</dd>
+    <dt>Smoothing</dt><dd>Averages the pitch while a note holds (up to 100 ms). Less follows vibrato.</dd>
+    <dt>Glide</dt><dd>How long the engines take to slide to a new note (up to 200 ms).</dd>
+    <dt>OCTAVE LOCK</dt><dd>Ignores sudden jumps of an octave while the note being played still fits.</dd>
+    <dt>Scale · Key</dt><dd>Snaps the notes to a scale: <strong>Chromatic</strong> to the nearest semitone, or a <strong>Major</strong> or <strong>Minor</strong> key. Off for slides and bends.</dd>
+    <dt>Fallback</dt><dd>When the note is lost. <strong>Manual</strong> goes to each engine's static note at once, <strong>Hold</strong> keeps the last note, <strong>Hybrid</strong> holds it for a moment (150 ms) and then goes to the static note.</dd>
+  </dl>
+  <h3>Each engine's pitch</h3>
+  <p>Sub, Harmonics, Resonance and Root Boost each have <strong>Track</strong> (follow the note) or <strong>Static</strong> (stay on their own <strong>Note</strong>). The Note is also where an engine goes when the tracker has no note. Tune it to the song's key. A tracked sub with a static Root Boost or Resonance gives you fixed, classic bass EQ under a sub that follows.</p>
+</section>
+
+<section id="sub">
+  <h2>Sub</h2>
+  <p class="sub">The layer an octave or two under the bass.</p>
+  <dl class="params">
+    <dt>Pad</dt><dd>Drag up for the <strong>Level</strong> (0 dB is as loud as the bass's own low end; at the bottom it's off), sideways for the <strong>Bandwidth</strong>: narrow keeps a pure sub, wide keeps more of the shifted bass. Under the pad, the arrows step the <strong>Interval</strong> (<kbd>Shift</kbd>-click for an octave) and name the note the sub plays.</dd>
+    <dt>Engine</dt><dd><strong>Shift</strong> moves the bass itself down: it keeps the bass's character, the natural choice for real basses. <strong>Synth</strong> plays a clean oscillator at the sub's pitch: the heaviest, purest sub, for 808s and electronic music. <strong>Octaver</strong> divides the bass like an analog octave pedal: gritty and instant, needing no tracking (−12 or −24 only).</dd>
+    <dt>S</dt><dd>Solo: hear the sub alone while you hold it.</dd>
+    <dt>Gate · Release</dt><dd><strong>Gate</strong> at 0 % holds each note's level (a steady sub); at 100 % the sub follows the bass's dynamics and decay. <strong>Release</strong> sets how quickly it fades when the note ends.</dd>
+    <dt>Slope · Wave</dt><dd>With Shift and Octaver, how steeply everything outside the band is cut (24–96 dB per octave). With Synth, its waveform: <strong>Sine</strong> is pure, <strong>Round</strong> warmer, <strong>Triangle</strong> and <strong>Soft Square</strong> add harmonics that help small speakers.</dd>
+  </dl>
+  <p>On the TRACKER page's <strong>TIMING</strong> card: <strong>Attack</strong> (how quickly the sub comes in on a new note: short is punchy, long swells), <strong>Thresh</strong> (below this the sub is silent, so only notes that matter get one) and <strong>PERC</strong>, for kicks and drums: each attack passes through as it was, for punch, before the shifted sub takes over.</p>
+  <div class="callout">Intervals above zero work too: <strong>+7</strong> adds a fifth over a lead, <strong>+12</strong> an octave.</div>
+</section>
+
+<section id="harmonics">
+  <h2>Harmonics</h2>
+  <p class="sub">So a sub is heard where it can't be played.</p>
+  <p>Small speakers can't reproduce a sub, but your ear fills in a fundamental from its harmonics. Harmonics adds the 2nd, 3rd and 4th harmonics of the low end, following the bass, only above a crossover so they bring audibility and not mud.</p>
+  <dl class="params">
+    <dt>Amount</dt><dd>How loud the harmonics are.</dd>
+    <dt>Xover</dt><dd>The harmonics are added only above this (60–300 Hz).</dd>
+    <dt>2nd · 3rd · 4th</dt><dd>The balance: the 2nd is warm and the strongest cue, the 3rd brings growl, the 4th definition on tiny speakers.</dd>
+    <dt>Sub · Root</dt><dd>Whose harmonics: the sub's pitch (with the sub on) or the bass's own note.</dd>
+  </dl>
+</section>
+
+<section id="resonance">
+  <h2>Resonance</h2>
+  <p class="sub">A pushed analog filter, tuned to every note.</p>
+  <p>A driven, resonant low-pass filter at the note, in parallel with the dry bass, so it adds a singing peak without ever taking the bass over.</p>
+  <dl class="params">
+    <dt>Intensity</dt><dd>From a subtle bump at the note to a severe peak. At 0 it's off.</dd>
+    <dt>Drive</dt><dd>Pushes the filter harder for growl.</dd>
+    <dt>Mix</dt><dd>How much of the filter is added.</dd>
+    <dt>Offset</dt><dd>Tunes the peak away from the note: +12 an octave up, +7 a fifth.</dd>
+    <dt>12 dB · 24 dB</dt><dd>The filter's slope: 24 dB is darker and more pronounced.</dd>
+  </dl>
+</section>
+
+<section id="root">
+  <h2>Root Boost</h2>
+  <p class="sub">An EQ band that follows the bass line.</p>
+  <p>A fixed EQ boost makes some notes boom and leaves others weak. Root Boost puts its band on each note's fundamental, so every note gets the same lift (or cut).</p>
+  <dl class="params">
+    <dt>Pad</dt><dd>Drag up to boost and down to cut, up to 18 dB; sideways for the <strong>Q</strong> (0.1 broad to 10 narrow). The arrows move the band away from the fundamental: +12 st is the 2nd harmonic, +19 the 3rd.</dd>
+  </dl>
+  <div class="callout">To replace a bass with its sub, cut −18 dB with a narrow Q at 0 st and turn the sub up: <strong>Replace the Bass</strong> does this.</div>
+</section>
+
+<section id="shaping">
+  <h2>Saturation, compressor, duck</h2>
+  <p class="sub">Push it, glue it, and keep it out of the kick's way.</p>
+  <h3>Saturation</h3>
+  <dl class="params">
+    <dt>Type</dt><dd><strong>Tube</strong> rounds peaks warmly, <strong>Tape</strong> glues and compresses, <strong>Diode</strong> is gritty and uneven, <strong>Vintage</strong> console warmth that darkens as it's pushed, <strong>Crystal</strong> a clean, bright sheen, <strong>Fuzz</strong> hard and buzzy, <strong>Rectify</strong> an octave up, aggressive, <strong>Fold</strong> metallic wavefolding.</dd>
+    <dt>Dry · Gen · Both</dt><dd>What's driven: the dry bass, what Leviathan adds, or both together.</dd>
+    <dt>1x · 2x · 4x</dt><dd>Oversampling: higher is cleaner on hard drive and costs more.</dd>
+    <dt>Drive</dt><dd>How hard (0–36 dB).</dd>
+    <dt>Bias</dt><dd>Skews the curve for even harmonics and a richer, asymmetric drive.</dd>
+    <dt>Odd/Even</dt><dd>Odd harmonics (edgy) to even harmonics (warm).</dd>
+    <dt>Low · High</dt><dd>Only what's between them is driven: set Low to 150–200 Hz to keep the sub clean while the mids grind. <strong>Full</strong> at either end drives everything.</dd>
+    <dt>Mix</dt><dd>How much of the driven sound.</dd>
+  </dl>
+  <h3>Compressor</h3>
+  <dl class="params">
+    <dt>Mode</dt><dd><strong>Glue</strong> (a VCA bus compressor), <strong>Punch</strong> (lets the attack through, then clamps: weight), <strong>Sustain</strong> (heavy, long sustain) or <strong>Custom</strong>, which unlocks Ratio, Attack, Release and the detector.</dd>
+    <dt>Thresh</dt><dd>How much it compresses: lower is more.</dd>
+    <dt>Ratio · Attack · Release</dt><dd>Custom: how hard, how fast it clamps, how fast it lets go.</dd>
+    <dt>Detector</dt><dd>Custom: <strong>Peak</strong> reacts at once, <strong>RMS</strong> to the average, <strong>Combo</strong> between.</dd>
+    <dt>Blend</dt><dd>Mixes the compressed sound with the uncompressed: parallel compression.</dd>
+    <dt>AUTO · Gain</dt><dd>AUTO makes up the level the compressor takes; Gain adds more (−12 to +24 dB). The <strong>GR</strong> meter shows how far it turns the sound down.</dd>
+  </dl>
+  <h3>Duck</h3>
+  <p>Ducks only what Leviathan adds, never the bass itself, so a new sub and the kick don't fight.</p>
+  <dl class="params">
+    <dt>Source</dt><dd><strong>Off</strong>, <strong>Sidechain</strong> (route the kick to Leviathan's sidechain input in your host) or <strong>MIDI</strong> (a note per kick: the added low end dips while a note is held, and for at least 30 ms).</dd>
+    <dt>Depth</dt><dd>How far it dips: 100 % all the way.</dd>
+    <dt>Thresh</dt><dd>The sidechain level that starts the duck; it's fully down 6 dB above it.</dd>
+    <dt>Release</dt><dd>How quickly it comes back. <strong>Duck Attack</strong>, how quickly it dips, is on the TRACKER page's TIMING card.</dd>
+  </dl>
+</section>
+
+<section id="output">
+  <h2>Output</h2>
+  <p class="sub">Balance, clean up and level.</p>
+  <dl class="params">
+    <dt>Sub · Low · High</dt><dd>A shelf under 60 Hz, a bell at 200 Hz (body, or mud) and a shelf over 2 kHz (bite and string noise), ±12 dB each.</dd>
+    <dt>HPF</dt><dd>Cuts the rumble below it (Off at the bottom of its range). A sub two octaves down can reach lower than any speaker plays: 20–35 Hz keeps it in check. The menu under the knobs sets its slope, 12 to 48 dB per octave.</dd>
+    <dt>Mono</dt><dd>Everything under this is mono, so the low end stays solid on every system (Off at the bottom).</dd>
+    <dt>Mix</dt><dd>The processed sound against the untouched input.</dd>
+    <dt>Input · Output</dt><dd>Levels in and out, ±24 dB.</dd>
+    <dt>Ceiling · LIMIT</dt><dd>A true-peak limiter on the output, and its ceiling.</dd>
+    <dt>AUTO</dt><dd>Play the bass and click: Leviathan measures four seconds and sets Output so it's as loud as it came in.</dd>
+    <dt>LOCK</dt><dd>Keeps Input and Output where they are when you load presets.</dd>
+    <dt>IN · OUT</dt><dd>The input and output meters.</dd>
+  </dl>
+</section>
+
+<section id="presets">
+  <h2>Presets</h2>
+  <p class="sub">Fourteen to start from.</p>
+  <p>Use the <strong>arrows</strong> to step through presets or click the name for the list; <strong>SAVE</strong> stores yours, and the menu has <strong>Save As</strong>, <strong>Delete</strong> and <strong>Open Folder</strong>. They range from <strong>Deep Octave</strong>, <strong>Double Down</strong> and <strong>DI Weight</strong> to <strong>808 Glue</strong>, <strong>Phone Speaker</strong>, <strong>Reese Rumble</strong>, <strong>Kick Thump</strong>, <strong>Moog Drive</strong>, <strong>Root Focus</strong>, <strong>Replace the Bass</strong>, <strong>Ducked Sub</strong>, <strong>Vocal Thickener</strong> and <strong>Fifth Lead</strong>. With LOCK on, presets leave your Input and Output alone.</p>
+  <p>User presets are XML files in <code>~/Library/Audio/Presets/Robotic Audio/Leviathan</code> (macOS) or <code>Documents/Presets/Robotic Audio/Leviathan</code> (Windows).</p>
+</section>
+
+<section id="ai">
+  <h2>Designing with Claude</h2>
+  <p class="sub">Describe a bass; Claude sets Leviathan to make it.</p>
+  <p>With your own Anthropic key, the <strong>&gt;_</strong> beside the presets opens a designer: describe what you want, such as <em>"a clean sub for a fingerstyle DI bass"</em> or <em>"an aggressive, distorted reese with a sub that ducks under the kick"</em>, and Claude sets the tracker, the engines, the shaping and the output. <strong>NEW SOUND</strong> designs from scratch, <strong>EDIT THIS</strong> changes only what you ask for; <strong>REVERT</strong> puts it back, <strong>SAVE AS PRESET</strong> keeps it. The keys are your own (Menu &gt; <strong>AI...</strong>), shared by every Robotic Audio plugin and kept on this computer; without one nothing of this shows. It needs a network connection and is part of the macOS and Windows plugins.</p>
+</section>
+
+<section id="licence">
+  <h2>Licence</h2>
+  <p class="sub">Try it, activate it, move it to another computer.</p>
+  <p>Without a licence, Leviathan runs as a demo: the sound drops out for 3 seconds every 45 seconds; everything else works, saving included. The header shows <strong>DEMO</strong> (or <strong>TRIAL</strong> with the days left); click it, or choose <strong>Licence...</strong> in the menu.</p>
+  <dl class="params">
+    <dt>ACTIVATE</dt><dd>Opens the shop in your browser; Leviathan unlocks a few seconds after you choose your licence.</dd>
+    <dt>START TRIAL</dt><dd>Everything, free, for 14 days, once per computer.</dd>
+    <dt>SAVE DEVICE FILE / LOAD LICENCE FILE</dt><dd>For a computer without the internet.</dd>
+    <dt>DEACTIVATE</dt><dd>Frees this computer's seat for another one.</dd>
+  </dl>
+  <div class="callout">One licence covers every format on the computer, and keeps working offline for 30 days after its last check.</div>
+</section>
+
+<section id="recipes">
+  <h2>Recipes</h2>
+  <p class="sub">Starting points.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Fuller DI bass</span><p>Shift at −12, Level −6 dB, Bandwidth 30 %. Root Boost +4 dB, Q 1.2. Tube saturation on Dry, Punch compressor.</p></div>
+    <div class="card"><span class="tag">808 extension</span><p>Synth, Round, Gate 100 % so the sub follows the 808's decay. HPF 25 Hz. Tape saturation on Both.</p></div>
+    <div class="card"><span class="tag">Phone check</span><p>Harmonics 50–60 %, Xover 90 Hz, 3rd at 80 %. Pull EQ Sub down a few dB: the bass reads on small speakers without more lows.</p></div>
+    <div class="card"><span class="tag">Kick under the sub</span><p>Duck Source Sidechain with the kick routed in, Depth 100 %, Release 100–150 ms. Or MIDI, with a note on every kick.</p></div>
+    <div class="card"><span class="tag">Gritty reese</span><p>Octaver at −12, Resonance 55 % with Drive, Fuzz saturation on Both with Low 200 Hz so the sub stays clean.</p></div>
+    <div class="card"><span class="tag">Kick thump</span><p>Shift at −12 with PERC on, Gate 100 %, Attack 0.5 ms, Release 60 ms: each kick keeps its click and gains a tail an octave down.</p></div>
+    <div class="card"><span class="tag">Key-locked EQ</span><p>Sub on Track; Root Boost and Resonance on Static, their Notes on the song's root. Fixed tone shaping under a tracked sub.</p></div>
+    <div class="card"><span class="tag">Fifth over a lead</span><p>Shift at +7, Bandwidth 80 %, Range Low 80 Hz, Detector LPF 1.5 kHz. A harmony that follows the melody.</p></div>
+  </div>
+</section>
+
+<section id="specs">
+  <h2>Specifications</h2>
+  <p class="sub">The facts.</p>
+  <table>
+    <tr><th>Type</th><td>Bass enhancer (effect plugin), stereo, with a sidechain input and MIDI in</td></tr>
+    <tr><th>Pitch</th><td>Real-time tracking of monophonic sources (20 Hz–1 kHz), or MIDI notes</td></tr>
+    <tr><th>Latency</th><td>The Lookahead (0, 5, 10, 20 or 40 ms) plus the limiter's 2.3 ms, reported to the host</td></tr>
+    <tr><th>Sub</th><td>Shift, Synth or Octaver; ±24 semitones; band slopes 24–96 dB per octave</td></tr>
+    <tr><th>Engines</th><td>Harmonics (2nd–4th), Resonance (12 or 24 dB), Root Boost (±18 dB, Q 0.1–10); each tracked or static</td></tr>
+    <tr><th>Shaping</th><td>8 saturation types with 1×, 2× or 4× oversampling; compressor with 4 modes; sidechain or MIDI duck</td></tr>
+    <tr><th>Output</th><td>3-band EQ, high-pass (12–48 dB), mono below, mix, true-peak limiter, auto gain</td></tr>
+    <tr><th>CPU</th><td>About 1 % of one core while playing; nothing once it's silent</td></tr>
+    <tr><th>Formats</th><td>AU, VST3 and Standalone (macOS); VST3 and Standalone (Windows, Linux)</td></tr>
+  </table>
+</section>
+
+<footer>
+  <div class="sig">Robotic Audio</div>
+  Leviathan was designed and made by Hjalte Bested Hjorth · <a href="https://roboticaudio.com">roboticaudio.com</a><br>
+  Fonts: Big Shoulders Display and Inter, under the SIL Open Font License.
+</footer>
+
+</div>
+</main>
+
+<script>
+// Highlight the section being read in the contents
+const links = [...document.querySelectorAll("nav.toc a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+sections.forEach(s => s && observer.observe(s));
+</script>
+</body>
+</html>
