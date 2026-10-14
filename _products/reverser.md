@@ -37,6 +37,18 @@ features:
 # Audio demos: put the files in assets/audio/reverser/ and list them here.
 demos: []
 
+# Playable on the page: Reverser's own engine in the browser (_includes/web-demo.html)
+web_demo:
+  name: reverser
+  text: "Reverser's own engine, running right here. Pick a loop, press Play, then hold a button to hear the last 30 seconds backwards."
+  loops:
+    - title: Chip tune
+      text: Played by Bitstorm
+      file: /assets/audio/reverser/chip-demo.flac
+    - title: Graveyard
+      text: Played by Bitstorm
+      file: /assets/audio/reverser/graveyard.flac
+
 specs:
   - name: Type
     value: Live reverse (effect plugin)
