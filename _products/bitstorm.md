@@ -58,12 +58,12 @@ demos: []
 web_demo:
   name: bitstorm
   data: bitstorm-presets.bin
-  text: "Bitstorm's own chips, running right here. Play a song on its tracker, or pick a sound and play the keys (or a MIDI keyboard)."
+  text: "Bitstorm's own chips, running right here. Play a song on its tracker, pick a sound and play the keys (or a MIDI keyboard), or drop a chip tune of your own onto it: it never leaves your computer."
   cta: "Like it? The full Bitstorm has over 300 presets, every control, and the tracker to write your own songs."
   more_title: In the full Bitstorm
   more:
     - title: Import any chip tune
-      text: "Drop a C64 SID, an NES NSF, a Game Boy GBS, a VGM from the Mega Drive or the arcades, an Atari SAP, a Spectrum .ay or an Atari ST YM file, an Amiga MOD, or a FamiTracker, GoatTracker or ProTracker 3 module onto Bitstorm. It plays the music on CPUs of its own (the 6502, the Z80 and the Game Boy's), finds the notes, the tempo and the sounds, and writes it all into its tracker as patterns and up to 32 instruments with their macros, ready to play, change and make your own."
+      text: "Drop a C64 SID, an NES NSF, a Game Boy GBS, a VGM from the Mega Drive or the arcades, an Atari SAP, a Spectrum .ay or an Atari ST YM file, an Amiga MOD, or a FamiTracker, GoatTracker or ProTracker 3 module onto Bitstorm (try one on the demo above). It plays the music on CPUs of its own (the 6502, the Z80 and the Game Boy's), finds the notes, the tempo and the sounds, and writes it all into its tracker as patterns and up to 32 instruments with their macros, ready to change, save and make your own."
     - title: Describe it, and Claude builds it
       text: "Type what you're after, \"a dark C64 bass that growls while it's held\" or \"a cheerful NES title tune in A major at 140 BPM\", and Claude sets Bitstorm to play it: the chips, macros, wave tables and effects, and for a tune the whole song in the tracker with its instruments. Start a new sound or change the one you have, then keep it as a preset or go back. Optional, with your own Anthropic key (macOS and Windows)."
 

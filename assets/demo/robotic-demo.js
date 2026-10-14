@@ -112,6 +112,15 @@ class RoboticDemo
         this.send ({ type: "note", note, velocity });
     }
 
+    /** More data for the engine (its demo_load), e.g. a song imported in the page (an ArrayBuffer, handed over). */
+    load (data)
+    {
+        if (this.node !== null)
+            this.node.port.postMessage ({ type: "data", data }, [ data ]);
+        else
+            this.waiting.push ({ type: "data", data });
+    }
+
     /** Stops the audio clock entirely (no CPU while paused). */
     async suspend()
     {
