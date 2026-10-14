@@ -24,6 +24,7 @@ stats:
   - 3 drawn envelopes, 2 LFOs, 16-slot matrix
   - Arpeggiator and a 256-pattern tracker with 32 instruments
   - Imports SID, NSF, VGM, MOD, FamiTracker and more
+  - Sound design with Claude
   - 4 effect slots
 
 features:
@@ -43,6 +44,8 @@ features:
     text: Up to 32 sounds a song switches between note by note, each a chip channel with its own macros, so one column plays the bass with the drums between its notes, as the C64's composers fitted a band into three voices.
   - title: Import the music
     text: Drop in a C64 SID, an NES NSF, a VGM from the Mega Drive or the arcades, an Amiga MOD, a FamiTracker, GoatTracker or ProTracker 3 module, an Atari SAP or a Spectrum .ay, and Bitstorm writes it into its tracker with its instruments, ready to play, change and make your own.
+  - title: Sound design with Claude
+    text: Describe a sound or a whole tune in words and Claude sets Bitstorm to play it, from the chips and macros to the song in the tracker with its instruments. Optional, with your own Anthropic key.
   - title: Dressed for each machine
     text: The window takes the colours of layer 1's machine, the C64's blue, the Game Boy's greens, the NES's grey, the arcade's black.
   - title: Presets from every machine
@@ -57,6 +60,12 @@ web_demo:
   data: bitstorm-presets.bin
   text: "Bitstorm's own chips, running right here. Play a song on its tracker, or pick a sound and play the keys (or a MIDI keyboard)."
   cta: "Like it? The full Bitstorm has over 300 presets, every control, and the tracker to write your own songs."
+  more_title: In the full Bitstorm
+  more:
+    - title: Import any chip tune
+      text: "Drop a C64 SID, an NES NSF, a Game Boy GBS, a VGM from the Mega Drive or the arcades, an Atari SAP, a Spectrum .ay or an Atari ST YM file, an Amiga MOD, or a FamiTracker, GoatTracker or ProTracker 3 module onto Bitstorm. It plays the music on CPUs of its own (the 6502, the Z80 and the Game Boy's), finds the notes, the tempo and the sounds, and writes it all into its tracker as patterns and up to 32 instruments with their macros, ready to play, change and make your own."
+    - title: Describe it, and Claude builds it
+      text: "Type what you're after, \"a dark C64 bass that growls while it's held\" or \"a cheerful NES title tune in A major at 140 BPM\", and Claude sets Bitstorm to play it: the chips, macros, wave tables and effects, and for a tune the whole song in the tracker with its instruments. Start a new sound or change the one you have, then keep it as a preset or go back. Optional, with your own Anthropic key (macOS and Windows)."
 
 screenshots:
   - file: /assets/images/bitstorm/bitstorm.jpg
