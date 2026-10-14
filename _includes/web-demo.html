@@ -13,6 +13,10 @@
       data: bitstorm-presets.bin   # an instrument: its engine's file in assets/demo (its presets)
       cta: "Like it? ..."     # a paid plugin's line above its trial link, shown under the demo
                               # (only while the trial is offered: on sale and not owned)
+      more_title: In the full ...  # cards under the demo: what the plugin does that the demo can't
+      more:
+        - title: ...
+          text: ...
   include.plugin: the page (for the trial link, _includes/trial.html).
 {%- endcomment -%}
 {%- assign demo = include.demo %}
@@ -36,6 +40,19 @@
       {%- endif %}
     </div>
     <noscript><p class="note">The demo needs JavaScript.</p></noscript>
+    {%- if demo.more %}
+    {%- if demo.more_title %}
+    <h3 class="web-demo-more__title">{{ demo.more_title }}</h3>
+    {%- endif %}
+    <div class="grid grid--2">
+      {%- for item in demo.more %}
+      <div class="card">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+    {%- endif %}
   </div>
 </section>
 <script src="{{ '/assets/demo/robotic-demo.js' | relative_url }}" defer></script>
