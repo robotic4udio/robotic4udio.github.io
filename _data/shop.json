@@ -4,7 +4,7 @@
     "bitstorm": {
       "name": "BITSTORM",
       "released": true,
-      "version": "1.0.0",
+      "version": "1.0.1",
       "price": 129,
       "price_text": "€129",
       "original_price": 129,
@@ -14,7 +14,7 @@
     "event-horizon": {
       "name": "Event Horizon",
       "released": true,
-      "version": "1.0.0",
+      "version": "1.0.1",
       "price": 99,
       "price_text": "€99",
       "original_price": 99,
@@ -24,7 +24,7 @@
     "gatekeeper": {
       "name": "Gatekeeper",
       "released": true,
-      "version": "1.0.0",
+      "version": "1.0.1",
       "price": 0,
       "price_text": "€0",
       "original_price": 0,
@@ -41,10 +41,20 @@
       "original_price_text": "€0",
       "free": true
     },
+    "leviathan": {
+      "name": "Leviathan",
+      "released": true,
+      "version": "1.0.0",
+      "price": 79,
+      "price_text": "€79",
+      "original_price": 79,
+      "original_price_text": "€79",
+      "free": false
+    },
     "loudness-pilot": {
       "name": "LOUDNESS PILOT",
       "released": true,
-      "version": "1.0.0",
+      "version": "1.0.1",
       "price": 39,
       "price_text": "€39",
       "original_price": 39,
@@ -54,7 +64,7 @@
     "overkill": {
       "name": "Overkill",
       "released": true,
-      "version": "1.0.0",
+      "version": "1.0.1",
       "price": 49,
       "price_text": "€49",
       "original_price": 49,
@@ -64,7 +74,7 @@
     "overpressure": {
       "name": "Overpressure",
       "released": true,
-      "version": "1.0.0",
+      "version": "1.0.1",
       "price": 49,
       "price_text": "€49",
       "original_price": 49,
@@ -84,7 +94,7 @@
     "podcast-polish": {
       "name": "PODCAST POLISH",
       "released": true,
-      "version": "1.0.0",
+      "version": "1.0.1",
       "price": 39,
       "price_text": "€39",
       "original_price": 39,
@@ -94,7 +104,7 @@
     "reverser": {
       "name": "Reverser",
       "released": true,
-      "version": "1.0.0",
+      "version": "1.0.1",
       "price": 0,
       "price_text": "€0",
       "original_price": 0,
@@ -104,7 +114,7 @@
     "splicer": {
       "name": "SPLICER",
       "released": true,
-      "version": "1.0.0",
+      "version": "1.0.1",
       "price": 69,
       "price_text": "€69",
       "original_price": 69,

@@ -78,7 +78,7 @@ specs:
   - name: Sound design with Claude
     value: "Optional, with your own Anthropic key: describe a sound or a tune and Claude sets Bitstorm to play it, the song in the tracker and its instruments included (macOS and Windows)"
   - name: Status
-    value: Released, version 1.0
+    value: Released, version 1.0.1
   - name: Price
     value: €129
 ---
