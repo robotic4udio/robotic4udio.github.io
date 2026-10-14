@@ -11,6 +11,9 @@
           text: Played by Bitstorm
           file: /assets/audio/reverser/chip-demo.flac
       data: bitstorm-presets.bin   # an instrument: its engine's file in assets/demo (its presets)
+      cta: "Like it? ..."     # a paid plugin's line above its trial link, shown under the demo
+                              # (only while the trial is offered: on sale and not owned)
+  include.plugin: the page (for the trial link, _includes/trial.html).
 {%- endcomment -%}
 {%- assign demo = include.demo %}
 {%- capture loops %}[{% for loop in demo.loops %}{ "title": {{ loop.title | jsonify }}, "text": {{ loop.text | jsonify }}, "file": {{ loop.file | relative_url | jsonify }} }{% unless forloop.last %}, {% endunless %}{% endfor %}]{% endcapture %}
@@ -24,7 +27,14 @@
     {%- endif %}
     <div class="web-demo" data-wasm="{{ '/assets/demo/' | append: demo.name | append: '.wasm' | relative_url }}" data-ui="{{ demo.name }}"
          {%- if demo.loops %} data-loops="{{ loops | strip | escape }}"{% endif %}
-         {%- if demo.data %} data-data="{{ '/assets/demo/' | append: demo.data | relative_url }}"{% endif %}></div>
+         {%- if demo.data %} data-data="{{ '/assets/demo/' | append: demo.data | relative_url }}"{% endif %}>
+      {%- if demo.cta and include.plugin %}
+      {%- capture trial %}{% include trial.html plugin=include.plugin %}{% endcapture %}
+      {%- if trial contains "<a" %}
+      <div class="web-demo__cta" hidden><p>{{ demo.cta }}</p>{{ trial | strip }}</div>
+      {%- endif %}
+      {%- endif %}
+    </div>
     <noscript><p class="note">The demo needs JavaScript.</p></noscript>
   </div>
 </section>

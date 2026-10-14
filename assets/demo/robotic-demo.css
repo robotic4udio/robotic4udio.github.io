@@ -95,3 +95,22 @@
 
 /* An instrument has no loop bar above its stage */
 .web-demo__stage:first-child { margin-top: 0; }
+
+/* The plugin's trial, under a paid plugin's demo: the site's own link (its include puts it in
+   .web-demo__cta with a line about the full plugin); a demo lights it up after a while of playing */
+.web-demo__cta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px;
+  margin-top: 20px; padding: 16px 20px;
+  border: 1px solid var(--wd-line-strong); border-radius: 12px; background: var(--wd-bg);
+  transition: border-color 0.6s, box-shadow 0.6s;
+}
+.web-demo__cta[hidden] { display: none; }
+.web-demo__cta p { margin: 0; flex: 1 1 18rem; color: var(--wd-text); font-size: 0.95rem; }
+.web-demo__cta a {
+  flex: 0 0 auto; padding: 0.75em 1.4em; border-radius: 999px; background: var(--wd-gradient);
+  color: var(--wd-on-fire); font-weight: 700; text-decoration: none; letter-spacing: 0.02em;
+  box-shadow: 0 8px 30px -8px rgba(255, 106, 26, 0.6);
+}
+.web-demo__cta a:hover { color: var(--wd-on-fire); transform: translateY(-1px); }
+.web-demo__cta.is-lit { border-color: var(--wd-fire); box-shadow: 0 0 40px -12px rgba(255, 106, 26, 0.8); }
+@media (prefers-reduced-motion: reduce) { .web-demo__cta { transition: none; } }
