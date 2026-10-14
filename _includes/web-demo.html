@@ -1,14 +1,16 @@
 {%- comment -%}
   "Try it": the plugin itself, playable in the browser. Its engine is the plugin's own DSP built to
   WebAssembly by the plugin repo's tools/WebDemo/build.sh, which writes everything in assets/demo/
-  (copy it there as it is). The page gives, in its front matter:
+  (copy it there as it is: `tools/WebDemo/build.sh --out <site>/assets/demo`). The page gives, in its
+  front matter:
     web_demo:
       name: reverser          # assets/demo/<name>.wasm and <name>-demo.js (the plugin's controls)
       text: ...               # a line under the heading
-      loops:                  # what plays through it (FLAC: loops without a gap), in assets/audio/<name>/
+      loops:                  # an effect: what plays through it (FLAC: loops without a gap), in assets/audio/<name>/
         - title: Chip tune
           text: Played by Bitstorm
           file: /assets/audio/reverser/chip-demo.flac
+      data: bitstorm-presets.bin   # an instrument: its engine's file in assets/demo (its presets)
 {%- endcomment -%}
 {%- assign demo = include.demo %}
 {%- capture loops %}[{% for loop in demo.loops %}{ "title": {{ loop.title | jsonify }}, "text": {{ loop.text | jsonify }}, "file": {{ loop.file | relative_url | jsonify }} }{% unless forloop.last %}, {% endunless %}{% endfor %}]{% endcapture %}
@@ -21,7 +23,8 @@
     <p class="note">{{ demo.text }}</p>
     {%- endif %}
     <div class="web-demo" data-wasm="{{ '/assets/demo/' | append: demo.name | append: '.wasm' | relative_url }}" data-ui="{{ demo.name }}"
-         data-loops="{{ loops | strip | escape }}"></div>
+         {%- if demo.loops %} data-loops="{{ loops | strip | escape }}"{% endif %}
+         {%- if demo.data %} data-data="{{ '/assets/demo/' | append: demo.data | relative_url }}"{% endif %}></div>
     <noscript><p class="note">The demo needs JavaScript.</p></noscript>
   </div>
 </section>

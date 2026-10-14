@@ -1,0 +1,133 @@
+{
+  "chips": [
+    "SID",
+    "NES",
+    "Game Boy",
+    "AY",
+    "POKEY",
+    "Paula",
+    "YM2612"
+  ],
+  "presets": [
+    {
+      "name": "SID PWM Lead",
+      "group": "SID (C64)",
+      "category": "Lead",
+      "chip": 0
+    },
+    {
+      "name": "Twin SID Lead",
+      "group": "SID (C64)",
+      "category": "Lead",
+      "chip": 0
+    },
+    {
+      "name": "Galway Hollow Bass",
+      "group": "SID (C64)",
+      "category": "Bass",
+      "chip": 0
+    },
+    {
+      "name": "SID Major Arp",
+      "group": "SID (C64)",
+      "category": "Arp",
+      "chip": 0
+    },
+    {
+      "name": "Arp Up 16ths SID",
+      "group": "SID (C64)",
+      "category": "Arp",
+      "chip": 0
+    },
+    {
+      "name": "NES Square Lead",
+      "group": "NES",
+      "category": "Lead",
+      "chip": 1
+    },
+    {
+      "name": "NES Echo Lead",
+      "group": "NES",
+      "category": "Lead",
+      "chip": 1
+    },
+    {
+      "name": "NES Triangle Bass",
+      "group": "NES",
+      "category": "",
+      "chip": 1
+    },
+    {
+      "name": "Game Boy Wave Flute",
+      "group": "Game Boy",
+      "category": "Lead",
+      "chip": 2
+    },
+    {
+      "name": "Game Boy Wave Pad",
+      "group": "Game Boy",
+      "category": "",
+      "chip": 2
+    },
+    {
+      "name": "Spectrum Lead",
+      "group": "AY (ZX Spectrum, Atari ST)",
+      "category": "Lead",
+      "chip": 3
+    },
+    {
+      "name": "YM Buzz Lead",
+      "group": "AY (ZX Spectrum, Atari ST)",
+      "category": "Lead",
+      "chip": 3
+    },
+    {
+      "name": "POKEY Buzz Lead",
+      "group": "POKEY (Atari 8-bit)",
+      "category": "Lead",
+      "chip": 4
+    },
+    {
+      "name": "Amiga Organ Lead",
+      "group": "Paula (Amiga)",
+      "category": "Lead",
+      "chip": 5
+    },
+    {
+      "name": "Paula Choir",
+      "group": "Paula (Amiga)",
+      "category": "",
+      "chip": 5
+    },
+    {
+      "name": "FM Bell Lead",
+      "group": "YM2612 (Mega Drive)",
+      "category": "Lead",
+      "chip": 6
+    },
+    {
+      "name": "Mega Drive Fat Bass",
+      "group": "YM2612 (Mega Drive)",
+      "category": "Bass",
+      "chip": 6
+    },
+    {
+      "name": "Crystal Chimes",
+      "group": "YM2612 (Mega Drive)",
+      "category": "FX",
+      "chip": 6
+    },
+    {
+      "name": "Coin",
+      "group": "Game sounds",
+      "category": "Game",
+      "chip": 1
+    },
+    {
+      "name": "Power Up",
+      "group": "Game sounds",
+      "category": "Game",
+      "chip": 1
+    }
+  ]
+}

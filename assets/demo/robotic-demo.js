@@ -1,24 +1,29 @@
 // Robotic Audio web demos: the page's side. Plays one plugin's engine (its .wasm) in an
-// AudioWorklet (robotic-demo-worklet.js, beside this file), over looping audio files.
+// AudioWorklet (robotic-demo-worklet.js, beside this file), over looping audio files or notes.
 //
 //   const demo = new RoboticDemo ({ wasm: "/assets/demo/reverser.wasm" });
 //   await demo.start();                 // from a click: browsers only start audio after one
 //   await demo.playLoop ("/assets/audio/reverser/beat.mp3");
 //   demo.set (0, 1);                    // a control, numbered by the demo (Reverser: 0 = Reverse held)
+//   demo.note (60, 0.8);                // a note (velocity 0..1; 0 lets it go): instruments
 //   demo.onDisplay = (data) => { ... }; // the engine's display values, about 30 times a second
 //
+// `data` (a URL) is a file of the engine's own (Bitstorm's presets), handed to it as it starts.
 // Plain WebAssembly, no threads: runs on any static host (GitHub Pages included).
 
 const roboticDemoScript = document.currentScript ? document.currentScript.src : location.href; // set only while loading
 
 class RoboticDemo
 {
-    constructor ({ wasm, worklet })
+    constructor ({ wasm, worklet, data })
     {
         this.wasmUrl = wasm;
+        this.dataUrl = data || null;
         this.workletUrl = worklet || new URL ("robotic-demo-worklet.js", roboticDemoScript).href;
         this.context = null;
         this.node = null;
+        this.starting = null;
+        this.waiting = [];      // messages sent before the engine was there
         this.loops = new Map(); // url -> decoded AudioBuffer
         this.currentLoop = null;
         this.playing = false;
@@ -33,25 +38,40 @@ class RoboticDemo
     /** Creates the audio graph; call it from a click or key press. */
     async start()
     {
-        if (this.context !== null)
-        {
+        if (this.starting === null)
+            this.starting = this.create();
+        await this.starting;
+        if (this.context.state !== "running")
             await this.context.resume();
-            return;
-        }
+    }
 
+    async create()
+    {
         this.context = new AudioContext ({ latencyHint: "interactive" });
-        const [ wasm ] = await Promise.all ([ fetch (this.wasmUrl).then ((r) => r.arrayBuffer()),
-                                              this.context.audioWorklet.addModule (this.workletUrl) ]);
+        const bytes = (url) => fetch (url).then ((r) => { if (! r.ok) throw new Error (url + ": " + r.status); return r.arrayBuffer(); });
+        const [ wasm, data ] = await Promise.all ([ bytes (this.wasmUrl),
+                                                    this.dataUrl !== null ? bytes (this.dataUrl) : null,
+                                                    this.context.audioWorklet.addModule (this.workletUrl) ]);
 
         this.node = new AudioWorkletNode (this.context, "robotic-demo",
                                           { numberOfInputs: 1, numberOfOutputs: 1, outputChannelCount: [ 2 ],
-                                            processorOptions: { wasm, displayHz: 30 } });
+                                            processorOptions: { wasm, data, displayHz: 30 } });
         this.node.port.onmessage = (event) =>
         {
             if (event.data.type === "display" && this.onDisplay)
                 this.onDisplay (event.data.data);
         };
         this.node.connect (this.context.destination);
+        this.waiting.forEach ((message) => this.node.port.postMessage (message));
+        this.waiting = [];
+    }
+
+    send (message)
+    {
+        if (this.node !== null)
+            this.node.port.postMessage (message);
+        else
+            this.waiting.push (message);
     }
 
     async decode (url)
@@ -79,20 +99,17 @@ class RoboticDemo
     play (on)
     {
         this.playing = on;
-        if (this.node !== null)
-            this.node.port.postMessage ({ type: "play", on });
+        this.send ({ type: "play", on });
     }
 
     set (id, value)
     {
-        if (this.node !== null)
-            this.node.port.postMessage ({ type: "set", id, value });
+        this.send ({ type: "set", id, value });
     }
 
     note (note, velocity)
     {
-        if (this.node !== null)
-            this.node.port.postMessage ({ type: "note", note, velocity });
+        this.send ({ type: "note", note, velocity });
     }
 
     /** Stops the audio clock entirely (no CPU while paused). */
@@ -110,10 +127,12 @@ window.RoboticDemo = RoboticDemo;
 //
 //   <div class="web-demo" data-wasm="reverser.wasm" data-ui="reverser"
 //        data-loops='[{ "title": "Chip tune", "text": "Played by Bitstorm", "file": "chip.flac" }]'></div>
+//   <div class="web-demo" data-wasm="bitstorm.wasm" data-ui="bitstorm" data-data="bitstorm-presets.bin"></div>
 //
-// It makes a row of loops to choose from (and "Your own audio"), a play button and a stage
-// for the plugin's own controls, which its <ui>-demo.js (plugins/<Name>/Web/) registers as
-// RoboticDemo.interfaces[ui] = (stage, demo) => { ... } (called once, before audio starts).
+// An effect's demo (with loops) gets a row of loops to choose from (and "Your own audio") and a
+// play button; every demo gets a stage for the plugin's own controls, which its <ui>-demo.js
+// (plugins/<Name>/Web/) registers as RoboticDemo.interfaces[ui] = (stage, demo, root) => { ... }
+// (called once, before audio starts; an instrument starts it with demo.start() on its first note).
 
 RoboticDemo.interfaces = {};
 
@@ -139,8 +158,31 @@ RoboticDemo.mount = (root) =>
         return;
     }
 
-    const demo = new RoboticDemo ({ wasm: root.dataset.wasm });
+    const demo = new RoboticDemo ({ wasm: root.dataset.wasm, data: root.dataset.data });
     root.roboticDemo = demo; // for the page's own scripts and for checks
+    const status = make ("p", "web-demo__status");
+    status.setAttribute ("aria-live", "polite");
+    const stage = make ("div", "web-demo__stage");
+
+    // Nothing runs while the page is out of sight: the loop stops, the demo's controls let go of
+    // what they hold (they hear "roboticdemo:hidden" on root), then the audio clock stops
+    document.addEventListener ("visibilitychange", () =>
+    {
+        if (document.hidden && demo.context !== null)
+        {
+            demo.play (false);
+            root.dispatchEvent (new Event ("roboticdemo:hidden"));
+            setTimeout (() => demo.suspend(), 100);
+        }
+    });
+
+    if (loops.length === 0)
+    {
+        root.append (stage, status);
+        build (stage, demo, root);
+        return;
+    }
+
     const bar = make ("div", "web-demo__bar");
     const play = make ("button", "web-demo__play", "Play");
     play.type = "button";
@@ -148,8 +190,6 @@ RoboticDemo.mount = (root) =>
     const choices = make ("div", "web-demo__loops");
     choices.setAttribute ("role", "radiogroup");
     choices.setAttribute ("aria-label", "Audio to play through it");
-    const status = make ("p", "web-demo__status");
-    status.setAttribute ("aria-live", "polite");
     bar.append (play, choices);
 
     let selected = loops.length > 0 ? loops[0].file : null;
@@ -227,20 +267,9 @@ RoboticDemo.mount = (root) =>
         }
     });
 
-    const stage = make ("div", "web-demo__stage");
+    root.addEventListener ("roboticdemo:hidden", () => setPlaying (false));
     root.append (bar, stage, status);
-    build (stage, demo);
-
-    // Nothing runs while the page is out of sight
-    document.addEventListener ("visibilitychange", () =>
-    {
-        if (document.hidden && demo.playing)
-        {
-            demo.play (false);
-            setPlaying (false);
-            demo.suspend();
-        }
-    });
+    build (stage, demo, root);
 };
 
 document.addEventListener ("DOMContentLoaded", () => document.querySelectorAll (".web-demo").forEach (RoboticDemo.mount));
