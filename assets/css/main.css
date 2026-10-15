@@ -129,6 +129,8 @@ p { margin: 0 0 1.1em; }
 /* The shop: plugins two to a row, picture beside name, pitch and buy button */
 .shop-heading { margin-top: clamp(56px, 8vw, 96px); }
 .kicker + .shop-heading, .container > .shop-heading:first-child { margin-top: 0; }
+.shop-intro { margin: 0 0 clamp(32px, 5vw, 56px); }
+.shop-intro + .shop-heading { margin-top: 0; }
 .shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 48px) clamp(24px, 4vw, 56px); margin-top: clamp(24px, 4vw, 40px); }
 .shop-item { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.2fr); gap: 22px; align-items: start; }
 .shop-item__shot { display: block; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); }
