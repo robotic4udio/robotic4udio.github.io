@@ -25,6 +25,9 @@ social:
   - name: X
     icon: x
     url: https://x.com/ROBOTICAUDIO
+  - name: Reddit
+    icon: reddit
+    url: https://www.reddit.com/user/ROBOTICAUDIO/
 
 # The plugin the homepage leads with (its slug: the file name in _products). Its page can give
 # hero_headline (the words before "with <name>") and hero_text; else its title and description.
