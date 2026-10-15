@@ -3,6 +3,7 @@ title: Drum Forge
 order: 16
 category: instrument  # instrument, effect or tool: which group the shop lists it in
 kind: Drums
+search_kind: drum sampler plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Coming soon
 tagline: A drum sampler that can make its own kits.
 description: Drum Forge is a sixteen-pad drum sampler with up to four takes per pad, ranges and chance on every hit, three drawn envelopes and a matrix per pad, and effects per pad, on sends and on the master. With your own ElevenLabs key it generates whole kits or single pads from words, and with an Anthropic key Claude designs the kit around them. AU, VST3 and standalone.

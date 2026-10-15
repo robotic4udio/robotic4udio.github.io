@@ -3,6 +3,7 @@ title: Bitstorm
 order: 17
 category: instrument  # instrument, effect or tool: which group the shop lists it in
 kind: Synth
+search_kind: chip-tune synth plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Out now
 tagline: Seven classic sound chips, computed the way the hardware did it.
 hero_headline: Play the sound chips of the eighties

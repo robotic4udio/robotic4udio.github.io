@@ -3,6 +3,7 @@ title: Grainstorm
 order: 7
 category: instrument  # instrument, effect or tool: which group the shop lists it in
 kind: Synth
+search_kind: granular synth plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Coming soon
 tagline: A polyphonic granular synth that turns any sound into a storm of grains.
 description: Grainstorm is a polyphonic granular synth. Every note plays a stream of grains from a sample, moved by drawn envelopes and a modulation matrix per voice, through a filter and four effect slots. AU, VST3 and standalone.

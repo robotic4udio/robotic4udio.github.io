@@ -3,6 +3,7 @@ title: Loudness Pilot
 order: 6
 category: tool  # instrument, effect or tool: which group the shop lists it in
 kind: Loudness
+search_kind: loudness meter plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Out now
 tagline: A loudness meter that also does something about it.
 description: Loudness Pilot measures podcasts, audiobooks and mixes the way streaming services and broadcasters do, trims them to the target in one click, rides the level of a voice and keeps the true peaks under the ceiling. AU, VST3 and standalone.

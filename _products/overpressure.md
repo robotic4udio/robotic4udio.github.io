@@ -3,6 +3,7 @@ title: Overpressure
 order: 3
 category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: Compressor
+search_kind: saturating compressor plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Coming soon
 tagline: A hardware-style compressor with three stages of dirt behind it.
 description: Overpressure is a compressor with saturation, overdrive, distortion and fuzz stages, a low-pass filter and a gain-reduction meter. AU, VST3 and standalone.

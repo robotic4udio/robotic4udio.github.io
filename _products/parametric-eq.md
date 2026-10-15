@@ -3,6 +3,7 @@ title: Parametric EQ
 order: 11
 category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: EQ
+search_kind: 8-band parametric EQ plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Coming soon
 tagline: Eight bands, each any filter you need, dragged straight on the graph.
 description: Parametric EQ has eight bands of steep cuts, shelves, bells and notches, dragged on a graph over the live spectrum, with one knob to scale every gain at once. AU, VST3 and standalone.

@@ -3,6 +3,7 @@ title: Echo Engine
 order: 2
 category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: Delay
+search_kind: stereo delay plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Coming soon
 tagline: A stereo delay with three characters and repeats that climb in pitch.
 description: Echo Engine is a stereo delay with clean, tape and lo-fi characters, four delay styles, pitch-shifted repeats and diffusion. AU, VST3 and standalone.

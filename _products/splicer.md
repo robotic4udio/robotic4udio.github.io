@@ -3,6 +3,7 @@ title: Splicer
 order: 9
 category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: Effect
+search_kind: beat slicer and glitch plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Coming soon
 tagline: A probabilistic cut-and-effects machine for beats and breaks.
 description: Splicer slices whatever passes through it in time with your song, then repeats, reverses, re-pitches, tape-stops and reorders the slices and throws effects at them, from patterns you design or a generator working by chance. AU, VST3 and standalone.

@@ -3,6 +3,7 @@ title: Reverser
 order: 4
 category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: Effect
+search_kind: reverse audio plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Out now
 tagline: Hold a button and hear the last moments backwards.
 description: Reverser keeps the last 30 seconds of audio and plays them backwards while you hold a button, at normal or double speed. AU, VST3 and standalone.

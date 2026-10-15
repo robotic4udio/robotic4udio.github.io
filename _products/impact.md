@@ -3,6 +3,7 @@ title: Impact
 order: 8
 category: instrument  # instrument, effect or tool: which group the shop lists it in
 kind: Drums
+search_kind: drum synth plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Coming soon
 tagline: Sixteen pads, each a drum you build from scratch.
 description: Impact is an electronic percussion designer with sixteen pads, each built from two layers of tone, noise, FM, wavetable or sample, shaped by drawn envelopes and its own modulation matrix, then driven, filtered and sent through an effect rack. AU, VST3 and standalone.
