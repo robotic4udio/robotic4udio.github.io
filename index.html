@@ -1,4 +1,8 @@
 ---
+# What Google shows for the homepage: the title (about 60 characters at most) and the description
+# (about 155) say what the site sells and for which hosts, in the words people search with.
+seo_title: "Robotic Audio: VST3 & AU synth and effect plugins"
+description: "Synth, reverb, distortion, bass and podcast plugins: VST3, AU and standalone for Mac, Windows and Linux. 14-day free trials, two plugins free."
 ---
 {%- assign hero = nil %}
 {%- for p in site.products %}{% assign slug = p.url | split: '/' | last %}{% if slug == site.hero_plugin %}{% assign hero = p %}{% endif %}{% endfor %}
@@ -24,6 +28,7 @@
 <section class="section section--shop" id="plugins">
   <div class="container">
     <p class="kicker">Our plugins</p>
+    <p class="lead shop-intro">Synths, reverbs, distortion, compression and podcast tools: audio plugins in VST3, AU and standalone for macOS, Windows and Linux, every paid one free to try for {{ site.shop.trial_days }} days.</p>
     {% include shop-grid.html category="instrument" title="Instruments" soon=site.homepage_coming_soon %}
     {% include shop-grid.html category="effect" title="Effects" soon=site.homepage_coming_soon %}
     {% include shop-grid.html category="tool" title="Tools" soon=site.homepage_coming_soon %}

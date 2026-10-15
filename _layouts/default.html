@@ -4,16 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {%- assign page_description = page.description | default: site.description %}
-  <title>{% if page.title %}{{ page.title }} – {{ site.title }}{% else %}{{ site.title }}: {{ site.tagline | downcase }}{% endif %}</title>
+  {%- comment -%} The page's own seo_title is the whole title (the homepage's); else "<title> – Robotic Audio" {%- endcomment -%}
+  {%- if page.seo_title %}{% assign page_title = page.seo_title %}{% elsif page.title %}{% assign page_title = page.title | append: " – " | append: site.title %}{% else %}{% assign tagline = site.tagline | downcase %}{% assign page_title = site.title | append: ": " | append: tagline %}{% endif %}
+  {%- comment -%} The picture shared and shown in search: the page's, else (the homepage) the hero plugin's {%- endcomment -%}
+  {%- assign page_image = page.image %}{% assign page_image_alt = page.image_alt %}
+  {%- unless page_image %}{% for p in site.products %}{% assign slug = p.url | split: '/' | last %}{% if slug == site.hero_plugin %}{% assign page_image = p.image %}{% assign page_image_alt = p.image_alt %}{% endif %}{% endfor %}{% endunless %}
+  <title>{{ page_title }}</title>
   <meta name="description" content="{{ page_description | escape }}">
   <link rel="canonical" href="{{ page.url | absolute_url }}">
-  <meta property="og:title" content="{{ page.title | default: site.title | escape }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:title" content="{{ page_title | escape }}">
   <meta property="og:description" content="{{ page_description | escape }}">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="{% if page.collection == 'products' %}product{% else %}website{% endif %}">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
-  {%- if page.image %}
-  <meta property="og:image" content="{{ page.image | absolute_url }}">
+  {%- if page_image %}
+  <meta property="og:image" content="{{ page_image | absolute_url }}">
+  <meta property="og:image:alt" content="{{ page_image_alt | escape }}">
+  <meta name="twitter:card" content="summary_large_image">
   {%- endif %}
+  {%- include structured-data.html %}
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/ra-mark.svg' | relative_url }}">
   <link rel="preload" href="{{ '/assets/fonts/BigShouldersDisplay-ExtraBold.ttf' | relative_url }}" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
