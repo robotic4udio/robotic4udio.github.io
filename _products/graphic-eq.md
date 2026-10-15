@@ -3,6 +3,7 @@ title: Graphic EQ
 order: 10
 category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: EQ
+search_kind: 10-band graphic EQ plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Coming soon
 tagline: Ten sliders and a curve that really goes through every one of them.
 description: Graphic EQ is a ten-band octave equaliser whose curve passes exactly through every slider, drawn over the live spectrum of the output. AU, VST3 and standalone.

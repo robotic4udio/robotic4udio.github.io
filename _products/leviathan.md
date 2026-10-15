@@ -3,6 +3,7 @@ title: Leviathan
 order: 19
 category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: Bass processor
+search_kind: bass enhancer plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Coming soon
 tagline: A bass processor that follows the note.
 description: "Leviathan hears what your bass plays and builds a low end under it, always in tune: a sub, harmonics, a resonant peak and an EQ band that move with every note. Then it saturates, compresses and limits the result. AU, VST3 and standalone."

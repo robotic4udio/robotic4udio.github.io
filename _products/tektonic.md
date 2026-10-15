@@ -3,6 +3,7 @@ title: Tektonic
 order: 1
 category: instrument  # instrument, effect or tool: which group the shop lists it in
 kind: Synth
+search_kind: wobble bass synth plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Coming soon
 tagline: A gnarly wobble-bass synth where you draw the movement.
 description: Tektonic is a wobble-bass synth with drawn envelopes, four generators of twelve types (a sampler and seven sound chips among them), mono or up to 16 voices, a drive section, fourteen filters, a sequencer of drifting lanes and a full effects rack. AU, VST3 and standalone.

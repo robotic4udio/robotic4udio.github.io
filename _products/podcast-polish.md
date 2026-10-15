@@ -3,6 +3,7 @@ title: Podcast Polish
 order: 15
 category: tool  # instrument, effect or tool: which group the shop lists it in
 kind: Voice chain
+search_kind: podcast voice plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Out now
 tagline: A voice's whole finishing chain, for podcasts and speech.
 description: Podcast Polish cleans a voice up, removes plosives and sibilance, shapes its tone, compresses it gently and rides it onto your loudness target under a true-peak ceiling. AU, VST3 and standalone.

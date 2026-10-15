@@ -3,6 +3,7 @@ title: Event Horizon
 order: 18
 category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: Reverb
+search_kind: reverb plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Out now
 tagline: Twelve reverbs behind one set of controls, with an echo in front and effects inside the tail.
 description: Event Horizon is an algorithmic reverb with twelve algorithms, from halls, plates and springs to clouds, shimmer, gated reverb and a real room, a decay landscape to drag, an echo in front that the reverb can feed, effects inside its tail and a modulation matrix. AU, VST3 and standalone.

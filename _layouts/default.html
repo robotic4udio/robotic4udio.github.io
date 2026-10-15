@@ -5,7 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {%- assign page_description = page.description | default: site.description %}
   {%- comment -%} The page's own seo_title is the whole title (the homepage's); else "<title> – Robotic Audio" {%- endcomment -%}
-  {%- if page.seo_title %}{% assign page_title = page.seo_title %}{% elsif page.title %}{% assign page_title = page.title | append: " – " | append: site.title %}{% else %}{% assign tagline = site.tagline | downcase %}{% assign page_title = site.title | append: ": " | append: tagline %}{% endif %}
+  {%- comment -%}
+    A plugin's page: "<title>: [free] <search_kind> (VST3, AU) – Robotic Audio", "free" once it is out
+    at no cost, the formats left out when the whole would be over 65 characters (where Google cuts).
+  {%- endcomment -%}
+  {%- if page.collection == "products" and page.search_kind %}
+    {%- include shop-lookup.html plugin=page %}
+    {%- capture search_name %}{{ page.title }}: {% if shop_free %}free {% endif %}{{ page.search_kind }}{% endcapture %}
+    {%- capture page_title %}{{ search_name }} (VST3, AU) – {{ site.title }}{% endcapture %}
+    {%- if page_title.size > 65 %}{% capture page_title %}{{ search_name }} – {{ site.title }}{% endcapture %}{% endif %}
+  {%- elsif page.seo_title %}{% assign page_title = page.seo_title %}{% elsif page.title %}{% assign page_title = page.title | append: " – " | append: site.title %}{% else %}{% assign tagline = site.tagline | downcase %}{% assign page_title = site.title | append: ": " | append: tagline %}{% endif %}
   {%- comment -%} The picture shared and shown in search: the page's, else (the homepage) the hero plugin's {%- endcomment -%}
   {%- assign page_image = page.image %}{% assign page_image_alt = page.image_alt %}
   {%- unless page_image %}{% for p in site.products %}{% assign slug = p.url | split: '/' | last %}{% if slug == site.hero_plugin %}{% assign page_image = p.image %}{% assign page_image_alt = p.image_alt %}{% endif %}{% endfor %}{% endunless %}

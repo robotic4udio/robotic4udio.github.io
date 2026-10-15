@@ -3,6 +3,7 @@ title: CyberPump
 order: 14
 category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: Pump & effects
+search_kind: sidechain pump plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Coming soon
 tagline: A sidechain pump that makes your effects pump along with it.
 description: CyberPump ducks your sound in time with the song, from its own clock, MIDI notes or a kick on the sidechain, with six shapes you draw, and four effect slots after it pump along, every setting its own lane. AU, VST3 and standalone.

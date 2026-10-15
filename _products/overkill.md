@@ -3,6 +3,7 @@ title: Overkill
 order: 5
 category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: Multiband
+search_kind: multiband compressor plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Coming soon
 tagline: Multiband compression taken over the top.
 description: Overkill is a three-band upward and downward compressor with the live spectrum under its controls, draggable thresholds and splits, and an oversampled drive. AU, VST3 and standalone.

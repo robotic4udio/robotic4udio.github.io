@@ -3,6 +3,7 @@ title: Gatekeeper
 order: 13
 category: effect  # instrument, effect or tool: which group the shop lists it in
 kind: Gate
+search_kind: volume shaper plugin  # what the page's title in search results calls it: "<title>: <search_kind> (VST3, AU)"
 status_label: Out now
 tagline: Draw a volume shape and it plays in time with your song.
 description: Gatekeeper is a free volume shaper. Draw a shape and it plays in time with the song, over and over, for sidechain-style pumping, trance gates, stutters and swells. AU, VST3 and standalone.
