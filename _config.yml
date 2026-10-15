@@ -4,7 +4,13 @@ description: Robotic Audio makes audio plugins and builds sound for installation
 author: Hjalte Bested Hjorth
 url: "https://roboticaudio.com"
 baseurl: ""
-email: hjalte.bested.hjorth@gmail.com
+email: mail@roboticaudio.com
+
+# Robotic Audio's own profiles: linked in the footer and given to search engines as the
+# company's (sameAs in _includes/structured-data.html). Only add accounts that are ours.
+social:
+  - name: YouTube
+    url: https://www.youtube.com/@roboticaudioplugins
 
 # The plugin the homepage leads with (its slug: the file name in _products). Its page can give
 # hero_headline (the words before "with <name>") and hero_text; else its title and description.

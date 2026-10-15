@@ -9,6 +9,9 @@
       <a href="{{ '/studio/' | relative_url }}">Studio</a>
       <a href="https://tromleorkestret.com">Tromleorkestret</a>
       <a href="mailto:{{ site.email }}">Contact</a>
+      {%- for profile in site.social %}
+      <a href="{{ profile.url }}" rel="me noopener" target="_blank">{{ profile.name }}</a>
+      {%- endfor %}
     </nav>
   </div>
   <div class="container site-footer__legal">&copy; {{ site.time | date: '%Y' }} {{ site.title }}</div>
