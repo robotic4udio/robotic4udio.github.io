@@ -13,6 +13,8 @@ social:
     url: https://www.youtube.com/@roboticaudioplugins
   - name: Instagram
     url: https://www.instagram.com/robotic.audio/
+  - name: Facebook
+    url: https://www.facebook.com/robotaudio
 
 # The plugin the homepage leads with (its slug: the file name in _products). Its page can give
 # hero_headline (the words before "with <name>") and hero_text; else its title and description.
