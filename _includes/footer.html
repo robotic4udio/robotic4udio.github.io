@@ -16,5 +16,5 @@
       <a href="https://tromleorkestret.com">Tromleorkestret</a>
     </nav>
   </div>
-  <div class="container site-footer__legal">&copy; {{ site.time | date: '%Y' }} {{ site.title }}</div>
+  <div class="container site-footer__legal">&copy; {{ site.time | date: '%Y' }} {{ site.title }}{% if site.vat_id %} · VAT {{ site.vat_id }}{% endif %}</div>
 </footer>
