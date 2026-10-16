@@ -16,6 +16,9 @@
         "logo": "{{ '/assets/images/ra-logo.png' | absolute_url }}",
         "description": {{ site.description | jsonify }},
         "email": {{ site.email | jsonify }},
+        {%- if site.vat_id %}
+        "vatID": {{ site.vat_id | jsonify }},
+        {%- endif %}
         {%- if site.social %}
         "sameAs": {{ site.social | map: "url" | jsonify }},
         {%- endif %}

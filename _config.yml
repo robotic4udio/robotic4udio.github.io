@@ -5,6 +5,8 @@ author: Hjalte Bested Hjorth
 url: "https://roboticaudio.com"
 baseurl: ""
 email: mail@roboticaudio.com
+# The company's VAT number (Danish CVR 37165107): in the footer and the structured data
+vat_id: DK37165107
 
 # Robotic Audio's own profiles: linked as icons in the footer (icon: _includes/icons/<icon>.svg,
 # from Simple Icons) and given to search engines as the company's (sameAs in
